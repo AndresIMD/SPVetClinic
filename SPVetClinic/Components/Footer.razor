@@ -1,0 +1,54 @@
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>
+                <span class="san-pablo">San Pablo</span>
+                <span class="vet">Vet</span><span class="clinic">Clínic</span>
+            </h3>
+            <p>Clínica veterinaria comprometida con el bienestar y salud de tu mascota. Atención profesional con calidez
+                humana desde hace @AppConstants.Clinic.YearsOfService en @AppConstants.Clinic.City.</p>
+            <SocialLinks Style="SocialLinksStyle.Footer" />
+        </div>
+
+        <div class="footer-column">
+            <h4>Servicios</h4>
+            <ul>
+                <li><a href="/#services">Consulta General</a></li>
+                <li><a href="/#services">Especialidades</a></li>
+                <li><a href="/#services">Cirugía</a></li>
+                <li><a href="/#services">Peluquería</a></li>
+                <li><a href="/#services">Vacunación</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Especialistas</h4>
+            <ul>
+                <li><a href="/#specialists">Neurología</a></li>
+                <li><a href="/#specialists">Medicina Felina</a></li>
+                <li><a href="/#specialists">Endocrinología</a></li>
+                <li><a href="/#mobile-vet">Vet Móvil</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contacto</h4>
+            <ul>
+                <li><a href="/#contact">📍 @AppConstants.Clinic.Address</a></li>
+                <li><a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)">📞
+                        @AppConstants.Phone.MainWhatsAppFormatted</a></li>
+                <li><a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)">📞
+                        @AppConstants.Phone.LandlineFormatted</a></li>
+                <li><a href="/#contact">🕐 24 Horas</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© @DateTime.Now.Year @AppConstants.Clinic.Name. Todos los derechos reservados. @AppConstants.Clinic.City,
+            @AppConstants.Clinic.Country.</p>
+    </div>
+</footer>

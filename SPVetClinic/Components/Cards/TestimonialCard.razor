@@ -1,0 +1,24 @@
+@* ============================================
+   TESTIMONIAL CARD - Componente Reutilizable
+   Uso: <TestimonialCard Stars="5" Text="..." AuthorInitial="M" AuthorName="María" AuthorDescription="Dueña de Luna 🐱" />
+   ============================================ *@
+
+<div class="testimonial-card">
+    <div class="testimonial-stars">@(new string('⭐', Stars))</div>
+    <p class="testimonial-text">"@Text"</p>
+    <div class="testimonial-author">
+        <div class="testimonial-avatar">@AuthorInitial</div>
+        <div class="testimonial-info">
+            <h4>@AuthorName</h4>
+            <p>@AuthorDescription</p>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int Stars { get; set; } = 5;
+    [Parameter] public string Text { get; set; } = "";
+    [Parameter] public string AuthorInitial { get; set; } = "";
+    [Parameter] public string AuthorName { get; set; } = "";
+    [Parameter] public string AuthorDescription { get; set; } = "";
+}

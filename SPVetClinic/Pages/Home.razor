@@ -1,0 +1,27 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<PageTitle>San Pablo Vet Clínic - Clínica Veterinaria en Rancagua</PageTitle>
+
+<!-- Página principal compuesta por componentes -->
+<HeroSection />
+<WhyUsSection />
+<ServicesSection />
+<SpecialistsSection />
+<TestimonialsSection />
+<MobileVetSection />
+<FaqSection />
+<HospitalInfoSection />
+<ContactSection />
+<Footer />
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("clearTextSelection");
+        }
+    }
+}

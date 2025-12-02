@@ -1,0 +1,17 @@
+@* ============================================
+   FEATURE CARD - Componente Reutilizable
+   Uso: <FeatureCard Icon="🏥" Title="Instalaciones Modernas" Description="..." />
+   ============================================ *@
+
+<div class="feature-card reveal stagger-@StaggerIndex">
+    <div class="feature-icon">@Icon</div>
+    <h3 class="feature-title">@Title</h3>
+    <p class="feature-description">@Description</p>
+</div>
+
+@code {
+    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public int StaggerIndex { get; set; } = 1;
+}

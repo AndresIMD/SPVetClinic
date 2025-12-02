@@ -1,0 +1,116 @@
+@inject IJSRuntime JS
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section id="home" class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Cuidamos a tu <span class="highlight">mejor amigo</span> como si fuera nuestro</h1>
+            <p>Clínica veterinaria especializada con atención 24 horas, especialistas certificados y servicio a
+                domicilio en Rancagua.</p>
+
+            <div class="hero-badges">
+                <div class="badge urgent">
+                    <span class="badge-icon">⚡</span>
+                    Urgencias 24 Horas
+                </div>
+                <a href="#mobile-vet" class="badge badge-link">
+                    <span class="badge-icon">🏠</span>
+                    Atención a Domicilio
+                </a>
+                <a href="#specialists" class="badge badge-link">
+                    <span class="badge-icon">👨‍⚕️</span>
+                    Especialistas
+                </a>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-primary">
+                    📅 Agendar Hora
+                </a>
+                <WhatsAppButton PhoneNumber="@AppConstants.Phone.MainWhatsApp" Label="WhatsApp"
+                    Style="WhatsAppButtonStyle.Hero" />
+            </div>
+        </div>
+
+        <div class="hero-carousel">
+            <div class="carousel-container">
+                <div class="carousel-slides" id="heroCarousel">
+                    @* ============================================
+                       HERO CAROUSEL - PLACEHOLDERS
+                       ============================================
+                       Cuando lleguen las fotos del equipo de publicidad,
+                       reemplazar cada carousel-placeholder por una imagen:
+                       
+                       <div class="carousel-slide active">
+                           <img src="images/gallery/hero/hero-1.webp" alt="Instalaciones San Pablo Vet" class="carousel-image" />
+                       </div>
+                       
+                       Las fotos deben estar en: wwwroot/images/gallery/hero/
+                       Tamaño recomendado: 1920x1080px, formato WebP
+                       ============================================ *@
+                    <div class="carousel-slide active">
+                        <div class="carousel-placeholder">
+                            <span class="placeholder-icon">🏥</span>
+                            <span class="placeholder-text">Nuestras Instalaciones</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <span class="placeholder-icon">👨‍⚕️</span>
+                            <span class="placeholder-text">Nuestro Equipo</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <span class="placeholder-icon">🐕</span>
+                            <span class="placeholder-text">Pacientes Felices</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <span class="placeholder-icon">🔬</span>
+                            <span class="placeholder-text">Tecnología Avanzada</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-btn carousel-prev" onclick="changeSlide(-1)">❮</button>
+                <button class="carousel-btn carousel-next" onclick="changeSlide(1)">❯</button>
+
+                <div class="carousel-dots">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(3)"></span>
+                </div>
+            </div>
+
+            <div class="hero-floating-card card-1">
+                <span style="font-size: 1.5rem;">🐕</span>
+                <div>
+                    <strong>+5000</strong>
+                    <small style="display:block;color:#636E72;">Mascotas atendidas</small>
+                </div>
+            </div>
+            <div class="hero-floating-card card-2">
+                <span style="font-size: 1.5rem;">⭐</span>
+                <div>
+                    <strong>4.9/5</strong>
+                    <small style="display:block;color:#636E72;">Calificación</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initCarousel");
+        }
+    }
+}

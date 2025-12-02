@@ -1,0 +1,60 @@
+<nav class="topnav" id="topnav">
+    <div class="logo-container">
+        <a href="/" class="logo-text">
+            <img src="images/logo_pequeno_vet_clinic.png" alt="San Pablo Vet Clínic" class="logo-img" />
+        </a>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="/#home" class="nav-link">
+            <span class="nav-link-text">Inicio</span>
+        </a>
+        <a href="/#services" class="nav-link">
+            <span class="nav-link-text">Servicios</span>
+        </a>
+        <a href="/#specialists" class="nav-link">
+            <span class="nav-link-text">Especialistas</span>
+        </a>
+        <a href="/#mobile-vet" class="nav-link nav-highlight">
+            <span class="nav-icon">🚐</span>
+            <span class="nav-link-text">Vet Móvil</span>
+        </a>
+        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="nav-link nav-cta">
+            <span class="nav-icon">📅</span>
+            <span class="nav-link-text">Agendar Hora</span>
+        </a>
+    </div>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<script>
+    function toggleMobileMenu() {
+        document.getElementById('navLinks').classList.toggle('active');
+        document.querySelector('.mobile-menu-btn').classList.toggle('active');
+    }
+
+    // Smart navigation - handles both same-page anchors and cross-page navigation
+    document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            const targetId = href.substring(2); // Remove "/#"
+            const targetElement = document.getElementById(targetId);
+
+            // If we're on the home page and the element exists, smooth scroll
+            if (window.location.pathname === '/' && targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            // Otherwise, let the browser navigate to /#section
+
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+            document.querySelector('.mobile-menu-btn').classList.remove('active');
+        });
+    });
+</script>

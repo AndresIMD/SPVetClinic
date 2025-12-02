@@ -1,0 +1,342 @@
+<!-- ============================================
+     HOSPITAL INFO SECTION
+     Información para tutores de pacientes hospitalizados
+     ============================================ -->
+<section id="hospital-info" class="hospital-info-section">
+    <SectionHeader Tag="Hospitalización" Title="Información para Pacientes Hospitalizados"
+        Subtitle="Todo lo que necesitas saber si tu mascota está internada con nosotros." />
+
+    <div class="hospital-info-container">
+        <!-- Card Principal de Contacto -->
+        <div class="hospital-contact-card reveal">
+            <div class="hospital-contact-header">
+                <span class="hospital-icon">🏥</span>
+                <h3>Contacto Hospital</h3>
+            </div>
+            <p class="hospital-contact-description">
+                Para consultar sobre el estado de tu mascota hospitalizada, comunícate directamente con nuestro equipo
+                médico.
+            </p>
+            <div class="hospital-phone">
+                <span class="phone-label">Línea directa Hospital:</span>
+                <a href="@AppConstants.Urls.WhatsAppHospitalLink" target="_blank" class="phone-number">
+                    @AppConstants.Phone.HospitalWhatsAppFormatted
+                </a>
+            </div>
+            <a href="@AppConstants.Urls.WhatsAppHospitalLink" target="_blank" class="btn-hospital-whatsapp">
+                <svg class="whatsapp-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Contactar Hospital por WhatsApp
+            </a>
+            <p class="hospital-note">
+                <strong>Importante:</strong> @AppConstants.Hospital.InfoPolicy.
+            </p>
+        </div>
+
+        <!-- Info Cards Grid -->
+        <div class="hospital-info-grid">
+            <div class="hospital-info-card reveal stagger-1">
+                <div class="info-card-icon">📞</div>
+                <h4>Horario de Llamadas</h4>
+                <p class="info-card-time">@AppConstants.Hospital.CallsSchedule</p>
+                <p class="info-card-detail">Según disponibilidad de médicos veterinarios de hospital</p>
+            </div>
+
+            <div class="hospital-info-card reveal stagger-2">
+                <div class="info-card-icon">👁️</div>
+                <h4>Visitas a Pacientes</h4>
+                <p class="info-card-time">@AppConstants.Hospital.VisitsSchedule</p>
+                <p class="info-card-detail">Las visitas deben ser agendadas previamente en recepción</p>
+            </div>
+
+            <div class="hospital-info-card reveal stagger-3">
+                <div class="info-card-icon">⏱️</div>
+                <h4>Duración de Visitas</h4>
+                <p class="info-card-time">Máximo @AppConstants.Hospital.MaxVisitDuration</p>
+                <p class="info-card-detail">Para no alterar el descanso y recuperación de los pacientes</p>
+            </div>
+
+            <div class="hospital-info-card reveal stagger-4">
+                <div class="info-card-icon">🏠</div>
+                <h4>Altas Médicas</h4>
+                <p class="info-card-time">@AppConstants.Hospital.DischargeSchedule</p>
+                <p class="info-card-detail">Retiro de pacientes dados de alta por el médico tratante</p>
+            </div>
+        </div>
+
+        <!-- Aviso Importante -->
+        <div class="hospital-important-notice reveal stagger-5">
+            <div class="notice-icon">ℹ️</div>
+            <div class="notice-content">
+                <h4>Información Importante</h4>
+                <ul>
+                    <li>La información del paciente solo será entregada al <strong>tutor responsable registrado en la
+                            ficha clínica</strong>.</li>
+                    <li>Las visitas a pacientes hospitalizados deben ser <strong>agendadas previamente en
+                            recepción</strong>.</li>
+                    <li>Las llamadas serán atendidas según la <strong>disponibilidad de los médicos
+                            veterinarios</strong> de hospital.</li>
+                    <li>Agradecemos tu comprensión y paciencia mientras cuidamos de tu mascota.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ============================================
+       HOSPITAL INFO SECTION STYLES
+       ============================================ */
+    .hospital-info-section {
+        padding: 80px 5%;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    }
+
+    .hospital-info-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Contact Card */
+    .hospital-contact-card {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        margin-bottom: 40px;
+        text-align: center;
+        border: 2px solid #0ea5e9;
+    }
+
+    .hospital-contact-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .hospital-icon {
+        font-size: 2.5rem;
+    }
+
+    .hospital-contact-header h3 {
+        font-size: 1.75rem;
+        color: #0c4a6e;
+        margin: 0;
+    }
+
+    .hospital-contact-description {
+        color: #64748b;
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hospital-phone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+    }
+
+    .phone-label {
+        color: #475569;
+        font-weight: 500;
+    }
+
+    .phone-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #0ea5e9;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .phone-number:hover {
+        color: #0284c7;
+    }
+
+    .btn-hospital-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #25D366;
+        color: white;
+        padding: 16px 32px;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-hospital-whatsapp:hover {
+        background: #20bd5a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-hospital-whatsapp .whatsapp-icon-svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .hospital-note {
+        margin-top: 20px;
+        padding: 16px 24px;
+        background: #fef3c7;
+        border-radius: 12px;
+        color: #92400e;
+        font-size: 0.95rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Info Cards Grid */
+    .hospital-info-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .hospital-info-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px 24px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hospital-info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+    }
+
+    .hospital-info-card h4 {
+        color: #0c4a6e;
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .info-card-time {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0ea5e9;
+        margin-bottom: 8px;
+    }
+
+    .info-card-detail {
+        color: #64748b;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* Important Notice */
+    .hospital-important-notice {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #0ea5e9;
+    }
+
+    .notice-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .notice-content h4 {
+        color: #0c4a6e;
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+    }
+
+    .notice-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .notice-content li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 10px;
+        color: #475569;
+        line-height: 1.6;
+    }
+
+    .notice-content li:before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: #0ea5e9;
+        font-weight: bold;
+    }
+
+    .notice-content li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Responsive */
+    @@media (max-width: 1024px) {
+        .hospital-info-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hospital-info-section {
+            padding: 60px 5%;
+        }
+
+        .hospital-contact-card {
+            padding: 30px 20px;
+        }
+
+        .hospital-contact-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .phone-number {
+            font-size: 1.25rem;
+        }
+
+        .hospital-info-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .hospital-info-card {
+            padding: 24px 20px;
+        }
+
+        .hospital-important-notice {
+            flex-direction: column;
+            text-align: center;
+            padding: 24px 20px;
+        }
+
+        .notice-content {
+            text-align: left;
+        }
+    }
+</style>

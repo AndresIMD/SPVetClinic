@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
         content="San Pablo Vet Clínic - Clínica veterinaria en Rancagua. Urgencias 24 horas, especialistas en neurología, medicina felina y endocrinología. Atención a domicilio." />
-    <meta name="theme-color" content="#00B4B4" />
+    <meta name="theme-color" content="#62ABBF" />
     <title>San Pablo Vet Clínic | Clínica Veterinaria Rancagua</title>
     <base href="/SPVetClinic/" />
+    <link href="_framework/dotnet.xhpdsliopx.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-qw03VIWvwzbMtm/0ygS8uuW0QoTLsPFGF1BJDfTW0ic=" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +24,10 @@
     <link href="SPVetClinic.styles.css" rel="stylesheet" />
     <script type="importmap">{
   "imports": {
-    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
+    "./_framework/blazor.webassembly.66stpp682q.js": "./_framework/blazor.webassembly.66stpp682q.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.o55fmtwhak.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.qkpuyv4fa3.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.o0qy896u8v.js"
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.o0qy896u8v.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.xhpdsliopx.js"
   }
 }</script>
 </head>
@@ -38,9 +39,9 @@
             <svg class="loading-progress" style="width:80px;height:80px;">
                 <circle r="40%" cx="50%" cy="50%" style="fill:none;stroke:#E8F8F8;stroke-width:8px;" />
                 <circle r="40%" cx="50%" cy="50%"
-                    style="fill:none;stroke:#00B4B4;stroke-width:8px;stroke-dasharray:251;stroke-dashoffset:0;animation:spin 1.5s linear infinite;" />
+                    style="fill:none;stroke:#62ABBF;stroke-width:8px;stroke-dasharray:251;stroke-dashoffset:0;animation:spin 1.5s linear infinite;" />
             </svg>
-            <p style="margin-top:1.5rem;color:#00B4B4;font-family:Inter,sans-serif;font-weight:500;">Cargando San Pablo
+            <p style="margin-top:1.5rem;color:#62ABBF;font-family:Inter,sans-serif;font-weight:500;">Cargando San Pablo
                 Vet Clínic...</p>
         </div>
         <style>
@@ -60,7 +61,7 @@
         </style>
     </div>
 
-    <div id="blazor-error-ui" style="background:#E85A4F;color:white;padding:1rem;text-align:center;display:none;">
+    <div id="blazor-error-ui" style="background:#BB545F;color:white;padding:1rem;text-align:center;display:none;">
         Ha ocurrido un error inesperado.
         <a href="." class="reload" style="color:white;text-decoration:underline;margin-left:0.5rem;">Recargar</a>
         <span class="dismiss" style="margin-left:1rem;cursor:pointer;">✕</span>
@@ -122,6 +123,86 @@
             if (navLinks) {
                 navLinks.classList.toggle('active');
             }
+        }
+
+        // FAQ Accordion
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Clear text selection on page load
+        function clearTextSelection() {
+            if (window.getSelection) {
+                window.getSelection().removeAllRanges();
+            } else if (document.selection) {
+                document.selection.empty();
+            }
+            // Also blur any focused element
+            if (document.activeElement) {
+                document.activeElement.blur();
+            }
+        }
+
+        // Hero Carousel
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        function initCarousel() {
+            startAutoSlide();
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            if (slides.length === 0) return;
+
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            if (slides.length === 0) return;
+
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            currentSlide = index;
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
         }
     </script>
 

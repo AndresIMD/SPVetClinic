@@ -22,7 +22,7 @@ artifacts/
 *.rsuser
 *.userprefs
 
-# VS Code (configuraciones locales del editor)
+# VS Code
 .vscode/
 
 # Rider
@@ -38,17 +38,18 @@ artifacts/
 **/[Pp]ackages/*
 !**/[Pp]ackages/build/
 
-# Publish folder (se genera con dotnet publish)
+# Publish folder
 publish/
+release/
 
-# GitHub Copilot / AI context files (ignore specific AI files but allow workflows)
+# Private
+.private/
 .github/copilot-instructions.md
-copilot-context.md
-.copilot/
-# Ignore .github by default but allow workflows directory so Actions can run
-.github/
-!/.github/workflows/
-!/.github/workflows/*.yml
+
+# Permitir workflows de GitHub Actions
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
 
 # Windows
 Thumbs.db

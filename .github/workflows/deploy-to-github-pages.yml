@@ -29,24 +29,62 @@ jobs:
       with:
         dotnet-version: '10.0.x'
         
-    - name: Publish (SIN modificar proyecto original)
+    - name: Publish
       run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release --nologo
       
-    # ===== TODAS LAS MODIFICACIONES SE HACEN EN LA CARPETA release =====
-    # El proyecto original en SPVetClinic/ NO se toca
-    
-    - name: Change base tag in index.html (SOLO en release)
+    - name: Change base tag in index.html
       run: |
         sed -i 's|<base href="/" />|<base href="/${{ github.event.repository.name }}/" />|g' release/wwwroot/index.html
     
-    - name: Add SPA redirect script to index.html (SOLO en release)
+    - name: Fix blazor.webassembly.js reference and remove integrity
       run: |
-        sed -i '/<base href=/a\    <script>(function(l){if(l.search[1]==="/"){var decoded=l.search.slice(1).split("&").map(function(s){return s.replace(/~and~/g,"&")}).join("?");window.history.replaceState(null,null,l.pathname.slice(0,-1)+decoded+l.hash)}}(window.location))</script>' release/wwwroot/index.html
+        cd release/wwwroot
+        # Find the actual blazor.webassembly file with fingerprint
+        BLAZOR_FILE=$(ls _framework/blazor.webassembly*.js | head -1 | xargs basename)
+        echo "Found Blazor file: $BLAZOR_FILE"
         
-    - name: Create 404.html from index.html (SOLO en release)
+        # Replace the placeholder with actual filename and remove integrity attribute
+        sed -i "s|blazor.webassembly#\[\.{fingerprint}\]\.js|$BLAZOR_FILE|g" index.html
+        sed -i 's| integrity="[^"]*"||g' index.html
+        
+    - name: Fix dotnet.js reference
+      run: |
+        cd release/wwwroot/_framework
+        # Find the actual dotnet.*.js file
+        DOTNET_FILE=$(ls dotnet.*.js | grep -v ".map" | grep -v ".symbols" | head -1)
+        if [ ! -z "$DOTNET_FILE" ]; then
+          echo "Found dotnet file: $DOTNET_FILE"
+          # Create dotnet.js that imports the fingerprinted version
+          echo "export * from './$DOTNET_FILE';" > dotnet.js
+        fi
+        
+    - name: Remove invalid preload
+      run: |
+        sed -i '/<link rel="preload" id="webassembly"/d' release/wwwroot/index.html
+        
+    - name: Generate proper importmap
+      run: |
+        cd release/wwwroot
+        # Find all fingerprinted JS files in _framework
+        echo "Generating importmap for fingerprinted files..."
+        
+        # Create a simple importmap without fingerprints for imports
+        cat > temp_importmap.json << 'EOF'
+        {
+          "imports": {
+            "dotnet": "./_framework/dotnet.js"
+          }
+        }
+        EOF
+        
+        # Insert the importmap into index.html
+        sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
+        rm temp_importmap.json
+        
+    - name: Copy index.html to 404.html
       run: cp release/wwwroot/index.html release/wwwroot/404.html
       
-    - name: Add .nojekyll file (SOLO en release)
+    - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
       
     - name: Setup Pages

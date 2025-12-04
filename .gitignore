@@ -41,11 +41,14 @@ artifacts/
 # Publish folder (se genera con dotnet publish)
 publish/
 
-# GitHub Copilot / AI context files
+# GitHub Copilot / AI context files (ignore specific AI files but allow workflows)
 .github/copilot-instructions.md
-.github/
 copilot-context.md
 .copilot/
+# Ignore .github by default but allow workflows directory so Actions can run
+.github/
+!/.github/workflows/
+!/.github/workflows/*.yml
 
 # Windows
 Thumbs.db

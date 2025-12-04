@@ -1,4 +1,6 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,7 +12,7 @@
                 <h1 style="font-size:4rem;color:#62ABBF;margin-bottom:1rem;">404</h1>
                 <h2 style="color:#222222;margin-bottom:1rem;">Página no encontrada</h2>
                 <p style="color:#636E72;margin-bottom:2rem;">Lo sentimos, la página que buscas no existe.</p>
-                <a href="/" class="btn-primary"
+                <a href="@NavigationManager.BaseUri" class="btn-primary"
                     style="background:linear-gradient(135deg,#62ABBF,#4A8FA3);color:white;padding:1rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;">
                     🏠 Volver al Inicio
                 </a>

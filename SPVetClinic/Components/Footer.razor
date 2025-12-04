@@ -1,6 +1,8 @@
+@inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+
 <!-- ============================================
-     FOOTER
-     ============================================ -->
+    FOOTER
+    ============================================ -->
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-brand">
@@ -16,33 +18,33 @@
         <div class="footer-column">
             <h4>Servicios</h4>
             <ul>
-                <li><a href="/#services">Consulta General</a></li>
-                <li><a href="/#services">Especialidades</a></li>
-                <li><a href="/#services">Cirugía</a></li>
-                <li><a href="/#services">Peluquería</a></li>
-                <li><a href="/#services">Vacunación</a></li>
+                <li><a href="#services">Consulta General</a></li>
+                <li><a href="#services">Especialidades</a></li>
+                <li><a href="#services">Cirugía</a></li>
+                <li><a href="#services">Peluquería</a></li>
+                <li><a href="#services">Vacunación</a></li>
             </ul>
         </div>
 
         <div class="footer-column">
             <h4>Especialistas</h4>
             <ul>
-                <li><a href="/#specialists">Neurología</a></li>
-                <li><a href="/#specialists">Medicina Felina</a></li>
-                <li><a href="/#specialists">Endocrinología</a></li>
-                <li><a href="/#mobile-vet">Vet Móvil</a></li>
+                <li><a href="#specialists">Neurología</a></li>
+                <li><a href="#specialists">Medicina Felina</a></li>
+                <li><a href="#specialists">Endocrinología</a></li>
+                <li><a href="#mobile-vet">Vet Móvil</a></li>
             </ul>
         </div>
 
         <div class="footer-column">
             <h4>Contacto</h4>
             <ul>
-                <li><a href="/#contact">📍 @AppConstants.Clinic.Address</a></li>
+                <li><a href="#contact">📍 @AppConstants.Clinic.Address</a></li>
                 <li><a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)">📞
                         @AppConstants.Phone.MainWhatsAppFormatted</a></li>
                 <li><a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)">📞
                         @AppConstants.Phone.LandlineFormatted</a></li>
-                <li><a href="/#contact">🕐 24 Horas</a></li>
+                <li><a href="#contact">🕐 24 Horas</a></li>
             </ul>
         </div>
     </div>

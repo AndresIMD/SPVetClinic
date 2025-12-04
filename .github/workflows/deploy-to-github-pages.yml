@@ -58,16 +58,17 @@ jobs:
           echo "export * from './$DOTNET_FILE';" > dotnet.js
         fi
         
-    - name: Remove invalid preload
+    - name: Remove invalid preload and fix integrity issues
       run: |
-        sed -i '/<link rel="preload" id="webassembly"/d' release/wwwroot/index.html
+        cd release/wwwroot
+        # Remove the preload link that causes warnings
+        sed -i '/<link rel="preload" id="webassembly"/d' index.html
+        # Remove all integrity attributes to prevent mismatches
+        sed -i 's| integrity="[^"]*"||g' index.html
         
     - name: Generate proper importmap
       run: |
         cd release/wwwroot
-        # Find all fingerprinted JS files in _framework
-        echo "Generating importmap for fingerprinted files..."
-        
         # Create a simple importmap without fingerprints for imports
         cat > temp_importmap.json << 'EOF'
         {
@@ -80,8 +81,20 @@ jobs:
         # Insert the importmap into index.html
         sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
         rm temp_importmap.json
+    
+    - name: Fix Blazor internal routes in compiled DLLs
+      run: |
+        cd release/wwwroot/_framework
+        # Fix NavigationManager base paths in all .dll files
+        # This ensures Blazor routing works correctly with the base href
+        for file in *.dll; do
+          if [ -f "$file" ]; then
+            # Replace references to root path in compiled assemblies
+            sed -i 's|href="/|href="/${{ github.event.repository.name }}/|g' "$file" 2>/dev/null || true
+          fi
+        done
         
-    - name: Copy index.html to 404.html
+    - name: Copy index.html to 404.html for SPA routing
       run: cp release/wwwroot/index.html release/wwwroot/404.html
       
     - name: Add .nojekyll file

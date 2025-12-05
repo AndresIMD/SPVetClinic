@@ -82,21 +82,46 @@ jobs:
         sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
         rm temp_importmap.json
     
-    - name: Fix Blazor internal routes in compiled DLLs
+    - name: Create 404.html with SPA redirect for GitHub Pages
       run: |
-        cd release/wwwroot/_framework
-        # Fix NavigationManager base paths in all .dll files
-        # This ensures Blazor routing works correctly with the base href
-        for file in *.dll; do
-          if [ -f "$file" ]; then
-            # Replace references to root path in compiled assemblies
-            sed -i 's|href="/|href="/${{ github.event.repository.name }}/|g' "$file" 2>/dev/null || true
-          fi
-        done
+        cd release/wwwroot
+        cat > 404.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="utf-8" />
+          <title>Redirigiendo...</title>
+          <script>
+            // GitHub Pages SPA redirect solution for Blazor
+            // This script captures the 404 path and redirects to index.html with path as query parameter
+            (function() {
+              var pathSegmentsToKeep = 1; // Keep "/SPVetClinic" in the path
+              
+              var location = window.location;
+              var redirect = location.protocol + '//' + location.hostname + 
+                            (location.port ? ':' + location.port : '') +
+                            location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
+                            '/?/' + 
+                            location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+                            (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+                            location.hash;
+              
+              window.location.replace(redirect);
+            })();
+          </script>
+        </head>
+        <body>
+          <p>Redirigiendo...</p>
+        </body>
+        </html>
+        EOF
         
-    - name: Copy index.html to 404.html for SPA routing
-      run: cp release/wwwroot/index.html release/wwwroot/404.html
-      
+    - name: Add SPA redirect handler to index.html
+      run: |
+        cd release/wwwroot
+        # Add script right after <base> tag to handle redirected paths from 404.html
+        sed -i '/<base href=/a\    <script>\n      // Handle redirected paths from 404.html\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) { \n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
+        
     - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
       

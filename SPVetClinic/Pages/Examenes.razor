@@ -1,6 +1,5 @@
 @page "/examenes"
 @inject IJSRuntime JS
-@inject NavigationManager Navigation
 
 <PageTitle>Exámenes y Diagnóstico | San Pablo Vet Clínic</PageTitle>
 
@@ -9,10 +8,10 @@
      ============================================ -->
 <section class="page-hero">
     <div class="page-hero-content">
-        <a href="@Navigation.BaseUri" class="back-link">
+        <NavLink href="" class="back-link">
             <span class="back-arrow">←</span>
             <span>Volver al inicio</span>
-        </a>
+        </NavLink>
         <h1 class="page-hero-title">Exámenes y Diagnóstico</h1>
         <p class="page-hero-subtitle">Tecnología de punta para diagnósticos precisos y oportunos</p>
     </div>

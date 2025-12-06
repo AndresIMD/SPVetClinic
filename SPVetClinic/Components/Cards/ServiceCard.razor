@@ -19,7 +19,7 @@
 }
 else
 {
-    <a href="@Link" class="service-card reveal stagger-@StaggerIndex">
+    <NavLink href="@Link" class="@GetCardClass()">
         <div class="service-card-image-wrapper">
             <img src="@ImageSrc" alt="@ImageAlt" class="service-card-image" />
             <div class="service-card-icon">@Icon</div>
@@ -33,7 +33,7 @@ else
             }
             @ChildContent
         </div>
-    </a>
+    </NavLink>
 }
 
 @code {
@@ -46,4 +46,6 @@ else
     [Parameter] public string LinkText { get; set; } = "";
     [Parameter] public int StaggerIndex { get; set; } = 1;
     [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string GetCardClass() => $"service-card reveal stagger-{StaggerIndex}";
 }

@@ -1,0 +1,19 @@
+﻿@* ============================================
+   HIGHLIGHT STAT - Estadística Destacada
+   Uso: <HighlightStat Icon="??" Number="+5000" Label="Pacientes" />
+   ============================================ *@
+
+<div class="highlight-stat reveal stagger-@StaggerIndex">
+    <span class="highlight-icon">@Icon</span>
+    <div class="highlight-content">
+        <strong class="highlight-number">@Number</strong>
+        <span class="highlight-label">@Label</span>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Icon { get; set; } = "??";
+    [Parameter] public string Number { get; set; } = "";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public int StaggerIndex { get; set; } = 1;
+}

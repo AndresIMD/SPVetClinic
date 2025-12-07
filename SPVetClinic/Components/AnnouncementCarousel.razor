@@ -1,0 +1,160 @@
+@inject IJSRuntime JS
+
+<!-- ============================================
+     CARRUSEL DE ANUNCIOS
+     ============================================ -->
+<section class="announcement-carousel-section">
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <!-- Slide 1: Parvovirus en Verano -->
+            <div class="carousel-slide active" data-slide="1">
+                <div class="slide-content">
+                    <span class="slide-tag tag-warning">⚠️ Temporada de Verano</span>
+                    <h2 class="slide-title">Protege a tu perro del Parvovirus</h2>
+                    <p class="slide-description">
+                        Durante el verano, el contagio de parvovirus aumenta drásticamente.
+                        Vacuna a tu mascota y evita complicaciones graves.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
+                            💉 Agendar Vacunación
+                        </a>
+                        <NavLink href="parvovirus" class="btn-slide-secondary">
+                            📋 Más Información
+                        </NavLink>
+                    </div>
+                </div>
+                <div class="slide-visual">
+                    <div class="slide-icon">🐕</div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Mes de Vacunación -->
+            <div class="carousel-slide" data-slide="2">
+                <div class="slide-content">
+                    <span class="slide-tag tag-success">🎉 Promoción Especial</span>
+                    <h2 class="slide-title">Mes de Vacunación con 20% OFF</h2>
+                    <p class="slide-description">
+                        Aprovecha nuestro descuento especial en todas las vacunas.
+                        Protege a tu mascota y ahorra durante todo diciembre.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
+                            📅 Agendar Hora
+                        </a>
+                        <NavLink href="vacunacion" class="btn-slide-secondary">
+                            💉 Ver Vacunas
+                        </NavLink>
+                    </div>
+                </div>
+                <div class="slide-visual">
+                    <div class="slide-icon">💰</div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Nueva Peluquería -->
+            <div class="carousel-slide" data-slide="3">
+                <div class="slide-content">
+                    <span class="slide-tag tag-info">✨ Nuevo Servicio</span>
+                    <h2 class="slide-title">Estrena Nuestro Servicio de Peluquería</h2>
+                    <p class="slide-description">
+                        Baños medicados, cortes profesionales y cuidado completo para la higiene
+                        y belleza de tu mascota.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
+                            🐾 Agendar Peluquería
+                        </a>
+                        <NavLink href="peluqueria" class="btn-slide-secondary">
+                            🧴 Ver Servicios
+                        </NavLink>
+                    </div>
+                </div>
+                <div class="slide-visual">
+                    <div class="slide-icon">🛁</div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Urgencias 24/7 -->
+            <div class="carousel-slide" data-slide="4">
+                <div class="slide-content">
+                    <span class="slide-tag tag-danger">🚨 Siempre Disponible</span>
+                    <h2 class="slide-title">Urgencias 24 Horas, Todos los Días</h2>
+                    <p class="slide-description">
+                        Atención veterinaria de emergencia cuando más lo necesitas.
+                        Equipo especializado disponible 24/7.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)"
+                            class="btn-slide-primary btn-urgency">
+                            📞 Llamar Ahora
+                        </a>
+                        <NavLink href="contacto" class="btn-slide-secondary">
+                            📍 Ver Ubicación
+                        </NavLink>
+                    </div>
+                </div>
+                <div class="slide-visual">
+                    <div class="slide-icon">🏥</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicadores de navegaci�n -->
+        <div class="carousel-indicators">
+            <button class="indicator active" data-target="1" @onclick="() => GoToSlide(1)"></button>
+            <button class="indicator" data-target="2" @onclick="() => GoToSlide(2)"></button>
+            <button class="indicator" data-target="3" @onclick="() => GoToSlide(3)"></button>
+            <button class="indicator" data-target="4" @onclick="() => GoToSlide(4)"></button>
+        </div>
+
+        <!-- Botones prev/next -->
+        <button class="carousel-nav prev" @onclick="PrevSlide">‹</button>
+        <button class="carousel-nav next" @onclick="NextSlide">›</button>
+    </div>
+</section>
+
+@code {
+    private int currentSlide = 1;
+    private System.Threading.Timer? autoPlayTimer;
+
+    protected override void OnInitialized()
+    {
+        StartAutoPlay();
+    }
+
+    private void StartAutoPlay()
+    {
+        autoPlayTimer = new System.Threading.Timer(_ =>
+        {
+            InvokeAsync(() =>
+    {
+            NextSlide();
+            StateHasChanged();
+        });
+        }, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+    }
+
+    private void GoToSlide(int slideNumber)
+    {
+        currentSlide = slideNumber;
+        InvokeAsync(async () => await JS.InvokeVoidAsync("setActiveSlide", slideNumber));
+    }
+
+    private void NextSlide()
+    {
+        currentSlide = currentSlide >= 4 ? 1 : currentSlide + 1;
+        InvokeAsync(async () => await JS.InvokeVoidAsync("setActiveSlide", currentSlide));
+    }
+
+    private void PrevSlide()
+    {
+        currentSlide = currentSlide <= 1 ? 4 : currentSlide - 1;
+        InvokeAsync(async () => await JS.InvokeVoidAsync("setActiveSlide", currentSlide));
+    }
+
+    public void Dispose()
+    {
+        autoPlayTimer?.Dispose();
+    }
+}

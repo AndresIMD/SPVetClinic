@@ -1,0 +1,180 @@
+﻿@page "/conocenos"
+@inject IJSRuntime JS
+
+<PageTitle>Conócenos | San Pablo Vet Clínic</PageTitle>
+
+<!-- ============================================
+     PAGE HERO
+     ============================================ -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <NavLink href="/" class="back-link">
+            <span class="back-arrow">←</span>
+            <span>Volver al inicio</span>
+        </NavLink>
+        <h1 class="page-hero-title">Nuestra Historia</h1>
+        <p class="page-hero-subtitle">Más de @AppConstants.Clinic.YearsOfService cuidando a tus mascotas en @AppConstants.Clinic.City</p>
+    </div>
+</section>
+
+<!-- ============================================
+     HISTORIA
+     ============================================ -->
+<section class="historia-section">
+    <div class="historia-container reveal">
+        <div class="historia-image">
+            <div class="placeholder-image">
+                <span>??</span>
+            </div>
+            <p class="image-caption">?? Espacio para foto de la cl�nica</p>
+        </div>
+        <div class="historia-content">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <p>
+                Fundada en [A�O], San Pablo Vet Cl�nic nace del sue�o de crear un espacio donde las mascotas reciban
+                atenci�n m�dica de calidad con calidez humana. Desde nuestros inicios, hemos trabajado incansablemente
+                para convertirnos en la cl�nica veterinaria de referencia en Rancagua.
+            </p>
+            <p>
+                A lo largo de los a�os, hemos crecido junto a la comunidad, incorporando tecnolog�a de punta como
+                equipos IDEXX para diagn�sticos r�pidos y precisos, y ampliando nuestro equipo con especialistas
+                certificados en neurolog�a, medicina felina y endocrinolog�a.
+            </p>
+            <p>
+                Hoy, con m�s de @AppConstants.Clinic.YearsOfService de experiencia, seguimos comprometidos con el
+                bienestar de cada mascota que cruza nuestras puertas, ofreciendo atenci�n 24 horas y servicio m�vil
+                a domicilio.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     VALORES
+     ============================================ -->
+<section class="valores-section">
+    <div class="section-header">
+        <span class="section-tag">Nuestros Principios</span>
+        <h2 class="section-title">Lo Que Nos Define</h2>
+        <p class="section-subtitle">Los valores que guían cada decisión en nuestra clínica</p>
+    </div>
+
+    <div class="valores-grid">
+        <div class="valor-card reveal stagger-1">
+            <div class="valor-icon">🎖️</div>
+            <h3>Profesionalismo</h3>
+            <p>Especialistas certificados y equipo médico de primer nivel comprometidos con la excelencia.</p>
+        </div>
+
+        <div class="valor-card reveal stagger-2">
+            <div class="valor-icon">❤️</div>
+            <h3>Calidez Humana</h3>
+            <p>Tratamos a cada mascota como si fuera nuestra, con amor, paciencia y dedicación.</p>
+        </div>
+
+        <div class="valor-card reveal stagger-3">
+            <div class="valor-icon">🔬</div>
+            <h3>Tecnología</h3>
+            <p>Equipamiento de última generación para diagnósticos precisos y tratamientos efectivos.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     GALERÍA INSTALACIONES
+     ============================================ -->
+<section class="galeria-section">
+    <div class="section-header">
+        <span class="section-tag">Nuestras Instalaciones</span>
+        <h2 class="section-title">Un Espacio Diseñado Para Ellos</h2>
+        <p class="section-subtitle">Instalaciones modernas y acogedoras para el bienestar de tu mascota</p>
+    </div>
+
+    <div class="galeria-grid">
+        @for (int i = 1; i <= 8; i++)
+        {
+            <div class="galeria-item reveal stagger-@i">
+                <div class="galeria-placeholder">
+                    <span>📷</span>
+                    <p>Imagen @i</p>
+                </div>
+            </div>
+        }
+    </div>
+    <p class="galeria-note">📷 Espacio reservado para fotos reales de las instalaciones</p>
+</section>
+
+<!-- ============================================
+     TIMELINE
+     ============================================ -->
+<section class="timeline-section">
+    <div class="section-header">
+        <span class="section-tag">Nuestra Trayectoria</span>
+        <h2 class="section-title">Años de Experiencia</h2>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item reveal stagger-1">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-content">
+                <h3>Fundación</h3>
+                <p>Apertura de San Pablo Vet Clínic con servicios básicos de consulta y vacunación.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item reveal stagger-2">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-content">
+                <h3>Expansión</h3>
+                <p>Incorporación de equipos IDEXX y ampliación del laboratorio clínico.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item reveal stagger-3">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-content">
+                <h3>Especialización</h3>
+                <p>Llegada de especialistas certificados y servicio de atención 24 horas.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item reveal stagger-4">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+                <h3>Innovación</h3>
+                <p>Lanzamiento del servicio veterinario móvil y nuevas especialidades médicas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA FINAL
+     ============================================ -->
+<section class="cta-section">
+    <div class="cta-container reveal">
+        <h2 class="cta-title">¿Quieres conocernos en persona?</h2>
+        <p class="cta-description">Visita nuestra clínica o agenda una cita para conocer a nuestro equipo y nuestras instalaciones.</p>
+        <div class="cta-buttons">
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-primary-large">
+                <span>📅</span>
+                <span>Agendar Cita</span>
+            </a>
+            <NavLink href="contacto" class="btn-secondary-large">
+                <span>📍</span>
+                <span>Ver Ubicación</span>
+            </NavLink>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("clearTextSelection");
+        }
+    }
+}

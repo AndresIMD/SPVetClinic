@@ -1,17 +1,32 @@
-@* ============================================
+﻿@* ============================================
    FEATURE CARD - Componente Reutilizable
-   Uso: <FeatureCard Icon="🏥" Title="Instalaciones Modernas" Description="..." />
+   Uso: <FeatureCard Icon="🏥" Title="Instalaciones Modernas" Description="..." Link="servicios" />
    ============================================ *@
 
-<div class="feature-card reveal stagger-@StaggerIndex">
-    <div class="feature-icon">@Icon</div>
-    <h3 class="feature-title">@Title</h3>
-    <p class="feature-description">@Description</p>
-</div>
+@if (string.IsNullOrEmpty(Link))
+{
+    <div class="@GetCardClass()">
+        <div class="feature-icon">@Icon</div>
+        <h3 class="feature-title">@Title</h3>
+        <p class="feature-description">@Description</p>
+    </div>
+}
+else
+{
+    <NavLink href="@Link" class="@GetCardClass()">
+        <div class="feature-icon">@Icon</div>
+        <h3 class="feature-title">@Title</h3>
+        <p class="feature-description">@Description</p>
+        <span class="feature-card-arrow">→</span>
+    </NavLink>
+}
 
 @code {
     [Parameter] public string Icon { get; set; } = "";
     [Parameter] public string Title { get; set; } = "";
     [Parameter] public string Description { get; set; } = "";
+    [Parameter] public string Link { get; set; } = "";
     [Parameter] public int StaggerIndex { get; set; } = 1;
+
+    private string GetCardClass() => $"feature-card reveal stagger-{StaggerIndex}";
 }

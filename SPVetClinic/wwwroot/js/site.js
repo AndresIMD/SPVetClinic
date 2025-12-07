@@ -23,6 +23,15 @@ window.clearTextSelection = function () {
     if (window.getSelection) {
         window.getSelection().removeAllRanges();
     }
+
+    // En GitHub Pages, el script de redirección SPA puede causar
+    // re-selección después de history.replaceState
+    // Ejecutar nuevamente después de un frame para asegurar limpieza
+    requestAnimationFrame(() => {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
+    });
 };
 
 // ==========================================

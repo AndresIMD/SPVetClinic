@@ -2,20 +2,20 @@
 
 <nav class="topnav" id="topnav">
     <div class="logo-container">
-        <NavLink href="/" class="logo-text">
+        <NavLink href="" class="logo-text">
             <img src="images/logo_pequeno_vet_clinic.png" alt="San Pablo Vet Clínic" class="logo-img" />
         </NavLink>
     </div>
 
     <div class="nav-links" id="navLinks">
-        <NavLink href="/" class="nav-link" Match="NavLinkMatch.All">
+        <NavLink href="" class="nav-link" Match="NavLinkMatch.All">
             <span class="nav-link-text">Inicio</span>
         </NavLink>
-        
+
         <NavLink href="conocenos" class="nav-link">
             <span class="nav-link-text">Conócenos</span>
         </NavLink>
-        
+
         <div class="nav-dropdown">
             <button class="nav-link nav-dropdown-btn" onclick="toggleDropdown(event)">
                 <span class="nav-link-text">Servicios</span>
@@ -40,11 +40,11 @@
                 </NavLink>
             </div>
         </div>
-        
+
         <NavLink href="contacto" class="nav-link">
             <span class="nav-link-text">Contacto</span>
         </NavLink>
-        
+
         <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="nav-link nav-cta">
             <span class="nav-icon">📅</span>
             <span class="nav-link-text">Agendar Hora</span>
@@ -68,7 +68,7 @@
         event.stopPropagation();
         const dropdown = event.target.closest('.nav-dropdown');
         dropdown.classList.toggle('active');
-        
+
         // Close dropdown when clicking outside
         document.addEventListener('click', function closeDropdown(e) {
             if (!dropdown.contains(e.target)) {
@@ -79,9 +79,9 @@
     }
 
     // Close dropdown on mobile when clicking a link
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active'));
                 const navLinks = document.getElementById('navLinks');
                 if (navLinks) navLinks.classList.remove('active');

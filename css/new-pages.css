@@ -1,7 +1,7 @@
 /* ==========================================
-   ESTILOS PARA P�GINAS NUEVAS Y HOME RENOVADO
-   San Pablo Vet Cl�nic - 2024
-   ========================================== */
+    ESTILOS PARA PÁGINAS NUEVAS Y HOME RENOVADO
+    San Pablo Vet Clínic - 2024
+    ========================================== */
 
 /* ==========================================
    HERO SECTION LARGE (Home Renovado)
@@ -225,8 +225,8 @@
 }
 
 /* ==========================================
-   P�GINA CONOCENOS
-   ========================================== */
+    PÁGINA CONOCENOS
+    ========================================== */
 
 /* Historia Section */
 .historia-section {
@@ -327,7 +327,7 @@
     line-height: 1.6;
 }
 
-/* Galer�a Section */
+/* Galería Section */
 .galeria-section {
     padding: 5rem 5%;
     background: var(--bg-white);
@@ -497,8 +497,8 @@
 }
 
 /* ==========================================
-   P�GINA SERVICIOS
-   ========================================== */
+    PÁGINA SERVICIOS
+    ========================================== */
 .servicios-hub-section {
     padding: 5rem 5%;
     background: var(--bg-white);
@@ -621,8 +621,8 @@
 }
 
 /* ==========================================
-   P�GINA CONTACTO
-   ========================================== */
+    PÁGINA CONTACTO
+    ========================================== */
 .contacto-content-section {
     padding: 5rem 5%;
     background: var(--bg-white);
@@ -721,8 +721,8 @@
 }
 
 /* ==========================================
-   INFO �TIL
-   ========================================== */
+    INFO ÚTIL
+    ========================================== */
 .info-util-section {
     padding: 4rem 5%;
     background: var(--bg-light);
@@ -829,7 +829,7 @@
     }
 }
 
-/* M�viles */
+/* Móviles */
 @media (max-width: 768px) {
     .nav-dropdown-content {
         position: static;
@@ -862,7 +862,7 @@
     }
 }
 
-/* M�viles peque�os */
+/* Móviles pequeños */
 @media (max-width: 576px) {
     .timeline::before {
         left: 30px;

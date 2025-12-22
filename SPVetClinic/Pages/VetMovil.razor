@@ -1,0 +1,768 @@
+@page "/vet-movil"
+@using SPVetClinic.Data
+@using SPVetClinic.Components.Common
+@inject IJSRuntime JS
+
+<PageTitle>Veterinaria Móvil - @AppConstants.Clinic.Name</PageTitle>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero-section mobile-vet-hero">
+    <div class="hero-content">
+        <span class="hero-tag reveal">🚐 Atención a Domicilio</span>
+        <h1 class="hero-title reveal">
+            San Pablo <span class="highlight-coral">Vet Móvil</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+            Llevamos la atención veterinaria profesional hasta la puerta de tu casa.
+            Comodidad para ti, menos estrés para tu mascota.
+        </p>
+        <div class="hero-buttons reveal">
+            <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita"
+                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+            <NavLink href="servicios" class="btn-secondary">Ver Servicios</NavLink>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     BENEFICIOS
+     ============================================ -->
+<section class="benefits-section">
+    <div class="container">
+        <SectionHeader Tag="Ventajas" Title="¿Por qué elegir atención a domicilio?"
+            Subtitle="La comodidad y tranquilidad que tu mascota merece" />
+
+        <div class="benefits-grid reveal">
+            <div class="benefit-card stagger-1">
+                <div class="benefit-icon">🏠</div>
+                <h3>Comodidad Total</h3>
+                <p>
+                    No necesitas salir de casa. Ahorra tiempo en traslados y evita
+                    complicaciones de transporte con tu mascota.
+                </p>
+            </div>
+
+            <div class="benefit-card stagger-2">
+                <div class="benefit-icon">😌</div>
+                <h3>Menos Estrés</h3>
+                <p>
+                    Muchas mascotas sufren ansiedad al salir de casa. La atención domiciliaria
+                    les permite estar en su entorno seguro y conocido.
+                </p>
+            </div>
+
+            <div class="benefit-card stagger-3">
+                <div class="benefit-icon">🩺</div>
+                <h3>Atención Personalizada</h3>
+                <p>
+                    El veterinario puede dedicar más tiempo a tu mascota sin las distracciones
+                    de una clínica llena. Atención 100% enfocada.
+                </p>
+            </div>
+
+            <div class="benefit-card stagger-4">
+                <div class="benefit-icon">👴</div>
+                <h3>Ideal para Todos</h3>
+                <p>
+                    Perfecto para tutores con movilidad reducida, mascotas muy nerviosas,
+                    hogares con múltiples animales o pacientes crónicos.
+                </p>
+            </div>
+
+            <div class="benefit-card stagger-5">
+                <div class="benefit-icon">🕐</div>
+                <h3>Horarios Flexibles</h3>
+                <p>
+                    Coordinamos horarios que se ajusten a tu agenda.
+                    Disponible de lunes a domingo de 09:00 a 16:30 hrs.
+                </p>
+            </div>
+
+            <div class="benefit-card stagger-6">
+                <div class="benefit-icon">💚</div>
+                <h3>Mismo Estándar</h3>
+                <p>
+                    La misma calidad de atención profesional de nuestra clínica,
+                    pero en la comodidad de tu hogar.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SERVICIOS DISPONIBLES
+     ============================================ -->
+<section id="servicios" class="services-detail-section">
+    <div class="container">
+        <SectionHeader Tag="Servicios" Title="¿Qué podemos hacer en tu domicilio?"
+            Subtitle="Amplia gama de servicios veterinarios a domicilio" />
+
+        <div class="services-grid reveal">
+            <!-- Consultas -->
+            <div class="service-detail-card stagger-1">
+                <div class="service-icon">🩺</div>
+                <h3>Consultas Veterinarias</h3>
+                <p>
+                    Evaluación general del estado de salud de tu mascota. Diagnóstico de
+                    enfermedades comunes, revisión física completa y recomendaciones.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Examen físico completo</li>
+                    <li>✓ Evaluación de signos vitales</li>
+                    <li>✓ Diagnóstico de problemas comunes</li>
+                    <li>✓ Prescripción de medicamentos</li>
+                </ul>
+            </div>
+
+            <!-- Vacunación -->
+            <div class="service-detail-card stagger-2">
+                <div class="service-icon">💉</div>
+                <h3>Vacunación Completa</h3>
+                <p>
+                    Plan de vacunación preventiva según la edad y necesidades de tu mascota.
+                    Mantén protegida la salud de tu compañero.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Vacunas esenciales</li>
+                    <li>✓ Vacunas opcionales según riesgo</li>
+                    <li>✓ Refuerzos anuales</li>
+                    <li>✓ Cartilla de vacunación actualizada</li>
+                </ul>
+            </div>
+
+            <!-- Toma de Muestras -->
+            <div class="service-detail-card stagger-3">
+                <div class="service-icon">🔬</div>
+                <h3>Toma de Muestras</h3>
+                <p>
+                    Recolección de muestras de sangre, orina, heces y otros para
+                    análisis de laboratorio. Resultados precisos sin salir de casa.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Análisis de sangre completo</li>
+                    <li>✓ Examen de orina</li>
+                    <li>✓ Copro-parasitológico</li>
+                    <li>✓ Envío a laboratorio certificado</li>
+                </ul>
+            </div>
+
+            <!-- Control de Crónicos -->
+            <div class="service-detail-card stagger-4">
+                <div class="service-icon">📋</div>
+                <h3>Control de Pacientes Crónicos</h3>
+                <p>
+                    Seguimiento regular de mascotas con enfermedades crónicas como
+                    diabetes, insuficiencia renal, cardiopatías, entre otras.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Evaluación de evolución</li>
+                    <li>✓ Ajuste de tratamientos</li>
+                    <li>✓ Toma de muestras de control</li>
+                    <li>✓ Asesoría nutricional</li>
+                </ul>
+            </div>
+
+            <!-- Retiro y Entrega -->
+            <div class="service-detail-card stagger-5">
+                <div class="service-icon">🚗</div>
+                <h3>Retiro y Entrega</h3>
+                <p>
+                    Si tu mascota necesita procedimientos en la clínica, podemos retirarla
+                    de tu domicilio y devolverla cuando esté lista.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Traslado seguro</li>
+                    <li>✓ Coordinación de horarios</li>
+                    <li>✓ Actualización de estado</li>
+                    <li>✓ Entrega con indicaciones</li>
+                </ul>
+            </div>
+
+            <!-- Eutanasia Humanitaria -->
+            <div class="service-detail-card stagger-6">
+                <div class="service-icon">🕊️</div>
+                <h3>Eutanasia Humanitaria</h3>
+                <p>
+                    Cuando llega el momento más difícil, acompañamos a tu mascota en la
+                    comodidad de su hogar, rodeada de amor familiar.
+                </p>
+                <ul class="service-includes">
+                    <li>✓ Proceso indoloro</li>
+                    <li>✓ Privacidad y tranquilidad</li>
+                    <li>✓ Acompañamiento empático</li>
+                    <li>✓ Coordinación de servicios funerarios</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     COBERTURA Y HORARIOS
+     ============================================ -->
+<section class="coverage-section">
+    <div class="container">
+        <div class="coverage-grid reveal">
+            <div class="coverage-info">
+                <h2>Cobertura de Servicio</h2>
+                <div class="info-item stagger-1">
+                    <InfoCard Icon="📍" Title="Zona Principal" Value="Rancagua y alrededores"
+                        Style="InfoCardStyle.Info" />
+                </div>
+                <div class="info-item stagger-2">
+                    <InfoCard Icon="🕐" Title="Horario" Value="Lunes a Domingo • 09:00 a 16:30 hrs"
+                        Style="InfoCardStyle.Info" />
+                </div>
+                <div class="info-item stagger-3">
+                    <InfoCard Icon="⏰" Title="Anticipación" Value="Agenda con al menos 24 horas de anticipación"
+                        Style="InfoCardStyle.Info" />
+                </div>
+                <div class="info-item stagger-4">
+                    <InfoCard Icon="📞" Title="Contacto Directo" Value="@AppConstants.Phone.MobileVetWhatsAppFormatted"
+                        Style="InfoCardStyle.Info" />
+                </div>
+            </div>
+
+            <div class="coverage-map">
+                <div class="map-placeholder">
+                    <div class="map-icon">🗺️</div>
+                    <h3>Rancagua y Alrededores</h3>
+                    <p>
+                        Consulta si tu ubicación está dentro de nuestra zona de cobertura.
+                        También atendemos sectores cercanos previa consulta.
+                    </p>
+                    <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Consultar Cobertura"
+                        Style="WhatsAppButtonStyle.Default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CÓMO FUNCIONA
+     ============================================ -->
+<section class="how-it-works-section">
+    <div class="container">
+        <SectionHeader Tag="Proceso" Title="¿Cómo agendar una visita?"
+            Subtitle="Proceso simple y rápido para recibir atención veterinaria" />
+
+        <div class="steps-timeline reveal">
+            <div class="timeline-step stagger-1">
+                <div class="step-marker">1</div>
+                <div class="step-content">
+                    <h3>Contáctanos por WhatsApp</h3>
+                    <p>
+                        Escríbenos al <strong>@AppConstants.Phone.MobileVetWhatsAppFormatted</strong> indicando
+                        el servicio que necesitas, tu ubicación y el motivo de la consulta.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-step stagger-2">
+                <div class="step-marker">2</div>
+                <div class="step-content">
+                    <h3>Coordinamos Fecha y Hora</h3>
+                    <p>
+                        Te ofreceremos horarios disponibles considerando tu ubicación y urgencia.
+                        Agenda con al menos 24 horas de anticipación.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-step stagger-3">
+                <div class="step-marker">3</div>
+                <div class="step-content">
+                    <h3>Confirmamos tu Visita</h3>
+                    <p>
+                        Te confirmaremos la hora exacta de llegada del veterinario y
+                        te daremos indicaciones sobre cómo preparar a tu mascota.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-step stagger-4">
+                <div class="step-marker">4</div>
+                <div class="step-content">
+                    <h3>Recibe la Atención</h3>
+                    <p>
+                        El veterinario llegará con todo el equipamiento necesario.
+                        La consulta se realiza en tu hogar con el mismo profesionalismo de la clínica.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-center reveal">
+            <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita Ahora"
+                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="faq-section">
+    <div class="container">
+        <SectionHeader Tag="Preguntas Frecuentes" Title="Todo lo que necesitas saber"
+            Subtitle="Resolvemos tus dudas sobre el servicio móvil" />
+
+        <div class="faq-grid reveal">
+            <div class="faq-item stagger-1">
+                <h4>¿Cuánto cuesta el servicio?</h4>
+                <p>
+                    El costo varía según el servicio solicitado y tu ubicación.
+                    Contáctanos por WhatsApp para recibir una cotización exacta según tus necesidades.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-2">
+                <h4>¿Qué necesito tener preparado?</h4>
+                <p>
+                    Un espacio tranquilo donde podamos atender a tu mascota, su cartilla de
+                    vacunación si la tienes, y cualquier medicamento que esté tomando actualmente.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-3">
+                <h4>¿Pueden hacer cirugías a domicilio?</h4>
+                <p>
+                    No. Los procedimientos quirúrgicos requieren instalaciones especializadas.
+                    En esos casos, ofrecemos el servicio de retiro y entrega desde tu domicilio.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-4">
+                <h4>¿Atienden urgencias?</h4>
+                <p>
+                    Para urgencias reales, es mejor acudir directamente a nuestra clínica que
+                    cuenta con servicio 24/7. El servicio móvil es para consultas programadas.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-5">
+                <h4>¿Qué formas de pago aceptan?</h4>
+                <p>
+                    Aceptamos efectivo, transferencia bancaria y tarjetas de débito/crédito.
+                    El pago se realiza al finalizar la consulta.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-6">
+                <h4>¿Puedo agendar el mismo día?</h4>
+                <p>
+                    Recomendamos agendar con al menos 24 horas de anticipación. Consultas de
+                    último momento dependen de disponibilidad de agenda y pueden tener recargo.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-7">
+                <h4>¿Atienden múltiples mascotas?</h4>
+                <p>
+                    Sí, podemos atender varias mascotas en la misma visita. Es ideal para
+                    hogares con múltiples animales. Menciona esto al agendar para coordinar mejor.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-8">
+                <h4>¿Qué pasa si cancelo?</h4>
+                <p>
+                    Puedes cancelar o reprogramar sin costo si avisas con al menos 12 horas
+                    de anticipación. Cancelaciones de última hora pueden tener cargo.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA FINAL
+     ============================================ -->
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">🚐</div>
+            <h2>¿Listo para recibir atención veterinaria en casa?</h2>
+            <p>Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil</p>
+            <div class="cta-buttons">
+                <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar por WhatsApp"
+                    SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+                <a href="tel:+@AppConstants.Phone.MobileVetWhatsApp" class="btn-secondary">Llamar Ahora</a>
+            </div>
+            <p class="cta-note">* Recuerda agendar con al menos 24 horas de anticipación</p>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}
+
+<style>
+    /* Hero Section */
+    .mobile-vet-hero {
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+        padding: 100px 20px 150px;
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .hero-wave svg {
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 120px;
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .benefit-card {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .benefit-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+    }
+
+    .benefit-card h3 {
+        font-size: 1.4rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .benefit-card p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 1.05rem;
+    }
+
+    /* Services Detail Section */
+    .services-detail-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .service-detail-card {
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        border-top: 4px solid #ff7675;
+    }
+
+    .service-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .service-detail-card h3 {
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .service-detail-card>p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .service-includes {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 0 0;
+    }
+
+    .service-includes li {
+        padding: 8px 0;
+        color: #555;
+        font-size: 1.05rem;
+    }
+
+    /* Coverage Section */
+    .coverage-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .coverage-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .coverage-info .info-item {
+        margin-bottom: 20px;
+    }
+
+    .coverage-info h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+
+    .coverage-map {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .map-placeholder {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 20px;
+        padding: 60px 40px;
+        text-align: center;
+        width: 100%;
+        border: 2px dashed #dee2e6;
+    }
+
+    .map-icon {
+        font-size: 5rem;
+        margin-bottom: 20px;
+    }
+
+    .map-placeholder h3 {
+        font-size: 1.8rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .map-placeholder p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    /* How It Works Section */
+    .how-it-works-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .steps-timeline {
+        max-width: 900px;
+        margin: 60px auto;
+        position: relative;
+    }
+
+    .steps-timeline::before {
+        content: '';
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        bottom: 30px;
+        width: 3px;
+        background: linear-gradient(180deg, #ff7675, #fd79a8);
+    }
+
+    .timeline-step {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .timeline-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .step-marker {
+        flex-shrink: 0;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff7675, #fd79a8);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        box-shadow: 0 5px 20px rgba(255, 118, 117, 0.4);
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-content {
+        flex: 1;
+        background: white;
+        padding: 25px 30px;
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .step-content h3 {
+        font-size: 1.4rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .step-content p {
+        color: #666;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .cta-center {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .faq-item {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 4px solid #ff7675;
+    }
+
+    .faq-item h4 {
+        color: #ff7675;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .faq-item p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    /* Final CTA */
+    .final-cta-section {
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .cta-icon {
+        font-size: 5rem;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-content p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.95;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .cta-note {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    /* Responsive */
+    @@media (max-width: 968px) {
+        .coverage-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .steps-timeline::before {
+            display: none;
+        }
+
+        .timeline-step {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .step-marker {
+            margin: 0 auto;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .final-cta-content h2 {
+            font-size: 2rem;
+        }
+    }
+</style>

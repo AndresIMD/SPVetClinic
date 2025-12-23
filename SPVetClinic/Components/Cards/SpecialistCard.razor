@@ -1,18 +1,23 @@
 @* ============================================
    SPECIALIST CARD - Componente Reutilizable
-   Uso: <SpecialistCard Icon="🧠" Name="Dr. Hernán" Specialty="Neurología" Schedule="Todos los Sábados" Description="..." AvatarColor="teal" />
+   Uso: <SpecialistCard Icon="brain" Name="Dr. Hernán" Specialty="Neurología" Schedule="Todos los Sábados" Description="..." AvatarColor="teal" />
+   Íconos: brain, cat, flask, heart, stethoscope
    ============================================ *@
 
 <div class="specialist-card reveal stagger-@StaggerIndex">
-    <div class="specialist-avatar specialist-avatar-@AvatarColor">@Icon</div>
+    <div class="specialist-avatar specialist-avatar-@AvatarColor">
+        <Icon Name="@Icon" Size="32" Color="white" />
+    </div>
     <h3 class="specialist-name">@Name</h3>
     <span class="specialist-specialty">@Specialty</span>
-    <p class="specialist-schedule">📅 @Schedule</p>
+    <p class="specialist-schedule">
+        <Icon Name="calendar" Size="16" /> @Schedule
+    </p>
     <p class="specialist-description">@Description</p>
 </div>
 
 @code {
-    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string Icon { get; set; } = "stethoscope";
     [Parameter] public string Name { get; set; } = "";
     [Parameter] public string Specialty { get; set; } = "";
     [Parameter] public string Schedule { get; set; } = "";

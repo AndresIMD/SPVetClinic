@@ -1,12 +1,15 @@
 @* ============================================
    INFO CARD - Componente Reutilizable
-   Uso: <InfoCard Icon="🕐" Title="Horario" Value="09:00 a 18:30 hrs" Style="Info" />
+   Uso: <InfoCard Icon="clock" Title="Horario" Value="09:00 a 18:30 hrs" Style="Info" />
+   Íconos: clock, location, phone, calendar, alarm, home, info, etc.
    ============================================ *@
 
 @if (Style == InfoCardStyle.Info)
 {
     <div class="info-card">
-        <span class="info-icon">@Icon</span>
+        <span class="info-icon">
+            <Icon Name="@Icon" Size="24" />
+        </span>
         <div class="info-text">
             <strong>@Title</strong>
             <span>@Value</span>
@@ -16,7 +19,9 @@
 else
 {
     <div class="contact-item">
-        <div class="contact-icon">@Icon</div>
+        <div class="contact-icon">
+            <Icon Name="@Icon" Size="24" />
+        </div>
         <div class="contact-item-content">
             <h4>@Title</h4>
             <p>@Value</p>
@@ -25,7 +30,7 @@ else
 }
 
 @code {
-    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string Icon { get; set; } = "info";
     [Parameter] public string Title { get; set; } = "";
     [Parameter] public string Value { get; set; } = "";
     [Parameter] public InfoCardStyle Style { get; set; } = InfoCardStyle.Info;

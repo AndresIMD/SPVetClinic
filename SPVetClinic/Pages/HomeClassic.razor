@@ -1,12 +1,12 @@
-@page "/"
+@page "/home-classic"
 @inject IJSRuntime JS
 
-<PageTitle>San Pablo Vet Clínic - Clínica Veterinaria en Rancagua</PageTitle>
+<PageTitle>San Pablo Vet Clínic - Versión Classic</PageTitle>
 
 <!-- ============================================
-     HERO SECTION
+     HERO SECTION - Versión con Carrusel
      ============================================ -->
-<HeroProSection />
+<HeroClassicSection />
 
 <!-- ============================================
      CARRUSEL DE ANUNCIOS
@@ -24,12 +24,13 @@
 <Footer />
 
 @code {
-     protected override async Task OnAfterRenderAsync(bool firstRender)
-     {
-          if (firstRender)
-          {
-               await JS.InvokeVoidAsync("initScrollAnimations");
-               await JS.InvokeVoidAsync("clearTextSelection");
-          }
-     }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("initCarousel");
+            await JS.InvokeVoidAsync("clearTextSelection");
+        }
+    }
 }

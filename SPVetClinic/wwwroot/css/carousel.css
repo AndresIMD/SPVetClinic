@@ -50,7 +50,7 @@
 .slide-tag {
     display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 50px;
+    border-radius: var(--border-radius-sm);
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -100,7 +100,7 @@
 .btn-slide-primary,
 .btn-slide-secondary {
     padding: 0.875rem 1.75rem;
-    border-radius: 50px;
+    border-radius: var(--border-radius);
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition);
@@ -187,7 +187,7 @@
 .indicator.active {
     background: var(--primary-blue);
     width: 30px;
-    border-radius: 50px;
+    border-radius: var(--border-radius-pill);
 }
 
 .indicator:hover {

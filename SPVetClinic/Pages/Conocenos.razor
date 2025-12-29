@@ -62,19 +62,25 @@
 
     <div class="valores-grid">
         <div class="valor-card reveal stagger-1">
-            <div class="valor-icon">🩺</div>
+            <div class="valor-icon">
+                <Icon Name="stethoscope" Size="40" />
+            </div>
             <h3>Profesionalismo</h3>
             <p>Especialistas certificados y equipo médico de primer nivel comprometidos con la excelencia.</p>
         </div>
 
         <div class="valor-card reveal stagger-2">
-            <div class="valor-icon">❤️</div>
+            <div class="valor-icon">
+                <Icon Name="heart" Size="40" />
+            </div>
             <h3>Calidez Humana</h3>
             <p>Tratamos a cada mascota como si fuera nuestra, con amor, paciencia y dedicación.</p>
         </div>
 
         <div class="valor-card reveal stagger-3">
-            <div class="valor-icon">🔬</div>
+            <div class="valor-icon">
+                <Icon Name="microscope" Size="40" />
+            </div>
             <h3>Tecnología</h3>
             <p>Equipamiento de última generación para diagnósticos precisos y tratamientos efectivos.</p>
         </div>
@@ -96,13 +102,15 @@
         {
             <div class="galeria-item reveal stagger-@i">
                 <div class="galeria-placeholder">
-                    <span>🖼️</span>
+                    <Icon Name="image" Size="40" />
                     <p>Imagen @i</p>
                 </div>
             </div>
         }
     </div>
-    <p class="galeria-note">🖼️ Espacio reservado para fotos reales de las instalaciones</p>
+    <p class="galeria-note">
+        <Icon Name="image" Size="16" /> Espacio reservado para fotos reales de las instalaciones
+    </p>
 </section>
 
 <!-- ============================================
@@ -159,11 +167,11 @@
             instalaciones.</p>
         <div class="cta-buttons">
             <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-primary-large">
-                <span>📅</span>
+                <Icon Name="calendar" Size="20" />
                 <span>Agendar Cita</span>
             </a>
             <NavLink href="contacto" class="btn-secondary-large">
-                <span>📍</span>
+                <Icon Name="location" Size="20" />
                 <span>Ver Ubicación</span>
             </NavLink>
         </div>

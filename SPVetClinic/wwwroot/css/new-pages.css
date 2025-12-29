@@ -208,7 +208,7 @@
     left: 0;
     background: white;
     min-width: 220px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
     padding: 0.5rem;
     margin-top: 0.5rem;
@@ -615,7 +615,7 @@
     background: white;
     color: var(--accent-coral);
     padding: 0.75rem 1.5rem;
-    border-radius: 50px;
+    border-radius: var(--border-radius);
     font-weight: 600;
     text-decoration: none;
     margin-top: 1rem;
@@ -718,7 +718,7 @@
     background: var(--primary-teal);
     color: white;
     padding: 1rem 2rem;
-    border-radius: 50px;
+    border-radius: var(--border-radius);
     font-weight: 600;
     text-decoration: none;
     margin-top: 2rem;
@@ -1043,7 +1043,7 @@
     background: var(--accent-coral);
     color: white;
     padding: 0.5rem 1.5rem;
-    border-radius: 50px;
+    border-radius: var(--border-radius-sm);
     font-size: 0.875rem;
     font-weight: 600;
 }
@@ -1120,4 +1120,60 @@
     .paquete-premium:hover {
         transform: translateY(-8px);
     }
+}
+
+/* ==========================================
+   STYLED LISTS - Listas con viñetas profesionales
+   ========================================== */
+.styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.styled-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-teal);
+    border-radius: 50%;
+}
+
+/* Variante con checks para .service-features, .service-includes, .paquete-includes */
+.service-features,
+.service-includes,
+.paquete-includes {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0;
+}
+
+.service-features li,
+.service-includes li,
+.paquete-includes li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.service-features li::before,
+.service-includes li::before,
+.paquete-includes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--success-green);
+    font-weight: 700;
 }

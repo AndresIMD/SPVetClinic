@@ -1,15 +1,18 @@
 @inject IJSRuntime JS
+@implements IDisposable
 
 <!-- ============================================
      CARRUSEL DE ANUNCIOS
      ============================================ -->
 <section class="announcement-carousel-section">
-    <div class="carousel-container">
+    <div class="carousel-container" @onmouseenter="OnMouseEnter" @onmouseleave="OnMouseLeave">
         <div class="carousel-wrapper">
             <!-- Slide 1: Parvovirus en Verano -->
             <div class="carousel-slide active" data-slide="1">
                 <div class="slide-content">
-                    <span class="slide-tag tag-warning">⚠️ Temporada de Verano</span>
+                    <span class="slide-tag tag-warning">
+                        <Icon Name="alert" Size="16" /> Temporada de Verano
+                    </span>
                     <h2 class="slide-title">Protege a tu perro del Parvovirus</h2>
                     <p class="slide-description">
                         Durante el verano, el contagio de parvovirus aumenta drásticamente.
@@ -17,22 +20,26 @@
                     </p>
                     <div class="slide-buttons">
                         <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
-                            💉 Agendar Vacunación
+                            <Icon Name="syringe" Size="18" /> Agendar Vacunación
                         </a>
                         <NavLink href="parvovirus" class="btn-slide-secondary">
-                            📋 Más Información
+                            <Icon Name="info" Size="18" /> Más Información
                         </NavLink>
                     </div>
                 </div>
                 <div class="slide-visual">
-                    <div class="slide-icon">🐕</div>
+                    <div class="slide-icon">
+                        <Icon Name="dog" Size="48" />
+                    </div>
                 </div>
             </div>
 
             <!-- Slide 2: Mes de Vacunación -->
             <div class="carousel-slide" data-slide="2">
                 <div class="slide-content">
-                    <span class="slide-tag tag-success">🎉 Promoción Especial</span>
+                    <span class="slide-tag tag-success">
+                        <Icon Name="star" Size="16" /> Promoción Especial
+                    </span>
                     <h2 class="slide-title">Mes de Vacunación con 20% OFF</h2>
                     <p class="slide-description">
                         Aprovecha nuestro descuento especial en todas las vacunas.
@@ -40,22 +47,26 @@
                     </p>
                     <div class="slide-buttons">
                         <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
-                            📅 Agendar Hora
+                            <Icon Name="calendar" Size="18" /> Agendar Hora
                         </a>
                         <NavLink href="vacunacion" class="btn-slide-secondary">
-                            💉 Ver Vacunas
+                            <Icon Name="syringe" Size="18" /> Ver Vacunas
                         </NavLink>
                     </div>
                 </div>
                 <div class="slide-visual">
-                    <div class="slide-icon">💰</div>
+                    <div class="slide-icon">
+                        <Icon Name="money" Size="48" />
+                    </div>
                 </div>
             </div>
 
             <!-- Slide 3: Nueva Peluquería -->
             <div class="carousel-slide" data-slide="3">
                 <div class="slide-content">
-                    <span class="slide-tag tag-info">✨ Nuevo Servicio</span>
+                    <span class="slide-tag tag-info">
+                        <Icon Name="sparkle" Size="16" /> Nuevo Servicio
+                    </span>
                     <h2 class="slide-title">Estrena Nuestro Servicio de Peluquería</h2>
                     <p class="slide-description">
                         Baños medicados, cortes profesionales y cuidado completo para la higiene
@@ -63,22 +74,26 @@
                     </p>
                     <div class="slide-buttons">
                         <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-slide-primary">
-                            🐾 Agendar Peluquería
+                            <Icon Name="paw" Size="18" /> Agendar Peluquería
                         </a>
                         <NavLink href="peluqueria" class="btn-slide-secondary">
-                            🧴 Ver Servicios
+                            <Icon Name="bath" Size="18" /> Ver Servicios
                         </NavLink>
                     </div>
                 </div>
                 <div class="slide-visual">
-                    <div class="slide-icon">🛁</div>
+                    <div class="slide-icon">
+                        <Icon Name="bath" Size="48" />
+                    </div>
                 </div>
             </div>
 
             <!-- Slide 4: Urgencias 24/7 -->
             <div class="carousel-slide" data-slide="4">
                 <div class="slide-content">
-                    <span class="slide-tag tag-danger">🚨 Siempre Disponible</span>
+                    <span class="slide-tag tag-danger">
+                        <Icon Name="alert" Size="16" /> Siempre Disponible
+                    </span>
                     <h2 class="slide-title">Urgencias 24 Horas, Todos los Días</h2>
                     <p class="slide-description">
                         Atención veterinaria de emergencia cuando más lo necesitas.
@@ -87,15 +102,17 @@
                     <div class="slide-buttons">
                         <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)"
                             class="btn-slide-primary btn-urgency">
-                            📞 Llamar Ahora
+                            <Icon Name="phone" Size="18" /> Llamar Ahora
                         </a>
                         <NavLink href="contacto" class="btn-slide-secondary">
-                            📍 Ver Ubicación
+                            <Icon Name="location" Size="18" /> Ver Ubicación
                         </NavLink>
                     </div>
                 </div>
                 <div class="slide-visual">
-                    <div class="slide-icon">🏥</div>
+                    <div class="slide-icon">
+                        <Icon Name="clinic" Size="48" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,7 +133,17 @@
 
 @code {
     private int currentSlide = 1;
+    private const int totalSlides = 4;
     private System.Threading.Timer? autoPlayTimer;
+    private bool isPaused = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initCarouselDrag");
+        }
+    }
 
     protected override void OnInitialized()
     {
@@ -125,14 +152,29 @@
 
     private void StartAutoPlay()
     {
-        autoPlayTimer = new System.Threading.Timer(_ =>
+        autoPlayTimer = new System.Threading.Timer(async _ =>
         {
-            InvokeAsync(() =>
-    {
+            if (!isPaused)
+            {
+                await InvokeAsync(() =>
+        {
             NextSlide();
             StateHasChanged();
         });
+            }
         }, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+    }
+
+    private void OnMouseEnter()
+    {
+        isPaused = true;
+        JS.InvokeVoidAsync("pauseCarousel");
+    }
+
+    private void OnMouseLeave()
+    {
+        isPaused = false;
+        JS.InvokeVoidAsync("resumeCarousel");
     }
 
     private void GoToSlide(int slideNumber)
@@ -143,13 +185,13 @@
 
     private void NextSlide()
     {
-        currentSlide = currentSlide >= 4 ? 1 : currentSlide + 1;
+        currentSlide = currentSlide >= totalSlides ? 1 : currentSlide + 1;
         InvokeAsync(async () => await JS.InvokeVoidAsync("setActiveSlide", currentSlide));
     }
 
     private void PrevSlide()
     {
-        currentSlide = currentSlide <= 1 ? 4 : currentSlide - 1;
+        currentSlide = currentSlide <= 1 ? totalSlides : currentSlide - 1;
         InvokeAsync(async () => await JS.InvokeVoidAsync("setActiveSlide", currentSlide));
     }
 

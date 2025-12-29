@@ -8,7 +8,9 @@
 <!-- HERO -->
 <section class="hero-section hospital-hero">
     <div class="hero-content">
-        <span class="hero-tag reveal">🏥 Cuidados Intensivos</span>
+        <span class="hero-tag reveal">
+            <Icon Name="clinic" Size="18" /> Cuidados Intensivos
+        </span>
         <h1 class="hero-title reveal">
             Hospitalización <span class="highlight-medical">24/7</span>
         </h1>
@@ -17,7 +19,7 @@
         </p>
         <div class="hero-buttons reveal">
             <a href="tel:+@AppConstants.Phone.HospitalWhatsApp" class="btn-primary-urgency">
-                📞 Contacto Hospital
+                <Icon Name="phone" Size="18" /> Contacto Hospital
             </a>
             <NavLink href="#info" class="btn-secondary">Ver Información</NavLink>
         </div>
@@ -35,7 +37,9 @@
 <section class="service-247-section">
     <div class="container">
         <div class="service-247-content reveal">
-            <div class="service-247-icon">🚨</div>
+            <div class="service-247-icon">
+                <Icon Name="alert" Size="40" />
+            </div>
             <div class="service-247-text">
                 <h2>Servicio de Urgencias 24 Horas, Todos los Días</h2>
                 <p>
@@ -61,15 +65,15 @@
                 </p>
 
                 <h3>¿Cuándo se requiere hospitalización?</h3>
-                <ul class="conditions-list">
-                    <li>🔹 Enfermedades infecciosas graves (Parvovirus, Distemper, etc.)</li>
-                    <li>🔹 Cirugías complejas que requieren cuidados postoperatorios</li>
-                    <li>🔹 Deshidratación severa que necesita fluidoterapia intensiva</li>
-                    <li>🔹 Intoxicaciones o envenenamientos</li>
-                    <li>🔹 Problemas respiratorios que requieren oxigenoterapia</li>
-                    <li>🔹 Insuficiencia renal o hepática aguda</li>
-                    <li>🔹 Diabetes descompensada</li>
-                    <li>🔹 Traumatismos graves</li>
+                <ul class="conditions-list styled-list">
+                    <li>Enfermedades infecciosas graves (Parvovirus, Distemper, etc.)</li>
+                    <li>Cirugías complejas que requieren cuidados postoperatorios</li>
+                    <li>Deshidratación severa que necesita fluidoterapia intensiva</li>
+                    <li>Intoxicaciones o envenenamientos</li>
+                    <li>Problemas respiratorios que requieren oxigenoterapia</li>
+                    <li>Insuficiencia renal o hepática aguda</li>
+                    <li>Diabetes descompensada</li>
+                    <li>Traumatismos graves</li>
                 </ul>
             </div>
 
@@ -99,37 +103,49 @@
 
         <div class="equipment-grid reveal">
             <div class="equipment-card stagger-1">
-                <div class="equipment-icon">🏥</div>
+                <div class="equipment-icon">
+                    <Icon Name="clinic" Size="32" />
+                </div>
                 <h3>Área de Hospitalización</h3>
                 <p>Jaulas amplias y cómodas con temperatura controlada, separadas por especie y tamaño.</p>
             </div>
 
             <div class="equipment-card stagger-2">
-                <div class="equipment-icon">💉</div>
+                <div class="equipment-icon">
+                    <Icon Name="syringe" Size="32" />
+                </div>
                 <h3>Bombas de Infusión</h3>
                 <p>Administración precisa de fluidos y medicamentos intravenosos.</p>
             </div>
 
             <div class="equipment-card stagger-3">
-                <div class="equipment-icon">🌡️</div>
+                <div class="equipment-icon">
+                    <Icon Name="thermometer" Size="32" />
+                </div>
                 <h3>Monitoreo de Signos</h3>
                 <p>Equipos para control continuo de temperatura, frecuencia cardíaca y respiratoria.</p>
             </div>
 
             <div class="equipment-card stagger-4">
-                <div class="equipment-icon">💨</div>
+                <div class="equipment-icon">
+                    <Icon Name="wind" Size="32" />
+                </div>
                 <h3>Oxigenoterapia</h3>
                 <p>Cámaras y máscaras de oxígeno para pacientes con dificultad respiratoria.</p>
             </div>
 
             <div class="equipment-card stagger-5">
-                <div class="equipment-icon">🔬</div>
+                <div class="equipment-icon">
+                    <Icon Name="microscope" Size="32" />
+                </div>
                 <h3>Laboratorio Interno</h3>
                 <p>Análisis rápidos de sangre, orina y otros para ajustar tratamientos.</p>
             </div>
 
             <div class="equipment-card stagger-6">
-                <div class="equipment-icon">📹</div>
+                <div class="equipment-icon">
+                    <Icon Name="video" Size="32" />
+                </div>
                 <h3>Cámaras de Vigilancia</h3>
                 <p>Monitoreo visual 24/7 de todos los pacientes hospitalizados.</p>
             </div>
@@ -289,17 +305,21 @@
 <section class="final-cta-section">
     <div class="container">
         <div class="final-cta-content reveal">
-            <div class="cta-icon">🏥</div>
+            <div class="cta-icon">
+                <Icon Name="clinic" Size="48" />
+            </div>
             <h2>¿Tu mascota necesita hospitalización?</h2>
             <p>Contáctanos inmediatamente. Nuestro equipo está disponible 24/7</p>
             <div class="cta-buttons">
                 <a href="tel:+@AppConstants.Phone.HospitalWhatsApp" class="btn-primary-urgency">
-                    📞 Llamar Hospital: @AppConstants.Phone.HospitalWhatsAppFormatted
+                    <Icon Name="phone" Size="18" /> Llamar Hospital: @AppConstants.Phone.HospitalWhatsAppFormatted
                 </a>
                 <WhatsAppButton PhoneNumber="@AppConstants.Phone.HospitalWhatsApp" Label="WhatsApp Hospital"
                     Style="WhatsAppButtonStyle.Default" />
             </div>
-            <p class="cta-note">🚨 Para urgencias, llama directamente al número de hospital</p>
+            <p class="cta-note">
+                <Icon Name="alert" Size="16" /> Para urgencias, llama directamente al número de hospital
+            </p>
         </div>
     </div>
 </section>

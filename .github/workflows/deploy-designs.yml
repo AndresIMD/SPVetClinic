@@ -1,8 +1,8 @@
-name: Deploy Blazor WASM to GitHub Pages
+name: Deploy Multiple Design Variants to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, old-design, professional-design, minimalist-design ]
   workflow_dispatch:
 
 permissions:
@@ -28,13 +28,29 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-        
+    
+    # Determine subdirectory based on branch name
+    - name: Set subdirectory based on branch
+      id: set-subdir
+      run: |
+        BRANCH="${{ github.ref_name }}"
+        if [ "$BRANCH" == "main" ]; then
+          SUBDIR=""
+          BASE_HREF="/${{ github.event.repository.name }}/"
+        else
+          SUBDIR="/$BRANCH"
+          BASE_HREF="/${{ github.event.repository.name }}/$BRANCH/"
+        fi
+        echo "subdir=$SUBDIR" >> $GITHUB_OUTPUT
+        echo "base_href=$BASE_HREF" >> $GITHUB_OUTPUT
+        echo "Branch: $BRANCH → Subdir: $SUBDIR → Base href: $BASE_HREF"
+      
     - name: Publish
       run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release --nologo
       
     - name: Change base tag in index.html
       run: |
-        sed -i 's|<base href="/" />|<base href="/${{ github.event.repository.name }}/" />|g' release/wwwroot/index.html
+        sed -i 's|<base href="/" />|<base href="${{ steps.set-subdir.outputs.base_href }}" />|g' release/wwwroot/index.html
     
     - name: Fix blazor.webassembly.js reference and remove integrity
       run: |
@@ -95,7 +111,7 @@ jobs:
             // GitHub Pages SPA redirect solution for Blazor
             // This script captures the 404 path and redirects to index.html with path as query parameter
             (function() {
-              var pathSegmentsToKeep = 1; // Keep "/SPVetClinic" in the path
+              var pathSegmentsToKeep = 1; // Keep "/SPVetClinic" or "/SPVetClinic/[design]" in the path
               
               var location = window.location;
               var redirect = location.protocol + '//' + location.hostname + 
@@ -124,6 +140,17 @@ jobs:
     
     - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
+    
+    - name: Reorganize output for subdirectory
+      if: steps.set-subdir.outputs.subdir != ''
+      run: |
+        mkdir -p staging
+        if [ -d "release/wwwroot" ]; then
+          mkdir -p "staging${{ steps.set-subdir.outputs.subdir }}"
+          cp -r release/wwwroot/* "staging${{ steps.set-subdir.outputs.subdir }}/"
+          cp -r staging/* release/wwwroot/
+          rm -rf staging
+        fi
       
     - name: Setup Pages
       uses: actions/configure-pages@v5

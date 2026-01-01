@@ -134,12 +134,12 @@ jobs:
         
     - name: Add SPA redirect handler to index.html
       run: |
-        cd release/wwwroot
+        cd release_build/wwwroot
         # Add script right after <base> tag to handle redirected paths from 404.html
         sed -i '/<base href=/a\    <script>\n      // Handle redirected paths from 404.html\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) { \n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
     
     - name: Add .nojekyll file
-      run: touch release/wwwroot/.nojekyll
+      run: touch release_build/wwwroot/.nojekyll
     
     - name: Merge with existing gh-pages and place variant into subdirectory
       run: |

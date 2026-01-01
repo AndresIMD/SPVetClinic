@@ -46,15 +46,15 @@ jobs:
         echo "Branch: $BRANCH → Subdir: $SUBDIR → Base href: $BASE_HREF"
       
     - name: Publish
-      run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release --nologo
+      run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release_build --nologo
       
     - name: Change base tag in index.html
       run: |
-        sed -i 's|<base href="/" />|<base href="${{ steps.set-subdir.outputs.base_href }}" />|g' release/wwwroot/index.html
+        sed -i 's|<base href="/" />|<base href="${{ steps.set-subdir.outputs.base_href }}" />|g' release_build/wwwroot/index.html
     
     - name: Fix blazor.webassembly.js reference and remove integrity
       run: |
-        cd release/wwwroot
+        cd release_build/wwwroot
         # Find the actual blazor.webassembly file with fingerprint
         BLAZOR_FILE=$(ls _framework/blazor.webassembly*.js | head -1 | xargs basename)
         echo "Found Blazor file: $BLAZOR_FILE"
@@ -65,7 +65,7 @@ jobs:
         
     - name: Fix dotnet.js reference
       run: |
-        cd release/wwwroot/_framework
+        cd release_build/wwwroot/_framework
         # Find the actual dotnet.*.js file
         DOTNET_FILE=$(ls dotnet.*.js | grep -v ".map" | grep -v ".symbols" | head -1)
         if [ ! -z "$DOTNET_FILE" ]; then
@@ -76,7 +76,7 @@ jobs:
         
     - name: Remove invalid preload and fix integrity issues
       run: |
-        cd release/wwwroot
+        cd release_build/wwwroot
         # Remove the preload link that causes warnings
         sed -i '/<link rel="preload" id="webassembly"/d' index.html
         # Remove all integrity attributes to prevent mismatches
@@ -84,7 +84,7 @@ jobs:
         
     - name: Generate proper importmap
       run: |
-        cd release/wwwroot
+        cd release_build/wwwroot
         # Create a simple importmap without fingerprints for imports
         cat > temp_importmap.json << 'EOF'
         {
@@ -100,7 +100,7 @@ jobs:
     
     - name: Create 404.html with SPA redirect for GitHub Pages
       run: |
-        cd release/wwwroot
+        cd release_build/wwwroot
         cat > 404.html << 'EOF'
         <!DOCTYPE html>
         <html lang="es">
@@ -141,16 +141,42 @@ jobs:
     - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
     
-    - name: Reorganize output for subdirectory
-      if: steps.set-subdir.outputs.subdir != ''
+    - name: Merge with existing gh-pages and place variant into subdirectory
       run: |
-        mkdir -p staging
-        if [ -d "release/wwwroot" ]; then
-          mkdir -p "staging${{ steps.set-subdir.outputs.subdir }}"
-          cp -r release/wwwroot/* "staging${{ steps.set-subdir.outputs.subdir }}/"
-          cp -r staging/* release/wwwroot/
-          rm -rf staging
+        set -e
+        BRANCH="${{ github.ref_name }}"
+        SUBDIR="${{ steps.set-subdir.outputs.subdir }}"   # includes leading slash or empty
+        CLEAN_SUBDIR=${SUBDIR#/}                            # remove leading slash for folder name
+        echo "Branch=$BRANCH Subdir=$SUBDIR Clean=$CLEAN_SUBDIR"
+
+        git config --global init.defaultBranch main
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        # Clone existing gh-pages (if exists) to preserve other variants
+        git clone --depth=1 --branch gh-pages "https://github.com/${{ github.repository }}" gh-pages || mkdir -p gh-pages
+
+        # Start fresh deploy folder
+        mkdir -p release/wwwroot
+
+        # Copy existing published site (if any) so we don't wipe other variants
+        rsync -a gh-pages/ release/wwwroot/ || true
+
+        if [ "$CLEAN_SUBDIR" = "" ]; then
+          # main branch: replace root
+          rm -rf release/wwwroot/*
+          cp -r release_build/wwwroot/* release/wwwroot/
+        else
+          # variant branch: replace only its subdirectory
+          rm -rf "release/wwwroot/$CLEAN_SUBDIR"
+          mkdir -p "release/wwwroot/$CLEAN_SUBDIR"
+          cp -r release_build/wwwroot/* "release/wwwroot/$CLEAN_SUBDIR/"
         fi
+
+    - name: List final output (debug)
+      run: |
+        echo "Final deploy tree (depth 2):"
+        find release/wwwroot -maxdepth 2 -type d | sort
       
     - name: Setup Pages
       uses: actions/configure-pages@v5

@@ -1,4 +1,4 @@
-name: Deploy Multiple Design Variants to GitHub Pages
+name: Build and Deploy to gh-pages
 
 on:
   push:
@@ -6,22 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout (workflow)
+    - name: Checkout main
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -31,88 +22,55 @@ jobs:
       with:
         dotnet-version: '10.0.x'
 
-    - name: Build all variants into combined artifact
-      env:
-        REPO_NAME: ${{ github.event.repository.name }}
+    - name: Build all variants and push to gh-pages
       run: |
         set -e
+        
+        # Config git
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        
         ROOT="$PWD"
         BRANCHES=("main" "old-design" "professional-design" "minimalist-design")
         rm -rf combined release_build
         mkdir -p combined
-
+        
         for BR in "${BRANCHES[@]}"; do
           echo "=== Building $BR ==="
           git fetch origin "$BR" --depth=1
           git checkout FETCH_HEAD
-
+          
           dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release_build --nologo
-
+          
           if [ "$BR" = "main" ]; then
-            BASE_HREF="/$REPO_NAME/"
             DEST_PATH="$ROOT/combined"
-            PATH_KEEP=1
           else
-            BASE_HREF="/$REPO_NAME/$BR/"
             DEST_PATH="$ROOT/combined/$BR"
-            PATH_KEEP=2
+            mkdir -p "$DEST_PATH"
           fi
-
-          sed -i "s|<base href=\"/\" />|<base href=\"$BASE_HREF\" />|g" release_build/wwwroot/index.html
-
-          pushd release_build/wwwroot > /dev/null
-
-          BLAZOR_FILE=$(ls _framework/blazor.webassembly*.js | head -1 | xargs basename)
-          sed -i "s|blazor.webassembly#\[\.{fingerprint}\]\.js|$BLAZOR_FILE|g" index.html
-          sed -i 's| integrity="[^"]*"||g' index.html
-
-          cd _framework
-          DOTNET_FILE=$(ls dotnet.*.js | grep -v ".map" | grep -v ".symbols" | head -1)
-          if [ -n "$DOTNET_FILE" ]; then
-            echo "export * from './$DOTNET_FILE';" > dotnet.js
+          
+          # Copy published files
+          if [ "$DEST_PATH" = "$ROOT/combined" ]; then
+            cp -r release_build/wwwroot/* "$DEST_PATH/"
+          else
+            cp -r release_build/wwwroot/* "$DEST_PATH/"
           fi
-          cd ..
-
-          sed -i '/<link rel="preload" id="webassembly"/d' index.html
-          sed -i 's| integrity="[^"]*"||g' index.html
-
-          cat > temp_importmap.json << 'EOF'
-          {
-            "imports": {
-              "dotnet": "./_framework/dotnet.js"
-            }
-          }
-          EOF
-          sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
-          rm temp_importmap.json
-
-          printf '%s\n' '<!DOCTYPE html>' '<html lang="es">' '<head>' '<meta charset="utf-8" />' '<title>Redirigiendo...</title>' '<script>' 'var pathSegmentsToKeep = '"$PATH_KEEP"';' 'var location = window.location;' 'var redirect = location.protocol + "//" + location.hostname + (location.port ? ":" + location.port : "") + location.pathname.split("/").slice(0, 1 + pathSegmentsToKeep).join("/") + "/?/" + location.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") + (location.search ? "&" + location.search.slice(1).replace(/&/g, "~and~") : "") + location.hash;' 'window.location.replace(redirect);' '</script>' '</head>' '<body>' '<p>Redirigiendo...</p>' '</body>' '</html>' > 404.html
-
-          sed -i '/<base href=/a\    <script>\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) {\n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
-
-          touch .nojekyll
-
-          popd > /dev/null
-
-          rm -rf "$DEST_PATH"
-          mkdir -p "$DEST_PATH"
-          cp -r release_build/wwwroot/* "$DEST_PATH/"
-
+          
           rm -rf release_build
         done
-
+        
         touch combined/.nojekyll
-        echo "Arbol final (profundidad 3):"
-        find combined -maxdepth 3 -type d | sort
-
-    - name: Setup Pages
-      uses: actions/configure-pages@v5
-
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: 'combined'
-
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+        echo "Build complete. Contents:"
+        ls -la combined/
+        
+        # Push to gh-pages
+        git fetch origin gh-pages --depth=1 || true
+        git checkout --orphan gh-pages-new
+        rm -rf .git/index
+        git reset
+        cp -r combined/* .
+        git add .
+        git commit -m "Deploy: build all variants $(date)" || true
+        git branch -D gh-pages || true
+        git branch -m gh-pages-new gh-pages
+        git push origin gh-pages -f

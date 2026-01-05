@@ -32,6 +32,7 @@ jobs:
         
         ROOT="$PWD"
         BRANCHES=("main" "old-design" "professional-design" "minimalist-design")
+        REPO_NAME="SPVetClinic"
         rm -rf combined release_build
         mkdir -p combined
         
@@ -43,34 +44,63 @@ jobs:
           dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release_build --nologo
           
           if [ "$BR" = "main" ]; then
+            BASE_HREF="/$REPO_NAME/"
             DEST_PATH="$ROOT/combined"
           else
+            BASE_HREF="/$REPO_NAME/$BR/"
             DEST_PATH="$ROOT/combined/$BR"
             mkdir -p "$DEST_PATH"
           fi
           
+          echo "Setting base href to: $BASE_HREF"
+          sed -i "s|<base href=\"/\" />|<base href=\"$BASE_HREF\" />|g" release_build/wwwroot/index.html
+          
           # Copy published files
-          if [ "$DEST_PATH" = "$ROOT/combined" ]; then
-            cp -r release_build/wwwroot/* "$DEST_PATH/"
-          else
-            cp -r release_build/wwwroot/* "$DEST_PATH/"
-          fi
+          cp -r release_build/wwwroot/* "$DEST_PATH/"
+          
+          # Create 404.html for SPA routing in this variant
+          cat > "$DEST_PATH/404.html" << 'ENDHTML'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Redirigiendo...</title>
+  <script>
+    (function() {
+      var location = window.location;
+      var redirect = location.protocol + '//' + location.hostname +
+                    (location.port ? ':' + location.port : '') +
+                    location.pathname.split('/').slice(0, 3).join('/') +
+                    '/?/' +
+                    location.pathname.slice(1).split('/').slice(2).join('/').replace(/&/g, '~and~') +
+                    (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+                    location.hash;
+      window.location.replace(redirect);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirigiendo...</p>
+</body>
+</html>
+ENDHTML
           
           rm -rf release_build
         done
         
         touch combined/.nojekyll
-        echo "Build complete. Contents:"
-        ls -la combined/
+        echo "Build complete. Structure:"
+        find combined -maxdepth 2 -type f -name "index.html" -o -name "404.html" | sort
         
         # Push to gh-pages
-        git fetch origin gh-pages --depth=1 || true
-        git checkout --orphan gh-pages-new
-        rm -rf .git/index
-        git reset
+        echo "Pushing to gh-pages..."
+        git fetch origin gh-pages --depth=1 2>/dev/null || echo "gh-pages not found, will create"
+        git checkout --orphan gh-pages-temp
+        git rm -rf .
         cp -r combined/* .
         git add .
-        git commit -m "Deploy: build all variants $(date)" || true
-        git branch -D gh-pages || true
-        git branch -m gh-pages-new gh-pages
+        git commit -m "Deploy: build all variants - $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "Nothing to commit"
+        git branch -D gh-pages 2>/dev/null || true
+        git branch -m gh-pages-temp gh-pages
         git push origin gh-pages -f
+        echo "Pushed to gh-pages successfully"

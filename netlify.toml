@@ -3,14 +3,20 @@
 [build]
   # Directorio donde está el proyecto
   base = "SPVetClinic"
-  # Comando para compilar
-  command = "dotnet publish -c Release -o release"
+  # Comando para compilar - primero instala .NET 10, luego compila
+  command = """
+    curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 10.0 --install-dir /opt/buildhome/.dotnet && \
+    export PATH="/opt/buildhome/.dotnet:$PATH" && \
+    dotnet publish -c Release -o release
+  """
   # Directorio con los archivos publicados
   publish = "SPVetClinic/release/wwwroot"
 
 # Configuración del entorno de build
 [build.environment]
-  DOTNET_VERSION = "10.0"
+  DOTNET_CLI_HOME = "/opt/buildhome"
+  DOTNET_ROOT = "/opt/buildhome/.dotnet"
+  PATH = "/opt/buildhome/.dotnet:/opt/build/repo/node_modules/.bin:/opt/build/node_modules/.bin:/opt/build-bin:/usr/local/rvm/gems/ruby-2.7.1/bin:/usr/local/rvm/gems/ruby-2.7.1@global/bin:/usr/local/rvm/rubies/ruby-2.7.1/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # SPA Routing - Redirige todas las rutas a index.html
 [[redirects]]

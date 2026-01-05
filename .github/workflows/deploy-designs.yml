@@ -86,32 +86,33 @@ jobs:
           sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
           rm temp_importmap.json
 
-          cat > 404.html << EOF
-          <!DOCTYPE html>
-          <html lang="es">
-          <head>
-            <meta charset="utf-8" />
-            <title>Redirigiendo...</title>
-            <script>
-              (function() {
-                var pathSegmentsToKeep = $PATH_KEEP;
-                var location = window.location;
-                var redirect = location.protocol + '//' + location.hostname +
-                              (location.port ? ':' + location.port : '') +
-                              location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
-                              '/?/' +
-                              location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-                              (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
-                              location.hash;
-                window.location.replace(redirect);
-              })();
-            </script>
-          </head>
-          <body>
-            <p>Redirigiendo...</p>
-          </body>
-          </html>
-          EOF
+          cat > 404.html << 'EOF404'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Redirigiendo...</title>
+  <script>
+    (function() {
+      var pathSegmentsToKeep = PATHKEEP_PLACEHOLDER;
+      var location = window.location;
+      var redirect = location.protocol + '//' + location.hostname +
+                    (location.port ? ':' + location.port : '') +
+                    location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
+                    '/?/' +
+                    location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+                    (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+                    location.hash;
+      window.location.replace(redirect);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirigiendo...</p>
+</body>
+</html>
+EOF404
+          sed -i "s/PATHKEEP_PLACEHOLDER/$PATH_KEEP/g" 404.html
 
           sed -i '/<base href=/a\    <script>\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) {\n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
 

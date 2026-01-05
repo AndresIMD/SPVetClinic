@@ -1,0 +1,1101 @@
+/* ==========================================
+    ESTILOS PARA PÁGINAS NUEVAS Y HOME RENOVADO
+    San Pablo Vet Clínic - 2024
+    ========================================== */
+
+/* ==========================================
+   HERO SECTION LARGE (Home Renovado)
+   ========================================== */
+.hero-section-large {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-teal-light) 0%, var(--bg-white) 50%, #FFF5F4 100%);
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content-large {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.hero-text-large h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text-large p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+/* ==========================================
+   HIGHLIGHTS SECTION
+   ========================================== */
+.highlights-section {
+    padding: 4rem 2rem;
+    background: var(--bg-white);
+}
+
+.highlights-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.highlight-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.highlight-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.highlight-icon {
+    font-size: 2.5rem;
+}
+
+.highlight-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-teal);
+}
+
+.highlight-label {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* ==========================================
+   FEATURES GRID (2x2)
+   ========================================== */
+.features-section {
+    padding: 5rem 2rem;
+    background: var(--bg-light);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: var(--bg-white);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-strong);
+}
+
+.feature-card .feature-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-card .feature-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.feature-card .feature-description {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.feature-card-arrow {
+    font-size: 1.5rem;
+    color: var(--primary-teal);
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-card-arrow {
+    transform: translateX(5px);
+}
+
+/* ==========================================
+   TOPNAV DROPDOWN
+   ========================================== */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.dropdown-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 220px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+.nav-dropdown.active .nav-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+    background: var(--primary-teal-light);
+    color: var(--primary-teal);
+}
+
+.dropdown-item span:first-child {
+    font-size: 1.1rem;
+}
+
+/* ==========================================
+    PÁGINA CONOCENOS
+    ========================================== */
+
+/* Historia Section */
+.historia-section {
+    padding: 5rem 5%;
+    background: var(--bg-white);
+}
+
+.historia-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.historia-image {
+    text-align: center;
+}
+
+.placeholder-image {
+    background: var(--primary-teal-light);
+    border-radius: var(--border-radius);
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.placeholder-image span {
+    font-size: 4rem;
+}
+
+.image-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.historia-content h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.historia-content p {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Valores Section */
+.valores-section {
+    padding: 5rem 5%;
+    background: var(--bg-light);
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.valor-card {
+    background: var(--bg-white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.valor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+.valor-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.valor-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.valor-card p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Galería Section */
+.galeria-section {
+    padding: 5rem 5%;
+    background: var(--bg-white);
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+}
+
+.galeria-item {
+    aspect-ratio: 1;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.galeria-item:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+
+.galeria-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--primary-teal-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.galeria-placeholder span {
+    font-size: 2rem;
+}
+
+.galeria-placeholder p {
+    font-size: 0.85rem;
+    color: var(--primary-teal);
+    margin: 0;
+}
+
+.galeria-note {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Timeline Section */
+.timeline-section {
+    padding: 5rem 5%;
+    background: var(--bg-light);
+}
+
+.timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--primary-teal-light);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+.timeline-item:nth-child(even) .timeline-year {
+    order: 3;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    order: 1;
+    text-align: right;
+}
+
+.timeline-year {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-teal);
+    width: 80px;
+    height: 80px;
+    background: var(--bg-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 6px var(--primary-teal-light);
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-content {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-soft);
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==========================================
+   CTA SECTION (Generic)
+   ========================================== */
+.cta-section {
+    padding: 5rem 5%;
+    background: var(--bg-white);
+}
+
+.cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    padding: 4rem 3rem;
+    border-radius: var(--border-radius);
+    color: white;
+}
+
+.cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+    PÁGINA SERVICIOS
+    ========================================== */
+.servicios-hub-section {
+    padding: 5rem 5%;
+    background: var(--bg-white);
+}
+
+.servicios-hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.servicio-hub-card {
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    padding: 2.5rem 2rem;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.servicio-hub-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+    background: var(--bg-white);
+}
+
+.servicio-hub-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.servicio-hub-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.servicio-hub-card p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.servicio-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.servicio-features li {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    padding: 0.4rem 0;
+}
+
+.servicio-link-arrow {
+    color: var(--primary-teal);
+    font-weight: 600;
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+.servicio-hub-card:hover .servicio-link-arrow {
+    transform: translateX(5px);
+}
+
+.servicio-urgencias {
+    background: linear-gradient(135deg, var(--accent-coral), #FF7B6B);
+    color: white;
+}
+
+.servicio-urgencias:hover {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: white;
+    transform: translateY(-8px);
+}
+
+.servicio-urgencias h3,
+.servicio-urgencias p,
+.servicio-urgencias .servicio-features li {
+    color: white;
+}
+
+.btn-urgencia {
+    display: inline-block;
+    background: white;
+    color: var(--accent-coral);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.btn-urgencia:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.servicios-cta-section {
+    padding: 4rem 5%;
+    background: var(--bg-light);
+}
+
+.servicios-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--bg-white);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+/* ==========================================
+    PÁGINA CONTACTO
+    ========================================== */
+.contacto-content-section {
+    padding: 5rem 5%;
+    background: var(--bg-white);
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contacto-info-column h2,
+.contacto-map-column h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+.contacto-item-large {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contacto-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-teal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.contacto-item-large h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.contacto-item-large p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin: 0.25rem 0;
+}
+
+.contacto-item-large a {
+    color: var(--primary-teal);
+    text-decoration: none;
+}
+
+.contacto-item-large a:hover {
+    text-decoration: underline;
+}
+
+.contacto-social {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-booking-contacto {
+    display: inline-block;
+    background: var(--primary-teal);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: var(--transition);
+}
+
+.btn-booking-contacto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 180, 180, 0.3);
+}
+
+.map-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.map-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* ==========================================
+    INFO ÚTIL
+    ========================================== */
+.info-util-section {
+    padding: 4rem 5%;
+    background: var(--bg-light);
+}
+
+.info-util-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-util-card {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.info-util-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.info-util-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-util-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.info-util-card p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+/* Tablets y menores */
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .highlights-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .historia-container {
+        grid-template-columns: 1fr;
+    }
+
+    .valores-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timeline::before {
+        left: 40px;
+    }
+
+    .timeline-item {
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+    }
+
+    .timeline-item:nth-child(even) .timeline-year {
+        order: 1;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+        order: 2;
+        text-align: left;
+    }
+
+    .timeline-year {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+
+    .contacto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-util-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .nav-dropdown-content {
+        position: static;
+        box-shadow: none;
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+        background: transparent;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+    }
+
+    .nav-dropdown.active .nav-dropdown-content {
+        display: block;
+    }
+
+    .dropdown-item {
+        padding: 0.75rem 1rem;
+        background: var(--bg-light);
+        margin-bottom: 0.5rem;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text-large h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-year {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    .highlight-stat {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ==========================================
+   PÁGINA PELUQUERÍA
+   ========================================== */
+.peluqueria-intro-section {
+    padding: 4rem 5%;
+    background: var(--bg-white);
+}
+
+.peluqueria-intro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: center;
+}
+
+.intro-content {
+    line-height: 1.8;
+}
+
+.intro-content p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.intro-visual .placeholder-image {
+    width: 100%;
+    height: 300px;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+}
+
+.peluqueria-servicios-section {
+    padding: 4rem 5%;
+    background: var(--bg-light);
+}
+
+.peluqueria-servicios-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.peluqueria-service-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.peluqueria-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.peluqueria-service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.peluqueria-service-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+}
+
+.service-features li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--bg-light);
+}
+
+.service-features li:last-child {
+    border-bottom: none;
+}
+
+.peluqueria-paquetes-section {
+    padding: 4rem 5%;
+    background: var(--bg-white);
+}
+
+.paquetes-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.paquete-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.paquete-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.paquete-premium {
+    border-color: var(--primary-blue);
+    transform: scale(1.05);
+}
+
+.paquete-premium:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.paquete-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-coral);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.badge-premium {
+    background: var(--primary-blue);
+}
+
+.badge-medical {
+    background: #10B981;
+}
+
+.paquete-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1rem 0 0.5rem;
+    text-align: center;
+}
+
+.paquete-description {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--bg-light);
+}
+
+.paquete-includes {
+    list-style: none;
+    padding: 0;
+}
+
+.paquete-includes li {
+    padding: 0.75rem 0;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.peluqueria-cta-section {
+    padding: 4rem 5%;
+    background: var(--bg-light);
+}
+
+.peluqueria-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 768px) {
+    .peluqueria-intro-container {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-visual .placeholder-image {
+        height: 200px;
+        font-size: 4rem;
+    }
+
+    .peluqueria-servicios-grid,
+    .paquetes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .paquete-premium {
+        transform: scale(1);
+    }
+
+    .paquete-premium:hover {
+        transform: translateY(-8px);
+    }
+}

@@ -1,0 +1,670 @@
+@page "/vacunacion"
+@using SPVetClinic.Data
+@using SPVetClinic.Components.Common
+@inject IJSRuntime JS
+
+<PageTitle>Vacunación - @AppConstants.Clinic.Name</PageTitle>
+
+<!-- HERO -->
+<section class="hero-section vaccine-hero">
+    <div class="hero-content container-wide">
+        <span class="hero-tag reveal">
+            <Icon Name="syringe" Size="18" /> Prevención
+        </span>
+        <h1 class="hero-title reveal">
+            Planes de <span class="highlight-success">Vacunación</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+            Protege a tu mascota con nuestros completos planes de vacunación para perros y gatos
+        </p>
+        <div class="hero-buttons reveal">
+            <WhatsAppButton Label="Agendar Vacunación" Style="WhatsAppButtonStyle.Default" />
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-secondary">Reservar Online</a>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+                fill="white" />
+        </svg>
+    </div>
+</section>
+
+<!-- PROMOCIÓN FLOTANTE -->
+<div id="promo-float" class="promo-float">
+    <button class="promo-close" type="button" aria-label="Cerrar promoción">✕</button>
+    <div class="promo-float-content">
+        <div class="promo-icon">
+            <Icon Name="party" Size="32" />
+        </div>
+        <div class="promo-text">
+            <h3>¡20% OFF en Vacunación!</h3>
+            <p>Descuento especial en todas las vacunas durante diciembre</p>
+        </div>
+        <WhatsAppButton Label="Aprovechar" Style="WhatsAppButtonStyle.Contact" />
+    </div>
+</div>
+
+<!-- CALENDARIOS -->
+<section id="calendarios" class="calendars-section">
+    <div class="container-wide">
+        <SectionHeader Tag="Calendarios" Title="Planes de Vacunación"
+            Subtitle="Esquemas completos según la edad y especie de tu mascota" />
+
+        <div class="calendars-grid reveal">
+            <!-- PERROS -->
+            <div class="calendar-block">
+                <div class="calendar-header">
+                    <h2>
+                        <Icon Name="dog" Size="24" /> Calendario de Vacunación para Perros
+                    </h2>
+                </div>
+
+                <div class="vaccines-timeline">
+                    <div class="vaccine-item stagger-1">
+                        <div class="vaccine-age">6-8 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Primera Vacuna Múltiple</h4>
+                            <p>Protección contra: Parvovirus, Distemper, Hepatitis, Parainfluenza, Adenovirus</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-2">
+                        <div class="vaccine-age">10-12 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Segunda Vacuna Múltiple</h4>
+                            <p>Refuerzo de protección + primera dosis de Leptospirosis</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-3">
+                        <div class="vaccine-age">14-16 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Tercera Vacuna Múltiple + Antirrábica</h4>
+                            <p>Completar esquema + vacuna obligatoria por ley</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-4">
+                        <div class="vaccine-age">Anual</div>
+                        <div class="vaccine-details">
+                            <h4>Refuerzos Anuales</h4>
+                            <p>Mantener inmunidad activa: Múltiple + Antirrábica + KC (opcional)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GATOS -->
+            <div class="calendar-block">
+                <div class="calendar-header">
+                    <h2>
+                        <Icon Name="cat" Size="24" /> Calendario de Vacunación para Gatos
+                    </h2>
+                </div>
+
+                <div class="vaccines-timeline">
+                    <div class="vaccine-item stagger-1">
+                        <div class="vaccine-age">8 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Primera Triple Felina</h4>
+                            <p>Protección contra: Panleucopenia, Rinotraqueítis, Calicivirus</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-2">
+                        <div class="vaccine-age">12 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Segunda Triple Felina</h4>
+                            <p>Refuerzo de protección</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-3">
+                        <div class="vaccine-age">16 semanas</div>
+                        <div class="vaccine-details">
+                            <h4>Tercera Triple Felina + Antirrábica</h4>
+                            <p>Completar esquema + vacuna obligatoria</p>
+                        </div>
+                    </div>
+
+                    <div class="vaccine-item stagger-4">
+                        <div class="vaccine-age">Anual</div>
+                        <div class="vaccine-details">
+                            <h4>Refuerzos Anuales</h4>
+                            <p>Triple Felina + Antirrábica + Leucemia (si sale al exterior)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VACUNAS RECOMENDADAS -->
+<section class="optional-vaccines-section">
+    <div class="container-wide">
+        <SectionHeader Tag="Protección Extra" Title="Vacunas Recomendadas para Mayor Protección"
+            Subtitle="Prevención contra enfermedades graves según el estilo de vida de tu mascota" />
+
+        <div class="optional-grid reveal">
+            <div class="optional-card stagger-1">
+                <h3>
+                    <Icon Name="dog" Size="20" /> Tos de las Perreras (KC)
+                </h3>
+                <p><strong>Para:</strong> Perros que van a guarderías, parques o pensiones</p>
+                <p><strong>Protege contra:</strong> Bordetella bronchiseptica y Parainfluenza</p>
+                <p><strong>Riesgo:</strong> <span class="risk-badge risk-medium">Muy contagioso</span></p>
+                <p><strong>Frecuencia:</strong> Cada 6-12 meses</p>
+            </div>
+
+            <div class="optional-card stagger-2">
+                <h3>
+                    <Icon Name="cat" Size="20" /> Leucemia Felina (FeLV)
+                </h3>
+                <p><strong>Para:</strong> Gatos que salen al exterior o conviven con otros gatos</p>
+                <p><strong>Protege contra:</strong> Virus de la Leucemia Felina</p>
+                <p><strong>Riesgo:</strong> <span class="risk-badge risk-high">Enfermedad mortal</span></p>
+                <p><strong>Frecuencia:</strong> Anual</p>
+            </div>
+
+            <div class="optional-card stagger-3">
+                <h3>
+                    <Icon Name="cat" Size="20" /> Inmunodeficiencia Felina (FIV)
+                </h3>
+                <p><strong>Para:</strong> Gatos que salen al exterior o tienen contacto con otros gatos</p>
+                <p><strong>Protege contra:</strong> Virus de Inmunodeficiencia Felina (Sida Felino)</p>
+                <p><strong>Riesgo:</strong> <span class="risk-badge risk-high">Enfermedad crónica grave</span></p>
+                <p><strong>Frecuencia:</strong> Anual</p>
+            </div>
+
+            <div class="optional-card stagger-4">
+                <h3>
+                    <Icon Name="dog" Size="20" /> Giardia
+                </h3>
+                <p><strong>Para:</strong> Perros propensos a infecciones intestinales</p>
+                <p><strong>Protege contra:</strong> Parásito Giardia lamblia</p>
+                <p><strong>Riesgo:</strong> <span class="risk-badge risk-medium">Común en cachorros</span></p>
+                <p><strong>Frecuencia:</strong> Según indicación veterinaria</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="container-wide">
+        <SectionHeader Tag="Preguntas" Title="Dudas sobre Vacunación" />
+
+        <div class="faq-grid reveal">
+            <div class="faq-item stagger-1">
+                <h4>¿Por qué son necesarios los refuerzos?</h4>
+                <p>La primera vacuna no genera inmunidad completa. Los refuerzos "entrenan" el sistema inmunológico
+                    hasta lograr protección óptima.</p>
+            </div>
+
+            <div class="faq-item stagger-2">
+                <h4>¿Puedo atrasar una vacuna?</h4>
+                <p>No es recomendable. Si hay atraso significativo, puede ser necesario reiniciar el esquema. Consulta
+                    con tu veterinario.</p>
+            </div>
+
+            <div class="faq-item stagger-3">
+                <h4>¿Las vacunas tienen efectos secundarios?</h4>
+                <p>Pueden presentarse efectos leves como decaimiento o dolor en el sitio de aplicación. Reacciones
+                    graves son muy raras.</p>
+            </div>
+
+            <div class="faq-item stagger-4">
+                <h4>¿Puedo vacunar a mi mascota en casa?</h4>
+                <p>Ofrecemos servicio de vacunación a domicilio. Sin embargo, la primera visita debe ser en clínica para
+                    examen completo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="final-cta-section">
+    <div class="container-centered">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="syringe" Size="48" />
+            </div>
+            <h2>¿Listo para proteger a tu mascota?</h2>
+            <p>Agenda su vacunación y aprovecha nuestras promociones</p>
+            <div class="cta-buttons">
+                <WhatsAppButton Label="Agendar Ahora" Style="WhatsAppButtonStyle.Contact" />
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-secondary">Reservar Online</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("eval", @"
+document.querySelector('.promo-close')?.addEventListener('click', function() {
+document.getElementById('promo-float').style.display = 'none';
+});
+");
+        }
+    }
+}
+
+<style>
+    /* CONTENEDORES RESPONSIVE */
+    .container-wide {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    .container-centered {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* HERO */
+    .vaccine-hero {
+        background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: white;
+        padding: 100px 0 150px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 1600px;
+        padding: 0 40px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Igualar altura de botones en hero */
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .hero-buttons .btn-secondary {
+        padding: 1rem 2rem;
+        height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        overflow: hidden;
+    }
+
+    .hero-wave svg {
+        display: block;
+        width: 100%;
+        min-width: 100%;
+        height: 120px;
+    }
+
+    .promo-float {
+        position: fixed;
+        top: var(--navbar-height, 65px);
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        border-bottom: 3px solid #ffc107;
+        animation: slideDown 0.5s ease;
+    }
+
+    @@keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .promo-float-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding: 15px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .promo-close {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(133, 100, 4, 0.1);
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #856404;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .promo-close:hover {
+        background: rgba(133, 100, 4, 0.2);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .promo-icon {
+        font-size: 2.5rem;
+        flex-shrink: 0;
+    }
+
+    .promo-text h3 {
+        color: #856404;
+        margin: 0 0 5px 0;
+        font-size: 1.3rem;
+    }
+
+    .promo-text p {
+        color: #856404;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .calendars-section {
+        padding: 60px 20px;
+        background: white;
+    }
+
+    .calendars-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        margin-top: 60px;
+    }
+
+    .calendar-block {
+        /* Sin margin-bottom porque el grid maneja spacing */
+    }
+
+    .calendar-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .calendar-header h2 {
+        font-size: var(--font-size-h2);
+        color: #2c3e50;
+    }
+
+    .vaccines-timeline {
+        max-width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .vaccines-timeline::before {
+        content: '';
+        position: absolute;
+        left: 70px;
+        top: 20px;
+        bottom: 20px;
+        width: 3px;
+        background: linear-gradient(180deg, #27ae60, #229954);
+    }
+
+    .vaccine-item {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .vaccine-age {
+        flex-shrink: 0;
+        width: 120px;
+        height: 55px;
+        background: linear-gradient(135deg, #27ae60, #229954);
+        color: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        z-index: 1;
+    }
+
+    .vaccine-details {
+        flex: 1;
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 15px;
+    }
+
+    .vaccine-details h4 {
+        color: #27ae60;
+        margin-bottom: 10px;
+    }
+
+    .vaccine-details p {
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .optional-vaccines-section {
+        padding: 60px 20px;
+        background: #f8f9fa;
+    }
+
+    .optional-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .optional-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        border-top: 4px solid #3498db;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .optional-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .optional-card h3 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .optional-card p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 10px;
+    }
+
+    .risk-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    .risk-high {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+    }
+
+    .risk-medium {
+        background: linear-gradient(135deg, #f39c12, #e67e22);
+    }
+
+    .faq-section {
+        padding: 60px 20px;
+        background: white;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .faq-item {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 4px solid #27ae60;
+    }
+
+    .faq-item h4 {
+        color: #27ae60;
+        margin-bottom: 15px;
+    }
+
+    .faq-item p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .final-cta-section {
+        padding: 70px 20px;
+        background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .cta-icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+    }
+
+    .final-cta-content h2 {
+        font-size: var(--font-size-h1);
+        margin-bottom: 15px;
+    }
+
+    .final-cta-content p {
+        font-size: var(--font-size-lg);
+        margin-bottom: 30px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    @@media (max-width: 1200px) {
+        .calendars-grid {
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+
+        .vaccines-timeline::before {
+            left: 100px;
+        }
+
+        .vaccine-age {
+            width: 140px;
+            height: 60px;
+            font-size: 1rem;
+        }
+    }
+
+    @@media (max-width: 968px) {
+        .promo-float {
+            top: 65px;
+        }
+
+        .promo-float-content {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 50px 20px 20px;
+        }
+
+        .promo-close {
+            top: 15px;
+            transform: none;
+        }
+
+        .promo-close:hover {
+            transform: scale(1.1);
+        }
+
+        .promo-icon {
+            font-size: 2rem;
+        }
+
+        .promo-text h3 {
+            font-size: 1.1rem;
+        }
+
+        .promo-text p {
+            font-size: 0.85rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .container-wide {
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            padding: 0 20px;
+        }
+
+        .vaccines-timeline::before {
+            display: none;
+        }
+
+        .vaccine-item {
+            flex-direction: column;
+        }
+
+        .vaccine-age {
+            margin: 0 auto;
+        }
+    }
+</style>

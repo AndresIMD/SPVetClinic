@@ -1,0 +1,26 @@
+@* ============================================
+   BOOKING HINT - Componente Reutilizable
+   Uso: <BookingHint Text="Agenda tu cita..." />
+   ============================================ *@
+
+<a href="@Url" target="_blank" class="booking-hint @CssClass">
+    <span class="booking-hint-icon">
+        @if (string.IsNullOrEmpty(Icon))
+        {
+            <Icon Name="calendar" Size="18" />
+        }
+        else
+        {
+            @Icon
+        }
+    </span>
+    <span>@Text</span>
+    <span class="booking-hint-arrow">→</span>
+</a>
+
+@code {
+    [Parameter] public string Text { get; set; } = "Agenda tu cita para cualquier servicio en línea";
+    [Parameter] public string Icon { get; set; } = "";
+    [Parameter] public string Url { get; set; } = AppConstants.Clinic.BookingUrl;
+    [Parameter] public string CssClass { get; set; } = "";
+}

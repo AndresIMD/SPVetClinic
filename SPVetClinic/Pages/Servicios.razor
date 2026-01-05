@@ -1,0 +1,188 @@
+@page "/servicios"
+@inject IJSRuntime JS
+
+<PageTitle>Servicios | San Pablo Vet Clínic</PageTitle>
+
+<!-- ============================================
+     PAGE HERO
+     ============================================ -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <NavLink href="" class="back-link">
+            <span class="back-arrow">←</span>
+            <span>Volver al inicio</span>
+        </NavLink>
+        <h1 class="page-hero-title">Nuestros Servicios</h1>
+        <p class="page-hero-subtitle">Atención integral para el cuidado y bienestar de tu mascota</p>
+    </div>
+</section>
+
+<!-- ============================================
+     SERVICIOS GRID
+     ============================================ -->
+<section class="servicios-hub-section">
+    <div class="section-header">
+        <span class="section-tag">Todo lo que necesitas</span>
+        <h2 class="section-title">Servicios Completos</h2>
+        <p class="section-subtitle">Desde consultas generales hasta especialidades médicas avanzadas</p>
+    </div>
+
+    <div class="servicios-hub-grid">
+        <!-- Consulta General -->
+        <div class="servicio-hub-card reveal stagger-1">
+            <div class="servicio-hub-icon">
+                <Icon Name="clinic" Size="32" />
+            </div>
+            <h3>Consulta General</h3>
+            <p>Evaluaciones de salud completas, diagnósticos precisos y planes de tratamiento personalizados.</p>
+            <ul class="servicio-features">
+                <li>Chequeos de rutina</li>
+                <li>Diagnóstico de enfermedades</li>
+                <li>Planes de tratamiento</li>
+                <li>Asesoría nutricional</li>
+            </ul>
+        </div>
+
+        <!-- Exámenes -->
+        <NavLink href="examenes" class="servicio-hub-card reveal stagger-2">
+            <div class="servicio-hub-icon">
+                <Icon Name="microscope" Size="32" />
+            </div>
+            <h3>Exámenes y Diagnóstico</h3>
+            <p>Laboratorio clínico IDEXX, ecografía, radiografía y electrocardiograma.</p>
+            <ul class="servicio-features">
+                <li>Hemogramas completos</li>
+                <li>Perfiles bioquímicos</li>
+                <li>Imagenología</li>
+                <li>PCR y diagnóstico molecular</li>
+            </ul>
+            <span class="servicio-link-arrow">Ver todos los exámenes →</span>
+        </NavLink>
+
+        <!-- Especialidades -->
+        <NavLink href="especialistas" class="servicio-hub-card reveal stagger-3">
+            <div class="servicio-hub-icon">
+                <Icon Name="doctor" Size="32" />
+            </div>
+            <h3>Especialidades Médicas</h3>
+            <p>Neurología, endocrinología, cardiología y medicina felina certificada.</p>
+            <ul class="servicio-features">
+                <li>Neurología veterinaria</li>
+                <li>Medicina felina</li>
+                <li>Endocrinología</li>
+                <li>Cardiología</li>
+            </ul>
+            <span class="servicio-link-arrow">Conoce a nuestros especialistas →</span>
+        </NavLink>
+
+        <!-- Cirugía -->
+        <div class="servicio-hub-card reveal stagger-4">
+            <div class="servicio-hub-icon">
+                <Icon Name="stethoscope" Size="32" />
+            </div>
+            <h3>Cirugía y Hospitalización</h3>
+            <p>Procedimientos quirúrgicos seguros con monitoreo constante y cuidados post-operatorios.</p>
+            <ul class="servicio-features">
+                <li>Cirugías programadas</li>
+                <li>Cirugías de urgencia</li>
+                <li>Hospitalización 24hrs</li>
+                <li>Cuidados intensivos</li>
+            </ul>
+        </div>
+
+        <!-- Vet Móvil -->
+        <NavLink href="vet-movil" class="servicio-hub-card reveal stagger-5">
+            <div class="servicio-hub-icon">
+                <Icon Name="van" Size="32" />
+            </div>
+            <h3>Veterinario Móvil</h3>
+            <p>Atención profesional en la comodidad de tu hogar con equipo médico completo.</p>
+            <ul class="servicio-features">
+                <li>Consultas a domicilio</li>
+                <li>Vacunación</li>
+                <li>Toma de muestras</li>
+                <li>Atención de urgencias</li>
+            </ul>
+            <span class="servicio-link-arrow">Solicitar servicio móvil →</span>
+        </NavLink>
+
+        <!-- Peluquería -->
+        <div class="servicio-hub-card reveal stagger-6">
+            <div class="servicio-hub-icon">
+                <Icon Name="scissors" Size="32" />
+            </div>
+            <h3>Peluquería y Estética</h3>
+            <p>Baños medicados, cortes profesionales y cuidado estético integral.</p>
+            <ul class="servicio-features">
+                <li>Baños medicados</li>
+                <li>Cortes de pelo</li>
+                <li>Limpieza de oídos</li>
+                <li>Corte de uñas</li>
+            </ul>
+        </div>
+
+        <!-- Vacunación -->
+        <div class="servicio-hub-card reveal stagger-7">
+            <div class="servicio-hub-icon">
+                <Icon Name="syringe" Size="32" />
+            </div>
+            <h3>Vacunación y Prevención</h3>
+            <p>Programas de vacunación, desparasitación y medicina preventiva.</p>
+            <ul class="servicio-features">
+                <li>Vacunas obligatorias</li>
+                <li>Desparasitación</li>
+                <li>Control de pulgas</li>
+                <li>Medicina preventiva</li>
+            </ul>
+        </div>
+
+        <!-- Urgencias 24hrs -->
+        <div class="servicio-hub-card servicio-urgencias reveal stagger-8">
+            <div class="servicio-hub-icon">
+                <Icon Name="bolt" Size="32" />
+            </div>
+            <h3>Urgencias 24 Horas</h3>
+            <p>Atención de emergencias las 24 horas del día, los 7 días de la semana.</p>
+            <ul class="servicio-features">
+                <li>Disponibilidad inmediata</li>
+                <li>Equipo especializado</li>
+                <li>Hospitalización intensiva</li>
+                <li>Monitoreo constante</li>
+            </ul>
+            <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)" class="btn-urgencia">
+                <Icon Name="phone" Size="18" /> Llamar Ahora
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA SECTION
+     ============================================ -->
+<section class="servicios-cta-section">
+    <div class="servicios-cta-container reveal">
+        <h2 class="cta-title">¿No encuentras lo que buscas?</h2>
+        <p class="cta-description">Contáctanos y te ayudaremos a encontrar la solución perfecta para tu mascota.</p>
+        <div class="cta-buttons">
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-primary-large">
+                <Icon Name="calendar" Size="20" />
+                <span>Agendar Cita</span>
+            </a>
+            <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)" class="btn-secondary-large">
+                <Icon Name="message" Size="20" />
+                <span>WhatsApp</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("clearTextSelection");
+        }
+    }
+}

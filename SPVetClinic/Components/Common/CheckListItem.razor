@@ -1,0 +1,47 @@
+@* ============================================
+   CHECK LIST ITEM - Componente Reutilizable
+   Uso: <CheckListItem Text="Consultas veterinarias" Style="Service" />
+   ============================================ *@
+
+@if (Style == CheckListStyle.Service)
+{
+    <div class="service-item">
+        <span class="service-check">
+            @if (string.IsNullOrEmpty(CheckIcon))
+            {
+                <Icon Name="check" Size="16" />
+            }
+            else
+            {
+                @CheckIcon
+            }
+        </span>
+        <span>@Text</span>
+    </div>
+}
+else
+{
+    <div class="booking-feature">
+        @if (string.IsNullOrEmpty(CheckIcon))
+        {
+            <Icon Name="check" Size="16" />
+        }
+        else
+        {
+            <span>@CheckIcon</span>
+        }
+        @Text
+    </div>
+}
+
+@code {
+    [Parameter] public string Text { get; set; } = "";
+    [Parameter] public string CheckIcon { get; set; } = "";
+    [Parameter] public CheckListStyle Style { get; set; } = CheckListStyle.Service;
+
+    public enum CheckListStyle
+    {
+        Service,
+        Booking
+    }
+}

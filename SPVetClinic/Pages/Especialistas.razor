@@ -1,0 +1,739 @@
+@page "/especialistas"
+@using SPVetClinic.Data
+@using SPVetClinic.Components.Common
+@using SPVetClinic.Components.Cards
+@inject IJSRuntime JS
+
+<PageTitle>Especialistas - @AppConstants.Clinic.Name</PageTitle>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero-section specialists-hero">
+    <div class="hero-content">
+        <span class="hero-tag reveal">
+            <Icon Name="stethoscope" Size="18" /> Atención Especializada
+        </span>
+        <h1 class="hero-title reveal">
+            Especialistas <span class="highlight-teal">Certificados</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+            Médicos veterinarios expertos en áreas específicas para brindar el mejor diagnóstico y tratamiento a tu
+            mascota
+        </p>
+        <div class="hero-buttons reveal">
+            <WhatsAppButton Label="Agendar Consulta" Style="WhatsAppButtonStyle.Hero" />
+            <a href="#especialistas-lista" class="btn-secondary">Ver Especialistas</a>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+                fill="white" />
+        </svg>
+    </div>
+</section>
+
+<!-- ============================================
+     INTRO SECTION
+     ============================================ -->
+<section class="intro-section">
+    <div class="container">
+        <div class="intro-content reveal">
+            <h2>¿Por qué consultar con un especialista?</h2>
+            <p class="intro-text">
+                Algunas condiciones médicas requieren conocimiento profundo y experiencia específica.
+                Nuestros especialistas cuentan con certificaciones y años de experiencia dedicados exclusivamente
+                a su área de expertise, garantizando el mejor cuidado para tu mascota.
+            </p>
+        </div>
+
+        <div class="intro-benefits reveal">
+            <div class="benefit-item stagger-1">
+                <div class="benefit-icon">
+                    <Icon Name="graduation" Size="32" />
+                </div>
+                <h3>Certificados</h3>
+                <p>Profesionales con certificaciones nacionales e internacionales</p>
+            </div>
+            <div class="benefit-item stagger-2">
+                <div class="benefit-icon">
+                    <Icon Name="microscope" Size="32" />
+                </div>
+                <h3>Equipamiento</h3>
+                <p>Tecnología de punta para diagnósticos precisos</p>
+            </div>
+            <div class="benefit-item stagger-3">
+                <div class="benefit-icon">
+                    <Icon Name="heart" Size="32" />
+                </div>
+                <h3>Dedicación</h3>
+                <p>Atención personalizada enfocada en resultados</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     ESPECIALISTAS DETALLADOS
+     ============================================ -->
+<section id="especialistas-lista" class="specialists-detail-section">
+    <div class="container">
+        <SectionHeader Tag="Nuestro Equipo" Title="Conoce a nuestros especialistas"
+            Subtitle="Profesionales apasionados dedicados al bienestar de tus mascotas" />
+
+        <!-- DR. HERNÁN VARGAS - NEUROLOGÍA -->
+        <div class="specialist-card-large reveal stagger-1">
+            <div class="specialist-image">
+                <div class="specialist-avatar specialist-avatar-teal">
+                    <span class="avatar-icon">
+                        <Icon Name="brain" Size="48" />
+                    </span>
+                </div>
+            </div>
+            <div class="specialist-info">
+                <div class="specialist-header">
+                    <h3>Dr. Hernán Vargas</h3>
+                    <span class="specialist-badge badge-teal">Neurología</span>
+                </div>
+                <p class="specialist-schedule">
+                    <Icon Name="calendar" Size="16" /> Todos los Sábados
+                </p>
+
+                <div class="specialist-description">
+                    <p>
+                        Médico veterinario especialista en neurología con más de 15 años de experiencia.
+                        Certificado en diagnóstico y tratamiento de enfermedades del sistema nervioso en pequeños
+                        animales.
+                    </p>
+                </div>
+
+                <div class="specialist-expertise">
+                    <h4>Áreas de Especialización:</h4>
+                    <ul class="styled-list">
+                        <li>Convulsiones y epilepsia</li>
+                        <li>Problemas de equilibrio y coordinación</li>
+                        <li>Dolor de cuello y columna</li>
+                        <li>Movimientos anormales</li>
+                        <li>Debilidad y parálisis</li>
+                        <li>Enfermedades del sistema nervioso central</li>
+                    </ul>
+                </div>
+
+                <div class="specialist-cta">
+                    <WhatsAppButton Label="Agendar con Dr. Vargas" Style="WhatsAppButtonStyle.Default" />
+                </div>
+            </div>
+        </div>
+
+        <!-- DRA. PILAR MUÑOZ - MEDICINA FELINA -->
+        <div class="specialist-card-large reveal stagger-2">
+            <div class="specialist-image">
+                <div class="specialist-avatar specialist-avatar-coral">
+                    <span class="avatar-icon">
+                        <Icon Name="cat" Size="48" />
+                    </span>
+                </div>
+            </div>
+            <div class="specialist-info">
+                <div class="specialist-header">
+                    <h3>Dra. Pilar Muñoz</h3>
+                    <span class="specialist-badge badge-coral">Medicina Felina</span>
+                </div>
+                <p class="specialist-schedule">
+                    <Icon Name="calendar" Size="16" /> Agenda Disponible • Solicita tu hora
+                </p>
+
+                <div class="specialist-description">
+                    <p>
+                        Especialista exclusiva en medicina felina con certificación internacional.
+                        Dedicada 100% al cuidado y tratamiento de gatos, entendiendo sus necesidades únicas
+                        y su comportamiento particular.
+                    </p>
+                </div>
+
+                <div class="specialist-expertise">
+                    <h4>Áreas de Especialización:</h4>
+                    <ul class="styled-list">
+                        <li>Medicina preventiva felina</li>
+                        <li>Enfermedades renales y urinarias</li>
+                        <li>Problemas digestivos en gatos</li>
+                        <li>Manejo del estrés y ansiedad</li>
+                        <li>Enfermedades infecciosas felinas</li>
+                        <li>Nutrición especializada para gatos</li>
+                    </ul>
+                </div>
+
+                <div class="specialist-highlight">
+                    <div class="highlight-icon">
+                        <Icon Name="star" Size="24" />
+                    </div>
+                    <p>
+                        <strong>Cat-Friendly Clinic:</strong> Dra. Muñoz aplica protocolos especiales
+                        para reducir el estrés de los gatos durante las consultas, creando un ambiente
+                        tranquilo y seguro.
+                    </p>
+                </div>
+
+                <div class="specialist-cta">
+                    <WhatsAppButton Label="Agendar con Dra. Muñoz" Style="WhatsAppButtonStyle.Default" />
+                </div>
+            </div>
+        </div>
+
+        <!-- ENDOCRINOLOGÍA -->
+        <div class="specialist-card-large reveal stagger-3">
+            <div class="specialist-image">
+                <div class="specialist-avatar specialist-avatar-purple">
+                    <span class="avatar-icon">
+                        <Icon Name="flask" Size="48" />
+                    </span>
+                </div>
+            </div>
+            <div class="specialist-info">
+                <div class="specialist-header">
+                    <h3>Endocrinología</h3>
+                    <span class="specialist-badge badge-purple">Especialista Visitante</span>
+                </div>
+                <p class="specialist-schedule">
+                    <Icon Name="calendar" Size="16" /> Consultar disponibilidad
+                </p>
+
+                <div class="specialist-description">
+                    <p>
+                        Especialista en endocrinología veterinaria que visita nuestra clínica regularmente
+                        para atención de casos complejos relacionados con problemas hormonales y metabólicos.
+                    </p>
+                </div>
+
+                <div class="specialist-expertise">
+                    <h4>Áreas de Especialización:</h4>
+                    <ul class="styled-list">
+                        <li>Diabetes mellitus</li>
+                        <li>Hipo e hipertiroidismo</li>
+                        <li>Enfermedad de Cushing</li>
+                        <li>Enfermedad de Addison</li>
+                        <li>Problemas de crecimiento</li>
+                        <li>Desórdenes reproductivos hormonales</li>
+                    </ul>
+                </div>
+
+                <div class="specialist-cta">
+                    <WhatsAppButton Label="Consultar Disponibilidad" Style="WhatsAppButtonStyle.Default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     PROCESO DE CITAS
+     ============================================ -->
+<section class="appointment-process-section">
+    <div class="container">
+        <SectionHeader Tag="Proceso" Title="¿Cómo agendar con un especialista?"
+            Subtitle="Seguimos un proceso simple para asegurar la mejor atención" />
+
+        <div class="process-steps reveal">
+            <div class="process-step stagger-1">
+                <div class="step-number">1</div>
+                <h3>Evaluación Inicial</h3>
+                <p>
+                    Si tu mascota necesita atención especializada, primero debe ser evaluada
+                    por nuestro equipo general para determinar la necesidad del especialista.
+                </p>
+            </div>
+
+            <div class="process-step stagger-2">
+                <div class="step-number">2</div>
+                <h3>Agenda tu Hora</h3>
+                <p>
+                    Contacta con nosotros por WhatsApp para coordinar la cita con el especialista.
+                    Te informaremos fechas disponibles y requisitos.
+                </p>
+            </div>
+
+            <div class="process-step stagger-3">
+                <div class="step-number">3</div>
+                <h3>Abono del 50%</h3>
+                <p>
+                    Las consultas con especialistas requieren un abono del 50% del valor
+                    para confirmar la reserva. El saldo se paga el día de la consulta.
+                </p>
+            </div>
+
+            <div class="process-step stagger-4">
+                <div class="step-number">4</div>
+                <h3>Día de la Consulta</h3>
+                <p>
+                    Trae toda la documentación médica previa de tu mascota.
+                    El especialista realizará una evaluación completa y definirá el plan de tratamiento.
+                </p>
+            </div>
+        </div>
+
+        <div class="process-cta reveal">
+            <BookingHint Text="Las citas con especialistas requieren 50% de abono • Agenda en línea"
+                CssClass="specialists-hint" />
+            <div class="cta-buttons">
+                <WhatsAppButton Label="Agendar Cita" Style="WhatsAppButtonStyle.Default" />
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-secondary">Reserva Online</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FAQ SECTION
+     ============================================ -->
+<section class="faq-section">
+    <div class="container">
+        <SectionHeader Tag="Preguntas Frecuentes" Title="Todo lo que necesitas saber"
+            Subtitle="Resolvemos tus dudas sobre atención especializada" />
+
+        <div class="faq-grid reveal">
+            <div class="faq-item stagger-1">
+                <h4>¿Necesito una derivación?</h4>
+                <p>
+                    Idealmente sí. Recomendamos que tu mascota sea evaluada primero por nuestro
+                    equipo general, quienes determinarán si necesita atención especializada y
+                    prepararán toda la información necesaria para el especialista.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-2">
+                <h4>¿Por qué se requiere abono?</h4>
+                <p>
+                    El abono del 50% garantiza la reserva de la hora con el especialista,
+                    ya que tienen disponibilidad limitada. Esto asegura tu cupo y nos permite
+                    organizar mejor la agenda.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-3">
+                <h4>¿Qué debo llevar?</h4>
+                <p>
+                    Trae toda la documentación médica previa: exámenes de sangre, radiografías,
+                    ecografías, informes de otros veterinarios, y la cartilla de vacunación.
+                    Mientras más información, mejor será el diagnóstico.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-4">
+                <h4>¿Cuánto dura una consulta?</h4>
+                <p>
+                    Las consultas con especialistas suelen durar entre 45-60 minutos,
+                    ya que realizan una evaluación exhaustiva. En algunos casos pueden
+                    requerir más tiempo si es necesario realizar procedimientos diagnósticos.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-5">
+                <h4>¿Hay seguimiento posterior?</h4>
+                <p>
+                    Sí. El especialista definirá un plan de tratamiento y agendará controles
+                    de seguimiento según sea necesario. Algunos casos pueden requerir
+                    múltiples visitas para evaluar progreso.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-6">
+                <h4>¿Atienden urgencias?</h4>
+                <p>
+                    Los especialistas atienden con cita previa. Para urgencias, nuestro
+                    equipo de urgencias 24/7 evaluará primero a tu mascota y, si es necesario,
+                    coordinará atención especializada prioritaria.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CTA FINAL
+     ============================================ -->
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <h2>¿Tu mascota necesita atención especializada?</h2>
+            <p>Agenda una evaluación con nuestro equipo o solicita directamente una cita con el especialista</p>
+            <div class="cta-buttons">
+                <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-secondary">Reservar Online</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}
+
+<style>
+    /* Hero Section */
+    .specialists-hero {
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+        padding: 100px 20px 150px;
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .hero-wave svg {
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 120px;
+    }
+
+    /* Intro Section */
+    .intro-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .intro-content {
+        max-width: 800px;
+        margin: 0 auto 60px;
+        text-align: center;
+    }
+
+    .intro-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    .intro-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .intro-benefits {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .benefit-item {
+        text-align: center;
+        padding: 30px 20px;
+        background: #f8f9fa;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .benefit-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .benefit-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .benefit-item h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: #17a2b8;
+    }
+
+    .benefit-item p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Specialists Detail Section */
+    .specialists-detail-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .specialist-card-large {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 40px;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .specialist-avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .specialist-avatar-teal {
+        background: linear-gradient(135deg, #17a2b8, #138496);
+    }
+
+    .specialist-avatar-coral {
+        background: linear-gradient(135deg, #ff7675, #fd79a8);
+    }
+
+    .specialist-avatar-purple {
+        background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+    }
+
+    .specialist-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+
+    .specialist-header h3 {
+        font-size: 2rem;
+        color: #2c3e50;
+        margin: 0;
+    }
+
+    .specialist-badge {
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: white;
+    }
+
+    .badge-teal {
+        background: #17a2b8;
+    }
+
+    .badge-coral {
+        background: #ff7675;
+    }
+
+    .badge-purple {
+        background: #6c5ce7;
+    }
+
+    .specialist-schedule {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .specialist-description {
+        margin-bottom: 30px;
+    }
+
+    .specialist-description p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .specialist-expertise h4 {
+        font-size: 1.2rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .specialist-expertise ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+    }
+
+    .specialist-expertise li {
+        padding: 8px 0;
+        color: #555;
+        font-size: 1.05rem;
+    }
+
+    .specialist-highlight {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 30px 0;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .highlight-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .specialist-highlight p {
+        margin: 0;
+        color: #856404;
+        line-height: 1.6;
+    }
+
+    .specialist-cta {
+        margin-top: 30px;
+    }
+
+    /* Appointment Process */
+    .appointment-process-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin: 60px 0;
+    }
+
+    .process-step {
+        text-align: center;
+        padding: 30px 20px;
+        background: #f8f9fa;
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #17a2b8, #138496);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+    }
+
+    .process-step h3 {
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .process-step p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .process-cta {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .faq-item {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 4px solid #17a2b8;
+    }
+
+    .faq-item h4 {
+        color: #17a2b8;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .faq-item p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    /* Final CTA */
+    .final-cta-section {
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .final-cta-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-content p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.95;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .specialist-card-large {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .specialist-avatar {
+            margin: 0 auto;
+        }
+
+        .specialist-header {
+            justify-content: center;
+        }
+
+        .specialist-expertise ul {
+            grid-template-columns: 1fr;
+        }
+
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .intro-content h2 {
+            font-size: 2rem;
+        }
+    }
+</style>

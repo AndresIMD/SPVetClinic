@@ -1,0 +1,72 @@
+<!-- ============================================
+     CONTACT SECTION
+     ============================================ -->
+<section id="contact" class="contact-section">
+    <SectionHeader Tag="Contacto" Title="¿Listo para agendar?"
+        Subtitle="Contáctanos por WhatsApp o visítanos en nuestra clínica." />
+
+    <div class="contact-container">
+        <div class="contact-info reveal-left">
+            <h3>Información de Contacto</h3>
+
+            <InfoCard Icon="location" Title="Dirección" Value="@AppConstants.Clinic.FullAddress"
+                Style="InfoCardStyle.Contact" />
+            <InfoCard Icon="phone" Title="Teléfonos" Value="@AppConstants.Phone.AllPhonesFormatted"
+                Style="InfoCardStyle.Contact" />
+            <InfoCard Icon="clock" Title="Horario" Value="@AppConstants.Clinic.Schedule"
+                Style="InfoCardStyle.Contact" />
+
+            <div class="contact-social">
+                <h4>Síguenos en redes</h4>
+                <SocialLinks Style="SocialLinksStyle.Contact" />
+            </div>
+
+            <WhatsAppButton PhoneNumber="@AppConstants.Phone.MainWhatsApp" Label="Escribir por WhatsApp"
+                Style="WhatsAppButtonStyle.Contact" />
+
+            <!-- Google Maps -->
+            <div class="contact-map">
+                <iframe src="@AppConstants.Maps.EmbedUrl" width="100%" height="200"
+                    style="border:0; border-radius: 16px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="Ubicación @AppConstants.Clinic.Name">
+                </iframe>
+                <a href="@AppConstants.Maps.DirectionsUrl" target="_blank" class="map-link">
+                    <Icon Name="location" Size="16" /> Ver en Google Maps
+                </a>
+            </div>
+        </div>
+
+        <div class="booking-card reveal-right">
+            <div class="booking-card-header">
+                <span class="booking-card-icon">
+                    <Icon Name="calendar" Size="28" />
+                </span>
+                <h3>Agenda tu Cita Online</h3>
+            </div>
+            <p class="booking-card-description">
+                Reserva tu hora de forma rápida y sencilla a través de nuestro sistema de citas en línea.
+                Podrás elegir el servicio, especialista y horario que mejor te acomode.
+            </p>
+
+            <div class="booking-card-features">
+                <CheckListItem Text="Consultas Generales" Style="CheckListStyle.Booking" />
+                <CheckListItem Text="Especialistas" Style="CheckListStyle.Booking" />
+                <CheckListItem Text="Peluquería" Style="CheckListStyle.Booking" />
+                <CheckListItem Text="Vacunación" Style="CheckListStyle.Booking" />
+                <CheckListItem Text="Cirugías" Style="CheckListStyle.Booking" />
+                <CheckListItem Text="Exámenes" Style="CheckListStyle.Booking" />
+            </div>
+
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="btn-booking-cta">
+                <Icon Name="calendar" Size="18" /> Agendar Hora Online
+                <span class="btn-arrow">
+                    <Icon Name="arrow-right" Size="16" />
+                </span>
+            </a>
+
+            <p class="booking-card-note">
+                * Las citas con especialistas requieren 50% de abono previo
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,692 @@
+@page "/hospitalizacion"
+@using SPVetClinic.Data
+@using SPVetClinic.Components.Common
+@inject IJSRuntime JS
+
+<PageTitle>Hospitalización 24/7 - @AppConstants.Clinic.Name</PageTitle>
+
+<!-- HERO -->
+<section class="hero-section hospital-hero">
+    <div class="hero-content">
+        <span class="hero-tag reveal">
+            <Icon Name="clinic" Size="18" /> Cuidados Intensivos
+        </span>
+        <h1 class="hero-title reveal">
+            Hospitalización <span class="highlight-medical">24/7</span>
+        </h1>
+        <p class="hero-subtitle reveal">
+            Cuidados especializados y monitoreo constante cuando tu mascota más lo necesita
+        </p>
+        <div class="hero-buttons reveal">
+            <a href="tel:+@AppConstants.Phone.HospitalWhatsApp" class="btn-primary-urgency">
+                <Icon Name="phone" Size="18" /> Contacto Hospital
+            </a>
+            <NavLink href="#info" class="btn-secondary">Ver Información</NavLink>
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+                fill="white" />
+        </svg>
+    </div>
+</section>
+
+<!-- SERVICIO 24/7 -->
+<section class="service-247-section">
+    <div class="container">
+        <div class="service-247-content reveal">
+            <div class="service-247-icon">
+                <Icon Name="alert" Size="40" />
+            </div>
+            <div class="service-247-text">
+                <h2>Servicio de Urgencias 24 Horas, Todos los Días</h2>
+                <p>
+                    Contamos con veterinarios disponibles las 24 horas del día, los 7 días de la semana,
+                    incluidos feriados. Tu mascota nunca estará sola cuando necesite atención de emergencia.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUÉ ES LA HOSPITALIZACIÓN -->
+<section id="info" class="hospital-info-section">
+    <div class="container">
+        <SectionHeader Tag="El Servicio" Title="¿Qué es la Hospitalización Veterinaria?"
+            Subtitle="Cuidados intensivos para casos que requieren monitoreo constante" />
+
+        <div class="hospital-info-content reveal">
+            <div class="hospital-info-text">
+                <p class="lead-text">
+                    La hospitalización veterinaria es necesaria cuando tu mascota requiere atención médica continua,
+                    administración frecuente de medicamentos, fluidoterapia o monitoreo constante de sus signos vitales.
+                </p>
+
+                <h3>¿Cuándo se requiere hospitalización?</h3>
+                <ul class="conditions-list styled-list">
+                    <li>Enfermedades infecciosas graves (Parvovirus, Distemper, etc.)</li>
+                    <li>Cirugías complejas que requieren cuidados postoperatorios</li>
+                    <li>Deshidratación severa que necesita fluidoterapia intensiva</li>
+                    <li>Intoxicaciones o envenenamientos</li>
+                    <li>Problemas respiratorios que requieren oxigenoterapia</li>
+                    <li>Insuficiencia renal o hepática aguda</li>
+                    <li>Diabetes descompensada</li>
+                    <li>Traumatismos graves</li>
+                </ul>
+            </div>
+
+            <div class="hospital-stats">
+                <div class="stat-box stat-primary stagger-1">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Atención Disponible</div>
+                </div>
+                <div class="stat-box stat-success stagger-2">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Años de Experiencia</div>
+                </div>
+                <div class="stat-box stat-info stagger-3">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Monitoreo Constante</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EQUIPAMIENTO -->
+<section class="equipment-section">
+    <div class="container">
+        <SectionHeader Tag="Instalaciones" Title="Equipamiento de Última Generación"
+            Subtitle="Tecnología y confort para el mejor cuidado" />
+
+        <div class="equipment-grid reveal">
+            <div class="equipment-card stagger-1">
+                <div class="equipment-icon">
+                    <Icon Name="clinic" Size="32" />
+                </div>
+                <h3>Área de Hospitalización</h3>
+                <p>Jaulas amplias y cómodas con temperatura controlada, separadas por especie y tamaño.</p>
+            </div>
+
+            <div class="equipment-card stagger-2">
+                <div class="equipment-icon">
+                    <Icon Name="syringe" Size="32" />
+                </div>
+                <h3>Bombas de Infusión</h3>
+                <p>Administración precisa de fluidos y medicamentos intravenosos.</p>
+            </div>
+
+            <div class="equipment-card stagger-3">
+                <div class="equipment-icon">
+                    <Icon Name="thermometer" Size="32" />
+                </div>
+                <h3>Monitoreo de Signos</h3>
+                <p>Equipos para control continuo de temperatura, frecuencia cardíaca y respiratoria.</p>
+            </div>
+
+            <div class="equipment-card stagger-4">
+                <div class="equipment-icon">
+                    <Icon Name="wind" Size="32" />
+                </div>
+                <h3>Oxigenoterapia</h3>
+                <p>Cámaras y máscaras de oxígeno para pacientes con dificultad respiratoria.</p>
+            </div>
+
+            <div class="equipment-card stagger-5">
+                <div class="equipment-icon">
+                    <Icon Name="microscope" Size="32" />
+                </div>
+                <h3>Laboratorio Interno</h3>
+                <p>Análisis rápidos de sangre, orina y otros para ajustar tratamientos.</p>
+            </div>
+
+            <div class="equipment-card stagger-6">
+                <div class="equipment-icon">
+                    <Icon Name="video" Size="32" />
+                </div>
+                <h3>Cámaras de Vigilancia</h3>
+                <p>Monitoreo visual 24/7 de todos los pacientes hospitalizados.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CUIDADOS Y PROTOCOLOS -->
+<section class="care-protocols-section">
+    <div class="container">
+        <SectionHeader Tag="Nuestros Cuidados" Title="Protocolo de Atención"
+            Subtitle="Procedimientos estandarizados para garantizar el mejor cuidado" />
+
+        <div class="protocols-grid reveal">
+            <div class="protocol-step stagger-1">
+                <div class="step-number">1</div>
+                <h3>Evaluación Inicial</h3>
+                <p>
+                    Examen completo al ingreso, toma de signos vitales, análisis de laboratorio si es necesario
+                    y establecimiento del plan de tratamiento.
+                </p>
+            </div>
+
+            <div class="protocol-step stagger-2">
+                <div class="step-number">2</div>
+                <h3>Monitoreo Continuo</h3>
+                <p>
+                    Control cada 2-4 horas de signos vitales, nivel de hidratación, apetito,
+                    actitud y respuesta al tratamiento.
+                </p>
+            </div>
+
+            <div class="protocol-step stagger-3">
+                <div class="step-number">3</div>
+                <h3>Administración de Tratamiento</h3>
+                <p>
+                    Fluidoterapia, medicación según protocolo, alimentación asistida si es necesario,
+                    y ajustes según evolución del paciente.
+                </p>
+            </div>
+
+            <div class="protocol-step stagger-4">
+                <div class="step-number">4</div>
+                <h3>Comunicación con el Tutor</h3>
+                <p>
+                    Actualizaciones diarias sobre el estado del paciente, llamadas de seguimiento
+                    y respuesta a consultas en horarios establecidos.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INFORMACIÓN PARA TUTORES -->
+<section class="tutor-info-section">
+    <div class="container">
+        <SectionHeader Tag="Para Tutores" Title="Información Importante"
+            Subtitle="Todo lo que necesitas saber sobre las visitas y comunicación" />
+
+        <div class="tutor-info-grid reveal">
+            <div class="info-box stagger-1">
+                <InfoCard Icon="phone" Title="Horario de Llamadas" Value="@AppConstants.Hospital.CallsSchedule"
+                    Style="InfoCardStyle.Contact" />
+                <p class="info-note">
+                    Fuera de este horario, solo atendemos llamadas de emergencia para evitar
+                    interrumpir el descanso de los pacientes.
+                </p>
+            </div>
+
+            <div class="info-box stagger-2">
+                <InfoCard Icon="clinic" Title="Horario de Visitas" Value="@AppConstants.Hospital.VisitsSchedule"
+                    Style="InfoCardStyle.Contact" />
+                <p class="info-note">
+                    Las visitas tienen una duración máxima de @AppConstants.Hospital.MaxVisitDuration
+                    para no estresar a los pacientes.
+                </p>
+            </div>
+
+            <div class="info-box stagger-3">
+                <InfoCard Icon="home" Title="Horario de Alta" Value="@AppConstants.Hospital.DischargeSchedule"
+                    Style="InfoCardStyle.Contact" />
+                <p class="info-note">
+                    El alta médica se entrega con indicaciones detalladas para el cuidado en casa.
+                </p>
+            </div>
+
+            <div class="info-box stagger-4">
+                <InfoCard Icon="info" Title="Política de Información" Value="@AppConstants.Hospital.InfoPolicy"
+                    Style="InfoCardStyle.Contact" />
+                <p class="info-note">
+                    Por seguridad y privacidad del paciente, solo el tutor registrado puede
+                    recibir información médica.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+    <div class="container">
+        <SectionHeader Tag="Preguntas" Title="Preguntas Frecuentes sobre Hospitalización" />
+
+        <div class="faq-grid reveal">
+            <div class="faq-item stagger-1">
+                <h4>¿Puedo visitar a mi mascota?</h4>
+                <p>
+                    Sí, en el horario establecido de @AppConstants.Hospital.VisitsSchedule.
+                    Las visitas breves ayudan a reducir el estrés del paciente.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-2">
+                <h4>¿Mi mascota estará sola por la noche?</h4>
+                <p>
+                    No. Contamos con veterinarios de turno las 24 horas que monitorean a todos los
+                    pacientes hospitalizados durante la noche.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-3">
+                <h4>¿Puedo dejar la cama o juguete de mi mascota?</h4>
+                <p>
+                    Sí, pero solo objetos que puedan ser desinfectados. No recomendamos peluches
+                    o telas delicadas por temas de higiene hospitalaria.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-4">
+                <h4>¿Cuánto cuesta la hospitalización?</h4>
+                <p>
+                    El costo varía según el motivo de hospitalización, tratamientos necesarios y
+                    duración. Consulta por presupuesto personalizado.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-5">
+                <h4>¿Cómo sé si mi mascota está mejorando?</h4>
+                <p>
+                    Te mantendremos informado con llamadas diarias. Puedes consultar en cualquier
+                    momento dentro del horario establecido.
+                </p>
+            </div>
+
+            <div class="faq-item stagger-6">
+                <h4>¿Qué pasa si mi mascota necesita cirugía?</h4>
+                <p>
+                    Te contactaremos inmediatamente para explicar la situación, opciones de tratamiento
+                    y solicitar tu autorización antes de proceder.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="clinic" Size="48" />
+            </div>
+            <h2>¿Tu mascota necesita hospitalización?</h2>
+            <p>Contáctanos inmediatamente. Nuestro equipo está disponible 24/7</p>
+            <div class="cta-buttons">
+                <a href="tel:+@AppConstants.Phone.HospitalWhatsApp" class="btn-primary-urgency">
+                    <Icon Name="phone" Size="18" /> Llamar Hospital: @AppConstants.Phone.HospitalWhatsAppFormatted
+                </a>
+                <WhatsAppButton PhoneNumber="@AppConstants.Phone.HospitalWhatsApp" Label="WhatsApp Hospital"
+                    Style="WhatsAppButtonStyle.Default" />
+            </div>
+            <p class="cta-note">
+                <Icon Name="alert" Size="16" /> Para urgencias, llama directamente al número de hospital
+            </p>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}
+
+<style>
+    .hospital-hero {
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+        padding: 100px 20px 150px;
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+    }
+
+    .hero-wave svg {
+        display: block;
+        width: 100%;
+        height: 120px;
+    }
+
+    .btn-primary-urgency {
+        background: #e74c3c;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .btn-primary-urgency:hover {
+        background: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+    }
+
+    .service-247-section {
+        padding: 60px 20px;
+        background: #e8f4f8;
+    }
+
+    .service-247-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-247-icon {
+        font-size: 5rem;
+        flex-shrink: 0;
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .service-247-text h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 2rem;
+    }
+
+    .service-247-text p {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .hospital-info-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .hospital-info-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        margin-top: 60px;
+    }
+
+    .lead-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .hospital-info-text h3 {
+        color: #2c3e50;
+        margin: 30px 0 20px;
+        font-size: 1.5rem;
+    }
+
+    .conditions-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .conditions-list li {
+        padding: 10px 0;
+        font-size: 1.05rem;
+        color: #555;
+    }
+
+    .hospital-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stat-box {
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-size: 0.95rem;
+    }
+
+    .stat-primary {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+    }
+
+    .stat-success {
+        background: linear-gradient(135deg, #27ae60, #229954);
+    }
+
+    .stat-info {
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    }
+
+    .equipment-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .equipment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .equipment-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        border-top: 4px solid #3498db;
+    }
+
+    .equipment-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .equipment-card h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .equipment-card p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .care-protocols-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .protocols-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .protocol-step {
+        background: #f8f9fa;
+        padding: 35px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .step-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .protocol-step h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .protocol-step p {
+        color: #666;
+        line-height: 1.7;
+    }
+
+    .tutor-info-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+    }
+
+    .tutor-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .info-box {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+    }
+
+    .info-note {
+        margin-top: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .faq-section {
+        padding: 80px 20px;
+        background: white;
+    }
+
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    .faq-item {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 4px solid #3498db;
+    }
+
+    .faq-item h4 {
+        color: #3498db;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .faq-item p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .final-cta-section {
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .cta-icon {
+        font-size: 5rem;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .final-cta-content p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .cta-note {
+        font-size: 0.95rem;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    @@media (max-width: 968px) {
+        .hospital-info-content {
+            grid-template-columns: 1fr;
+        }
+
+        .service-247-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .tutor-info-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

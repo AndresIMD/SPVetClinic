@@ -1,0 +1,15 @@
+@* ============================================
+   STAT CARD - Componente Reutilizable
+   Uso: <StatCard Number="+5000" Label="Mascotas Atendidas" />
+   ============================================ *@
+
+<div class="stat-card reveal stagger-@StaggerIndex">
+    <div class="stat-number">@Number</div>
+    <div class="stat-label">@Label</div>
+</div>
+
+@code {
+    [Parameter] public string Number { get; set; } = "";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public int StaggerIndex { get; set; } = 1;
+}

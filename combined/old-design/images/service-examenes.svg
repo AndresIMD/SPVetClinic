@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff"/>
+      <stop offset="100%" style="stop-color:#E8F8F8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="250" fill="url(#bg4)"/>
+  
+  <!-- X-ray/Screen -->
+  <g transform="translate(100, 30)">
+    <rect x="0" y="0" width="200" height="150" rx="10" fill="#2D3436" opacity="0.1"/>
+    <rect x="10" y="10" width="180" height="130" rx="5" fill="#00B4B4" opacity="0.15"/>
+    
+    <!-- Bone silhouette -->
+    <g fill="#00B4B4" opacity="0.5">
+      <ellipse cx="60" cy="75" rx="20" ry="25"/>
+      <rect x="55" y="50" width="90" height="50" rx="10"/>
+      <ellipse cx="140" cy="75" rx="20" ry="25"/>
+    </g>
+    
+    <!-- Graph lines -->
+    <g stroke="#E85A4F" stroke-width="2" fill="none" opacity="0.6">
+      <polyline points="20,120 40,110 60,115 80,90 100,95 120,80 140,85 160,70 180,75"/>
+    </g>
+  </g>
+  
+  <!-- Test tube decoration -->
+  <g transform="translate(320, 100)">
+    <rect x="0" y="0" width="30" height="80" rx="15" fill="none" stroke="#00B4B4" stroke-width="4" opacity="0.4"/>
+    <rect x="5" y="40" width="20" height="35" rx="10" fill="#00B4B4" opacity="0.3"/>
+    <rect x="-5" y="-10" width="40" height="15" rx="3" fill="#009999" opacity="0.5"/>
+  </g>
+  
+  <text x="200" y="230" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#636E72" opacity="0.6">Exámenes y Diagnóstico</text>
+</svg>

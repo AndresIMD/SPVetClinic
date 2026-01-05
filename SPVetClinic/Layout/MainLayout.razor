@@ -1,0 +1,18 @@
+@inherits LayoutComponentBase
+
+<TopNav />
+<div class="page main-layout-onepage">
+    <main>
+        @Body
+    </main>
+</div>
+
+<style>
+    .main-layout-onepage { 
+        padding-top: 70px; 
+    }
+    
+    .main-layout-onepage main {
+        min-height: 100vh;
+    }
+</style>

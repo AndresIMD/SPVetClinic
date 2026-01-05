@@ -2,7 +2,7 @@ name: Deploy Multiple Design Variants to GitHub Pages
 
 on:
   push:
-    branches: [ main, old-design, professional-design, minimalist-design ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -21,171 +21,123 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout (workflow)
       uses: actions/checkout@v4
-      
+      with:
+        fetch-depth: 0
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    
-    # Determine subdirectory based on branch name
-    - name: Set subdirectory based on branch
-      id: set-subdir
-      run: |
-        BRANCH="${{ github.ref_name }}"
-        if [ "$BRANCH" == "main" ]; then
-          SUBDIR=""
-          BASE_HREF="/${{ github.event.repository.name }}/"
-        else
-          SUBDIR="/$BRANCH"
-          BASE_HREF="/${{ github.event.repository.name }}/$BRANCH/"
-        fi
-        echo "subdir=$SUBDIR" >> $GITHUB_OUTPUT
-        echo "base_href=$BASE_HREF" >> $GITHUB_OUTPUT
-        echo "Branch: $BRANCH → Subdir: $SUBDIR → Base href: $BASE_HREF"
-      
-    - name: Publish
-      run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release_build --nologo
-      
-    - name: Change base tag in index.html
-      run: |
-        sed -i 's|<base href="/" />|<base href="${{ steps.set-subdir.outputs.base_href }}" />|g' release_build/wwwroot/index.html
-    
-    - name: Fix blazor.webassembly.js reference and remove integrity
-      run: |
-        cd release_build/wwwroot
-        # Find the actual blazor.webassembly file with fingerprint
-        BLAZOR_FILE=$(ls _framework/blazor.webassembly*.js | head -1 | xargs basename)
-        echo "Found Blazor file: $BLAZOR_FILE"
-        
-        # Replace the placeholder with actual filename and remove integrity attribute
-        sed -i "s|blazor.webassembly#\[\.{fingerprint}\]\.js|$BLAZOR_FILE|g" index.html
-        sed -i 's| integrity="[^"]*"||g' index.html
-        
-    - name: Fix dotnet.js reference
-      run: |
-        cd release_build/wwwroot/_framework
-        # Find the actual dotnet.*.js file
-        DOTNET_FILE=$(ls dotnet.*.js | grep -v ".map" | grep -v ".symbols" | head -1)
-        if [ ! -z "$DOTNET_FILE" ]; then
-          echo "Found dotnet file: $DOTNET_FILE"
-          # Create dotnet.js that imports the fingerprinted version
-          echo "export * from './$DOTNET_FILE';" > dotnet.js
-        fi
-        
-    - name: Remove invalid preload and fix integrity issues
-      run: |
-        cd release_build/wwwroot
-        # Remove the preload link that causes warnings
-        sed -i '/<link rel="preload" id="webassembly"/d' index.html
-        # Remove all integrity attributes to prevent mismatches
-        sed -i 's| integrity="[^"]*"||g' index.html
-        
-    - name: Generate proper importmap
-      run: |
-        cd release_build/wwwroot
-        # Create a simple importmap without fingerprints for imports
-        cat > temp_importmap.json << 'EOF'
-        {
-          "imports": {
-            "dotnet": "./_framework/dotnet.js"
-          }
-        }
-        EOF
-        
-        # Insert the importmap into index.html
-        sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
-        rm temp_importmap.json
-    
-    - name: Create 404.html with SPA redirect for GitHub Pages
-      run: |
-        cd release_build/wwwroot
-        cat > 404.html << 'EOF'
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-          <meta charset="utf-8" />
-          <title>Redirigiendo...</title>
-          <script>
-            // GitHub Pages SPA redirect solution for Blazor
-            // This script captures the 404 path and redirects to index.html with path as query parameter
-            (function() {
-              var pathSegmentsToKeep = 1; // Keep "/SPVetClinic" or "/SPVetClinic/[design]" in the path
-              
-              var location = window.location;
-              var redirect = location.protocol + '//' + location.hostname + 
-                            (location.port ? ':' + location.port : '') +
-                            location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-                            '/?/' + 
-                            location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-                            (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
-                            location.hash;
-              
-              window.location.replace(redirect);
-            })();
-          </script>
-        </head>
-        <body>
-          <p>Redirigiendo...</p>
-        </body>
-        </html>
-        EOF
-        
-    - name: Add SPA redirect handler to index.html
-      run: |
-        cd release_build/wwwroot
-        # Add script right after <base> tag to handle redirected paths from 404.html
-        sed -i '/<base href=/a\    <script>\n      // Handle redirected paths from 404.html\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) { \n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
-    
-    - name: Add .nojekyll file
-      run: touch release_build/wwwroot/.nojekyll
-    
-    - name: Merge with existing gh-pages and place variant into subdirectory
+
+    - name: Build all variants into combined artifact
+      env:
+        REPO_NAME: ${{ github.event.repository.name }}
       run: |
         set -e
-        BRANCH="${{ github.ref_name }}"
-        SUBDIR="${{ steps.set-subdir.outputs.subdir }}"   # includes leading slash or empty
-        CLEAN_SUBDIR=${SUBDIR#/}                            # remove leading slash for folder name
-        echo "Branch=$BRANCH Subdir=$SUBDIR Clean=$CLEAN_SUBDIR"
+        ROOT="$PWD"
+        BRANCHES=("main" "old-design" "professional-design" "minimalist-design")
+        rm -rf combined release_build
+        mkdir -p combined
 
-        git config --global init.defaultBranch main
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+        for BR in "${BRANCHES[@]}"; do
+          echo "=== Building $BR ==="
+          git fetch origin "$BR" --depth=1
+          git checkout FETCH_HEAD
 
-        # Clone existing gh-pages (if exists) to preserve other variants
-        git clone --depth=1 --branch gh-pages "https://github.com/${{ github.repository }}" gh-pages || mkdir -p gh-pages
+          dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o release_build --nologo
 
-        # Start fresh deploy folder
-        mkdir -p release/wwwroot
+          if [ "$BR" = "main" ]; then
+            BASE_HREF="/$REPO_NAME/"
+            DEST_PATH="$ROOT/combined"
+            PATH_KEEP=1
+          else
+            BASE_HREF="/$REPO_NAME/$BR/"
+            DEST_PATH="$ROOT/combined/$BR"
+            PATH_KEEP=2
+          fi
 
-        # Copy existing published site (if any) so we don't wipe other variants
-        rsync -a gh-pages/ release/wwwroot/ || true
+          sed -i "s|<base href=\"/\" />|<base href=\"$BASE_HREF\" />|g" release_build/wwwroot/index.html
 
-        if [ "$CLEAN_SUBDIR" = "" ]; then
-          # main branch: replace root
-          rm -rf release/wwwroot/*
-          cp -r release_build/wwwroot/* release/wwwroot/
-        else
-          # variant branch: replace only its subdirectory
-          rm -rf "release/wwwroot/$CLEAN_SUBDIR"
-          mkdir -p "release/wwwroot/$CLEAN_SUBDIR"
-          cp -r release_build/wwwroot/* "release/wwwroot/$CLEAN_SUBDIR/"
-        fi
+          pushd release_build/wwwroot > /dev/null
 
-    - name: List final output (debug)
-      run: |
-        echo "Final deploy tree (depth 2):"
-        find release/wwwroot -maxdepth 2 -type d | sort
-      
+          BLAZOR_FILE=$(ls _framework/blazor.webassembly*.js | head -1 | xargs basename)
+          sed -i "s|blazor.webassembly#\[\.{fingerprint}\]\.js|$BLAZOR_FILE|g" index.html
+          sed -i 's| integrity="[^"]*"||g' index.html
+
+          cd _framework
+          DOTNET_FILE=$(ls dotnet.*.js | grep -v ".map" | grep -v ".symbols" | head -1)
+          if [ -n "$DOTNET_FILE" ]; then
+            echo "export * from './$DOTNET_FILE';" > dotnet.js
+          fi
+          cd ..
+
+          sed -i '/<link rel="preload" id="webassembly"/d' index.html
+          sed -i 's| integrity="[^"]*"||g' index.html
+
+          cat > temp_importmap.json << 'EOF'
+          {
+            "imports": {
+              "dotnet": "./_framework/dotnet.js"
+            }
+          }
+          EOF
+          sed -i 's|<script type="importmap"></script>|<script type="importmap">\n'"$(cat temp_importmap.json | sed 's/$/\\n/' | tr -d '\n')"'\n</script>|g' index.html
+          rm temp_importmap.json
+
+          cat > 404.html << EOF
+          <!DOCTYPE html>
+          <html lang="es">
+          <head>
+            <meta charset="utf-8" />
+            <title>Redirigiendo...</title>
+            <script>
+              (function() {
+                var pathSegmentsToKeep = $PATH_KEEP;
+                var location = window.location;
+                var redirect = location.protocol + '//' + location.hostname +
+                              (location.port ? ':' + location.port : '') +
+                              location.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
+                              '/?/' +
+                              location.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+                              (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+                              location.hash;
+                window.location.replace(redirect);
+              })();
+            </script>
+          </head>
+          <body>
+            <p>Redirigiendo...</p>
+          </body>
+          </html>
+          EOF
+
+          sed -i '/<base href=/a\    <script>\n      (function(l) {\n        if (l.search[1] === "/" ) {\n          var decoded = l.search.slice(1).split("&").map(function(s) {\n            return s.replace(/~and~/g, "&")\n          }).join("?");\n          window.history.replaceState(null, null,\n            l.pathname.slice(0, -1) + decoded + l.hash\n          );\n        }\n      }(window.location))\n    </script>' index.html
+
+          touch .nojekyll
+
+          popd > /dev/null
+
+          rm -rf "$DEST_PATH"
+          mkdir -p "$DEST_PATH"
+          cp -r release_build/wwwroot/* "$DEST_PATH/"
+
+          rm -rf release_build
+        done
+
+        touch combined/.nojekyll
+        echo "Arbol final (profundidad 3):"
+        find combined -maxdepth 3 -type d | sort
+
     - name: Setup Pages
       uses: actions/configure-pages@v5
-      
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: 'release/wwwroot'
-        
+        path: 'combined'
+
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

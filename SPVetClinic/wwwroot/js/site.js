@@ -1,19 +1,55 @@
 // ==========================================
 // SCROLL ANIMATIONS
 // ==========================================
+
+// Persistent observer — created once, reused on every call
+window._revealObserver = window._revealObserver || new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+window._scrollSetup = false;
+
 window.initScrollAnimations = function () {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+    // Observe any new .reveal elements (safe to call multiple times)
+    document.querySelectorAll('.reveal:not(.active), .reveal-left:not(.active), .reveal-right:not(.active), .reveal-scale:not(.active)')
+        .forEach(el => window._revealObserver.observe(el));
+
+    // One-time setup for scroll and anchor listeners
+    if (!window._scrollSetup) {
+        window._scrollSetup = true;
+
+        // Smooth scroll for anchor links (delegated to avoid duplicates)
+        document.addEventListener('click', function (e) {
+            const anchor = e.target.closest('a[href^="#"]');
+            if (!anchor) return;
+            e.preventDefault();
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) navLinks.classList.remove('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.topnav');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
+    }
 };
 
 // ==========================================
@@ -199,3 +235,48 @@ window.toggleFaq = function (button) {
         icon.textContent = '+';
     }
 };
+
+// ==========================================
+// MOBILE MENU & DROPDOWN (TopNav)
+// ==========================================
+window.toggleMobileMenu = function () {
+    document.getElementById('navLinks').classList.toggle('active');
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (btn) btn.classList.toggle('active');
+};
+
+window.toggleDropdown = function (event) {
+    event.stopPropagation();
+    var dropdown = event.target.closest('.nav-dropdown');
+    dropdown.classList.toggle('active');
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function closeDropdown(e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+            document.removeEventListener('click', closeDropdown);
+        }
+    });
+};
+
+// Close dropdown on mobile when clicking a link
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.dropdown-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+            document.querySelectorAll('.nav-dropdown').forEach(function (d) { d.classList.remove('active'); });
+            var navLinks = document.getElementById('navLinks');
+            if (navLinks) navLinks.classList.remove('active');
+            var btn = document.querySelector('.mobile-menu-btn');
+            if (btn) btn.classList.remove('active');
+        });
+    });
+
+    // Promo close button (Vacunacion page)
+    var promoClose = document.querySelector('.promo-close');
+    if (promoClose) {
+        promoClose.addEventListener('click', function () {
+            var promoFloat = document.getElementById('promo-float');
+            if (promoFloat) promoFloat.style.display = 'none';
+        });
+    }
+});

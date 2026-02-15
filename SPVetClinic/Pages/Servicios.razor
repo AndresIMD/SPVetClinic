@@ -1,5 +1,4 @@
 @page "/servicios"
-@inject IJSRuntime JS
 
 <PageTitle>Servicios | San Pablo Vet Clínic</PageTitle>
 
@@ -175,14 +174,3 @@
         </div>
     </div>
 </section>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-            await JS.InvokeVoidAsync("clearTextSelection");
-        }
-    }
-}

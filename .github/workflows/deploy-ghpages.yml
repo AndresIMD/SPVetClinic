@@ -1,0 +1,62 @@
+# Deploy Blazor WASM to GitHub Pages
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'ga'
+
+      - name: Publish Blazor WASM
+        run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o output
+
+      # Blazor WASM on GitHub Pages needs:
+      # 1. .nojekyll to prevent Jekyll processing
+      # 2. 404.html that redirects to index.html for SPA routing
+      # 3. base href matching the repo name
+      - name: Configure for GitHub Pages
+        run: |
+          touch output/wwwroot/.nojekyll
+          cp output/wwwroot/index.html output/wwwroot/404.html
+          # Fix base href for GitHub Pages (repo name as subfolder)
+          REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+          sed -i "s|<base href=\"/\" />|<base href=\"/${REPO_NAME}/\" />|g" output/wwwroot/index.html
+          sed -i "s|<base href=\"/\" />|<base href=\"/${REPO_NAME}/\" />|g" output/wwwroot/404.html
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/wwwroot
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

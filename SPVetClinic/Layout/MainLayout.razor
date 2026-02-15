@@ -1,17 +1,27 @@
 @inherits LayoutComponentBase
+@inject IJSRuntime JS
 
 <TopNav />
 <div class="page main-layout-onepage">
     <main>
         @Body
     </main>
+    <Footer />
 </div>
 
-<style>
-    .main-layout-onepage { 
-        padding-top: 70px; 
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("clearTextSelection");
     }
-    
+}
+
+<style>
+    .main-layout-onepage {
+        padding-top: 70px;
+    }
+
     .main-layout-onepage main {
         min-height: 100vh;
     }

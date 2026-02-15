@@ -1,4 +1,0 @@
-# Netlify redirects for Blazor WebAssembly SPA
-# Todas las rutas van a index.html para que Blazor maneje el routing
-
-/*    /index.html   200

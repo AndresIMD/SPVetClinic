@@ -1,5 +1,4 @@
 @page "/peluqueria"
-@inject IJSRuntime JS
 
 <PageTitle>Peluquería y Estética | San Pablo Vet Clínic</PageTitle>
 
@@ -228,21 +227,10 @@
                 <span>Agendar Pelquería</span>
             </a>
             <a href="@AppConstants.Urls.WhatsAppLink(AppConstants.Phone.MainWhatsApp)" target="_blank"
-                class="btn-secondary-large">
+                   class="btn-secondary-large">
                 <Icon Name="message" Size="20" />
                 <span>Consultar por WhatsApp</span>
             </a>
         </div>
     </div>
 </section>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-            await JS.InvokeVoidAsync("clearTextSelection");
-        }
-    }
-}

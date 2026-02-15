@@ -1,7 +1,4 @@
 @page "/vet-movil"
-@using SPVetClinic.Data
-@using SPVetClinic.Components.Common
-@inject IJSRuntime JS
 
 <PageTitle>Veterinaria Móvil - @AppConstants.Clinic.Name</PageTitle>
 
@@ -22,7 +19,7 @@
         </p>
         <div class="hero-buttons reveal">
             <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita"
-                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+                            SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
             <NavLink href="servicios" class="btn-secondary">Ver Servicios</NavLink>
         </div>
     </div>
@@ -34,7 +31,7 @@
 <section class="benefits-section">
     <div class="container">
         <SectionHeader Tag="Ventajas" Title="¿Por qué elegir atención a domicilio?"
-            Subtitle="La comodidad y tranquilidad que tu mascota merece" />
+                       Subtitle="La comodidad y tranquilidad que tu mascota merece" />
 
         <div class="benefits-grid reveal">
             <div class="benefit-card stagger-1">
@@ -112,7 +109,7 @@
 <section id="servicios" class="services-detail-section">
     <div class="container">
         <SectionHeader Tag="Servicios" Title="¿Qué podemos hacer en tu domicilio?"
-            Subtitle="Amplia gama de servicios veterinarios a domicilio" />
+                       Subtitle="Amplia gama de servicios veterinarios a domicilio" />
 
         <div class="services-grid reveal">
             <!-- Consultas -->
@@ -236,19 +233,19 @@
                 <h2>Cobertura de Servicio</h2>
                 <div class="info-item stagger-1">
                     <InfoCard Icon="location" Title="Zona Principal" Value="Rancagua y alrededores"
-                        Style="InfoCardStyle.Info" />
+                              Style="InfoCardStyle.Info" />
                 </div>
                 <div class="info-item stagger-2">
                     <InfoCard Icon="clock" Title="Horario" Value="Lunes a Domingo • 09:00 a 16:30 hrs"
-                        Style="InfoCardStyle.Info" />
+                              Style="InfoCardStyle.Info" />
                 </div>
                 <div class="info-item stagger-3">
                     <InfoCard Icon="alarm" Title="Anticipación" Value="Agenda con al menos 24 horas de anticipación"
-                        Style="InfoCardStyle.Info" />
+                              Style="InfoCardStyle.Info" />
                 </div>
                 <div class="info-item stagger-4">
                     <InfoCard Icon="phone" Title="Contacto Directo"
-                        Value="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="InfoCardStyle.Info" />
+                              Value="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="InfoCardStyle.Info" />
                 </div>
             </div>
 
@@ -263,7 +260,7 @@
                         También atendemos sectores cercanos previa consulta.
                     </p>
                     <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Consultar Cobertura"
-                        Style="WhatsAppButtonStyle.Default" />
+                                    Style="WhatsAppButtonStyle.Default" />
                 </div>
             </div>
         </div>
@@ -276,7 +273,7 @@
 <section class="how-it-works-section">
     <div class="container">
         <SectionHeader Tag="Proceso" Title="¿Cómo agendar una visita?"
-            Subtitle="Proceso simple y rápido para recibir atención veterinaria" />
+                       Subtitle="Proceso simple y rápido para recibir atención veterinaria" />
 
         <div class="steps-timeline reveal">
             <div class="timeline-step stagger-1">
@@ -326,7 +323,7 @@
 
         <div class="cta-center reveal">
             <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita Ahora"
-                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+                            SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
         </div>
     </div>
 </section>
@@ -337,7 +334,7 @@
 <section class="faq-section">
     <div class="container">
         <SectionHeader Tag="Preguntas Frecuentes" Title="Todo lo que necesitas saber"
-            Subtitle="Resolvemos tus dudas sobre el servicio móvil" />
+                       Subtitle="Resolvemos tus dudas sobre el servicio móvil" />
 
         <div class="faq-grid reveal">
             <div class="faq-item stagger-1">
@@ -420,23 +417,13 @@
             <p>Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil</p>
             <div class="cta-buttons">
                 <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar por WhatsApp"
-                    SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+                                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
                 <a href="tel:+@AppConstants.Phone.MobileVetWhatsApp" class="btn-secondary">Llamar Ahora</a>
             </div>
             <p class="cta-note">* Recuerda agendar con al menos 24 horas de anticipación</p>
         </div>
     </div>
 </section>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-        }
-    }
-}
 
 <style>
     /* Hero Section */

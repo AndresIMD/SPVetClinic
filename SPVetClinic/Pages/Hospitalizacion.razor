@@ -1,7 +1,4 @@
 @page "/hospitalizacion"
-@using SPVetClinic.Data
-@using SPVetClinic.Components.Common
-@inject IJSRuntime JS
 
 <PageTitle>Hospitalización 24/7 - @AppConstants.Clinic.Name</PageTitle>
 
@@ -27,8 +24,8 @@
     <div class="hero-wave">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-                fill="white" />
+            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+            fill="white" />
         </svg>
     </div>
 </section>
@@ -55,7 +52,7 @@
 <section id="info" class="hospital-info-section">
     <div class="container">
         <SectionHeader Tag="El Servicio" Title="¿Qué es la Hospitalización Veterinaria?"
-            Subtitle="Cuidados intensivos para casos que requieren monitoreo constante" />
+                       Subtitle="Cuidados intensivos para casos que requieren monitoreo constante" />
 
         <div class="hospital-info-content reveal">
             <div class="hospital-info-text">
@@ -99,7 +96,7 @@
 <section class="equipment-section">
     <div class="container">
         <SectionHeader Tag="Instalaciones" Title="Equipamiento de Última Generación"
-            Subtitle="Tecnología y confort para el mejor cuidado" />
+                       Subtitle="Tecnología y confort para el mejor cuidado" />
 
         <div class="equipment-grid reveal">
             <div class="equipment-card stagger-1">
@@ -157,7 +154,7 @@
 <section class="care-protocols-section">
     <div class="container">
         <SectionHeader Tag="Nuestros Cuidados" Title="Protocolo de Atención"
-            Subtitle="Procedimientos estandarizados para garantizar el mejor cuidado" />
+                       Subtitle="Procedimientos estandarizados para garantizar el mejor cuidado" />
 
         <div class="protocols-grid reveal">
             <div class="protocol-step stagger-1">
@@ -203,12 +200,12 @@
 <section class="tutor-info-section">
     <div class="container">
         <SectionHeader Tag="Para Tutores" Title="Información Importante"
-            Subtitle="Todo lo que necesitas saber sobre las visitas y comunicación" />
+                       Subtitle="Todo lo que necesitas saber sobre las visitas y comunicación" />
 
         <div class="tutor-info-grid reveal">
             <div class="info-box stagger-1">
                 <InfoCard Icon="phone" Title="Horario de Llamadas" Value="@AppConstants.Hospital.CallsSchedule"
-                    Style="InfoCardStyle.Contact" />
+                          Style="InfoCardStyle.Contact" />
                 <p class="info-note">
                     Fuera de este horario, solo atendemos llamadas de emergencia para evitar
                     interrumpir el descanso de los pacientes.
@@ -217,7 +214,7 @@
 
             <div class="info-box stagger-2">
                 <InfoCard Icon="clinic" Title="Horario de Visitas" Value="@AppConstants.Hospital.VisitsSchedule"
-                    Style="InfoCardStyle.Contact" />
+                          Style="InfoCardStyle.Contact" />
                 <p class="info-note">
                     Las visitas tienen una duración máxima de @AppConstants.Hospital.MaxVisitDuration
                     para no estresar a los pacientes.
@@ -226,7 +223,7 @@
 
             <div class="info-box stagger-3">
                 <InfoCard Icon="home" Title="Horario de Alta" Value="@AppConstants.Hospital.DischargeSchedule"
-                    Style="InfoCardStyle.Contact" />
+                          Style="InfoCardStyle.Contact" />
                 <p class="info-note">
                     El alta médica se entrega con indicaciones detalladas para el cuidado en casa.
                 </p>
@@ -234,7 +231,7 @@
 
             <div class="info-box stagger-4">
                 <InfoCard Icon="info" Title="Política de Información" Value="@AppConstants.Hospital.InfoPolicy"
-                    Style="InfoCardStyle.Contact" />
+                          Style="InfoCardStyle.Contact" />
                 <p class="info-note">
                     Por seguridad y privacidad del paciente, solo el tutor registrado puede
                     recibir información médica.
@@ -315,7 +312,7 @@
                     <Icon Name="phone" Size="18" /> Llamar Hospital: @AppConstants.Phone.HospitalWhatsAppFormatted
                 </a>
                 <WhatsAppButton PhoneNumber="@AppConstants.Phone.HospitalWhatsApp" Label="WhatsApp Hospital"
-                    Style="WhatsAppButtonStyle.Default" />
+                                Style="WhatsAppButtonStyle.Default" />
             </div>
             <p class="cta-note">
                 <Icon Name="alert" Size="16" /> Para urgencias, llama directamente al número de hospital
@@ -323,16 +320,6 @@
         </div>
     </div>
 </section>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-        }
-    }
-}
 
 <style>
     .hospital-hero {

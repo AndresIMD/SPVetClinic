@@ -63,37 +63,3 @@
         <span></span>
     </button>
 </nav>
-
-<script>
-    function toggleMobileMenu() {
-        document.getElementById('navLinks').classList.toggle('active');
-        document.querySelector('.mobile-menu-btn').classList.toggle('active');
-    }
-
-    function toggleDropdown(event) {
-        event.stopPropagation();
-        const dropdown = event.target.closest('.nav-dropdown');
-        dropdown.classList.toggle('active');
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function closeDropdown(e) {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-                document.removeEventListener('click', closeDropdown);
-            }
-        });
-    }
-
-    // Close dropdown on mobile when clicking a link
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function () {
-                document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('active'));
-                const navLinks = document.getElementById('navLinks');
-                if (navLinks) navLinks.classList.remove('active');
-                const btn = document.querySelector('.mobile-menu-btn');
-                if (btn) btn.classList.remove('active');
-            });
-        });
-    });
-</script>

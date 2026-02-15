@@ -1,7 +1,4 @@
 @page "/parvovirus"
-@using SPVetClinic.Data
-@using SPVetClinic.Components.Common
-@inject IJSRuntime JS
 
 <PageTitle>Parvovirus Canino - @AppConstants.Clinic.Name</PageTitle>
 
@@ -27,8 +24,8 @@
     <div class="hero-wave">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-                fill="white" />
+            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+            fill="white" />
         </svg>
     </div>
 </section>
@@ -48,7 +45,7 @@
                     Durante los meses de verano (diciembre a marzo), los casos de parvovirus aumentan
                     significativamente.
                     El virus sobrevive mejor en ambientes cálidos y húmedos. <strong>La vacunación es tu mejor
-                        defensa.</strong>
+                    defensa.</strong>
                 </p>
             </div>
         </div>
@@ -61,7 +58,7 @@
 <section class="info-section">
     <div class="container">
         <SectionHeader Tag="La Enfermedad" Title="¿Qué es el Parvovirus Canino?"
-            Subtitle="Información esencial que todo dueño de perro debe conocer" />
+                       Subtitle="Información esencial que todo dueño de perro debe conocer" />
 
         <div class="info-content reveal">
             <div class="info-text">
@@ -125,7 +122,7 @@
 <section id="sintomas" class="symptoms-section">
     <div class="container">
         <SectionHeader Tag="Reconocimiento" Title="Síntomas del Parvovirus"
-            Subtitle="Identifica las señales de alerta y actúa rápido" />
+                       Subtitle="Identifica las señales de alerta y actúa rápido" />
 
         <div class="symptoms-intro reveal">
             <p class="emphasis-text">
@@ -214,7 +211,7 @@
 <section class="treatment-section">
     <div class="container">
         <SectionHeader Tag="Tratamiento" Title="¿Cómo se trata el Parvovirus?"
-            Subtitle="Atención intensiva especializada para salvar la vida de tu perro" />
+                       Subtitle="Atención intensiva especializada para salvar la vida de tu perro" />
 
         <div class="treatment-content reveal">
             <div class="treatment-intro">
@@ -272,9 +269,9 @@
 
             <div class="treatment-note reveal">
                 <InfoCard Icon="alarm" Title="Duración del Tratamiento"
-                    Value="5-10 días de hospitalización en casos graves" Style="InfoCardStyle.Info" />
+                          Value="5-10 días de hospitalización en casos graves" Style="InfoCardStyle.Info" />
                 <InfoCard Icon="money" Title="Costo Estimado" Value="Consulta por presupuesto personalizado"
-                    Style="InfoCardStyle.Info" />
+                          Style="InfoCardStyle.Info" />
             </div>
         </div>
     </div>
@@ -286,7 +283,7 @@
 <section class="prevention-section">
     <div class="container">
         <SectionHeader Tag="Prevención" Title="La Mejor Defensa: Vacunación"
-            Subtitle="Protege a tu cachorro antes de que sea demasiado tarde" />
+                       Subtitle="Protege a tu cachorro antes de que sea demasiado tarde" />
 
         <div class="prevention-content reveal">
             <div class="prevention-main">
@@ -359,7 +356,7 @@
 <section class="faq-section">
     <div class="container">
         <SectionHeader Tag="Preguntas Frecuentes" Title="Dudas sobre el Parvovirus"
-            Subtitle="Respuestas a las preguntas más comunes" />
+                       Subtitle="Respuestas a las preguntas más comunes" />
 
         <div class="faq-grid reveal">
             <div class="faq-item stagger-1">
@@ -434,16 +431,6 @@
         </div>
     </div>
 </section>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-        }
-    }
-}
 
 <style>
     /* Hero Section */

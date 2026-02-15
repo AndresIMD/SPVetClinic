@@ -1,9 +1,10 @@
 @inherits LayoutComponentBase
 @inject IJSRuntime JS
 
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
 <TopNav />
 <div class="page main-layout-onepage">
-    <main>
+    <main id="main-content" role="main">
         @Body
     </main>
     <Footer />
@@ -12,17 +13,10 @@
 @code {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JS.InvokeVoidAsync("initScrollAnimations");
-        await JS.InvokeVoidAsync("clearTextSelection");
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("clearTextSelection");
+        }
     }
 }
-
-<style>
-    .main-layout-onepage {
-        padding-top: 70px;
-    }
-
-    .main-layout-onepage main {
-        min-height: 100vh;
-    }
-</style>

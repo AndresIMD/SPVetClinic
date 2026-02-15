@@ -1,0 +1,1783 @@
+/* ============================================
+   SHARED PAGE STYLES
+   Extracted from inline <style> blocks in pages.
+   Modern hero, FAQ grid, CTA sections, shared layouts.
+   ============================================ */
+
+/* ============================================
+   MODERN PAGE HERO (no wave)
+   Clean gradient with subtle geometric accents
+   ============================================ */
+.page-hero-modern {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 100px 20px 80px;
+    overflow: hidden;
+    /* Default: teal gradient */
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-teal-dark) 100%);
+}
+
+.page-hero-modern__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.page-hero-modern__content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.page-hero-modern__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    padding: 8px 20px;
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-hero-modern__title {
+    font-size: clamp(2rem, 5vw, var(--font-size-h1));
+    font-weight: 700;
+    margin: 0 0 var(--spacing-md);
+    line-height: 1.15;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.page-hero-modern__subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.92;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.7;
+}
+
+.page-hero-modern__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Color themes */
+.hero--teal {
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-teal-dark) 100%);
+}
+
+.hero--coral {
+    background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
+}
+
+.hero--danger {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.hero--blue {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.hero--green {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+}
+
+.hero--pink {
+    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+}
+
+/* Highlight spans inside hero titles */
+.page-hero-modern .highlight-teal {
+    color: #b2ebf2;
+}
+
+.page-hero-modern .highlight-medical,
+.page-hero-modern .highlight-danger {
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.page-hero-modern .highlight-coral {
+    color: #ffe0e0;
+}
+
+.page-hero-modern .highlight-success {
+    color: #b2f2bb;
+}
+
+@media (max-width: 768px) {
+    .page-hero-modern {
+        min-height: 40vh;
+        padding: 90px 20px 60px;
+    }
+}
+
+/* ============================================
+   SHARED SECTION CONTAINERS
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.container-centered {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .container-wide {
+        padding: 0 20px;
+    }
+}
+
+/* ============================================
+   SHARED SECTION SPACING
+   ============================================ */
+.section {
+    padding: 80px 20px;
+}
+
+.section--white {
+    background: white;
+}
+
+.section--light {
+    background: var(--bg-light);
+}
+
+/* ============================================
+   SHARED INTRO / BENEFIT PATTERNS
+   ============================================ */
+.intro-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.intro-content h2 {
+    font-size: var(--font-size-h1);
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.intro-text {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+.lead-text {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--text-gray);
+    margin-bottom: 30px;
+}
+
+.intro-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+    font-size: var(--font-size-h3);
+    margin-bottom: 10px;
+    color: var(--primary-teal);
+}
+
+.benefit-item p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* ============================================
+   SHARED FAQ GRID (non-accordion, card style)
+   Used in: Especialistas, Hospitalizacion,
+   Parvovirus, VetMovil, Vacunacion
+   ============================================ */
+.faq-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.faq-section--white {
+    background: white;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.faq-item {
+    background: white;
+    padding: 28px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-teal);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.faq-item h4 {
+    color: var(--primary-teal);
+    margin-bottom: 12px;
+    font-size: var(--font-size-h4);
+}
+
+.faq-item p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Themes for FAQ border color */
+.faq-item--blue {
+    border-left-color: #3498db;
+}
+
+.faq-item--blue h4 {
+    color: #3498db;
+}
+
+.faq-item--danger {
+    border-left-color: #e74c3c;
+}
+
+.faq-item--danger h4 {
+    color: #e74c3c;
+}
+
+.faq-item--coral {
+    border-left-color: #ff7675;
+}
+
+.faq-item--coral h4 {
+    color: #ff7675;
+}
+
+.faq-item--green {
+    border-left-color: #27ae60;
+}
+
+.faq-item--green h4 {
+    color: #27ae60;
+}
+
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SHARED FINAL CTA SECTION
+   ============================================ */
+.final-cta-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-teal-dark) 100%);
+    color: white;
+    text-align: center;
+}
+
+.final-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.final-cta-content h2 {
+    font-size: var(--font-size-h1);
+    margin-bottom: 16px;
+}
+
+.final-cta-content p {
+    font-size: var(--font-size-lg);
+    margin-bottom: 32px;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.cta-note {
+    font-size: var(--font-size-sm);
+    opacity: 0.85;
+    font-style: italic;
+}
+
+/* CTA color themes */
+.final-cta-section.cta--danger {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.final-cta-section.cta--green {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+}
+
+.final-cta-section.cta--coral {
+    background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+}
+
+/* ============================================
+   SHARED STEP / PROCESS PATTERNS
+   ============================================ */
+.process-steps,
+.protocols-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.process-step,
+.protocol-step {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    position: relative;
+    transition: var(--transition);
+}
+
+.process-step:hover,
+.protocol-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.step-number {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 15px rgba(98, 171, 191, 0.3);
+}
+
+.step-number--blue {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.process-step h3,
+.protocol-step h3 {
+    font-size: var(--font-size-h3);
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.process-step p,
+.protocol-step p {
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* ============================================
+   SHARED CARD GRID PATTERNS
+   ============================================ */
+.equipment-grid,
+.benefits-grid,
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.equipment-card,
+.benefit-card {
+    background: white;
+    padding: 28px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border-top: 3px solid var(--primary-teal);
+    transition: var(--transition);
+}
+
+.equipment-card:hover,
+.benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.equipment-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.equipment-card h3,
+.benefit-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-size: var(--font-size-h3);
+}
+
+.equipment-card p,
+.benefit-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* Card with blue accent */
+.equipment-card--blue {
+    border-top-color: #3498db;
+}
+
+.equipment-card--coral {
+    border-top-color: #ff7675;
+}
+
+/* ============================================
+   SHARED STAT BOXES
+   ============================================ */
+.stat-box,
+.stat-card {
+    padding: 28px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: white;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.stat-box:hover,
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+.stat-primary {
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+}
+
+.stat-success {
+    background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+.stat-info {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.stat-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.danger-stat {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.success-stat {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+}
+
+.info-stat {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+/* ============================================
+   SHARED ALERT / WARNING BOX
+   ============================================ */
+.alert-box,
+.warning-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 28px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid #ffc107;
+    box-shadow: var(--shadow-soft);
+}
+
+.alert-icon,
+.warning-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.alert-content h3 {
+    color: #856404;
+    margin-bottom: 8px;
+    font-size: var(--font-size-h3);
+}
+
+.alert-content p {
+    color: #856404;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .alert-box,
+    .warning-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   SHARED SPECIALIST CARDS
+   ============================================ */
+.specialists-detail-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.specialist-card-large {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 36px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+}
+
+.specialist-card-large:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+.specialist-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.specialist-avatar-teal {
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+}
+
+.specialist-avatar-coral {
+    background: linear-gradient(135deg, #ff7675, #fd79a8);
+}
+
+.specialist-avatar-purple {
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+}
+
+.avatar-icon {
+    color: white;
+}
+
+.specialist-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.specialist-header h3 {
+    font-size: 1.75rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.specialist-badge {
+    padding: 6px 18px;
+    border-radius: var(--border-radius-pill);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: white;
+}
+
+.badge-teal {
+    background: var(--primary-teal);
+}
+
+.badge-coral {
+    background: #ff7675;
+}
+
+.badge-purple {
+    background: #6c5ce7;
+}
+
+.specialist-schedule {
+    color: var(--text-gray);
+    font-size: var(--font-size-base);
+    margin-bottom: 20px;
+}
+
+.specialist-description {
+    margin-bottom: 24px;
+}
+
+.specialist-description p {
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+.specialist-expertise h4 {
+    font-size: var(--font-size-h4);
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.specialist-expertise ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 8px;
+}
+
+.specialist-expertise li {
+    padding: 6px 0;
+    color: var(--text-gray);
+    font-size: var(--font-size-base);
+}
+
+.specialist-expertise li::before {
+    content: "✓ ";
+    color: var(--primary-teal);
+    font-weight: 700;
+}
+
+.specialist-highlight {
+    background: #fff9e6;
+    border-left: 4px solid #ffc107;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 24px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.highlight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.specialist-highlight p {
+    margin: 0;
+    color: #856404;
+    line-height: 1.6;
+}
+
+.specialist-cta {
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .specialist-card-large {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .specialist-avatar {
+        margin: 0 auto;
+    }
+
+    .specialist-header {
+        justify-content: center;
+    }
+
+    .specialist-expertise ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SHARED SERVICE DETAIL CARDS
+   ============================================ */
+.services-detail-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.service-detail-card {
+    background: white;
+    padding: 32px;
+    border-radius: var(--border-radius);
+    border-top: 3px solid var(--primary-teal);
+    transition: var(--transition);
+}
+
+.service-detail-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.service-detail-card--coral {
+    border-top-color: #ff7675;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.service-detail-card h3 {
+    font-size: var(--font-size-h3);
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.service-detail-card>p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.service-includes {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+}
+
+.service-includes li {
+    padding: 6px 0;
+    color: var(--text-gray);
+    font-size: var(--font-size-base);
+}
+
+.service-includes li::before {
+    content: "✓ ";
+    color: var(--primary-teal);
+    font-weight: 700;
+}
+
+/* ============================================
+   SHARED TIMELINE PATTERN
+   ============================================ */
+.steps-timeline {
+    max-width: 900px;
+    margin: 50px auto;
+    position: relative;
+}
+
+.steps-timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    bottom: 28px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary-teal), var(--primary-teal-dark));
+}
+
+.steps-timeline--coral::before {
+    background: linear-gradient(180deg, #ff7675, #fd79a8);
+}
+
+.timeline-step {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-marker {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(98, 171, 191, 0.35);
+    position: relative;
+    z-index: 1;
+}
+
+.step-marker--coral {
+    background: linear-gradient(135deg, #ff7675, #fd79a8);
+    box-shadow: 0 5px 20px rgba(255, 118, 117, 0.35);
+}
+
+.step-content {
+    flex: 1;
+    background: white;
+    padding: 24px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.step-content h3 {
+    font-size: var(--font-size-h3);
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.step-content p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .steps-timeline::before {
+        display: none;
+    }
+
+    .timeline-step {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .step-marker {
+        margin: 0 auto;
+    }
+}
+
+/* ============================================
+   SHARED BUTTON STYLES
+   Unified button system
+   ============================================ */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: var(--border-radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary-urgency {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e74c3c;
+    color: white;
+    padding: 14px 28px;
+    border-radius: var(--border-radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-primary-urgency:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.35);
+}
+
+/* ============================================
+   SHARED COVERAGE SECTION (VetMovil)
+   ============================================ */
+.coverage-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.coverage-info h2 {
+    font-size: var(--font-size-h1);
+    color: var(--text-dark);
+    margin-bottom: 32px;
+}
+
+.coverage-info .info-item {
+    margin-bottom: 16px;
+}
+
+.coverage-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-placeholder {
+    background: var(--bg-light);
+    border-radius: var(--border-radius);
+    padding: 48px 32px;
+    text-align: center;
+    width: 100%;
+    border: 2px dashed #dee2e6;
+}
+
+.map-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.map-placeholder h3 {
+    font-size: var(--font-size-h2);
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.map-placeholder p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 968px) {
+    .coverage-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* ============================================
+   SHARED HOSPITAL INFO LAYOUT
+   ============================================ */
+.hospital-info-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.hospital-info-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.hospital-info-text h3 {
+    color: var(--text-dark);
+    margin: 24px 0 16px;
+    font-size: var(--font-size-h2);
+}
+
+.hospital-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 968px) {
+    .hospital-info-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SHARED TUTOR INFO / INFO BOX
+   ============================================ */
+.tutor-info-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.tutor-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.info-box {
+    background: white;
+    padding: 24px;
+    border-radius: var(--border-radius);
+}
+
+.info-note {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--bg-light);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-gray);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+@media (max-width: 968px) {
+    .tutor-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SHARED STYLED LIST
+   ============================================ */
+.styled-list,
+.conditions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.styled-list li,
+.conditions-list li {
+    padding: 8px 0;
+    font-size: var(--font-size-base);
+    color: var(--text-gray);
+}
+
+.styled-list li::before,
+.conditions-list li::before {
+    content: "• ";
+    color: var(--primary-teal);
+    font-weight: 700;
+}
+
+/* ============================================
+   24/7 SERVICE SECTION (Hospital)
+   ============================================ */
+.service-247-section {
+    padding: 48px 20px;
+    background: var(--primary-teal-light);
+}
+
+.service-247-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 32px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.service-247-icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+}
+
+.service-247-text h2 {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-size: var(--font-size-h2);
+}
+
+.service-247-text p {
+    color: var(--text-gray);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .service-247-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   EQUIPMENT SECTION (Hospital)
+   ============================================ */
+.equipment-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+/* ============================================
+   CARE PROTOCOLS (Hospital)
+   ============================================ */
+.care-protocols-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+/* ============================================
+   APPOINTMENT PROCESS (Especialistas)
+   ============================================ */
+.appointment-process-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.process-cta {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* ============================================
+   ALERT SECTION (Parvovirus)
+   ============================================ */
+.alert-section {
+    padding: 48px 20px;
+    background: #fffbeb;
+}
+
+/* ============================================
+   SYMPTOMS SECTION (Parvovirus)
+   ============================================ */
+.symptoms-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.symptoms-intro {
+    max-width: 900px;
+    margin: 32px auto;
+    text-align: center;
+}
+
+.emphasis-text {
+    font-size: var(--font-size-lg);
+    padding: 20px 24px;
+    background: white;
+    border-radius: var(--border-radius);
+    border-left: 4px solid #e74c3c;
+    line-height: 1.7;
+}
+
+.symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 50px 0;
+}
+
+.symptom-card {
+    background: white;
+    padding: 28px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border-top: 3px solid;
+    position: relative;
+    transition: var(--transition);
+}
+
+.symptom-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.symptom-card.severe {
+    border-top-color: #e74c3c;
+}
+
+.symptom-card.moderate {
+    border-top-color: #f39c12;
+}
+
+.symptom-severity {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--border-radius-pill);
+    background: #e74c3c;
+    color: white;
+}
+
+.symptom-card.moderate .symptom-severity {
+    background: #f39c12;
+}
+
+.symptom-icon {
+    font-size: 2.5rem;
+    margin: 16px 0;
+}
+
+.symptom-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.symptom-card p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.emergency-cta {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    padding: 48px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.emergency-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.emergency-content h3 {
+    font-size: var(--font-size-h2);
+    margin-bottom: 12px;
+}
+
+.emergency-content p {
+    font-size: var(--font-size-lg);
+    margin-bottom: 24px;
+    opacity: 0.95;
+}
+
+.emergency-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 968px) {
+    .symptoms-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   TREATMENT SECTION (Parvovirus)
+   ============================================ */
+.treatment-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.treatment-intro {
+    max-width: 800px;
+    margin: 32px auto 50px;
+    text-align: center;
+}
+
+.treatment-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.treatment-step {
+    background: var(--bg-light);
+    padding: 32px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.treatment-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.treatment-step h3 {
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-size: var(--font-size-h3);
+}
+
+.treatment-step p {
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+.treatment-note {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   PREVENTION SECTION (Parvovirus)
+   ============================================ */
+.prevention-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.prevention-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.prevention-main h3,
+.prevention-tips h3 {
+    color: var(--text-dark);
+    margin-bottom: 24px;
+    font-size: var(--font-size-h2);
+}
+
+.vaccine-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.vaccine-step {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid #27ae60;
+}
+
+.vaccine-age {
+    display: inline-block;
+    background: #27ae60;
+    color: white;
+    padding: 4px 14px;
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.vaccine-step h4 {
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.vaccine-step p {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.prevention-list {
+    list-style: none;
+    padding: 0;
+}
+
+.prevention-list li {
+    padding: 12px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: var(--border-radius);
+    line-height: 1.6;
+    color: var(--text-gray);
+    transition: var(--transition);
+}
+
+.prevention-list li:hover {
+    box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 968px) {
+    .prevention-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   INFO SECTION (Parvovirus)
+   ============================================ */
+.info-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.info-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.info-text h3 {
+    color: var(--text-dark);
+    margin: 24px 0 16px;
+    font-size: var(--font-size-h2);
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    padding: 10px 0;
+    font-size: var(--font-size-base);
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.info-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 968px) {
+    .info-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SHARED ANIMATION
+   ============================================ */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ============================================
+   HOW IT WORKS (VetMovil)
+   ============================================ */
+.how-it-works-section {
+    padding: 80px 20px;
+    background: var(--bg-light);
+}
+
+.cta-center {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* ============================================
+   BENEFITS SECTION (VetMovil)
+   ============================================ */
+.benefits-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+/* ============================================
+   VACUNACION - Calendar specific styles
+   ============================================ */
+.calendars-section {
+    padding: 60px 20px;
+    background: white;
+}
+
+.calendars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.calendar-header h2 {
+    font-size: var(--font-size-h2);
+    color: var(--text-dark);
+}
+
+.vaccines-timeline {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.vaccines-timeline::before {
+    content: '';
+    position: absolute;
+    left: 68px;
+    top: 20px;
+    bottom: 20px;
+    width: 3px;
+    background: linear-gradient(180deg, #27ae60, #229954);
+}
+
+.vaccine-item {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.vaccine-details {
+    flex: 1;
+    background: var(--bg-light);
+    padding: 18px 22px;
+    border-radius: var(--border-radius);
+}
+
+.vaccine-details h4 {
+    color: #27ae60;
+    margin-bottom: 8px;
+}
+
+.vaccine-details p {
+    color: var(--text-gray);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.optional-vaccines-section {
+    padding: 60px 20px;
+    background: var(--bg-light);
+}
+
+.optional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.optional-card {
+    background: white;
+    padding: 24px;
+    border-radius: var(--border-radius);
+    border-top: 3px solid #3498db;
+    transition: var(--transition);
+}
+
+.optional-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.optional-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.optional-card p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.risk-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--border-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+
+.risk-high {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.risk-medium {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+/* Promo banner */
+.promo-float {
+    position: fixed;
+    top: var(--navbar-height, 60px);
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #ffc107;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.promo-float-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 14px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.promo-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(133, 100, 4, 0.1);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #856404;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.promo-close:hover {
+    background: rgba(133, 100, 4, 0.2);
+}
+
+.promo-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.promo-text h3 {
+    color: #856404;
+    margin: 0 0 4px;
+    font-size: var(--font-size-h3);
+}
+
+.promo-text p {
+    color: #856404;
+    margin: 0;
+    font-size: var(--font-size-sm);
+}
+
+@media (max-width: 1200px) {
+    .calendars-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+@media (max-width: 968px) {
+    .promo-float-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px 48px 16px 16px;
+    }
+
+    .promo-close {
+        top: 12px;
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .vaccines-timeline::before {
+        display: none;
+    }
+
+    .vaccine-item {
+        flex-direction: column;
+    }
+
+    .vaccine-age {
+        margin: 0 auto;
+    }
+}

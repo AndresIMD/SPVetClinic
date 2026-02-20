@@ -16,10 +16,6 @@
         // Must run on every render so new .reveal elements from page
         // navigation get observed by the IntersectionObserver.
         await JS.InvokeVoidAsync("initScrollAnimations");
-
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("clearTextSelection");
-        }
+        await JS.InvokeVoidAsync("clearTextSelection");
     }
 }

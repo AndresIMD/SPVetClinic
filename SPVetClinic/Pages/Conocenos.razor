@@ -10,20 +10,10 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<!-- ============================================
-     PAGE HERO
-     ============================================ -->
-<section class="page-hero">
-    <div class="page-hero-content">
-        <NavLink href="" class="back-link">
-            <span class="back-arrow">←</span>
-            <span>Volver al inicio</span>
-        </NavLink>
-        <h1 class="page-hero-title">Nuestra Historia</h1>
-        <p class="page-hero-subtitle">Más de @AppConstants.Clinic.YearsOfService cuidando a tus mascotas en
-            @AppConstants.Clinic.City</p>
-        </div>
-    </section>
+<PageHero Tag="Nuestra Clínica" TagIcon="clinic"
+          Title="Nuestra Historia"
+          Subtitle="@($"Más de {AppConstants.Clinic.YearsOfService} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
+          CssClass="hero--teal" />
 
     <!-- ============================================
      HISTORIA

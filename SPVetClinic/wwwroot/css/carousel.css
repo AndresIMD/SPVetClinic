@@ -99,7 +99,7 @@
 
 .btn-slide-primary,
 .btn-slide-secondary {
-    padding: 0.875rem 1.75rem;
+    padding: 1rem 2rem;
     border-radius: var(--border-radius);
     font-weight: 600;
     text-decoration: none;

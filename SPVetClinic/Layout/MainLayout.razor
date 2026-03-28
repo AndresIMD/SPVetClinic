@@ -2,13 +2,15 @@
 @inject IJSRuntime JS
 
 <a href="#main-content" class="skip-link">Saltar al contenido</a>
-<TopNav />
+<EmergencyBar />
+<TopNav Theme="dark" />
 <div class="page main-layout-onepage">
     <main id="main-content" role="main">
         @Body
     </main>
     <Footer />
 </div>
+<EmergencyFab />
 
 @code {
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -37,15 +37,16 @@
 
         <!-- Imagen principal -->
         <div class="hero-image-content">
-            <img src="images/gallery/hero/pngtree-veterinarian-examines-puppy-and-kitten-in-animal-clinic-caring-for-pets-picture-image_16467750.jpg"
-                alt="Veterinaria atendiendo mascotas" class="hero-image" />
+            <img src="@ImagePaths.Hero.ClinicFrontage"
+                alt="Fachada San Pablo Vet Clínic" class="hero-image"
+                onerror="this.style.display='none'" />
         </div>
     </div>
 </section>
 
 <style>
     .hero-section-pro {
-        min-height: calc(100vh - var(--navbar-height));
+        min-height: var(--hero-height, 100vh);
         display: flex;
         align-items: center;
         background: var(--bg-white);

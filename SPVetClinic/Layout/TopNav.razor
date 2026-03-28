@@ -1,9 +1,9 @@
 @inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
 
-<nav class="topnav" id="topnav" aria-label="Navegación principal">
+<nav class="topnav @ThemeClass" id="topnav" aria-label="Navegación principal">
     <div class="logo-container">
         <NavLink href="" class="logo-text">
-            <img src="images/logo_pequeno_vet_clinic.png" alt="San Pablo Vet Clínic" class="logo-img" />
+            <img src="@ImagePaths.Logo" alt="San Pablo Vet Clínic" class="logo-img" />
         </NavLink>
     </div>
 
@@ -38,6 +38,14 @@
                     <Icon Name="syringe" Size="18" />
                     <span>Vacunación</span>
                 </NavLink>
+                <NavLink href="peluqueria" class="dropdown-item">
+                    <Icon Name="scissors" Size="18" />
+                    <span>Peluquería</span>
+                </NavLink>
+                <NavLink href="hospitalizacion" class="dropdown-item">
+                    <Icon Name="clinic" Size="18" />
+                    <span>Hospitalización</span>
+                </NavLink>
             </div>
         </div>
 
@@ -63,3 +71,9 @@
         <span></span>
     </button>
 </nav>
+
+@code {
+    [Parameter] public string Theme { get; set; } = "";
+
+    private string ThemeClass => string.IsNullOrEmpty(Theme) ? "" : $"topnav--{Theme}";
+}

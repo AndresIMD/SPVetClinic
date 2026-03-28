@@ -47,8 +47,16 @@ Antes de subir, optimizar imágenes con:
 
 ## Estado Actual
 
-- [ ] Fotos del Hero carousel
-- [ ] Fotos de especialistas (Dr. Vargas, Dra. Muñoz, Dr. González)
-- [ ] Fotos de instalaciones
-- [ ] Fotos de la van Vet Móvil
-- [ ] Fotos de equipos IDEXX
+- [x] Foto del Hero / Fachada (`hero/SP_Clinic_Frontage.JPG`)
+- [x] Foto de cirugía (`services/service-cirugia.jpeg`)
+- [x] Foto de exámenes/laboratorio (`services/service-examenes.jpeg`)
+- [x] Foto del Vet Móvil (`services/SP_VetMovil_Left_Side.JPG`)
+- [ ] Fotos individuales de servicios (consulta, vacunación, peluquería)
+- [ ] Fotos de especialistas (Dr. Vargas, Dra. Muñoz)
+- [ ] Fotos de instalaciones interiores
+- [ ] Foto de equipos IDEXX / imagenología
+- [ ] Foto/captura de mapa de ubicación
+
+> **Nota:** Todas las rutas están centralizadas en `Data/ImagePaths.cs`.
+> Al agregar una nueva foto, actualizar la constante correspondiente en esa clase
+> y todas las páginas la usarán automáticamente.

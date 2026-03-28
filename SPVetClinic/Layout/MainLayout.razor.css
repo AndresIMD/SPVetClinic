@@ -15,15 +15,3 @@
 .skip-link:focus {
     top: 0;
 }
-
-.page {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding-top: 70px;
-}
-
-main {
-    flex: 1;
-    min-height: 100vh;
-}

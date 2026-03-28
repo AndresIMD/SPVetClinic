@@ -10,10 +10,44 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<PageHero Tag="Contacto" TagIcon="phone"
-          Title="Contáctanos"
-          Subtitle="Estamos aquí para cuidar de tu mascota"
+<PageHero Tag="Contacto" TagIcon="phone"     Title="Contáctanos"      Subtitle="Urgencias 24/7 · Estamos siempre disponibles para ti y tu mascota"
           CssClass="hero--teal" />
+
+<!-- ============================================
+     BANNER DE URGENCIAS
+     ============================================ -->
+<section class="urgencia-banner" id="urgencia">
+    <div class="urgencia-banner__inner">
+        <div class="urgencia-badge-pill">
+            <span class="urgencia-pulse"></span>
+            URGENCIAS 24 HORAS
+        </div>
+        <h2 class="urgencia-title">¿Necesitas atención veterinaria inmediata?</h2>
+        <p class="urgencia-sub">Disponibles las 24 horas, los 7 días de la semana, incluyendo festivos.</p>
+        <div class="urgencia-actions">
+            <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" class="urgencia-btn urgencia-btn--wa">
+                <Icon Name="phone" Size="20" />
+                <div>
+                    <strong>WhatsApp Urgencias</strong>
+                    <span>@AppConstants.Phone.MainWhatsAppFormatted</span>
+                </div>
+            </a>
+            <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)" class="urgencia-btn urgencia-btn--tel">
+                <Icon Name="phone" Size="20" />
+                <div>
+                    <strong>Llamar Ahora</strong>
+                    <span>@AppConstants.Phone.LandlineFormatted</span>
+                </div>
+            </a>
+        </div>
+        <div class="urgencia-address">
+            <Icon Name="location" Size="16" />
+            <span>@AppConstants.Clinic.FullAddress</span>
+            <span class="urgencia-divider">·</span>
+            <a href="@AppConstants.Maps.DirectionsUrl" target="_blank">Ver en Google Maps →</a>
+        </div>
+    </div>
+</section>
 
 <!-- ============================================
      CONTACTO + UBICACIÓN

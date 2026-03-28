@@ -1,26 +1,972 @@
 @page "/"
+@implements IDisposable
 
-<PageTitle>San Pablo Vet Clínic - Clínica Veterinaria en Rancagua</PageTitle>
+<PageTitle>San Pablo Vet Clínic — Clínica Veterinaria en Rancagua</PageTitle>
 <HeadContent>
-     <meta name="description"
-           content="Clínica veterinaria en Rancagua con urgencias 24/7. Especialistas en neurología, medicina felina y endocrinología. Atención a domicilio y peluquería canina." />
-     <meta property="og:title" content="San Pablo Vet Clínic | Clínica Veterinaria Rancagua" />
-     <meta property="og:description"
-           content="Clínica veterinaria en Rancagua con urgencias 24/7. Especialistas en neurología, medicina felina y endocrinología. Atención a domicilio y peluquería canina." />
-     <meta property="og:type" content="website" />
+    <meta name="description"
+          content="Clínica veterinaria en Rancagua con urgencias 24/7. Especialistas certificados, laboratorio IDEXX y atención a domicilio." />
 </HeadContent>
 
-<!-- ============================================
-     HERO SECTION
-     ============================================ -->
-<HeroProSection />
+<!-- ▸ HERO CAROUSEL -->
+<section class="vc-hero-carousel" @onmouseenter="OnHeroEnter" @onmouseleave="OnHeroLeave">
+    <!-- Slide 1: Principal -->
+    <div class="vc-hc__slide @(currentSlide == 0 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Hero.ClinicFrontage"
+                 alt="Fachada San Pablo Vet Clínic" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> URGENCIAS 24/7 — ABIERTO AHORA</div>
+            <h1 class="vc-hc__title">
+                <span class="vc-hc__title-sub">San Pablo</span>
+                <br />
+                <span class="vc-accent">Vet</span> <span class="vc-accent-coral">Clínic</span></h1>
+            <p class="vc-hc__sub">
+                Especialistas certificados · Laboratorio IDEXX · Atención a domicilio en @AppConstants.Clinic.City
+            </p>
+            <div class="vc-hc__btns">
+                <a href="contacto" class="vc-btn vc-btn--coral"><Icon Name="alarm" Size="18" /> Emergencia Ahora</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="vc-btn vc-btn--glass"><Icon Name="calendar" Size="18" /> Reservar Hora</a>
+            </div>
+        </div>
+    </div>
 
-<!-- ============================================
-     CARRUSEL DE ANUNCIOS
-     ============================================ -->
-<AnnouncementCarousel />
+    <!-- Slide 2: Especialistas -->
+    <div class="vc-hc__slide @(currentSlide == 1 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Services.Cirugia" alt="Cirugía y especialistas veterinarios" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> EQUIPO MÉDICO ESPECIALIZADO</div>
+            <h1 class="vc-hc__title">Especialistas<br /><span class="vc-accent">certificados</span></h1>
+            <p class="vc-hc__sub">Neurología · Medicina Felina · Endocrinología · Cirugía avanzada</p>
+            <div class="vc-hc__btns">
+                <a href="especialistas" class="vc-btn vc-btn--coral"><Icon Name="brain" Size="18" /> Ver Especialistas</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="vc-btn vc-btn--glass"><Icon Name="calendar" Size="18" /> Agendar Hora</a>
+            </div>
+        </div>
+    </div>
 
-<!-- ============================================
-     FEATURE CARDS
-     ============================================ -->
-<FeatureCardsSection />
+    <!-- Slide 3: Servicios -->
+    <div class="vc-hc__slide @(currentSlide == 2 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Services.Examenes" alt="Laboratorio y exámenes veterinarios" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> SERVICIOS INTEGRALES</div>
+            <h1 class="vc-hc__title">Todo para el cuidado<br /><span class="vc-accent">de tu mascota</span></h1>
+            <p class="vc-hc__sub">Consultas · Laboratorio IDEXX · Vacunación · Peluquería · Atención a domicilio</p>
+            <div class="vc-hc__btns">
+                <a href="servicios" class="vc-btn vc-btn--coral"><Icon Name="stethoscope" Size="18" /> Ver Servicios</a>
+                <a href="@AppConstants.Urls.WhatsAppMobileVetLink" target="_blank" class="vc-btn vc-btn--glass"><Icon Name="van" Size="18" /> Vet a Domicilio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="vc-hc__dots">
+        <button class="vc-hc__dot @(currentSlide == 0 ? "active" : "")" @onclick="() => GoToSlide(0)"></button>
+        <button class="vc-hc__dot @(currentSlide == 1 ? "active" : "")" @onclick="() => GoToSlide(1)"></button>
+        <button class="vc-hc__dot @(currentSlide == 2 ? "active" : "")" @onclick="() => GoToSlide(2)"></button>
+    </div>
+
+    <!-- Navegación -->
+    <button class="vc-hc__nav vc-hc__nav--prev" @onclick="PrevSlide" aria-label="Anterior">‹</button>
+    <button class="vc-hc__nav vc-hc__nav--next" @onclick="NextSlide" aria-label="Siguiente">›</button>
+</section>
+
+<!-- ▸ BARRA DE ACCESO RÁPIDO -->
+<section class="vc-quick-bar">
+    <div class="vc-w">
+        <div class="vc-quick-bar__grid">
+            <a href="contacto" class="vc-qb vc-qb--urgent">
+                <Icon Name="alarm" Size="20" />
+                <div>
+                    <strong>Urgencias 24/7</strong>
+                    <span>Atención inmediata</span>
+                </div>
+            </a>
+            <a href="@AppConstants.Urls.WhatsAppMobileVetLink" target="_blank" class="vc-qb">
+                <Icon Name="van" Size="20" />
+                <div>
+                    <strong>Vet a Domicilio</strong>
+                    <span>@AppConstants.Phone.MobileVetWhatsAppFormatted</span>
+                </div>
+            </a>
+            <a href="especialistas" class="vc-qb">
+                <Icon Name="brain" Size="20" />
+                <div>
+                    <strong>Especialistas</strong>
+                    <span>Neurología · Felina · Endocrinología</span>
+                </div>
+            </a>
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="vc-qb">
+                <Icon Name="calendar" Size="20" />
+                <div>
+                    <strong>Agenda Online</strong>
+                    <span>Reserva tu hora fácilmente</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ SERVICIOS (cards con imagen) -->
+<section class="vc-section vc-section--soft">
+    <div class="vc-w">
+        <div class="vc-section-header">
+            <span class="vc-tag">Servicios</span>
+            <h2>Lo que hacemos</h2>
+            <p>Atención integral con equipos de última generación y un equipo comprometido.</p>
+        </div>
+
+        <div class="vc-svc-grid">
+            <div class="vc-svc-card reveal stagger-1">
+                <div class="vc-svc-card__img no-img">
+                    <div class="vc-svc-card__fallback"><Icon Name="stethoscope" Size="28" /></div>
+                    <span class="vc-svc-card__num">01</span>
+                </div>
+                <h3>Consulta General</h3>
+                <p>Evaluaciones completas, diagnósticos precisos y planes de tratamiento personalizados.</p>
+            </div>
+            <div class="vc-svc-card reveal stagger-2">
+                <div class="vc-svc-card__img">
+                    <img src="@ImagePaths.Services.Examenes" alt="Laboratorio IDEXX"
+                         onerror="this.parentElement.classList.add('no-img')" />
+                    <div class="vc-svc-card__fallback"><Icon Name="microscope" Size="28" /></div>
+                    <span class="vc-svc-card__num">02</span>
+                </div>
+                <h3>Laboratorio IDEXX</h3>
+                <p>Hemogramas, bioquímica, PCR y diagnóstico por imágenes con resultados rápidos.</p>
+            </div>
+            <div class="vc-svc-card reveal stagger-3">
+                <div class="vc-svc-card__img">
+                    <img src="@ImagePaths.Services.Cirugia" alt="Cirugía veterinaria"
+                         onerror="this.parentElement.classList.add('no-img')" />
+                    <div class="vc-svc-card__fallback"><Icon Name="syringe" Size="28" /></div>
+                    <span class="vc-svc-card__num">03</span>
+                </div>
+                <h3>Cirugía y Hospitalización</h3>
+                <p>Procedimientos seguros con monitoreo constante y cuidados post-operatorios.</p>
+            </div>
+            <div class="vc-svc-card reveal stagger-4">
+                <div class="vc-svc-card__img no-img">
+                    <div class="vc-svc-card__fallback"><Icon Name="pill" Size="28" /></div>
+                    <span class="vc-svc-card__num">04</span>
+                </div>
+                <h3>Vacunación y Prevención</h3>
+                <p>Programas de vacunación, desparasitación y medicina preventiva.</p>
+            </div>
+            <div class="vc-svc-card reveal stagger-5">
+                <div class="vc-svc-card__img no-img">
+                    <div class="vc-svc-card__fallback"><Icon Name="scissors" Size="28" /></div>
+                    <span class="vc-svc-card__num">05</span>
+                </div>
+                <h3>Peluquería y Estética</h3>
+                <p>Baños medicados, cortes profesionales y cuidado integral de higiene.</p>
+            </div>
+            <div class="vc-svc-card reveal stagger-6">
+                <div class="vc-svc-card__img no-img">
+                    <div class="vc-svc-card__fallback"><Icon Name="chart" Size="28" /></div>
+                    <span class="vc-svc-card__num">06</span>
+                </div>
+                <h3>Imagenología</h3>
+                <p>Ecografía, radiografía y electrocardiograma para diagnósticos certeros.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ ESPECIALISTAS -->
+<section class="vc-section">
+    <div class="vc-w">
+        <div class="vc-section-header">
+            <span class="vc-tag">Equipo Médico</span>
+            <h2>Especialistas certificados</h2>
+        </div>
+
+        <div class="vc-specs">
+            <div class="vc-spec-card reveal stagger-1">
+                <div class="vc-spec-card__photo">
+                    <div class="vc-spec-card__avatar" style="display:flex"><Icon Name="brain" Size="28" /></div>
+                </div>
+                <div class="vc-spec-card__body">
+                    <h3>Dr. Hernán Vargas</h3>
+                    <span class="vc-spec-card__role">Neurología Veterinaria</span>
+                    <p>Convulsiones, problemas de equilibrio, dolor de cuello y movimientos anormales.</p>
+                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Todos los Sábados</div>
+                </div>
+            </div>
+            <div class="vc-spec-card reveal stagger-2">
+                <div class="vc-spec-card__photo">
+                    <div class="vc-spec-card__avatar vc-spec-card__avatar--coral" style="display:flex"><Icon Name="cat" Size="28" /></div>
+                </div>
+                <div class="vc-spec-card__body">
+                    <h3>Dra. Pilar Muñoz</h3>
+                    <span class="vc-spec-card__role">Medicina Felina</span>
+                    <p>Especialista exclusiva en gatos. Atención en un ambiente diseñado para felinos.</p>
+                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Agenda Disponible</div>
+                </div>
+            </div>
+            <div class="vc-spec-card reveal stagger-3">
+                <div class="vc-spec-card__photo">
+                    <div class="vc-spec-card__avatar vc-spec-card__avatar--purple" style="display:flex"><Icon Name="flask" Size="28" /></div>
+                </div>
+                <div class="vc-spec-card__body">
+                    <h3>Endocrinología</h3>
+                    <span class="vc-spec-card__role">Especialista Visitante</span>
+                    <p>Diabetes, tiroides y condiciones endocrinas en pequeños animales.</p>
+                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Consultar disponibilidad</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ VET MÓVIL -->
+<section class="vc-section vc-section--soft">
+    <div class="vc-w">
+        <div class="vc-vetmovil reveal">
+            <div class="vc-vetmovil__text">
+                <span class="vc-tag">Atención a Domicilio</span>
+                <h2>San Pablo<br />Vet Móvil</h2>
+                <p>
+                    Llevamos la atención veterinaria profesional a la puerta de tu casa.
+                    Ideal para mascotas que se estresan con los viajes o tutores con movilidad reducida.
+                </p>
+                <ul class="vc-check-list">
+                    <li><Icon Name="check" Size="16" /> Consultas veterinarias completas</li>
+                    <li><Icon Name="check" Size="16" /> Vacunación y toma de muestras</li>
+                    <li><Icon Name="check" Size="16" /> Control de pacientes crónicos</li>
+                    <li><Icon Name="check" Size="16" /> Lunes a Domingo, 09:00 a 16:30 hrs</li>
+                </ul>
+                <a href="@AppConstants.Urls.WhatsAppMobileVetLink" target="_blank" class="vc-btn vc-btn--coral">
+                    <Icon Name="phone" Size="18" /> Agendar Visita · @AppConstants.Phone.MobileVetWhatsAppFormatted
+                </a>
+            </div>
+            <div class="vc-vetmovil__img">
+                <img src="@ImagePaths.Services.VetMovil" alt="Servicio veterinario a domicilio"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="vc-vetmovil__img-fallback">
+                    <Icon Name="van" Size="52" />
+                    <span>Servicio Móvil</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ UBICACIÓN RÁPIDA -->
+<section class="vc-location">
+    <div class="vc-w">
+        <div class="vc-location__inner reveal">
+            <div class="vc-location__info">
+                <span class="vc-tag">Encuéntranos</span>
+                <h2>Ubicación</h2>
+                <p><Icon Name="location" Size="16" /> @AppConstants.Clinic.FullAddress</p>
+                <p><Icon Name="clock" Size="16" /> Abierto las 24 horas, todos los días</p>
+                <p><Icon Name="phone" Size="16" /> @AppConstants.Phone.MainWhatsAppFormatted</p>
+                <div class="vc-location__actions">
+                    <a href="@AppConstants.Maps.DirectionsUrl" target="_blank" class="vc-btn vc-btn--dark">
+                        <Icon Name="location" Size="18" /> Ver en Google Maps
+                    </a>
+                    <a href="contacto" class="vc-btn vc-btn--outline">
+                        <Icon Name="phone" Size="18" /> Contacto
+                    </a>
+                </div>
+            </div>
+            <div class="vc-location__map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3300.7510740611997!2d-70.71600672427813!3d-34.17828147310979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9663456594efe5a9%3A0xedb27494ccccd065!2sSan%20Pablo%20Vet%20Cl%C3%ADnic!5e0!3m2!1ses!2scl!4v1765084763953!5m2!1ses!2scl"
+                    width="100%" height="100%" style="border:0; position:absolute; inset:0;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ CONÓCENOS -->
+<section class="vc-about">
+    <div class="vc-w">
+        <div class="vc-about__grid reveal">
+            <div class="vc-about__img">
+                <img src="@ImagePaths.Clinic.Fachada" alt="Fachada San Pablo Vet Clínic"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="vc-about__img-fallback">
+                    <Icon Name="paw" Size="48" />
+                </div>
+                <div class="vc-about__badge">
+                    <strong>Desde 2014</strong>
+                </div>
+            </div>
+            <div class="vc-about__text">
+                <span class="vc-tag">Quiénes Somos</span>
+                <h2>Más que una clínica</h2>
+                <p>
+                    En San Pablo Vet Clínic nos apasiona la medicina veterinaria. Desde 2014 hemos
+                    construido un equipo multidisciplinario con especialistas en diversas áreas,
+                    tecnología de diagnóstico de última generación y un compromiso genuino con cada paciente.
+                </p>
+                <ul class="vc-check-list">
+                    <li><Icon Name="check" Size="16" /> Urgencias 24 horas, los 365 días del año</li>
+                    <li><Icon Name="check" Size="16" /> Especialistas certificados en múltiples áreas</li>
+                    <li><Icon Name="check" Size="16" /> Laboratorio IDEXX para diagnósticos precisos</li>
+                    <li><Icon Name="check" Size="16" /> Atención veterinaria a domicilio</li>
+                </ul>
+                <a href="conocenos" class="vc-btn vc-btn--dark">
+                    <Icon Name="heart" Size="18" /> Conoce nuestra historia
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ▸ CTA FINAL -->
+<section class="vc-cta">
+    <div class="vc-cta__inner reveal">
+        <span class="vc-tag">Disponible 24/7</span>
+        <h2>¿Tu mascota necesita<br />atención <em>ahora</em>?</h2>
+        <div class="vc-cta__btns">
+            <a href="contacto" class="vc-btn vc-btn--coral vc-btn--lg">
+                <Icon Name="alarm" Size="20" /> Urgencias 24/7
+            </a>
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="vc-btn vc-btn--glass vc-btn--lg">
+                <Icon Name="calendar" Size="20" /> Agendar Consulta
+            </a>
+        </div>
+        <div class="vc-cta__addr">
+            <Icon Name="location" Size="14" /> @AppConstants.Clinic.FullAddress
+        </div>
+    </div>
+</section>
+
+<!-- ========== STYLES ========== -->
+<style>
+    /* ===== VARIABLES LOCALES ===== */
+    .vc-hero-carousel,
+    .vc-quick-bar,
+    .vc-about,
+    .vc-section,
+    .vc-location,
+    .vc-cta,
+    .vc-back {
+        --vc-dark: #0d0d0d;
+        --vc-dark-2: #111;
+        --vc-dark-3: #1a1a1a;
+        --vc-white-10: rgba(255,255,255,0.10);
+        --vc-white-06: rgba(255,255,255,0.06);
+        --vc-white-60: rgba(255,255,255,0.60);
+        --vc-white-35: rgba(255,255,255,0.35);
+    }
+
+    /* ===== UTILIDADES ===== */
+    .vc-w { max-width: 1100px; margin: 0 auto; }
+
+    .vc-tag {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent-coral);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+    }
+
+    .vc-accent {
+        background: linear-gradient(135deg, var(--primary-teal), #87d4e8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .vc-accent-coral {
+        background: linear-gradient(135deg, var(--accent-coral), #d4747e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .vc-check-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .vc-check-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--font-size-sm);
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .vc-check-list--light li { color: var(--vc-white-60); }
+
+    /* ===== BOTONES ===== */
+    .vc-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border-radius: var(--border-radius);
+        font-weight: 700;
+        font-size: var(--font-size-base);
+        text-decoration: none;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .vc-btn--lg { padding: 1rem 2.25rem; font-size: 1.0625rem; }
+
+    .vc-btn--coral {
+        background: var(--accent-coral);
+        color: white;
+        border-color: var(--accent-coral);
+    }
+
+    .vc-btn--coral:hover {
+        background: var(--accent-coral-dark);
+        border-color: var(--accent-coral-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(187,84,95,0.4);
+    }
+
+    .vc-btn--glass {
+        background: rgba(255,255,255,0.08);
+        color: white;
+        border-color: rgba(255,255,255,0.2);
+        backdrop-filter: blur(8px);
+    }
+
+    .vc-btn--glass:hover {
+        background: rgba(255,255,255,0.15);
+        border-color: rgba(255,255,255,0.4);
+    }
+
+    .vc-btn--dark {
+        background: var(--text-dark);
+        color: white;
+        border-color: var(--text-dark);
+    }
+
+    .vc-btn--dark:hover {
+        background: #000;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .vc-btn--outline {
+        background: transparent;
+        color: var(--text-dark);
+        border-color: #d4d8dd;
+    }
+
+    .vc-btn--outline:hover { border-color: var(--primary-teal); color: var(--primary-teal); }
+
+    /* ===== HERO CAROUSEL ===== */
+    .vc-hero-carousel {
+        min-height: var(--hero-height, 100vh);
+        position: relative;
+        overflow: hidden;
+        background: var(--vc-dark);
+    }
+
+    .vc-hc__slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .vc-hc__slide.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .vc-hc__bg { position: absolute; inset: 0; }
+
+    .vc-hc__bg img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        opacity: 0.3;
+        filter: grayscale(20%);
+    }
+
+    .vc-hc__overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(13,13,13,0.4) 0%, rgba(13,13,13,0.85) 100%);
+    }
+
+    .vc-hc__content {
+        position: relative; z-index: 1;
+        max-width: 800px; padding: 4rem 2rem;
+    }
+
+    .vc-hc__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-coral);
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        margin-bottom: 1.5rem;
+    }
+
+    .vc-pulse {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--accent-coral);
+        animation: vc-pulse 1.5s ease-in-out infinite;
+    }
+
+    @@keyframes vc-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(187,84,95,0.5); }
+        50% { box-shadow: 0 0 0 8px rgba(187,84,95,0); }
+    }
+
+    .vc-hc__title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        color: white;
+        line-height: 1.05;
+        margin: 0 0 1rem;
+        letter-spacing: -0.04em;
+    }
+
+    .vc-hc__title-sub {
+        font-size: 0.5em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: white;
+    }
+
+    .vc-hc__sub {
+        font-size: 1.0625rem;
+        color: var(--vc-white-60);
+        margin: 0 0 2.5rem;
+        letter-spacing: 0.02em;
+        line-height: 1.6;
+    }
+
+    .vc-hc__btns {
+        display: flex; gap: 1rem;
+        justify-content: center; flex-wrap: wrap;
+    }
+
+    /* Carousel dots */
+    .vc-hc__dots {
+        position: absolute;
+        bottom: 2rem; left: 50%; transform: translateX(-50%);
+        display: flex; gap: 0.75rem;
+        z-index: 10;
+    }
+
+    .vc-hc__dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        border: none; padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .vc-hc__dot.active {
+        background: white;
+        width: 28px;
+        border-radius: 5px;
+    }
+
+    .vc-hc__dot:hover { background: rgba(255,255,255,0.6); }
+
+    /* Carousel navigation */
+    .vc-hc__nav {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.15);
+        background: rgba(0,0,0,0.25);
+        color: white; font-size: 1.5rem;
+        cursor: pointer; z-index: 10;
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+    }
+
+    .vc-hc__nav:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(255,255,255,0.3);
+    }
+
+    .vc-hc__nav--prev { left: 1.5rem; }
+    .vc-hc__nav--next { right: 1.5rem; }
+
+    /* ===== BARRA ACCESO RÁPIDO ===== */
+    .vc-quick-bar { background: white; padding: 0; border-bottom: 1px solid #eef1f5; }
+
+    .vc-quick-bar__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+
+    .vc-qb {
+        display: flex; align-items: center; gap: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        color: var(--text-gray);
+        text-decoration: none;
+        border-right: 1px solid #eef1f5;
+        transition: var(--transition);
+    }
+
+    .vc-qb:last-child { border-right: none; }
+    .vc-qb:hover { background: #f8fafb; color: var(--text-dark); }
+
+    .vc-qb--urgent { color: var(--accent-coral); background: rgba(187,84,95,0.04); }
+    .vc-qb--urgent:hover { background: rgba(187,84,95,0.08); }
+
+    .vc-qb strong { display: block; font-size: var(--font-size-sm); font-weight: 700; color: var(--text-dark); }
+    .vc-qb--urgent strong { color: var(--accent-coral); }
+    .vc-qb span { font-size: 0.75rem; }
+
+    /* ===== ABOUT ===== */
+    .vc-about { padding: 5rem 2rem; background: white; }
+
+    .vc-about__grid {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .vc-about__img {
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+    }
+
+    .vc-about__img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .vc-about__img-fallback {
+        display: none;
+        align-items: center; justify-content: center;
+        width: 100%; height: 100%;
+        background: #f0f4f8;
+        color: var(--text-gray);
+    }
+
+    .vc-about__badge {
+        position: absolute;
+        bottom: 1rem; left: 1rem;
+        background: var(--vc-dark);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: var(--font-size-sm);
+    }
+
+    .vc-about__text h2 {
+        font-size: var(--font-size-h2);
+        font-weight: 800;
+        color: var(--text-dark);
+        margin: 0.25rem 0 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .vc-about__text > p {
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin: 0 0 1.5rem;
+    }
+
+    /* ===== SECCIONES GENÉRICAS ===== */
+    .vc-section { padding: 5rem 2rem; background: white; }
+    .vc-section--dark { background: var(--vc-dark-2); }
+    .vc-section--soft { background: #f9fafb; }
+
+    .vc-section-header { margin-bottom: 2.5rem; }
+    .vc-section-header h2 {
+        font-size: var(--font-size-h2); font-weight: 800;
+        color: var(--text-dark); margin: 0.25rem 0 0;
+        letter-spacing: -0.02em;
+    }
+    .vc-section-header p { color: var(--text-gray); max-width: 520px; margin: 0.5rem 0 0; line-height: 1.7; }
+    .vc-section-header--light h2 { color: white; }
+    .vc-section-header--light p { color: var(--vc-white-60); }
+
+    /* ===== SERVICIOS (CARDS) ===== */
+    .vc-svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .vc-svc-card {
+        background: white;
+        border: 1px solid #eef1f5;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: var(--transition);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .vc-svc-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--primary-teal);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+    }
+
+    .vc-svc-card__img {
+        height: 140px;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, rgba(98,171,191,0.06), rgba(98,171,191,0.14));
+    }
+
+    .vc-svc-card__img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .vc-svc-card:hover .vc-svc-card__img img { transform: scale(1.06); }
+
+    .vc-svc-card__fallback {
+        position: absolute; inset: 0;
+        display: none;
+        align-items: center; justify-content: center;
+        color: var(--primary-teal);
+    }
+
+    .vc-svc-card__img.no-img img { display: none; }
+    .vc-svc-card__img.no-img .vc-svc-card__fallback { display: flex; }
+
+    .vc-svc-card__num {
+        position: absolute; top: 0.75rem; left: 0.75rem;
+        font-size: 0.75rem; font-weight: 800;
+        color: rgba(0,0,0,0.15);
+        letter-spacing: 0.05em;
+    }
+
+    .vc-svc-card h3 {
+        font-size: 1rem; font-weight: 700;
+        color: var(--text-dark);
+        margin: 1rem 1.25rem 0.35rem;
+    }
+
+    .vc-svc-card p {
+        font-size: var(--font-size-sm);
+        color: var(--text-gray);
+        line-height: 1.6;
+        margin: 0 1.25rem 1.25rem;
+    }
+
+    /* ===== ESPECIALISTAS ===== */
+    .vc-specs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .vc-spec-card {
+        background: #fafbfc;
+        border: 1px solid #eef1f5;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .vc-spec-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+        border-color: var(--primary-teal);
+    }
+
+    .vc-spec-card__photo {
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+        background: #eef1f5;
+    }
+
+    .vc-spec-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .vc-spec-card__avatar {
+        width: 100%; height: 100%;
+        display: none;
+        align-items: center; justify-content: center;
+        background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+        color: white;
+    }
+
+    .vc-spec-card__avatar--coral { background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark)); }
+    .vc-spec-card__avatar--purple { background: linear-gradient(135deg, #8e44ad, #6c3483); }
+
+    .vc-spec-card__body { padding: 1.25rem; }
+    .vc-spec-card__body h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.15rem; }
+    .vc-spec-card__role { font-size: var(--font-size-sm); color: var(--accent-coral); font-weight: 600; }
+    .vc-spec-card__body p { font-size: var(--font-size-sm); color: var(--text-gray); line-height: 1.6; margin: 0.5rem 0; }
+    .vc-spec-card__meta { font-size: var(--font-size-sm); color: var(--text-gray); display: inline-flex; align-items: center; gap: 4px; }
+
+    /* ===== VET MÓVIL ===== */
+    .vc-vetmovil {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #eef1f5;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .vc-vetmovil__text { padding: 3rem; }
+    .vc-vetmovil__text h2 {
+        font-size: 2rem; font-weight: 800;
+        color: var(--text-dark); margin: 0.5rem 0 1rem;
+        letter-spacing: -0.02em;
+    }
+    .vc-vetmovil__text > p { color: var(--text-gray); line-height: 1.7; margin: 0 0 1.25rem; }
+
+    .vc-vetmovil__img {
+        position: relative; overflow: hidden;
+        min-height: 320px;
+        background: linear-gradient(135deg, rgba(98,171,191,0.08), rgba(98,171,191,0.15));
+    }
+
+    .vc-vetmovil__img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .vc-vetmovil__img-fallback {
+        display: none;
+        flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 0.75rem; height: 100%;
+        color: var(--primary-teal);
+        font-weight: 700; font-size: 1.125rem;
+    }
+
+    /* ===== UBICACIÓN ===== */
+    .vc-location { padding: 5rem 2rem; background: #fafbfc; }
+
+    .vc-location__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #eef1f5;
+        background: white;
+    }
+
+    .vc-location__info { padding: 2.5rem; }
+    .vc-location__info h2 { font-size: 1.625rem; font-weight: 800; color: var(--text-dark); margin: 0.25rem 0 1rem; letter-spacing: -0.02em; }
+    .vc-location__info > p {
+        display: flex; align-items: center; gap: 0.5rem;
+        color: var(--text-gray); font-size: var(--font-size-sm);
+        margin: 0 0 0.5rem; line-height: 1.6;
+    }
+    .vc-location__actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+    .vc-location__map {
+        min-height: 280px;
+        position: relative; overflow: hidden;
+        background: #eef1f5;
+    }
+
+    .vc-location__map img { width: 100%; height: 100%; object-fit: cover; }
+
+    .vc-location__map-fallback {
+        display: none;
+        flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 0.5rem; height: 100%;
+        color: var(--text-gray);
+        font-weight: 600; font-size: var(--font-size-sm);
+    }
+
+    /* ===== CTA ===== */
+    .vc-cta {
+        background: var(--vc-dark);
+        padding: 6rem 2rem;
+        text-align: center;
+    }
+
+    .vc-cta__inner { max-width: 700px; margin: 0 auto; }
+    .vc-cta h2 { font-size: clamp(2rem, 4vw, 3rem); color: white; margin: 0.75rem 0 2rem; font-weight: 800; letter-spacing: -0.03em; }
+    .vc-cta h2 em { font-style: italic; color: var(--primary-teal); }
+    .vc-cta__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .vc-cta__addr {
+        margin-top: 2.5rem; color: var(--vc-white-35);
+        font-size: var(--font-size-sm);
+        display: flex; align-items: center; justify-content: center;
+        gap: 0.35rem; flex-wrap: wrap;
+    }
+
+    .vc-back { text-align: center; padding: 1.5rem; background: var(--vc-dark-2); }
+    .vc-back__link { color: var(--primary-teal); text-decoration: none; font-weight: 600; font-size: var(--font-size-sm); }
+    .vc-back__link:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @@media (max-width: 768px) {
+        .vc-quick-bar__grid { grid-template-columns: 1fr 1fr; }
+        .vc-about__grid { grid-template-columns: 1fr; }
+        .vc-about__img { aspect-ratio: 16/9; }
+        .vc-svc-grid { grid-template-columns: 1fr; }
+        .vc-specs { grid-template-columns: 1fr; }
+        .vc-spec-card__photo { height: 140px; }
+        .vc-vetmovil { grid-template-columns: 1fr; }
+        .vc-vetmovil__img { min-height: 200px; }
+        .vc-location__inner { grid-template-columns: 1fr; }
+        .vc-location__map { min-height: 200px; }
+    }
+
+    @@media (max-width: 480px) {
+        .vc-quick-bar__grid { grid-template-columns: 1fr; }
+        .vc-hc__title { font-size: 2.25rem; }
+        .vc-hc__btns { flex-direction: column; align-items: center; }
+        .vc-hc__nav { display: none; }
+        .vc-location__actions { flex-direction: column; }
+    }
+</style>
+
+@code {
+    private int currentSlide = 0;
+    private const int TotalSlides = 3;
+    private System.Threading.Timer? heroTimer;
+    private bool heroPaused = false;
+
+    protected override void OnInitialized()
+    {
+        heroTimer = new System.Threading.Timer(async _ =>
+        {
+            if (!heroPaused)
+            {
+                await InvokeAsync(() =>
+                {
+                    currentSlide = (currentSlide + 1) % TotalSlides;
+                    StateHasChanged();
+                });
+            }
+        }, null, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
+    }
+
+    private void GoToSlide(int index) => currentSlide = index;
+    private void NextSlide() => currentSlide = (currentSlide + 1) % TotalSlides;
+    private void PrevSlide() => currentSlide = (currentSlide - 1 + TotalSlides) % TotalSlides;
+    private void OnHeroEnter() => heroPaused = true;
+    private void OnHeroLeave() => heroPaused = false;
+
+    public void Dispose() => heroTimer?.Dispose();
+}

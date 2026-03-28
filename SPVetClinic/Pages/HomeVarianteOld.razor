@@ -1,0 +1,56 @@
+@page "/home-old"
+@layout VariantCLayout
+
+<PageTitle>San Pablo Vet Clínic - Home Original</PageTitle>
+<HeadContent>
+     <meta name="description"
+           content="Clínica veterinaria en Rancagua con urgencias 24/7. Especialistas en neurología, medicina felina y endocrinología. Atención a domicilio y peluquería canina." />
+     <meta property="og:title" content="San Pablo Vet Clínic | Clínica Veterinaria Rancagua" />
+     <meta property="og:description"
+           content="Clínica veterinaria en Rancagua con urgencias 24/7. Especialistas en neurología, medicina felina y endocrinología. Atención a domicilio y peluquería canina." />
+     <meta property="og:type" content="website" />
+</HeadContent>
+
+<!-- Back link -->
+<div style="position:fixed;top:80px;left:20px;z-index:50;">
+    <a href="/variantes" style="display:inline-flex;align-items:center;gap:6px;background:#0d0d0d;color:white;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:transform .2s ease,box-shadow .2s ease;"
+       onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 16px rgba(0,0,0,0.4)'"
+       onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)'">
+        ← Volver
+    </a>
+</div>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<HeroProSection />
+
+<!-- ============================================
+     CARRUSEL DE ANUNCIOS
+     ============================================ -->
+<AnnouncementCarousel />
+
+<!-- ============================================
+     FEATURE CARDS
+     ============================================ -->
+<FeatureCardsSection />
+
+<!-- ============================================
+     SERVICIOS
+     ============================================ -->
+<ServicesSection />
+
+<!-- ============================================
+     ¿POR QUÉ ELEGIRNOS?
+     ============================================ -->
+<WhyUsSection />
+
+<!-- ============================================
+     TESTIMONIOS
+     ============================================ -->
+<TestimonialsSection />
+
+<!-- ============================================
+     CONTACTO
+     ============================================ -->
+<ContactSection />

@@ -80,12 +80,6 @@
     <!-- Navegación -->
     <button class="vc-hc__nav vc-hc__nav--prev" @onclick="PrevSlide" aria-label="Anterior">‹</button>
     <button class="vc-hc__nav vc-hc__nav--next" @onclick="NextSlide" aria-label="Siguiente">›</button>
-
-    <!-- Scroll indicator -->
-    <div class="vc-hero__scroll">
-        <span>Scroll</span>
-        <div class="vc-hero__scroll-bar"></div>
-    </div>
 </section>
 
 <!-- ▸ BARRA DE ACCESO RÁPIDO -->
@@ -570,7 +564,7 @@
     /* Carousel dots */
     .vc-hc__dots {
         position: absolute;
-        bottom: 4rem; left: 50%; transform: translateX(-50%);
+        bottom: 2rem; left: 50%; transform: translateX(-50%);
         display: flex; gap: 0.75rem;
         z-index: 10;
     }
@@ -614,25 +608,6 @@
 
     .vc-hc__nav--prev { left: 1.5rem; }
     .vc-hc__nav--next { right: 1.5rem; }
-
-    /* Scroll indicator */
-    .vc-hero__scroll {
-        position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-        display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-        color: var(--vc-white-35); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-        z-index: 10;
-    }
-
-    .vc-hero__scroll-bar {
-        width: 1px; height: 36px;
-        background: linear-gradient(180deg, var(--vc-white-35), transparent);
-        animation: vc-scroll 2s ease-in-out infinite;
-    }
-
-    @@keyframes vc-scroll {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.8; }
-    }
 
     /* ===== BARRA ACCESO RÁPIDO ===== */
     .vc-quick-bar { background: white; padding: 0; border-bottom: 1px solid #eef1f5; }

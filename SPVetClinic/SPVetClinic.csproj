@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Include=".copilot\assistant-context.md" />
+    <None Include="wwwroot\images\ImageOptimizer\ImageOptimizer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

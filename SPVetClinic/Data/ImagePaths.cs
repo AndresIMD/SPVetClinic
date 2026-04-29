@@ -10,30 +10,35 @@ namespace SPVetClinic.Data;
 /// </summary>
 public static class ImagePaths
 {
-    public const string Logo = "images/logo_pequeno_vet_clinic.png";
+    public const string Logo = "images/SP_Logo.png";
 
     /// <summary>Imágenes para el hero / carrusel principal</summary>
     public static class Hero
     {
-        public const string ClinicFrontage = "images/gallery/hero/SP_Clinic_Frontage.JPG";
+        public const string Frontage = "images/gallery/hero/hero-frontage.webp";
+        public const string FrontageLogo = "images/gallery/hero/hero-frontage-logo.webp";
     }
 
     /// <summary>Fotos de servicios en ejecución</summary>
     public static class Services
     {
-        public const string Cirugia = "images/gallery/services/service-cirugia.jpeg";
-        public const string Examenes = "images/gallery/services/service-examenes.jpeg";
-        public const string VetMovil = "images/gallery/services/SP_VetMovil_Left_Side.JPG";
+        public const string Cirugia = "images/gallery/services/service-cirugia.webp";
+        public const string SurgerySuite = "images/gallery/services/service-surgery-suite.webp";
+        public const string Examenes = "images/gallery/services/service-examenes.webp";
+        public const string Laboratory = "images/gallery/services/service-laboratory.webp";
+        public const string VetMovil = "images/gallery/services/service-vetmovil.webp";
+        public const string Grooming = "images/gallery/services/service-grooming.webp";
 
         // Pendientes — asignar la ruta cuando se tenga la foto
         public const string Consulta = "";
         public const string Vacunacion = "";
-        public const string Peluqueria = "";
     }
 
     /// <summary>Fotos de equipos e instrumentos</summary>
     public static class Equipment
     {
+        public const string Surgical = "images/gallery/equipment/equipment-surgical.webp";
+
         // Pendiente — asignar la ruta cuando se tenga la foto
         public const string Ecografia = "";
     }
@@ -49,11 +54,23 @@ public static class ImagePaths
     /// <summary>Fotos de las instalaciones</summary>
     public static class Clinic
     {
-        /// <summary>Fachada de la clínica (usa la foto del hero mientras no haya una específica)</summary>
-        public const string Fachada = Hero.ClinicFrontage;
+        public const string Reception = "images/gallery/clinic/clinic-reception.webp";
+        public const string ReceptionDesk = "images/gallery/clinic/clinic-reception-desk.webp";
+        public const string SpecialistReception = "images/gallery/clinic/clinic-specialist-reception.webp";
+
+        /// <summary>Fachada de la clínica (usa la foto del hero)</summary>
+        public const string Fachada = Hero.Frontage;
 
         // Pendiente — asignar la ruta cuando se tenga la foto
         public const string Mapa = "";
+    }
+
+    /// <summary>Fotos de pacientes felices</summary>
+    public static class Patients
+    {
+        public const string DogCloseup = "images/gallery/patients/patient-dog-closeup.webp";
+        public const string CatCloseup = "images/gallery/patients/patient-cat-closeup.webp";
+        public const string DogBox = "images/gallery/patients/patient-dog-box.webp";
     }
 
     /// <summary>Verifica si una ruta de imagen está disponible (no vacía).</summary>

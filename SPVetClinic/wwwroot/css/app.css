@@ -467,9 +467,10 @@ a:focus-visible {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
-.topnav--dark .logo-img {
+/* Logo mantiene colores originales en tema oscuro */
+/* .topnav--dark .logo-img {
     filter: brightness(0) invert(1);
-}
+} */
 
 .topnav--dark .nav-link {
     color: rgba(255, 255, 255, 0.75);

@@ -1,0 +1,18 @@
+[
+  {
+    "outputFileName": "wwwroot/css/bundle.min.css",
+    "inputFiles": [
+      "wwwroot/css/app.css",
+      "wwwroot/css/carousel.css",
+      "wwwroot/css/pages.css",
+      "wwwroot/css/new-pages.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "adjustRelativePaths": true,
+      "commentMode": "none",
+      "termSemicolons": true,
+      "gzip": true
+    }
+  }
+]

@@ -20,21 +20,21 @@
             <span class="efab__pulse"></span>
             <span>Urgencias 24/7</span>
         </div>
-        <a href="tel:+@AppConstants.Phone.MainWhatsApp" class="efab__option">
+        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)" class="efab__option">
             <Icon Name="phone" Size="18" />
             <div>
                 <strong>Llamar ahora</strong>
-                <span>@AppConstants.Phone.MainWhatsAppFormatted</span>
+                <span>@AppConstants.Phone.LandlineFormatted</span>
             </div>
         </a>
-        <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" class="efab__option efab__option--wa">
+        <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer" class="efab__option efab__option--wa">
             <Icon Name="whatsapp" Size="18" />
             <div>
                 <strong>WhatsApp</strong>
                 <span>Respuesta rápida</span>
             </div>
         </a>
-        <a href="@AppConstants.Maps.CompanyDirectLink" target="_blank" class="efab__option efab__option--location">
+        <a href="@AppConstants.Maps.CompanyDirectLink" target="_blank" rel="noopener noreferrer" class="efab__option efab__option--location">
             <Icon Name="map" Size="18" />
             <div>
                 <strong>Dirección</strong>

@@ -3,7 +3,7 @@
    Uso: <BookingHint Text="Agenda tu cita..." />
    ============================================ *@
 
-<a href="@Url" target="_blank" class="booking-hint @CssClass">
+<a href="@Url" target="_blank" rel="noopener noreferrer" class="booking-hint @CssClass">
     <span class="booking-hint-icon">
         @if (string.IsNullOrEmpty(Icon))
         {

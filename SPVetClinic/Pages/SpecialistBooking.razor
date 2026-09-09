@@ -1,220 +1,28 @@
 @page "/reservas/especialistas"
 
-@using SPVetClinic.Data.Models.Booking
-@using SPVetClinic.Services.Booking
-@using SPVetClinic.Components.Booking
+@inject NavigationManager Navigation
 
 <PageTitle>Reserva con Especialista - @AppConstants.Clinic.Name</PageTitle>
+
 <HeadContent>
     <meta name="description"
-          content="Reserva tu consulta con los especialistas veterinarios de San Pablo Vet Clínic. Selecciona fecha, hora y completa tu datos para confirmar." />
-    <meta property="og:title" content="Reserva con Especialista | San Pablo Vet Clínic" />
-    <meta property="og:description"
-          content="Sistema de reserva online con especialistas veterinarios certificados." />
-    <meta property="og:type" content="website" />
+          content="Reserva tu consulta con los especialistas veterinarios de San Pablo Vet Clínic." />
 </HeadContent>
 
-<!-- Progress Indicator -->
-<div class="booking-progress-bar">
-    <div class="progress-container">
-        @foreach (var step in Enum.GetValues<BookingStep>())
-        {
-            var stepNumber = (int)step + 1;
-            var isActive = BookingState?.CurrentStep == step;
-            var isCompleted = BookingState?.CurrentStep > step;
-            var stepLabel = GetStepLabel(step);
-
-            <div class="progress-step @(isActive ? "active" : "") @(isCompleted ? "completed" : "")">
-                <div class="step-number">
-                    @if (isCompleted)
-                    {
-                        <Icon Name="check" Size="16" Color="white" />
-                    }
-                    else
-                    {
-                        <span>@stepNumber</span>
-                    }
-                </div>
-                <span class="step-label">@stepLabel</span>
-            </div>
-        }
-    </div>
-</div>
-
-<!-- Main Content -->
-<div class="booking-container">
-    @if (IsInitializing)
-    {
-        <div class="loading-state">
-            <div class="spinner"></div>
-            <p>Cargando sistema de reservas...</p>
-        </div>
-    }
-    else if (BookingState?.CurrentStep == BookingStep.SpecialistSelection)
-    {
-        <SpecialistSelector 
-            Specialists="@BookingState.Specialists.ToList()"
-            IsLoading="@BookingState.IsLoading"
-            ErrorMessage="@BookingState.ErrorMessage"
-            OnSpecialistSelected="@HandleSpecialistSelected" />
-    }
-    else if (BookingState?.CurrentStep == BookingStep.TimeSlotSelection)
-    {
-        var specialistId = BookingState.FormData.SelectedSpecialist?.Id ?? 0;
-        <TimeSlotCalendar 
-            SpecialistId="@specialistId"
-            TimeSlots="@GetTimeSlots()"
-            IsLoading="@BookingState.IsLoading"
-            ErrorMessage="@BookingState.ErrorMessage"
-            OnTimeSlotSelected="@HandleTimeSlotSelected"
-            OnPreviousStep="@HandlePreviousStep" />
-    }
-    else if (BookingState?.CurrentStep == BookingStep.FormData)
-    {
-        <BookingForm 
-            OnFormSubmitted="@HandleFormSubmitted"
-            OnPreviousStep="@HandlePreviousStep" />
-    }
-    else if (BookingState?.CurrentStep == BookingStep.Review)
-    {
-        <BookingSummary 
-            OnConfirmed="@HandleSummaryConfirmed"
-            OnEditRequested="@HandleEditRequested" />
-    }
-    else if (BookingState?.CurrentStep == BookingStep.Payment)
-    {
-        <PaymentStep 
-            OnPaymentCompleted="@HandlePaymentCompleted"
-            OnPreviousStep="@HandlePreviousStep" />
-    }
-    else if (BookingState?.CurrentStep == BookingStep.Completed)
-    {
-        <div class="booking-completed">
-            <div class="completed-icon">
-                <Icon Name="check-circle" Size="80" Color="#4CAF50" />
-            </div>
-            <h2>¡Reserva Completada!</h2>
-            <p>Tu cita ha sido confirmada. Pronto recibirás un correo de confirmación.</p>
-            <div class="completed-actions">
-                <a href="./" class="btn-primary">
-                    Volver al Inicio
-                </a>
-                <a href="contacto" class="btn-secondary">
-                    Contactar Clínica
-                </a>
-            </div>
-        </div>
-    }
-</div>
+<main class="container" style="padding: 6rem 1rem; text-align: center;">
+    <h1>Redirigiendo a reservas</h1>
+    <p>Serás dirigido al sistema oficial de reservas de la clínica.</p>
+    <a href="@AppConstants.Clinic.BookingUrl"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-primary">
+        Continuar a reservas
+    </a>
+</main>
 
 @code {
-    [Inject] private BookingStateService? BookingState { get; set; }
-    [Inject] private BookingMockDataService? MockDataService { get; set; }
-
-    private bool IsInitializing = true;
-
     protected override void OnInitialized()
     {
-        if (BookingState == null || MockDataService == null)
-        {
-            return;
-        }
-
-        // Suscribirse a eventos de cambio de estado
-        BookingState.OnStepChanged += StateHasChanged;
-        BookingState.OnFormDataChanged += StateHasChanged;
-        BookingState.OnError += StateHasChanged;
-        BookingState.OnReservationCompleted += StateHasChanged;
+        Navigation.NavigateTo(AppConstants.Clinic.BookingUrl, forceLoad: true);
     }
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (BookingState == null || MockDataService == null)
-        {
-            return;
-        }
-
-        try
-        {
-            // Cargar datos mock
-            var specialists = MockDataService.GetMockSpecialists();
-            var timeSlots = MockDataService.GetMockTimeSlots();
-
-            // Inicializar el servicio
-            await BookingState.InitializeAsync(specialists, timeSlots);
-        }
-        finally
-        {
-            IsInitializing = false;
-        }
-    }
-
-    private async Task HandleSpecialistSelected(Specialist specialist)
-    {
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandleTimeSlotSelected(TimeSlot timeSlot)
-    {
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandleFormSubmitted()
-    {
-        // Ir al paso de revisión
-        BookingState?.GoToStep(BookingStep.Review);
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandleSummaryConfirmed()
-    {
-        // Ir al paso de pago
-        BookingState?.GoToStep(BookingStep.Payment);
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandlePaymentCompleted()
-    {
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandleEditRequested()
-    {
-        // Volver al formulario
-        BookingState?.GoToStep(BookingStep.FormData);
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private async Task HandlePreviousStep()
-    {
-        BookingState?.PreviousStep();
-        await Task.Yield();
-        StateHasChanged();
-    }
-
-    private List<TimeSlot> GetTimeSlots()
-    {
-        var specialistId = BookingState?.FormData.SelectedSpecialist?.Id ?? 0;
-        if (specialistId == 0)
-            return new List<TimeSlot>();
-
-        return BookingState!.GetTimeSlots(specialistId).ToList();
-    }
-
-    private string GetStepLabel(BookingStep step) => step switch
-    {
-        BookingStep.SpecialistSelection => "Especialista",
-        BookingStep.TimeSlotSelection => "Fecha y Hora",
-        BookingStep.FormData => "Tus Datos",
-        BookingStep.Review => "Revisión",
-        BookingStep.Payment => "Pago",
-        BookingStep.Completed => "Confirmado",
-        _ => ""
-    };
 }

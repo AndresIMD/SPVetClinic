@@ -8,7 +8,7 @@
 </HeadContent>
 
 <!-- ▸ HERO CAROUSEL -->
-<section class="vc-hero-carousel" @onmouseenter="OnHeroEnter" @onmouseleave="OnHeroLeave">
+<section class="vc-hero-carousel" @onmouseenter="OnHeroEnter" @onmouseleave="OnHeroLeave" aria-live="polite" aria-label="Destacados de la clínica">
     <!-- Slide 1: Principal -->
     <div class="vc-hc__slide @(currentSlide == 0 ? "active" : "")">
         <div class="vc-hc__bg">
@@ -17,7 +17,7 @@
         </div>
         <div class="vc-hc__overlay"></div>
         <div class="vc-hc__content">
-            <div class="vc-hc__tag"><span class="vc-pulse"></span> URGENCIAS 24/7 — ABIERTO AHORA</div>
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> URGENCIAS 24/7 — ATENCIÓN VETERINARIA</div>
             <h1 class="vc-hc__title">
                 <span class="vc-hc__title-sub">San Pablo</span>
                 <br />
@@ -26,7 +26,7 @@
                 Especialistas certificados · Laboratorio IDEXX · Atención a domicilio en @AppConstants.Clinic.City
             </p>
             <div class="vc-hc__btns">
-                <a href="contacto" class="vc-btn vc-btn--coral"><Icon Name="alarm" Size="18" /> Emergencia Ahora</a>
+                <a href="contacto#urgencia" class="vc-btn vc-btn--coral"><Icon Name="alarm" Size="18" /> Emergencia Ahora</a>
                 <a href="@AppConstants.Clinic.BookingUrl" target="_blank" class="vc-btn vc-btn--glass"><Icon Name="calendar" Size="18" /> Reservar Hora</a>
             </div>
         </div>
@@ -67,22 +67,22 @@
     </div>
 
     <!-- Indicadores -->
-    <div class="vc-hc__dots">
-        <button class="vc-hc__dot @(currentSlide == 0 ? "active" : "")" @onclick="() => GoToSlide(0)"></button>
-        <button class="vc-hc__dot @(currentSlide == 1 ? "active" : "")" @onclick="() => GoToSlide(1)"></button>
-        <button class="vc-hc__dot @(currentSlide == 2 ? "active" : "")" @onclick="() => GoToSlide(2)"></button>
+    <div class="vc-hc__dots" aria-label="Seleccionar slide del carrusel">
+        <button type="button" class="vc-hc__dot @(currentSlide == 0 ? "active" : "")" @onclick="() => GoToSlide(0)" aria-label="Mostrar slide 1" aria-pressed="@(currentSlide == 0)"></button>
+        <button type="button" class="vc-hc__dot @(currentSlide == 1 ? "active" : "")" @onclick="() => GoToSlide(1)" aria-label="Mostrar slide 2" aria-pressed="@(currentSlide == 1)"></button>
+        <button type="button" class="vc-hc__dot @(currentSlide == 2 ? "active" : "")" @onclick="() => GoToSlide(2)" aria-label="Mostrar slide 3" aria-pressed="@(currentSlide == 2)"></button>
     </div>
 
     <!-- Navegación -->
-    <button class="vc-hc__nav vc-hc__nav--prev" @onclick="PrevSlide" aria-label="Anterior">‹</button>
-    <button class="vc-hc__nav vc-hc__nav--next" @onclick="NextSlide" aria-label="Siguiente">›</button>
+    <button type="button" class="vc-hc__nav vc-hc__nav--prev" @onclick="PrevSlide" aria-label="Anterior">‹</button>
+    <button type="button" class="vc-hc__nav vc-hc__nav--next" @onclick="NextSlide" aria-label="Siguiente">›</button>
 </section>
 
 <!-- ▸ BARRA DE ACCESO RÁPIDO -->
 <section class="vc-quick-bar">
     <div class="vc-w">
         <div class="vc-quick-bar__grid">
-            <a href="contacto" class="vc-qb vc-qb--urgent">
+            <a href="contacto#urgencia" class="vc-qb vc-qb--urgent">
                 <Icon Name="alarm" Size="20" />
                 <div>
                     <strong>Urgencias 24/7</strong>
@@ -270,7 +270,7 @@
                 <p><Icon Name="clock" Size="16" /> Abierto las 24 horas, todos los días</p>
                 <p><Icon Name="phone" Size="16" /> @AppConstants.Phone.MainWhatsAppFormatted</p>
                 <div class="vc-location__actions">
-                    <a href="@AppConstants.Maps.DirectionsUrl" target="_blank" class="vc-btn vc-btn--dark">
+                    <a href="@AppConstants.Maps.CompanyDirectLink" target="_blank" class="vc-btn vc-btn--dark">
                         <Icon Name="location" Size="18" /> Ver en Google Maps
                     </a>
                     <a href="contacto" class="vc-btn vc-btn--outline">
@@ -508,12 +508,16 @@
 
     .vc-hc__overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(180deg, rgba(13,13,13,0.4) 0%, rgba(13,13,13,0.85) 100%);
+        background: linear-gradient(180deg, rgba(13,13,13,0.25) 0%, rgba(13,13,13,0.70) 100%);
     }
 
     .vc-hc__content {
         position: relative; z-index: 1;
         max-width: 800px; padding: 4rem 2rem;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
 
     .vc-hc__tag {
@@ -546,6 +550,10 @@
         line-height: 1.05;
         margin: 0 0 1rem;
         letter-spacing: -0.04em;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
 
     .vc-hc__title-sub {
@@ -553,6 +561,7 @@
         font-weight: 700;
         letter-spacing: 0.08em;
         color: white;
+        user-select: none;
     }
 
     .vc-hc__sub {

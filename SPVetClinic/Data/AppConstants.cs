@@ -77,7 +77,13 @@ public static class AppConstants
     /// </summary>
     public static class Maps
     {
-        public const string EmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.0876!2d-70.7399!3d-34.1701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662e4ee8a70a5e1%3A0x5e5e5e5e5e5e5e5e!2sAv.%20Central%20265%2C%20Rancagua%2C%20Chile!5e0!3m2!1ses!2scl!4v1701432000000!5m2!1ses!2scl";
+        // Embed URL con ubicación correcta de San Pablo Vet Clínic (empresa)
+        public const string EmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3300.7510740611997!2d-70.71600672427813!3d-34.17828147310979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9663456594efe5a9%3A0xedb27494ccccd065!2sSan%20Pablo%20Vet%20Cl%C3%ADnic!5e0!3m2!1ses!2scl!4v1765084763953!5m2!1ses!2scl";
+
+        // Link directo a la empresa en Google Maps (con búsqueda por nombre)
+        public const string CompanyDirectLink = "https://www.google.com/maps/search/San+Pablo+Vet+Clínic+Rancagua";
+
+        // URL heredada (dirección general)
         public const string DirectionsUrl = "https://maps.google.com/?q=Av.+Central+265,+Rancagua,+Chile";
     }
 

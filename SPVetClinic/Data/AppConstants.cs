@@ -20,6 +20,7 @@ public static class AppConstants
         public const string FullAddress = "Av. Central 265, Rancagua, Chile";
         public const string Schedule = "Urgencias 24 horas, todos los días";
         public const string YearsOfService = "más de 10 años";
+        public const string YearsOfServiceStat = "10+";
         public const string BookingUrl = "https://vetsanpablo.crmveterinario.com/reserva_online";
     }
 

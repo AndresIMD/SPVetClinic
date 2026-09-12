@@ -647,6 +647,8 @@ a:focus-visible {
 }
 
 .btn-primary {
+    position: relative;
+    overflow: hidden;
     background: var(--primary-teal);
     color: white;
     padding: 1rem 2rem;
@@ -663,10 +665,25 @@ a:focus-visible {
     cursor: pointer;
 }
 
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
 .btn-primary:hover {
     background: var(--primary-teal-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
 }
 
 .btn-secondary {
@@ -932,6 +949,177 @@ section {
     color: var(--text-gray);
 }
 
+/* Home usa el componente compartido <SectionHeader> (arriba) con este modificador
+   para mantener su alineación a la izquierda y ancho completo, en vez de duplicar
+   el markup del componente como se hacía antes. */
+.section-header.vc-section-header--home {
+    text-align: left;
+    max-width: none;
+    margin: 0 0 2.5rem;
+}
+.section-header.vc-section-header--home .section-tag { font-size: 0.75rem; margin-bottom: 0; }
+.section-header.vc-section-header--home .section-title { margin: 0.25rem 0 0; }
+.section-header.vc-section-header--home .section-subtitle {
+    max-width: 520px; margin: 0.5rem 0 0; text-align: left;
+}
+
+/* ============================================
+   TOKENS DE MARCA DE HOME (compartidos)
+   Extraídos del <style> inline de Home.razor para que las secciones que Home
+   incluye (ServicesPreviewSection, SpecialistsPreviewSection, MobileVetPreviewSection,
+   FinalCtaSection, etc.) no dependan de que Home esté montada para verse bien.
+   ============================================ */
+.vc-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.vc-accent {
+    background: linear-gradient(135deg, var(--primary-teal), #87d4e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.vc-accent-coral {
+    background: linear-gradient(135deg, var(--accent-coral), #d4747e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.vc-vetmovil__title-sub {
+    display: inline-block;
+    font-size: 0.6em;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+}
+
+/* ===== TARJETAS DE SERVICIO (estilo Home) ===== */
+.vc-svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.vc-svc-card {
+    background: white;
+    border: 1px solid #eef1f5;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.vc-svc-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-teal);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+}
+
+.vc-svc-card__img {
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, rgba(98,171,191,0.06), rgba(98,171,191,0.14));
+}
+
+.vc-svc-card__img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.vc-svc-card:hover .vc-svc-card__img img { transform: scale(1.06); }
+
+.vc-svc-card__fallback {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center; justify-content: center;
+    color: var(--primary-teal);
+}
+
+.vc-svc-card__img.no-img img { display: none; }
+.vc-svc-card__img.no-img .vc-svc-card__fallback { display: flex; }
+
+.vc-svc-card__num {
+    position: absolute; top: 0.75rem; left: 0.75rem;
+    font-size: 0.75rem; font-weight: 800;
+    color: rgba(0,0,0,0.15);
+    letter-spacing: 0.05em;
+}
+
+.vc-svc-card h3 {
+    font-size: 1rem; font-weight: 700;
+    color: var(--text-dark);
+    margin: 1rem 1.25rem 0.35rem;
+}
+
+.vc-svc-card p {
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin: 0 1.25rem 1.25rem;
+}
+
+/* ===== TARJETAS DE ESPECIALISTA (estilo Home) ===== */
+.vc-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.vc-spec-card {
+    background: #fafbfc;
+    border: 1px solid #eef1f5;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.vc-spec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+    border-color: var(--primary-teal);
+}
+
+.vc-spec-card__photo {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    background: #eef1f5;
+}
+
+.vc-spec-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.vc-spec-card__avatar {
+    width: 100%; height: 100%;
+    display: none;
+    align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    color: white;
+}
+
+.vc-spec-card__avatar--coral { background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark)); }
+.vc-spec-card__avatar--purple { background: linear-gradient(135deg, #8e44ad, #6c3483); }
+
+.vc-spec-card__body { padding: 1.25rem; }
+.vc-spec-card__body h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.15rem; }
+.vc-spec-card__role { font-size: var(--font-size-sm); color: var(--accent-coral); font-weight: 600; }
+.vc-spec-card__body p { font-size: var(--font-size-sm); color: var(--text-gray); line-height: 1.6; margin: 0.5rem 0; }
+.vc-spec-card__meta { font-size: var(--font-size-sm); color: var(--text-gray); display: inline-flex; align-items: center; gap: 4px; }
+
+@media (max-width: 768px) {
+    .vc-svc-grid { grid-template-columns: 1fr; }
+    .vc-specs { grid-template-columns: 1fr; }
+    .vc-spec-card__photo { height: 140px; }
+}
+
 /* Booking Hint Banner */
 .booking-hint {
     display: inline-flex;
@@ -1145,15 +1333,17 @@ a.service-card .service-card-link::after {
 }
 
 .specialist-avatar-teal {
-    background: linear-gradient(135deg, #62ABBF, #4A8FA3);
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
 }
 
 .specialist-avatar-coral {
-    background: linear-gradient(135deg, #BB545F, #9E454E);
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark));
 }
 
+/* Mismo morado que usa Home (.vc-spec-card__avatar--purple) para que
+   "Endocrinología" se vea igual en Home y en /especialistas. */
 .specialist-avatar-purple {
-    background: linear-gradient(135deg, #6C5CE7, #5541E0);
+    background: linear-gradient(135deg, #8e44ad, #6c3483);
 }
 
 .specialist-name {
@@ -2553,28 +2743,8 @@ a.service-card .service-card-link::after {
     }
 }
 
-/* ============================================
-   GLOWING BUTTONS
-   ============================================ */
-.btn-primary {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-}
-
-.btn-primary:hover::before {
-    left: 100%;
-}
+/* GLOWING BUTTONS: fusionado con la definición principal de .btn-primary
+   más arriba (antes estaba duplicado acá). */
 
 /* ============================================
    PARALLAX SHAPES (decorative)
@@ -2954,7 +3124,10 @@ a.service-card .service-card-link::after {
 }
 
 .btn-primary-large,
-.btn-secondary-large {
+.btn-secondary-large,
+.btn-glass-large,
+.btn-dark-large,
+.btn-outline-large {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -2993,6 +3166,41 @@ a.service-card .service-card-link::after {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(98, 171, 191, 0.35);
+}
+
+.btn-glass-large {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.btn-glass-large:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-dark-large {
+    background: var(--text-dark);
+    color: white;
+    border-color: var(--text-dark);
+}
+
+.btn-dark-large:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-outline-large {
+    background: transparent;
+    color: var(--text-dark);
+    border-color: #d4d8dd;
+}
+
+.btn-outline-large:hover {
+    border-color: var(--primary-teal);
+    color: var(--primary-teal);
 }
 
 .exam-cta-image {

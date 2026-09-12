@@ -1,0 +1,102 @@
+@implements IDisposable
+
+<!-- ▸ HERO CAROUSEL -->
+<section class="vc-hero-carousel" @onmouseenter="OnHeroEnter" @onmouseleave="OnHeroLeave" aria-live="polite" aria-label="Destacados de la clínica">
+    <!-- Slide 1: Principal -->
+    <div class="vc-hc__slide @(currentSlide == 0 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Hero.Frontage"
+                 alt="Fachada San Pablo Vet Clínic" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> URGENCIAS 24/7 — ATENCIÓN VETERINARIA</div>
+            <h1 class="vc-hc__title">
+                <span class="vc-hc__title-sub">San Pablo</span>
+                <br />
+                <span class="vc-accent">Vet</span> <span class="vc-accent-coral">Clínic</span></h1>
+            <p class="vc-hc__sub">
+                Especialistas certificados · Laboratorio IDEXX · Atención a domicilio en @AppConstants.Clinic.City
+            </p>
+            <div class="vc-hc__btns">
+                <a href="contacto#urgencia" class="btn-primary-large"><Icon Name="alarm" Size="18" /> Emergencia Ahora</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-glass-large"><Icon Name="calendar" Size="18" /> Reservar Hora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Especialistas -->
+    <div class="vc-hc__slide @(currentSlide == 1 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Services.SurgerySuite" alt="Cirugía y especialistas veterinarios" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> EQUIPO MÉDICO ESPECIALIZADO</div>
+            <h1 class="vc-hc__title">Especialistas<br /><span class="vc-accent">certificados</span></h1>
+            <p class="vc-hc__sub">Neurología · Medicina Felina · Endocrinología · Cirugía avanzada</p>
+            <div class="vc-hc__btns">
+                <a href="especialistas" class="btn-primary-large"><Icon Name="brain" Size="18" /> Ver Especialistas</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-glass-large"><Icon Name="calendar" Size="18" /> Agendar Hora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Servicios -->
+    <div class="vc-hc__slide @(currentSlide == 2 ? "active" : "")">
+        <div class="vc-hc__bg">
+            <img src="@ImagePaths.Services.Laboratory" alt="Laboratorio y exámenes veterinarios" onerror="this.style.display='none'" />
+        </div>
+        <div class="vc-hc__overlay"></div>
+        <div class="vc-hc__content">
+            <div class="vc-hc__tag"><span class="vc-pulse"></span> SERVICIOS INTEGRALES</div>
+            <h1 class="vc-hc__title">Todo para el cuidado<br /><span class="vc-accent">de tu mascota</span></h1>
+            <p class="vc-hc__sub">Consultas · Laboratorio IDEXX · Vacunación · Peluquería · Atención a domicilio</p>
+            <div class="vc-hc__btns">
+                <a href="servicios" class="btn-primary-large"><Icon Name="stethoscope" Size="18" /> Ver Servicios</a>
+                <a href="@AppConstants.Urls.WhatsAppMobileVetLink" target="_blank" rel="noopener noreferrer" class="btn-glass-large"><Icon Name="van" Size="18" /> Vet a Domicilio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="vc-hc__dots" aria-label="Seleccionar slide del carrusel">
+        <button type="button" class="vc-hc__dot @(currentSlide == 0 ? "active" : "")" @onclick="() => GoToSlide(0)" aria-label="Mostrar slide 1" aria-pressed="@(currentSlide == 0)"></button>
+        <button type="button" class="vc-hc__dot @(currentSlide == 1 ? "active" : "")" @onclick="() => GoToSlide(1)" aria-label="Mostrar slide 2" aria-pressed="@(currentSlide == 1)"></button>
+        <button type="button" class="vc-hc__dot @(currentSlide == 2 ? "active" : "")" @onclick="() => GoToSlide(2)" aria-label="Mostrar slide 3" aria-pressed="@(currentSlide == 2)"></button>
+    </div>
+
+    <!-- Navegación -->
+    <button type="button" class="vc-hc__nav vc-hc__nav--prev" @onclick="PrevSlide" aria-label="Anterior">‹</button>
+    <button type="button" class="vc-hc__nav vc-hc__nav--next" @onclick="NextSlide" aria-label="Siguiente">›</button>
+</section>
+
+@code {
+    private int currentSlide = 0;
+    private const int TotalSlides = 3;
+    private System.Threading.Timer? heroTimer;
+    private bool heroPaused = false;
+
+    protected override void OnInitialized()
+    {
+        heroTimer = new System.Threading.Timer(async _ =>
+        {
+            if (!heroPaused)
+            {
+                await InvokeAsync(() =>
+                {
+                    currentSlide = (currentSlide + 1) % TotalSlides;
+                    StateHasChanged();
+                });
+            }
+        }, null, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
+    }
+
+    private void GoToSlide(int index) => currentSlide = index;
+    private void NextSlide() => currentSlide = (currentSlide + 1) % TotalSlides;
+    private void PrevSlide() => currentSlide = (currentSlide - 1 + TotalSlides) % TotalSlides;
+    private void OnHeroEnter() => heroPaused = true;
+    private void OnHeroLeave() => heroPaused = false;
+
+    public void Dispose() => heroTimer?.Dispose();
+}

@@ -558,6 +558,7 @@
     border-radius: 14px;
     padding: 2.5rem 2rem;
     border: 1px solid #eef1f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: var(--transition);
     text-decoration: none;
     display: flex;
@@ -566,14 +567,26 @@
 
 .servicio-hub-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
     border-color: var(--primary-teal);
     background: white;
 }
 
 .servicio-hub-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(98, 171, 191, 0.10), rgba(98, 171, 191, 0.20));
+    color: var(--primary-teal);
+    margin-bottom: 1.25rem;
+    transition: var(--transition);
+}
+
+.servicio-hub-card:hover .servicio-hub-icon {
+    background: linear-gradient(135deg, rgba(98, 171, 191, 0.16), rgba(98, 171, 191, 0.28));
 }
 
 .servicio-hub-card h3 {
@@ -630,6 +643,15 @@
 .servicio-urgencias p,
 .servicio-urgencias .servicio-features li {
     color: white;
+}
+
+.servicio-urgencias .servicio-hub-icon {
+    background: linear-gradient(135deg, rgba(187, 84, 95, 0.35), rgba(187, 84, 95, 0.55));
+    color: var(--accent-coral);
+}
+
+.servicio-urgencias:hover .servicio-hub-icon {
+    background: linear-gradient(135deg, rgba(187, 84, 95, 0.5), rgba(187, 84, 95, 0.7));
 }
 
 .btn-urgencia {

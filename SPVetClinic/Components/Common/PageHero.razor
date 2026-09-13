@@ -4,7 +4,11 @@
    professional gradient + geometric accent design.
    ============================================ *@
 
-<section class="page-hero-modern @CssClass" role="banner">
+<section class="page-hero-modern @CssClass @(HasBackgroundImage ? "page-hero-modern--photo" : "")" role="banner">
+    @if (HasBackgroundImage)
+    {
+        <img class="page-hero-modern__bg-image" src="@BackgroundImage" alt="" loading="eager" />
+    }
     <div class="page-hero-modern__overlay"></div>
     <div class="page-hero-modern__content">
         @if (!string.IsNullOrEmpty(Tag))
@@ -48,4 +52,7 @@
     [Parameter] public string Subtitle { get; set; } = "";
     [Parameter] public RenderFragment? Actions { get; set; }
     [Parameter] public string CssClass { get; set; } = "";
+    [Parameter] public string BackgroundImage { get; set; } = "";
+
+    private bool HasBackgroundImage => !string.IsNullOrEmpty(BackgroundImage);
 }

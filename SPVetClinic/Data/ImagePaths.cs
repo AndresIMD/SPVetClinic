@@ -29,18 +29,16 @@ public static class ImagePaths
         public const string VetMovil = "images/gallery/services/service-vetmovil.webp";
         public const string Grooming = "images/gallery/services/service-grooming.webp";
 
-        // Pendientes — asignar la ruta cuando se tenga la foto
-        public const string Consulta = "";
-        public const string Vacunacion = "";
+        public const string Consulta = "images/gallery/services/service-consulta.webp";
+        public const string Vacunacion = "images/gallery/services/service-vacunacion.webp";
     }
 
     /// <summary>Fotos de equipos e instrumentos</summary>
     public static class Equipment
     {
         public const string Surgical = "images/gallery/equipment/equipment-surgical.webp";
-
-        // Pendiente — asignar la ruta cuando se tenga la foto
-        public const string Ecografia = "";
+        public const string Ecografia = "images/gallery/equipment/equipment-ecografia.webp";
+        public const string Xray = "images/gallery/equipment/equipment-xray.webp";
     }
 
     /// <summary>Fotos del equipo médico</summary>
@@ -57,12 +55,26 @@ public static class ImagePaths
         public const string Reception = "images/gallery/clinic/clinic-reception.webp";
         public const string ReceptionDesk = "images/gallery/clinic/clinic-reception-desk.webp";
         public const string SpecialistReception = "images/gallery/clinic/clinic-specialist-reception.webp";
+        public const string WaitingRoom = "images/gallery/clinic/clinic-waiting-room.webp";
+        public const string Hospitalizacion = "images/gallery/clinic/clinic-hospitalizacion.webp";
+        public const string Laboratorio = "images/gallery/clinic/clinic-laboratorio.webp";
+        public const string Pabellon = "images/gallery/clinic/clinic-pabellon.webp";
+
+        /// <summary>Foto de la clínica para la sección "Nuestra Historia" de Conócenos</summary>
+        public const string Historia = "images/gallery/clinic/clinic-historia.webp";
 
         /// <summary>Fachada de la clínica (usa la foto del hero)</summary>
         public const string Fachada = Hero.Frontage;
 
         // Pendiente — asignar la ruta cuando se tenga la foto
         public const string Mapa = "";
+    }
+
+    /// <summary>Fotos usadas como fondo fotográfico en el hero de páginas internas</summary>
+    public static class PageHeroes
+    {
+        public const string Servicios = "images/gallery/hero/hero-servicios.webp";
+        public const string Especialistas = "images/gallery/hero/hero-especialistas.webp";
     }
 
     /// <summary>Fotos de pacientes felices</summary>

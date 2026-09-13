@@ -11,7 +11,7 @@
 </HeadContent>
 
 <PageHero Tag="Nuestra Clínica" TagIcon="clinic"     Title="Nuestra Historia"
-          Subtitle="@($"Más de {AppConstants.Clinic.YearsOfService} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
+          Subtitle="@($"{AppConstants.Clinic.YearsOfService} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
           CssClass="hero--teal" />
 
 <!-- ============================================
@@ -20,10 +20,7 @@
 <section class="historia-section">
     <div class="historia-container reveal">
         <div class="historia-image">
-            <div class="placeholder-image">
-                <span>📷</span>
-            </div>
-            <p class="image-caption">Espacio para foto de la clínica</p>
+            <img src="@ImagePaths.Clinic.Historia" alt="Fachada de San Pablo Vet Clínic" loading="lazy" />
         </div>
         <div class="historia-content">
             <h2 class="section-title">Nuestra Historia</h2>
@@ -38,7 +35,7 @@
                 certificados en neurología, medicina felina y endocrinología.
             </p>
             <p>
-                Hoy, con más de @AppConstants.Clinic.YearsOfService de experiencia, seguimos comprometidos con el
+                Hoy, con @AppConstants.Clinic.YearsOfService de experiencia, seguimos comprometidos con el
                 bienestar de cada mascota que cruza nuestras puertas, ofreciendo atención 24 horas y servicio móvil
                 a domicilio.
             </p>
@@ -94,19 +91,24 @@
     </div>
 
     <div class="galeria-grid">
-        @for (int i = 1; i <= 8; i++)
+        @{ int i = 0; }
+        @foreach (var foto in galeriaFotos)
         {
+            i++;
             <div class="galeria-item reveal stagger-@i">
+                <img src="@foto.Src" alt="@foto.Alt" loading="lazy" />
+            </div>
+        }
+        @for (int p = i + 1; p <= TotalGaleriaSlots; p++)
+        {
+            <div class="galeria-item reveal stagger-@p">
                 <div class="galeria-placeholder">
                     <Icon Name="image" Size="40" />
-                    <p>Imagen @i</p>
+                    <p>Próximamente</p>
                 </div>
             </div>
         }
     </div>
-    <p class="galeria-note">
-        <Icon Name="image" Size="16" /> Espacio reservado para fotos reales de las instalaciones
-    </p>
 </section>
 
 <!-- ============================================
@@ -173,3 +175,22 @@
             </div>
         </div>
     </section>
+
+@code {
+    private const int TotalGaleriaSlots = 8;
+
+    // Fotos reales de las instalaciones. Al agregar más, solo hace falta
+    // sumarlas aquí (usando las constantes de ImagePaths) — el resto de los
+    // recuadros "Próximamente" se ajusta solo.
+    private readonly List<(string Src, string Alt)> galeriaFotos = new()
+    {
+        (ImagePaths.Clinic.Reception, "Recepción de San Pablo Vet Clínic"),
+        (ImagePaths.Clinic.ReceptionDesk, "Mesón de atención en recepción"),
+        (ImagePaths.Clinic.SpecialistReception, "Sala de espera de especialistas"),
+        (ImagePaths.Equipment.Surgical, "Equipamiento de quirófano"),
+        (ImagePaths.Clinic.WaitingRoom, "Sala de espera"),
+        (ImagePaths.Clinic.Hospitalizacion, "Área de hospitalización"),
+        (ImagePaths.Clinic.Laboratorio, "Laboratorio clínico"),
+        (ImagePaths.Clinic.Pabellon, "Pabellón quirúrgico"),
+    };
+}

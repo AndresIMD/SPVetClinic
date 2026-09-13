@@ -1884,23 +1884,11 @@ a.service-card .service-card-link::after {
     gap: 0.75rem;
 }
 
+/* .btn-whatsapp-vet se usa junto a .whatsapp-btn (clase base: fondo, padding,
+   sombra, hover) — aquí solo van los ajustes propios de la variante de 2 líneas
+   (label + número), que necesita un ícono más grande y más espacio. */
 .btn-whatsapp-vet {
-    display: inline-flex;
-    align-items: center;
     gap: 1rem;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-    transition: var(--transition);
-    width: fit-content;
-}
-
-.btn-whatsapp-vet:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
 }
 
 .btn-whatsapp-vet .whatsapp-icon-svg {

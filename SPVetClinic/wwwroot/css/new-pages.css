@@ -517,36 +517,8 @@
 }
 
 /* ==========================================
-   CTA SECTION (Generic)
+   CTA BUTTONS (Generic)
    ========================================== */
-.cta-section {
-    padding: 5rem 5%;
-    background: var(--bg-white);
-}
-
-.cta-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    background: var(--surface-dark);
-    padding: 4rem 3rem;
-    border-radius: var(--border-radius);
-    color: white;
-}
-
-.cta-title {
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.cta-description {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    line-height: 1.7;
-}
-
 .cta-buttons {
     display: flex;
     justify-content: center;
@@ -688,21 +660,6 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.servicios-cta-section {
-    padding: 4rem 5%;
-    background: var(--bg-light);
-}
-
-.servicios-cta-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    background: var(--bg-white);
-    padding: 3rem 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-}
-
 /* ==========================================
     PÁGINA CONTACTO
     ========================================== */
@@ -841,7 +798,9 @@
 }
 
 .info-util-icon {
-    font-size: 2.5rem;
+    display: inline-flex;
+    justify-content: center;
+    color: var(--primary-teal);
     margin-bottom: 1rem;
 }
 
@@ -1159,21 +1118,6 @@
     padding: 0.75rem 0;
     color: var(--text-secondary);
     font-weight: 500;
-}
-
-.peluqueria-cta-section {
-    padding: 4rem 5%;
-    background: var(--bg-light);
-}
-
-.peluqueria-cta-container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
 }
 
 @media (max-width: 768px) {

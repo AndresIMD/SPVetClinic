@@ -375,34 +375,20 @@
 <!-- ============================================
      CTA SECTION
      ============================================ -->
-<section class="exam-cta-section">
-    <div class="exam-cta-container reveal">
-        <div class="exam-cta-content">
-            <h2 class="exam-cta-title">¿Tu mascota necesita un examen?</h2>
-            <p class="exam-cta-description">
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="microscope" Size="48" />
+            </div>
+            <h2>¿Tu mascota necesita un examen?</h2>
+            <p>
                 Agenda una cita con nuestro equipo. Evaluaremos a tu mascota y determinaremos
                 qué estudios son necesarios para un diagnóstico preciso.
             </p>
-            <div class="exam-cta-buttons">
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-large">
-                    <span>
-                        <Icon Name="calendar" Size="20" />
-                    </span>
-                    <span>Agendar Cita</span>
-                </a>
-                <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)" class="btn-secondary-large">
-                    <span>
-                        <Icon Name="phone" Size="20" />
-                    </span>
-                    <span>Llamar: @AppConstants.Phone.LandlineFormatted</span>
-                </a>
-            </div>
-        </div>
-        <div class="exam-cta-image">
-            <div class="exam-cta-placeholder">
-                <span>
-                    <Icon Name="microscope" Size="48" />
-                </span>
+            <div class="cta-buttons">
+                <WhatsAppButton Label="Agendar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
             </div>
         </div>
     </div>

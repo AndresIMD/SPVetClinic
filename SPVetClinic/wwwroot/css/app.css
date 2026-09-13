@@ -3071,46 +3071,6 @@ a.service-card .service-card-link::after {
     color: var(--text-gray);
 }
 
-/* ============================================
-   EXAM CTA SECTION
-   ============================================ */
-.exam-cta-section {
-    padding: 5rem 5%;
-    background: var(--bg-white);
-}
-
-.exam-cta-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
-    align-items: center;
-    background: var(--surface-dark);
-    border-radius: var(--border-radius);
-    padding: 3rem;
-    color: white;
-}
-
-.exam-cta-title {
-    font-size: clamp(1.8rem, 3vw, 2.2rem);
-    font-weight: 700;
-    margin: 0 0 1rem;
-}
-
-.exam-cta-description {
-    font-size: 1.05rem;
-    opacity: 0.9;
-    margin: 0 0 1.5rem;
-    line-height: 1.7;
-}
-
-.exam-cta-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
 .btn-primary-large,
 .btn-secondary-large,
 .btn-glass-large,
@@ -3191,23 +3151,6 @@ a.service-card .service-card-link::after {
     color: var(--primary-teal);
 }
 
-.exam-cta-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.exam-cta-placeholder {
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-}
-
 /* ============================================
    EXAM INFO SECTION
    ============================================ */
@@ -3256,19 +3199,6 @@ a.service-card .service-card-link::after {
    RESPONSIVE - PAGES
    ============================================ */
 @media (max-width: 768px) {
-    .exam-cta-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .exam-cta-buttons {
-        justify-content: center;
-    }
-
-    .exam-cta-image {
-        display: none;
-    }
-
     .exams-grid {
         grid-template-columns: 1fr;
     }

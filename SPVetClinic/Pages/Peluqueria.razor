@@ -209,23 +209,21 @@
 <!-- ============================================
      CTA SECTION
      ============================================ -->
-<section class="peluqueria-cta-section">
-    <div class="peluqueria-cta-container reveal">
-        <h2 class="cta-title">¿Listo para el Spa de tu Mascota?</h2>
-        <p class="cta-description">
-            Agenda una cita para peluquería y deja a tu compañero en manos expertas.
-            Saldrá limpio, cómodo y luciendo espectacular.
-        </p>
-        <div class="cta-buttons">
-            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-large">
-                <Icon Name="calendar" Size="20" />
-                <span>Agendar Peluquería</span>
-            </a>
-            <a href="@AppConstants.Urls.WhatsAppLink(AppConstants.Phone.MainWhatsApp)" target="_blank" rel="noopener noreferrer"
-                   class="btn-secondary-large">
-                <Icon Name="message" Size="20" />
-                <span>Consultar por WhatsApp</span>
-            </a>
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="scissors" Size="48" />
+            </div>
+            <h2>¿Listo para el Spa de tu Mascota?</h2>
+            <p>
+                Agenda una cita para peluquería y deja a tu compañero en manos expertas.
+                Saldrá limpio, cómodo y luciendo espectacular.
+            </p>
+            <div class="cta-buttons">
+                <WhatsAppButton Label="Consultar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+            </div>
         </div>
     </div>
 </section>

@@ -261,8 +261,10 @@
         </div>
 
         <div class="process-cta reveal">
-            <BookingHint Text="Las citas con especialistas requieren 50% de abono • Agenda en línea"
-                         CssClass="specialists-hint" />
+            <p class="process-cta__note">
+                <Icon Name="info" Size="18" />
+                Las citas con especialistas requieren 50% de abono
+            </p>
             <div class="cta-buttons">
                 <WhatsAppButton Label="Agendar Cita" Style="WhatsAppButtonStyle.Default" />
                 <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reserva Online</a>
@@ -343,6 +345,9 @@
 <section class="final-cta-section">
     <div class="container">
         <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="stethoscope" Size="48" />
+            </div>
             <h2>¿Tu mascota necesita atención especializada?</h2>
             <p>Agenda una evaluación con nuestro equipo o solicita directamente una cita con el especialista</p>
             <div class="cta-buttons">

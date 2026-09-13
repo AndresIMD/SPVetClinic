@@ -158,23 +158,22 @@
 <!-- ============================================
      CTA FINAL
      ============================================ -->
-<section class="cta-section">
-    <div class="cta-container reveal">
-        <h2 class="cta-title">¿Quieres conocernos en persona?</h2>
-        <p class="cta-description">Visita nuestra clínica o agenda una cita para conocer a nuestro equipo y nuestras
-            instalaciones.</p>
+<section class="final-cta-section">
+    <div class="container">
+        <div class="final-cta-content reveal">
+            <div class="cta-icon">
+                <Icon Name="location" Size="48" />
+            </div>
+            <h2>¿Quieres conocernos en persona?</h2>
+            <p>Visita nuestra clínica o agenda una cita para conocer a nuestro equipo y nuestras
+                instalaciones.</p>
             <div class="cta-buttons">
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-primary-large">
-                    <Icon Name="calendar" Size="20" />
-                    <span>Agendar Cita</span>
-                </a>
-                <NavLink href="contacto" class="btn-secondary-large">
-                    <Icon Name="location" Size="20" />
-                    <span>Ver Ubicación</span>
-                </NavLink>
+                <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+                <NavLink href="contacto" class="btn-secondary">Ver Ubicación</NavLink>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 @code {
     private const int TotalGaleriaSlots = 8;

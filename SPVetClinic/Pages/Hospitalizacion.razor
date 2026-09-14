@@ -16,12 +16,6 @@
     <TitleContent>
         Hospitalización <span class="highlight-medical">24/7</span>
     </TitleContent>
-    <Actions>
-        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.HospitalWhatsApp)" class="btn-primary-urgency">
-            <Icon Name="phone" Size="18" /> Contacto Hospital
-        </a>
-        <NavLink href="#info" class="btn-secondary">Ver Información</NavLink>
-    </Actions>
 </PageHero>
 
 @*<!-- SERVICIO 24/7 -->
@@ -302,10 +296,11 @@
             <h2>¿Tu mascota necesita hospitalización?</h2>
             <p>Contáctanos inmediatamente. Nuestro equipo está disponible 24/7</p>
             <div class="cta-buttons">
-                <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.HospitalWhatsApp)" class="btn-primary-urgency">
-                    <Icon Name="phone" Size="18" /> Llamar Hospital: @AppConstants.Phone.HospitalWhatsAppFormatted
+                <a href="contacto" class="btn-primary-urgency">
+                    <Icon Name="alarm" Size="20" /> Urgencias 24/7
                 </a>
-                <WhatsAppButton PhoneNumber="@AppConstants.Phone.HospitalWhatsApp" Label="WhatsApp Hospital"
+                <WhatsAppButton PhoneNumber="@AppConstants.Phone.MainWhatsApp"
+                                Label="Consultas WhatsApp"
                                 Style="WhatsAppButtonStyle.Default" />
             </div>
             <p class="cta-note">

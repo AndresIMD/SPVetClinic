@@ -10,15 +10,18 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<PageHero Tag="Atención a Domicilio" TagIcon="van"
+<PageHero Tag="Atención a Domicilio"
+          TagIcon="van"
           Subtitle="Llevamos la atención veterinaria profesional hasta la puerta de tu casa. Comodidad para ti, menos estrés para tu mascota."
           CssClass="hero--coral">
     <TitleContent>
         San Pablo <span class="highlight-coral">Vet Móvil</span>
     </TitleContent>
     <Actions>
-        <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita"
-                        SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+        <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp"
+                        Label="Agendar Visita"
+                        SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted"
+                        Style="WhatsAppButtonStyle.Vet" />
         <NavLink href="servicios" class="btn-secondary">Ver Servicios</NavLink>
     </Actions>
 </PageHero>
@@ -420,7 +423,7 @@
                 <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MobileVetWhatsApp)" class="btn-secondary">Llamar
                     Ahora</a>
                 </div>
-                <p class="cta-note">* Recuerda agendar con al menos 24 horas de anticipación</p>
+                <p class="cta-note"><Icon Name="alarm" Size="16" /> Recuerda agendar con al menos 24 horas de anticipación</p>
             </div>
         </div>
     </section>

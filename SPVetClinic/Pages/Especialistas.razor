@@ -12,13 +12,14 @@
 
 <PageHero Tag="Atención Especializada" TagIcon="stethoscope"
           Subtitle="Médicos veterinarios expertos en áreas específicas para brindar el mejor diagnóstico y tratamiento a tu mascota"
-          CssClass="hero--teal" BackgroundImage="@ImagePaths.PageHeroes.Especialistas">
+          CssClass="hero--coral" BackgroundImage="@ImagePaths.PageHeroes.Especialistas">
     <TitleContent>
-        Especialistas <span class="highlight-teal">Certificados</span>
+        Especialistas <span class="highlight-coral">Certificados</span>
     </TitleContent>
     <Actions>
-        <WhatsAppButton Label="Agendar Consulta" Style="WhatsAppButtonStyle.Hero" />
-        <a href="#especialistas-lista" class="btn-secondary">Ver Especialistas</a>
+        <WhatsAppButton Label="Agendar Consulta"
+                        Style="WhatsAppButtonStyle.Vet" />
+        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
     </Actions>
 </PageHero>
 

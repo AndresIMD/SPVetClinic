@@ -993,17 +993,11 @@ section {
 }
 
 .vc-accent {
-    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-tint));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-teal);
 }
 
 .vc-accent-coral {
-    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-tint));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-coral);
 }
 
 .vc-vetmovil__title-sub {
@@ -1046,6 +1040,7 @@ section {
 .vc-svc-card__img img {
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center 25%;
     transition: transform 0.4s ease;
 }
 
@@ -1115,12 +1110,12 @@ section {
     width: 100%; height: 100%;
     display: none;
     align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    background: var(--primary-teal);
     color: white;
 }
 
-.vc-spec-card__avatar--coral { background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark)); }
-.vc-spec-card__avatar--purple { background: linear-gradient(135deg, var(--neutral-accent), var(--neutral-accent-dark)); }
+.vc-spec-card__avatar--coral { background: var(--accent-coral); }
+.vc-spec-card__avatar--purple { background: var(--vc-dark, #0d0d0d); }
 
 .vc-spec-card__body { padding: 1.25rem; }
 .vc-spec-card__body h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.15rem; }
@@ -1347,17 +1342,17 @@ a.service-card .service-card-link::after {
 }
 
 .specialist-avatar-teal {
-    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    background: var(--primary-teal);
 }
 
 .specialist-avatar-coral {
-    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark));
+    background: var(--accent-coral);
 }
 
 /* Mismo acento que usa Home (.vc-spec-card__avatar--purple) para que
    "Endocrinología" se vea igual en Home y en /especialistas. */
 .specialist-avatar-purple {
-    background: linear-gradient(135deg, var(--neutral-accent), var(--neutral-accent-dark));
+    background: var(--text-dark);
 }
 
 .specialist-name {
@@ -1547,7 +1542,7 @@ a.service-card .service-card-link::after {
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     text-decoration: none;
     margin-top: 1.5rem;
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
@@ -1668,10 +1663,20 @@ a.service-card .service-card-link::after {
 }
 
 .booking-card-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-gray);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-dark);
+    background: rgba(187, 84, 95, 0.06);
+    border-left: 3px solid var(--accent-coral);
+    padding: 10px 16px;
+    border-radius: 6px;
 }
+
+.booking-card-note svg { color: var(--accent-coral); flex-shrink: 0; }
 
 /* Legacy form styles (keep for potential future use) */
 .booking-form {
@@ -1928,10 +1933,20 @@ a.service-card .service-card-link::after {
 }
 
 .cta-note {
-    font-size: 0.85rem;
-    color: var(--text-gray);
-    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-dark);
+    background: rgba(187, 84, 95, 0.06);
+    border-left: 3px solid var(--accent-coral);
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin: 0.75rem 0 0;
 }
+
+.cta-note svg { color: var(--accent-coral); flex-shrink: 0; }
 
 /* ============================================
    FAQ SECTION

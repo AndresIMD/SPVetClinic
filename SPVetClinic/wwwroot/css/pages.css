@@ -43,12 +43,6 @@
     z-index: 0;
 }
 
-.page-hero-modern--photo .page-hero-modern__overlay {
-    background:
-        linear-gradient(180deg, rgba(13, 13, 13, 0.55) 0%, rgba(13, 13, 13, 0.78) 100%),
-        radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.35) 0%, transparent 60%);
-}
-
 .page-hero-modern__content {
     position: relative;
     z-index: 1;
@@ -85,7 +79,7 @@
 
 .page-hero-modern__subtitle {
     font-size: 1.0625rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.75);
     max-width: 600px;
     margin: 0 auto var(--spacing-lg);
     line-height: 1.7;
@@ -108,8 +102,10 @@
    número debajo vs. un link simple) cuando comparten fila, para que no
    se vean de tamaños distintos. */
 .page-hero-modern__actions .btn-secondary,
+.page-hero-modern__actions .btn-primary-urgency,
 .page-hero-modern__actions .whatsapp-btn,
 .cta-buttons .btn-secondary,
+.cta-buttons .btn-primary-urgency,
 .cta-buttons .whatsapp-btn {
     min-height: 40px;
     box-sizing: content-box;
@@ -140,12 +136,18 @@
     background: radial-gradient(ellipse at 50% 80%, rgba(158, 69, 78, 0.2) 0%, transparent 60%);
 }
 
+/* Variante con foto de fondo: el oscurecido para legibilidad del texto debe
+   ganarle siempre al brillo de color del tema (mismas clases, mayor especificidad
+   por tener ambos selectores en el mismo elemento). */
+.page-hero-modern--photo.hero--teal .page-hero-modern__overlay,
+.page-hero-modern--photo.hero--coral .page-hero-modern__overlay,
+.page-hero-modern--photo.hero--danger .page-hero-modern__overlay {
+    background: rgba(13, 13, 13, 0.72);
+}
+
 /* Highlight spans inside hero titles */
 .page-hero-modern .highlight-teal {
-    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-tint));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-teal);
 }
 
 .page-hero-modern .highlight-medical,
@@ -154,10 +156,7 @@
 }
 
 .page-hero-modern .highlight-coral {
-    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-tint));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-coral);
 }
 
 @media (max-width: 768px) {
@@ -379,10 +378,11 @@
     margin-top: 0;
 }
 
-.cta-note {
-    font-size: var(--font-size-sm);
-    opacity: 0.85;
-    font-style: italic;
+/* Fondo oscuro (dentro de .final-cta-section): mismo componente que .cta-note
+   en app.css, pero con texto/fondo adaptados para leerse sobre negro. */
+.final-cta-section .cta-note {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* CTA color themes — all dark base */
@@ -976,12 +976,10 @@
     transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    border: 2px solid var(--accent-coral);
 }
 
 .btn-primary-urgency:hover {
     background: var(--accent-coral-dark);
-    border-color: var(--accent-coral-dark);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(187, 84, 95, 0.4);
 }
@@ -1224,11 +1222,15 @@
     gap: 8px;
     margin: 0 0 24px;
     padding: 10px 20px;
-    background: var(--bg-light);
-    border-radius: var(--border-radius);
-    color: var(--text-gray);
+    background: rgba(187, 84, 95, 0.06);
+    border-left: 3px solid var(--accent-coral);
+    border-radius: 6px;
+    color: var(--text-dark);
+    font-weight: 600;
     font-size: var(--font-size-sm);
 }
+
+.process-cta__note svg { color: var(--accent-coral); flex-shrink: 0; }
 
 .process-cta .cta-buttons {
     margin-bottom: 0;

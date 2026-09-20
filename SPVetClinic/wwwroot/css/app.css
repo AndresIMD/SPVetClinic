@@ -1077,49 +1077,80 @@ section {
 }
 
 /* ===== TARJETAS DE ESPECIALISTA (estilo Home) ===== */
+.vc-specs-band__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.vc-specs-band__intro h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+    margin: 0.25rem 0 1rem;
+}
+
+.vc-specs-band__intro p { color: var(--text-gray); line-height: 1.7; margin: 0 0 1.75rem; }
+
+.vc-specs-band__more {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-left: 1.25rem;
+    color: var(--primary-teal-dark); font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+.vc-specs-band__more:hover { color: var(--primary-teal); }
+
 .vc-specs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
 }
 
 .vc-spec-card {
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
     background: #fafbfc;
     border: 1px solid #eef1f5;
     border-radius: 14px;
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem;
     text-decoration: none;
     transition: var(--transition);
 }
 
 .vc-spec-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: 0 12px 36px rgba(0,0,0,0.08);
     border-color: var(--primary-teal);
 }
 
 .vc-spec-card__icon {
-    width: 52px; height: 52px;
+    flex: 0 0 44px;
+    width: 44px; height: 44px;
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     background: var(--primary-teal);
     color: white;
-    margin-bottom: 0.9rem;
 }
 
 .vc-spec-card:nth-child(even) .vc-spec-card__icon { background: var(--accent-coral); }
 
-.vc-spec-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.25rem; }
-.vc-spec-card__role { font-size: var(--font-size-sm); color: var(--text-gray); font-weight: 500; }
+.vc-spec-card__text { flex: 1; min-width: 0; }
+.vc-spec-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.2rem; }
+.vc-spec-card__role { display: block; font-size: var(--font-size-sm); color: var(--text-gray); line-height: 1.4; }
 
-@media (max-width: 1024px) {
-    .vc-specs { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+    .vc-specs-band__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 520px) {
+    .vc-specs-band__more { margin: 1rem 0 0; }
 }
 
 @media (max-width: 768px) {
     .vc-svc-grid { grid-template-columns: 1fr; }
-    .vc-specs { grid-template-columns: 1fr; }
 }
 
 /* Booking Hint Banner */

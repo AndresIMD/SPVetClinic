@@ -3,10 +3,10 @@
 <PageTitle>Especialistas - @AppConstants.Clinic.Name</PageTitle>
 <HeadContent>
     <meta name="description"
-          content="Equipo de veterinarios especialistas en neurología, medicina felina y endocrinología. Atención profesional certificada en Rancagua." />
+          content="Equipo de veterinarios especialistas en cardiología, neurología, endocrinología, oncología y más. Atención profesional certificada en Rancagua." />
     <meta property="og:title" content="Especialistas Veterinarios | San Pablo Vet Clínic" />
     <meta property="og:description"
-          content="Equipo de veterinarios especialistas en neurología, medicina felina y endocrinología. Atención profesional certificada en Rancagua." />
+          content="Equipo de veterinarios especialistas en cardiología, neurología, endocrinología, oncología y más. Atención profesional certificada en Rancagua." />
     <meta property="og:type" content="website" />
 </HeadContent>
 
@@ -68,149 +68,27 @@
      ============================================ -->
 <section id="especialistas-lista" class="specialists-detail-section">
     <div class="container">
-        <SectionHeader Tag="Nuestro Equipo" Title="Conoce a nuestros especialistas"
-                       Subtitle="Profesionales apasionados dedicados al bienestar de tus mascotas" />
+        <SectionHeader Tag="Nuestro Equipo" Title="Nuestras especialidades"
+                       Subtitle="Las horas y su disponibilidad se consultan en nuestro calendario de reservas online" />
 
-        <!-- DR. HERNÁN VARGAS - NEUROLOGÍA -->
-        <div class="specialist-card-large reveal stagger-1">
-            <div class="specialist-image">
-                <div class="specialist-avatar specialist-avatar-teal">
-                    <span class="avatar-icon">
-                        <Icon Name="brain" Size="48" />
-                    </span>
-                </div>
-            </div>
-            <div class="specialist-info">
-                <div class="specialist-header">
-                    <h3>Dr. Hernán Vargas</h3>
-                    <span class="specialist-badge badge-teal">Neurología</span>
-                </div>
-                <p class="specialist-schedule">
-                    <Icon Name="calendar" Size="16" /> Todos los Sábados
-                </p>
-
-                <div class="specialist-description">
-                    <p>
-                        Médico veterinario especialista en neurología con más de 15 años de experiencia.
-                        Certificado en diagnóstico y tratamiento de enfermedades del sistema nervioso en pequeños
-                        animales.
-                    </p>
-                </div>
-
-                <div class="specialist-expertise">
-                    <h4>Áreas de Especialización:</h4>
-                    <ul class="styled-list">
-                        <li>Convulsiones y epilepsia</li>
-                        <li>Problemas de equilibrio y coordinación</li>
-                        <li>Dolor de cuello y columna</li>
-                        <li>Movimientos anormales</li>
-                        <li>Debilidad y parálisis</li>
-                        <li>Enfermedades del sistema nervioso central</li>
+        <div class="specialty-grid">
+            @foreach (var s in Specialties.All)
+            {
+                <article class="specialty-card reveal">
+                    <div class="specialty-card__icon"><Icon Name="@s.Icon" Size="32" /></div>
+                    <h3>@s.Name</h3>
+                    <p>@s.Description</p>
+                    <ul class="specialty-card__doctors">
+                        @foreach (var d in s.Doctors)
+                        {
+                            <li>@d</li>
+                        }
                     </ul>
-                </div>
-
-                <div class="specialist-cta">
-                    <WhatsAppButton Label="Agendar con Dr. Vargas" Style="WhatsAppButtonStyle.Default" />
-                </div>
-            </div>
-        </div>
-
-        <!-- DRA. PILAR MUÑOZ - MEDICINA FELINA -->
-        <div class="specialist-card-large reveal stagger-2">
-            <div class="specialist-image">
-                <div class="specialist-avatar specialist-avatar-coral">
-                    <span class="avatar-icon">
-                        <Icon Name="cat" Size="48" />
-                    </span>
-                </div>
-            </div>
-            <div class="specialist-info">
-                <div class="specialist-header">
-                    <h3>Dra. Pilar Muñoz</h3>
-                    <span class="specialist-badge badge-coral">Medicina Felina</span>
-                </div>
-                <p class="specialist-schedule">
-                    <Icon Name="calendar" Size="16" /> Agenda Disponible • Solicita tu hora
-                </p>
-
-                <div class="specialist-description">
-                    <p>
-                        Especialista exclusiva en medicina felina con certificación internacional.
-                        Dedicada 100% al cuidado y tratamiento de gatos, entendiendo sus necesidades únicas
-                        y su comportamiento particular.
-                    </p>
-                </div>
-
-                <div class="specialist-expertise">
-                    <h4>Áreas de Especialización:</h4>
-                    <ul class="styled-list">
-                        <li>Medicina preventiva felina</li>
-                        <li>Enfermedades renales y urinarias</li>
-                        <li>Problemas digestivos en gatos</li>
-                        <li>Manejo del estrés y ansiedad</li>
-                        <li>Enfermedades infecciosas felinas</li>
-                        <li>Nutrición especializada para gatos</li>
-                    </ul>
-                </div>
-
-                <div class="specialist-highlight">
-                    <div class="highlight-icon">
-                        <Icon Name="star" Size="24" />
-                    </div>
-                    <p>
-                        <strong>Cat-Friendly Clinic:</strong> Dra. Muñoz aplica protocolos especiales
-                        para reducir el estrés de los gatos durante las consultas, creando un ambiente
-                        tranquilo y seguro.
-                    </p>
-                </div>
-
-                <div class="specialist-cta">
-                    <WhatsAppButton Label="Agendar con Dra. Muñoz" Style="WhatsAppButtonStyle.Default" />
-                </div>
-            </div>
-        </div>
-
-        <!-- ENDOCRINOLOGÍA -->
-        <div class="specialist-card-large reveal stagger-3">
-            <div class="specialist-image">
-                <div class="specialist-avatar specialist-avatar-purple">
-                    <span class="avatar-icon">
-                        <Icon Name="flask" Size="48" />
-                    </span>
-                </div>
-            </div>
-            <div class="specialist-info">
-                <div class="specialist-header">
-                    <h3>Endocrinología</h3>
-                    <span class="specialist-badge badge-purple">Especialista Visitante</span>
-                </div>
-                <p class="specialist-schedule">
-                    <Icon Name="calendar" Size="16" /> Consultar disponibilidad
-                </p>
-
-                <div class="specialist-description">
-                    <p>
-                        Especialista en endocrinología veterinaria que visita nuestra clínica regularmente
-                        para atención de casos complejos relacionados con problemas hormonales y metabólicos.
-                    </p>
-                </div>
-
-                <div class="specialist-expertise">
-                    <h4>Áreas de Especialización:</h4>
-                    <ul class="styled-list">
-                        <li>Diabetes mellitus</li>
-                        <li>Hipo e hipertiroidismo</li>
-                        <li>Enfermedad de Cushing</li>
-                        <li>Enfermedad de Addison</li>
-                        <li>Problemas de crecimiento</li>
-                        <li>Desórdenes reproductivos hormonales</li>
-                    </ul>
-                </div>
-
-                <div class="specialist-cta">
-                    <WhatsAppButton Label="Consultar Disponibilidad" Style="WhatsAppButtonStyle.Default" />
-                </div>
-            </div>
+                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="specialty-card__link">
+                        Ver disponibilidad <Icon Name="arrow-right" Size="16" />
+                    </a>
+                </article>
+            }
         </div>
     </div>
 </section>
@@ -237,8 +115,8 @@
                 <div class="step-number">2</div>
                 <h3>Agenda tu Hora</h3>
                 <p>
-                    Contacta con nosotros por WhatsApp para coordinar la cita con el especialista.
-                    Te informaremos fechas disponibles y requisitos.
+                    Revisa la disponibilidad en nuestro calendario de reservas online o escríbenos
+                    por WhatsApp para coordinar la cita con el especialista.
                 </p>
             </div>
 

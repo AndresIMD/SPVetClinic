@@ -617,170 +617,62 @@
     background: var(--bg-light);
 }
 
-.specialist-card-large {
+.specialty-grid {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.specialty-card {
+    display: flex;
+    flex-direction: column;
     background: white;
-    border-radius: 14px;
     border: 1px solid #eef1f5;
-    padding: 36px;
-    margin-bottom: 32px;
+    border-radius: 14px;
+    padding: 28px;
     transition: var(--transition);
 }
 
-.specialist-card-large:hover {
+.specialty-card:hover {
     box-shadow: var(--shadow-soft);
     border-color: var(--primary-teal);
 }
 
-.specialist-avatar {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+.specialty-card__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.specialist-avatar-teal {
-    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
-}
-
-.specialist-avatar-coral {
-    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark));
-}
-
-.specialist-avatar-purple {
-    background: linear-gradient(135deg, var(--neutral-accent), var(--neutral-accent-dark));
-}
-
-.avatar-icon {
-    color: white;
-}
-
-.specialist-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-}
-
-.specialist-header h3 {
-    font-size: 1.75rem;
-    color: var(--text-dark);
-    margin: 0;
-}
-
-.specialist-badge {
-    padding: 6px 18px;
-    border-radius: var(--border-radius-pill);
-    font-weight: 600;
-    font-size: var(--font-size-sm);
-    color: white;
-}
-
-.badge-teal {
     background: var(--primary-teal);
+    color: white;
+    margin-bottom: 16px;
 }
 
-.badge-coral {
-    background: var(--accent-coral);
-}
+.specialty-card:nth-child(even) .specialty-card__icon { background: var(--accent-coral); }
 
-.badge-purple {
-    background: var(--neutral-accent-dark);
-}
+.specialty-card h3 { font-size: 1.25rem; color: var(--text-dark); margin: 0 0 8px; }
+.specialty-card p { color: var(--text-gray); line-height: 1.6; margin: 0 0 16px; }
 
-.specialist-schedule {
-    color: var(--text-gray);
-    font-size: var(--font-size-base);
-    margin-bottom: 20px;
-}
-
-.specialist-description {
-    margin-bottom: 24px;
-}
-
-.specialist-description p {
-    font-size: var(--font-size-base);
-    line-height: 1.8;
-    color: var(--text-gray);
-}
-
-.specialist-expertise h4 {
-    font-size: var(--font-size-h4);
-    color: var(--text-dark);
-    margin-bottom: 12px;
-}
-
-.specialist-expertise ul {
+.specialty-card__doctors {
     list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 8px;
+    padding: 12px 0 0;
+    margin: 0 0 16px;
+    border-top: 1px solid #eef1f5;
+    font-weight: 600;
+    color: var(--text-dark);
 }
 
-.specialist-expertise li {
-    padding: 6px 0;
-    color: var(--text-gray);
-    font-size: var(--font-size-base);
-}
+.specialty-card__doctors li + li { margin-top: 4px; }
 
-.specialist-expertise li::before {
-    content: "✓ ";
-    color: var(--primary-teal);
-    font-weight: 700;
-}
-
-.specialist-highlight {
-    background: #f0f9ff;
-    border: 1px solid rgba(98, 171, 191, 0.2);
-    padding: 20px;
-    border-radius: 14px;
-    margin: 24px 0;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-}
-
-.highlight-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    color: var(--primary-teal);
-}
-
-.specialist-highlight p {
-    margin: 0;
-    color: var(--text-gray);
-    line-height: 1.6;
-}
-
-.specialist-cta {
-    margin-top: 24px;
-}
-
-@media (max-width: 768px) {
-    .specialist-card-large {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .specialist-avatar {
-        margin: 0 auto;
-    }
-
-    .specialist-header {
-        justify-content: center;
-    }
-
-    .specialist-expertise ul {
-        grid-template-columns: 1fr;
-    }
+.specialty-card__link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--primary-teal-dark);
 }
 
 /* ============================================

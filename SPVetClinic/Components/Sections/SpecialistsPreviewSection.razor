@@ -3,39 +3,14 @@
         <SectionHeader Tag="Equipo Médico" Title="Especialistas certificados" CssClass="vc-section-header--home" />
 
         <div class="vc-specs">
-            <div class="vc-spec-card reveal stagger-1">
-                <div class="vc-spec-card__photo">
-                    <div class="vc-spec-card__avatar" style="display:flex"><Icon Name="brain" Size="28" /></div>
-                </div>
-                <div class="vc-spec-card__body">
-                    <h3>Dr. Hernán Vargas</h3>
-                    <span class="vc-spec-card__role">Neurología Veterinaria</span>
-                    <p>Convulsiones, problemas de equilibrio, dolor de cuello y movimientos anormales.</p>
-                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Todos los Sábados</div>
-                </div>
-            </div>
-            <div class="vc-spec-card reveal stagger-2">
-                <div class="vc-spec-card__photo">
-                    <div class="vc-spec-card__avatar vc-spec-card__avatar--coral" style="display:flex"><Icon Name="cat" Size="28" /></div>
-                </div>
-                <div class="vc-spec-card__body">
-                    <h3>Dra. Pilar Muñoz</h3>
-                    <span class="vc-spec-card__role">Medicina Felina</span>
-                    <p>Especialista exclusiva en gatos. Atención en un ambiente diseñado para felinos.</p>
-                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Agenda Disponible</div>
-                </div>
-            </div>
-            <div class="vc-spec-card reveal stagger-3">
-                <div class="vc-spec-card__photo">
-                    <div class="vc-spec-card__avatar vc-spec-card__avatar--purple" style="display:flex"><Icon Name="flask" Size="28" /></div>
-                </div>
-                <div class="vc-spec-card__body">
-                    <h3>Endocrinología</h3>
-                    <span class="vc-spec-card__role">Especialista Visitante</span>
-                    <p>Diabetes, tiroides y condiciones endocrinas en pequeños animales.</p>
-                    <div class="vc-spec-card__meta"><Icon Name="calendar" Size="14" /> Consultar disponibilidad</div>
-                </div>
-            </div>
+            @foreach (var s in Specialties.All)
+            {
+                <a href="especialistas" class="vc-spec-card reveal">
+                    <div class="vc-spec-card__icon"><Icon Name="@s.Icon" Size="28" /></div>
+                    <h3>@s.Name</h3>
+                    <span class="vc-spec-card__role">@string.Join(" · ", s.Doctors)</span>
+                </a>
+            }
         </div>
     </div>
 </section>

@@ -262,18 +262,21 @@ document.addEventListener('click', function (event) {
     // El FAB se cierra con un click() sintético (ver abajo): no es un clic del usuario fuera del menú
     if (window.__fabClosing) return;
     var path = event.composedPath();
+    var navLinks = document.getElementById('navLinks');
+    var btn = document.querySelector('.mobile-menu-btn');
+
+    // Un clic en un enlace del navbar (Inicio, Contacto, ítems de Servicios...) navega: cierra todo
+    var followedLink = navLinks && path.some(function (el) { return el.tagName === 'A' && navLinks.contains(el); });
 
     document.querySelectorAll('.nav-dropdown.active').forEach(function (d) {
-        if (!path.includes(d)) {
+        if (followedLink || !path.includes(d)) {
             d.classList.remove('active');
             setDropdownExpanded(d);
         }
     });
 
-    var navLinks = document.getElementById('navLinks');
-    var btn = document.querySelector('.mobile-menu-btn');
     if (navLinks && navLinks.classList.contains('active') &&
-        !path.includes(navLinks) && !(btn && path.includes(btn))) {
+        (followedLink || (!path.includes(navLinks) && !(btn && path.includes(btn))))) {
         navLinks.classList.remove('active');
         if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
     }

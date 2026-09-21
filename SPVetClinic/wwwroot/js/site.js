@@ -248,6 +248,18 @@ window.toggleMobileMenu = function () {
     }
 };
 
+// Cierra el menú móvil al hacer clic fuera de él (igual que el botón flotante de emergencia).
+// Un solo listener global: el botón hamburguesa y el propio menú cuentan como "dentro".
+document.addEventListener('click', function (event) {
+    var navLinks = document.getElementById('navLinks');
+    if (!navLinks || !navLinks.classList.contains('active')) return;
+    var path = event.composedPath();
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (path.includes(navLinks) || (btn && path.includes(btn))) return;
+    navLinks.classList.remove('active');
+    if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
+});
+
 function setDropdownExpanded(dropdown) {
     var b = dropdown.querySelector('.nav-dropdown-btn');
     if (b) b.setAttribute('aria-expanded', dropdown.classList.contains('active'));

@@ -489,10 +489,8 @@ h1[tabindex="-1"]:focus {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.topnav.topnav--dark.scrolled {
-    background: rgba(13, 13, 13, 0.97);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
+/* Sin variante .scrolled: el navbar oscuro conserva el mismo color y sombra al bajar
+   (antes pasaba de 0.92 a 0.97 de opacidad y se veía demasiado oscuro). */
 
 /* Logo mantiene colores originales en tema oscuro */
 /* .topnav--dark .logo-img {

@@ -17,6 +17,9 @@ public static class ImagePaths
     {
         public const string Frontage = "images/gallery/hero/hero-frontage.webp";
         public const string FrontageLogo = "images/gallery/hero/hero-frontage-logo.webp";
+
+        /// <summary>Slide "Especialistas certificados" del carrusel del Home (equipo operando)</summary>
+        public const string HomeEspecialistas = Clinic.Pabellon;
     }
 
     /// <summary>Fotos de servicios en ejecución</summary>
@@ -67,6 +70,9 @@ public static class ImagePaths
     {
         public const string Servicios = "images/gallery/hero/hero-servicios.webp";
         public const string Especialistas = "images/gallery/hero/hero-especialistas.webp";
+        public const string Examenes = Services.Laboratory;
+        public const string VetMovil = Services.VetMovil;
+        public const string Hospitalizacion = Clinic.Hospitalizacion;
     }
 
     /// <summary>Fotos de pacientes felices</summary>

@@ -1510,84 +1510,138 @@
 
 /* ============================================
    VACUNACION - Calendar specific styles
+   Mismo lenguaje que el Home: sección con fondo suave, tarjetas blancas de
+   radio 14px con borde fino, y solo los dos colores de marca (teal = perros,
+   coral = gatos) en lugar de los verdes de éxito que tenía antes.
    ============================================ */
 .calendars-section {
     padding: 60px 20px;
-    background: white;
+    background: var(--bg-light);
 }
 
 .calendars-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
+    gap: 32px;
     margin-top: 50px;
+    align-items: start;
+}
+
+.calendar-block {
+    --cal: var(--primary-teal);
+    /* texto sobre el teal claro de fondo: --primary-teal-text daba ~4.4:1, este ~5.6:1 */
+    --cal-text: color-mix(in srgb, var(--primary-teal) 62%, black);
+    --cal-soft: var(--primary-teal-light);
+    background: white;
+    border: 1px solid #eef1f5;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+}
+
+.calendar-block--cat {
+    --cal: var(--accent-coral);
+    --cal-text: var(--accent-coral-dark);
+    --cal-soft: rgba(187, 84, 95, 0.09);
 }
 
 .calendar-header {
-    text-align: center;
-    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eef1f5;
 }
 
-.calendar-header h2 {
-    font-size: var(--font-size-h2);
+.calendar-header__icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--cal-soft);
+    color: var(--cal-text);
+}
+
+.calendar-header h3 {
+    margin: 0;
+    font-size: var(--font-size-h3);
     color: var(--text-dark);
 }
 
+.calendar-header p {
+    margin: 2px 0 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+}
+
+/* Línea de tiempo: un punto por dosis sobre una línea fina del color de la especie */
 .vaccines-timeline {
-    max-width: 100%;
-    margin: 0 auto;
     position: relative;
+    padding-left: 30px;
 }
 
 .vaccines-timeline::before {
     content: '';
     position: absolute;
-    left: 46px;
-    top: 20px;
-    bottom: 20px;
-    width: 3px;
-    background: linear-gradient(180deg, var(--success), var(--success-dark));
+    left: 6px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: color-mix(in srgb, var(--cal) 35%, white);
 }
 
 .vaccine-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    margin-bottom: 32px;
     position: relative;
+    margin-bottom: 26px;
+}
+
+.vaccine-item:last-child {
+    margin-bottom: 0;
+}
+
+.vaccine-item::before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 4px;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--cal);
+}
+
+/* El refuerzo anual es la dosis que se repite: punto lleno */
+.vaccine-item:last-child::before {
+    background: var(--cal);
 }
 
 /* Marcador de edad del calendario de vacunación (Vacunacion.razor).
    Distinto de .vaccine-age (usado por Parvovirus.razor en un layout
-   de tarjeta apilada) porque aquí vive dentro de una fila flex y
-   necesita ancho fijo para no desalinear la línea del timeline ni
-   estirarse verticalmente junto a la tarjeta de detalles. */
+   de tarjeta apilada). */
 .vaccine-age-marker {
     display: inline-block;
-    flex-shrink: 0;
-    width: 92px;
-    box-sizing: border-box;
-    text-align: center;
-    align-self: flex-start;
-    background: var(--success);
-    color: white;
-    padding: 4px 10px;
+    background: var(--cal-soft);
+    color: var(--cal-text);
+    padding: 3px 12px;
+    margin-bottom: 8px;
     border-radius: var(--border-radius-pill);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-}
-
-.vaccine-details {
-    flex: 1;
-    background: var(--bg-light);
-    padding: 18px 22px;
-    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .vaccine-details h4,
 .vaccine-details h3 {
-    color: var(--success-dark);
-    margin-bottom: 8px;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    font-size: var(--font-size-lg);
 }
 
 .vaccine-details p {
@@ -1598,7 +1652,7 @@
 
 .optional-vaccines-section {
     padding: 60px 20px;
-    background: var(--bg-light);
+    background: white;
 }
 
 .optional-grid {
@@ -1642,11 +1696,11 @@
 }
 
 .risk-high {
-    background: linear-gradient(135deg, var(--accent-coral), var(--accent-coral-dark));
+    background: var(--accent-coral-dark);
 }
 
 .risk-medium {
-    background: linear-gradient(135deg, var(--warning), var(--warning-dark));
+    background: var(--primary-teal-text);
 }
 
 /* Promo banner */
@@ -1725,10 +1779,10 @@
     font-size: var(--font-size-sm);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
     .calendars-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 28px;
     }
 }
 
@@ -1745,18 +1799,8 @@
     }
 }
 
-@media (max-width: 768px) {
-    .vaccines-timeline::before {
-        display: none;
-    }
-
-    .vaccine-item {
-        flex-direction: column;
-    }
-
-    .vaccine-age-marker {
-        width: auto;
-        align-self: center;
-        margin: 0 auto;
+@media (max-width: 480px) {
+    .calendar-block {
+        padding: 24px 20px;
     }
 }

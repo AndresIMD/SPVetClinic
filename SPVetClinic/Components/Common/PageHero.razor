@@ -7,7 +7,8 @@
 <section class="page-hero-modern @CssClass @(HasBackgroundImage ? "page-hero-modern--photo" : "")" role="banner">
     @if (HasBackgroundImage)
     {
-        <img class="page-hero-modern__bg-image" src="@BackgroundImage" alt="" loading="eager" />
+        <img class="page-hero-modern__bg-image" src="@BackgroundImage" alt="" loading="eager"
+             style="@(string.IsNullOrEmpty(BackgroundPosition) ? null : $"object-position: {BackgroundPosition}")" />
     }
     <div class="page-hero-modern__overlay"></div>
     <div class="page-hero-modern__content">
@@ -53,6 +54,9 @@
     [Parameter] public RenderFragment? Actions { get; set; }
     [Parameter] public string CssClass { get; set; } = "";
     [Parameter] public string BackgroundImage { get; set; } = "";
+
+    /// <summary>object-position CSS de la foto de fondo (encuadre), p. ej. "center 25%"</summary>
+    [Parameter] public string BackgroundPosition { get; set; } = "";
 
     private bool HasBackgroundImage => !string.IsNullOrEmpty(BackgroundImage);
 }

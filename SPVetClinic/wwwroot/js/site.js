@@ -248,37 +248,41 @@ window.toggleMobileMenu = function () {
     }
 };
 
-// Cierra el menú móvil al hacer clic fuera de él (igual que el botón flotante de emergencia).
-// Un solo listener global: el botón hamburguesa y el propio menú cuentan como "dentro".
-document.addEventListener('click', function (event) {
-    var navLinks = document.getElementById('navLinks');
-    if (!navLinks || !navLinks.classList.contains('active')) return;
-    var path = event.composedPath();
-    var btn = document.querySelector('.mobile-menu-btn');
-    if (path.includes(navLinks) || (btn && path.includes(btn))) return;
-    navLinks.classList.remove('active');
-    if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
-});
-
 function setDropdownExpanded(dropdown) {
     var b = dropdown.querySelector('.nav-dropdown-btn');
     if (b) b.setAttribute('aria-expanded', dropdown.classList.contains('active'));
 }
 
+// Todos los desplegables (menú móvil, "Servicios" y botón flotante de emergencia) se cierran
+// con un clic fuera de ellos. Un solo listener global para el navbar; el FAB tiene el suyo más
+// abajo. Se usa composedPath() y no event.target: Blazor puede reemplazar el nodo pulsado y el
+// target quedaría fuera del DOM. Por eso tampoco hace falta stopPropagation: los demás
+// desplegables (p. ej. el FAB) tienen que ver el clic para cerrarse.
+document.addEventListener('click', function (event) {
+    // El FAB se cierra con un click() sintético (ver abajo): no es un clic del usuario fuera del menú
+    if (window.__fabClosing) return;
+    var path = event.composedPath();
+
+    document.querySelectorAll('.nav-dropdown.active').forEach(function (d) {
+        if (!path.includes(d)) {
+            d.classList.remove('active');
+            setDropdownExpanded(d);
+        }
+    });
+
+    var navLinks = document.getElementById('navLinks');
+    var btn = document.querySelector('.mobile-menu-btn');
+    if (navLinks && navLinks.classList.contains('active') &&
+        !path.includes(navLinks) && !(btn && path.includes(btn))) {
+        navLinks.classList.remove('active');
+        if (btn) { btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); }
+    }
+});
+
 window.toggleDropdown = function (event) {
-    event.stopPropagation();
     var dropdown = event.target.closest('.nav-dropdown');
     dropdown.classList.toggle('active');
     setDropdownExpanded(dropdown);
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function closeDropdown(e) {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-            setDropdownExpanded(dropdown);
-            document.removeEventListener('click', closeDropdown);
-        }
-    });
 };
 
 // Close dropdown on mobile when clicking a link
@@ -333,7 +337,10 @@ window.attachClickOutsideHandler = function (fabElement) {
             if (fabBtn) {
                 // Check if FAB is open (has efab--open class on parent)
                 if (fabElement.classList.contains('efab--open')) {
-                    fabBtn.click();
+                    // click() es síncrono: la bandera evita que el listener del navbar lo tome
+                    // como un clic fuera y cierre el desplegable que el usuario acaba de abrir
+                    window.__fabClosing = true;
+                    try { fabBtn.click(); } finally { window.__fabClosing = false; }
                 }
             }
         }

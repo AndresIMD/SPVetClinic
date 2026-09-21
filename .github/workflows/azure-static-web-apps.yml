@@ -1,0 +1,44 @@
+# Deploy Blazor WASM to Azure Static Web Apps (plan Free)
+#
+# Manual (workflow_dispatch) hasta que exista el secreto AZURE_STATIC_WEB_APPS_API_TOKEN;
+# si se dispara en cada push sin el token, fallaría en cada commit.
+# Pasos completos: docs/deployment/AZURE-STATIC-WEB-APPS.md
+#
+# Se compila aquí (con .NET 10) y se sube el resultado ya construido (skip_app_build):
+# el compilador propio de Azure no está garantizado para la versión de .NET del proyecto.
+name: Deploy to Azure Static Web Apps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'ga'
+
+      - name: Publish Blazor WASM
+        run: dotnet publish SPVetClinic/SPVetClinic.csproj -c Release -o output
+
+      # A diferencia de GitHub Pages, aquí NO se toca el <base href="/">: el sitio vive en la raíz del dominio,
+      # y staticwebapp.config.json (publicado en output/wwwroot) ya define el fallback a index.html.
+      - name: Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: output/wwwroot
+          api_location: ''
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true

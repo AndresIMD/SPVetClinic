@@ -67,6 +67,7 @@
 
 - [x] Agregar la visión y objetivo de la empresa en la página "Conócenos" / Historia
   - **Hecho como BORRADOR** (solo afirmaciones que el sitio ya hace). **Pendiente:** que el cliente confirme o reemplace el texto. Ver `production-audit/5-REVISION-TEXTOS-FINAL.md` §2
+- [ ] Hospedaje real: probar Azure Static Web Apps (plan Free). Repositorio preparado; falta crear el recurso y el secreto en GitHub. Ver `deployment/AZURE-STATIC-WEB-APPS.md`
 - [x] Revisión final de textos de todas las páginas (correcciones aplicadas; afirmaciones por confirmar con el cliente en `production-audit/5-REVISION-TEXTOS-FINAL.md` §3)
 
 ---

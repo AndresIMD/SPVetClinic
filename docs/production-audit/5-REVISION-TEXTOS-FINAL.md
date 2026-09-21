@@ -107,3 +107,31 @@ familias", `WhyUsSection`) y un FAQ duplicado (`FaqSection`).
 `HighlightStat`, `HospitalInfoSection`, `MobileVetSection`, `TestimonialsSection`, `WhyUsSection`.
 
 **Recomendación:** borrarlos antes de entregar, para que nadie los monte por error.
+
+---
+
+## 6. Estado de la revisión y cómo retomarla
+
+**Qué se revisó:** lectura completa del texto visible de las 12 páginas (Home, Servicios, Exámenes, Especialistas,
+Vacunación, Parvovirus, Peluquería, Hospitalización, Vet Móvil, Conócenos, Contacto, redirección de reservas), del layout
+(barra de urgencias, menú, botón flotante, footer) y de `AppConstants.cs` / `Specialties.cs`.
+Commit de las correcciones: `44f52ad`.
+
+**Qué NO se hizo (queda para otra sesión):**
+- [ ] Corrector ortográfico automático (todo fue lectura manual; puede haber erratas que se escaparon).
+- [ ] Comprobar que todos los enlaces y botones llevan al destino correcto (WhatsApp, teléfonos, mapas, reservas online).
+- [ ] Revisión visual de cada página en móvil y escritorio: solo se revisó a fondo Conócenos, Vacunación y los heros.
+- [ ] Auditoría de rendimiento (Lighthouse "Performance"): solo se pasó accesibilidad, buenas prácticas y SEO.
+- [ ] Probar en un teléfono real (todo se probó con emulación de Chrome).
+- [ ] Revisar los `<meta description>` y títulos de cada página desde el punto de vista SEO (se unificó solo el separador).
+
+**Pasos siguientes, en orden:**
+1. [ ] Enviar al cliente la lista de §3 y el borrador de §2; anotar sus respuestas aquí.
+2. [ ] Aplicar sus respuestas (medios de pago unificados, datos clínicos validados, texto oficial de visión/objetivo).
+3. [ ] Decidir el nombre único del servicio móvil (§4) y aplicarlo en menú, títulos y textos.
+4. [ ] Borrar los 11 componentes sin uso (§5).
+5. [ ] Hacer las tareas de arriba que no se hicieron.
+6. [ ] Ronda final de lectura antes de publicar.
+
+**Documentos relacionados:** `2-CONTENT_REVIEW.md` (revisión previa, más antigua) · `TASK_TRACKER.md` ·
+`../deployment/AZURE-STATIC-WEB-APPS.md` (hospedaje).

@@ -60,3 +60,6 @@ Desktop.ini
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Fotos originales sin optimizar (cientos de MB); se convierten con scripts/optimization/optimize-images.py
+assets-source/

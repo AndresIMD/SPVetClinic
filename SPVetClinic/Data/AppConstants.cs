@@ -21,6 +21,9 @@ public static class AppConstants
         public const string Schedule = "Urgencias 24 horas, todos los días";
         public const string YearsOfService = "más de 10 años";
         public const string YearsOfServiceStat = "10+";
+
+        /// <summary>Para frases que empiezan con la cifra: "Más de 10 años…" (la constante base va en minúscula)</summary>
+        public static string YearsOfServiceCapitalized => char.ToUpper(YearsOfService[0]) + YearsOfService[1..];
         public const string BookingUrl = "https://vetsanpablo.crmveterinario.com/reserva_online";
     }
 
@@ -58,7 +61,7 @@ public static class AppConstants
         public const string VisitsSchedule = "16:00 a 19:00 hrs";
         public const string DischargeSchedule = "11:00 a 13:00 hrs";
         public const string MaxVisitDuration = "10 minutos";
-        public const string InfoPolicy = "Información del paciente se le dará solo al tutor responsable registrado en ficha";
+        public const string InfoPolicy = "La información del paciente se entrega solo al tutor responsable registrado en la ficha clínica";
     }
 
     /// <summary>

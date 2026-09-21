@@ -10,8 +10,8 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<PageHero Tag="Nuestra Clínica" TagIcon="clinic"     Title="Nuestra Historia"
-          Subtitle="@($"{AppConstants.Clinic.YearsOfService} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
+<PageHero Tag="Nuestra Clínica" TagIcon="clinic"     Title="Conócenos"
+          Subtitle="@($"{AppConstants.Clinic.YearsOfServiceCapitalized} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
           CssClass="hero--teal" BackgroundImage="@ImagePaths.PageHeroes.Conocenos" />
 
 <!-- ============================================
@@ -40,6 +40,32 @@
                 a domicilio.
             </p>
         </div>
+    </div>
+
+    @* BORRADOR a validar con el cliente: solo reúne afirmaciones que la clínica ya hace en este sitio
+       (referente en Rancagua, calidad con calidez humana, especialistas certificados, tecnología, 24 h,
+       servicio a domicilio). Ver docs/production-audit/5-REVISION-TEXTOS-FINAL.md *@
+    <div class="historia-vo">
+        <article class="vo-card vo-card--vision reveal stagger-1">
+            <span class="vo-card__icon"><Icon Name="eye" Size="26" /></span>
+            <div>
+                <h3>Nuestra Visión</h3>
+                <p>
+                    Ser la clínica veterinaria de referencia en @AppConstants.Clinic.City, donde cada mascota
+                    reciba atención médica de calidad con calidez humana.
+                </p>
+            </div>
+        </article>
+        <article class="vo-card vo-card--objetivo reveal stagger-2">
+            <span class="vo-card__icon"><Icon Name="target" Size="26" /></span>
+            <div>
+                <h3>Nuestro Objetivo</h3>
+                <p>
+                    Cuidar la salud y el bienestar de cada mascota con especialistas certificados, tecnología de
+                    diagnóstico de última generación y atención disponible las 24 horas, en la clínica y a domicilio.
+                </p>
+            </div>
+        </article>
     </div>
 </section>
 

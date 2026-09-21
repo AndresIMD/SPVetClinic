@@ -1,6 +1,6 @@
 @page "/hospitalizacion"
 
-<PageTitle>Hospitalización 24/7 - @AppConstants.Clinic.Name</PageTitle>
+<PageTitle>Hospitalización 24/7 | @AppConstants.Clinic.Name</PageTitle>
 <HeadContent>
     <meta name="description"
           content="Hospitalización veterinaria 24/7 en Rancagua. Monitoreo continuo, equipo especializado y visitas programadas. Llama ahora para información de tu mascota." />
@@ -68,7 +68,7 @@
                     <div class="stat-label">Atención Disponible</div>
                 </div>
                 <div class="stat-box stat-success stagger-2">
-                    <div class="stat-number">@AppConstants.Clinic.YearsOfService</div>
+                    <div class="stat-number">@AppConstants.Clinic.YearsOfServiceStat</div>
                     <div class="stat-label">Años de Experiencia</div>
                 </div>
                 <div class="stat-box stat-info stagger-3">
@@ -300,11 +300,11 @@
                     <Icon Name="alarm" Size="20" /> Urgencias 24/7
                 </a>
                 <WhatsAppButton PhoneNumber="@AppConstants.Phone.MainWhatsApp"
-                                Label="Consultas WhatsApp"
+                                Label="Consultas por WhatsApp"
                                 Style="WhatsAppButtonStyle.Default" />
             </div>
             <p class="cta-note">
-                <Icon Name="alert" Size="16" /> Para urgencias, llama directamente a número de recepción.
+                <Icon Name="alert" Size="16" /> Para urgencias, llama directamente al número de recepción.
             </p>
         </div>
     </div>

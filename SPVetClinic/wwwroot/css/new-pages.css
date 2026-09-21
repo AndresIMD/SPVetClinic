@@ -297,6 +297,68 @@
     display: block;
 }
 
+/* Visión y Objetivo: dos tarjetas bajo la historia. Teal = visión, coral = objetivo (paleta de marca) */
+.historia-vo {
+    max-width: 1100px;
+    margin: 3rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.vo-card {
+    --vo: var(--primary-teal);
+    --vo-text: color-mix(in srgb, var(--primary-teal) 62%, black);
+    --vo-soft: var(--primary-teal-light);
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 2rem;
+    background: var(--bg-light);
+    border: 1px solid #eef1f5;
+    border-top: 3px solid var(--vo);
+    border-radius: 14px;
+}
+
+.vo-card--objetivo {
+    --vo: var(--accent-coral);
+    --vo-text: var(--accent-coral-dark);
+    --vo-soft: rgba(187, 84, 95, 0.09);
+}
+
+.vo-card__icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--vo-soft);
+    color: var(--vo-text);
+}
+
+.vo-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: var(--font-size-h3);
+    color: var(--text-dark);
+}
+
+.vo-card p {
+    margin: 0;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+    .historia-vo {
+        grid-template-columns: 1fr;
+    }
+
+    .vo-card {
+        padding: 1.5rem;
+    }
+}
+
 .placeholder-image {
     background: var(--primary-teal-light);
     border-radius: var(--border-radius);

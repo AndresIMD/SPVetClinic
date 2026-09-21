@@ -65,8 +65,9 @@
 
 ## 🎯 PENDIENTE - CONTENIDO (Tier 4)
 
-- [ ] Agregar la visión y objetivo de la empresa en la página "Conócenos" / Historia
-  - **Pendiente:** Texto de visión y objetivo (usuario debe proporcionar)
+- [x] Agregar la visión y objetivo de la empresa en la página "Conócenos" / Historia
+  - **Hecho como BORRADOR** (solo afirmaciones que el sitio ya hace). **Pendiente:** que el cliente confirme o reemplace el texto. Ver `production-audit/5-REVISION-TEXTOS-FINAL.md` §2
+- [x] Revisión final de textos de todas las páginas (correcciones aplicadas; afirmaciones por confirmar con el cliente en `production-audit/5-REVISION-TEXTOS-FINAL.md` §3)
 
 ---
 

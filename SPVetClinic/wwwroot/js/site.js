@@ -302,8 +302,10 @@ window.attachClickOutsideHandler = function (fabElement) {
     // Un solo listener aunque el componente se vuelva a montar
     if (fabOutsideHandler) document.removeEventListener('click', fabOutsideHandler);
     fabOutsideHandler = function (event) {
-        // Check if the click is outside the FAB
-        if (fabElement && !fabElement.contains(event.target)) {
+        // composedPath() se calcula al despachar el evento. event.target no sirve: al abrir,
+        // Blazor reemplaza el ícono del botón y el target queda fuera del DOM, con lo que
+        // el clic sobre el ícono parecía "fuera" y cerraba el panel al instante.
+        if (fabElement && !event.composedPath().includes(fabElement)) {
             // Find the Blazor component button to trigger close
             const fabBtn = fabElement.querySelector('.efab__btn');
             if (fabBtn) {

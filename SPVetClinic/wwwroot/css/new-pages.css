@@ -896,10 +896,26 @@
         display: block;
     }
 
+    .nav-dropdown-btn {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
     .dropdown-item {
         padding: 0.75rem 1rem;
         background: var(--bg-light);
         margin-bottom: 0.5rem;
+    }
+
+    /* Tema oscuro: sin esto los ítems quedaban con fondo claro y texto blanco (ilegibles) */
+    .topnav--dark .nav-dropdown-content {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .topnav--dark .dropdown-item {
+        background: rgba(255, 255, 255, 0.05);
     }
 
     .galeria-grid {

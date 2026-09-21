@@ -41,8 +41,8 @@ public static class AppConstants
         public const string HospitalWhatsApp = "56983835841";
         public const string HospitalWhatsAppFormatted = "+56 9 8383 5841";
 
-        /// <summary>Teléfono fijo de la clínica</summary>
-        public const string Landline = "722904717";
+        /// <summary>Teléfono fijo de la clínica (con código de país: TelLink antepone "+")</summary>
+        public const string Landline = "56722904717";
         public const string LandlineFormatted = "72 290 4717";
 
         /// <summary>Todos los teléfonos formateados para mostrar</summary>

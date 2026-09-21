@@ -452,6 +452,7 @@ h1[tabindex="-1"]:focus {
 
 .mobile-menu-btn span {
     display: block;
+    flex-shrink: 0; /* en columna flex (móvil) las barras colapsaban a 0px de alto */
     width: 24px;
     height: 3px;
     background: var(--text-dark);
@@ -1158,10 +1159,11 @@ section {
 .vc-spec-card__role { display: block; font-size: var(--font-size-sm); color: var(--text-gray); line-height: 1.4; }
 
 @media (max-width: 900px) {
-    .vc-specs-band__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .vc-specs-band__grid { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
 }
 
 @media (max-width: 520px) {
+    .vc-specs { grid-template-columns: minmax(0, 1fr); }
     .vc-specs-band__more { margin: 1rem 0 0; }
 }
 
@@ -2342,6 +2344,9 @@ a.service-card .service-card-link::after {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
+        align-items: stretch; /* el base centra; en el menú móvil los ítems ocupan todo el ancho */
+        max-height: calc(100dvh - var(--ebar-height) - var(--navbar-height)); /* si no cabe, el menú se desplaza */
+        overflow-y: auto;
         padding: 1rem;
         gap: 0.5rem;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);

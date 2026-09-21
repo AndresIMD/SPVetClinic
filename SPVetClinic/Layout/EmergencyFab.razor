@@ -5,26 +5,17 @@
    ============================================ *@
 
 <div class="efab @(isOpen ? "efab--open" : "")" @ref="fabElement">
-    @* Tooltip inicial animado *@
-    @if (!showedInitial && !isOpen)
-    {
-        <div class="efab__tooltip">
-            <span class="efab__tooltip-text">Contacto de urgencias</span>
-            <div class="efab__tooltip-arrow"></div>
-        </div>
-    }
-
     @* Panel expandido *@
     <div class="efab__panel">
         <div class="efab__header">
             <span class="efab__pulse"></span>
             <span>Urgencias 24/7</span>
         </div>
-        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)" class="efab__option">
+        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MainWhatsApp)" class="efab__option">
             <Icon Name="phone" Size="18" />
             <div>
                 <strong>Llamar ahora</strong>
-                <span>@AppConstants.Phone.LandlineFormatted</span>
+                <span>@AppConstants.Phone.MainWhatsAppFormatted</span>
             </div>
         </a>
         <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer" class="efab__option efab__option--wa">
@@ -68,49 +59,6 @@
         align-items: flex-end;
         gap: 0.75rem;
         pointer-events: none;
-    }
-
-    /* Tooltip inicial (animado) */
-    .efab__tooltip {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(187, 84, 95, 0.95);
-        color: white;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        box-shadow: 0 4px 16px rgba(187, 84, 95, 0.3);
-        animation: tooltip-fadeout 3.5s ease-in-out forwards;
-        pointer-events: none;
-    }
-
-    .efab__tooltip-arrow {
-        position: absolute;
-        right: -8px;
-        width: 0;
-        height: 0;
-        border-left: 8px solid rgba(187, 84, 95, 0.95);
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-    }
-
-    @@keyframes tooltip-fadeout {
-        0% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        80% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        100% {
-            opacity: 0;
-            transform: translateX(10px);
-            pointer-events: none;
-        }
     }
 
     /* Panel de opciones */
@@ -257,24 +205,12 @@
 
 @code {
     private bool isOpen;
-    private bool showedInitial = false;
     private ElementReference fabElement;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
-        {
-            // Primero el handler: si va después del delay, durante los primeros 3 s
-            // un click fuera no cierra el panel.
             await JS.InvokeVoidAsync("attachClickOutsideHandler", fabElement);
-
-            // Mostrar tooltip inicial por 3 segundos
-            await Task.Delay(3000);
-            showedInitial = true;
-            StateHasChanged();
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     private void Toggle() => isOpen = !isOpen;

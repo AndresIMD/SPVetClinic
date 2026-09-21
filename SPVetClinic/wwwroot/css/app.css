@@ -239,6 +239,12 @@ a:focus-visible {
     border-radius: 2px;
 }
 
+/* <FocusOnNavigate Selector="h1"> (App.razor) enfoca el h1 por código al cargar cada
+   página; no es un elemento interactivo, así que no mostramos el marco de foco. */
+h1[tabindex="-1"]:focus {
+    outline: none;
+}
+
 .nav-link:focus-visible {
     outline: 2px solid var(--primary-teal);
     outline-offset: 4px;

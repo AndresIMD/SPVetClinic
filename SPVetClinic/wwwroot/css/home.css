@@ -58,6 +58,7 @@
     min-height: var(--hero-height, 100vh);
     position: relative;
     overflow: hidden;
+    touch-action: pan-y; /* scroll vertical normal; el swipe horizontal lo maneja site.js */
     background: var(--vc-dark);
 }
 
@@ -416,7 +417,10 @@
     .vc-quick-bar__grid { grid-template-columns: 1fr; }
     .vc-hc__title { font-size: 2.25rem; }
     .vc-hc__title--brand { font-size: 3rem; }
-    .vc-hc__btns { flex-direction: column; align-items: center; }
+    /* Ambos botones con el mismo ancho y alto: cuadrícula de una columna con filas iguales
+       (antes cada uno medía lo que su texto y se veían de tamaños distintos) */
+    .vc-hc__btns { display: grid; grid-auto-rows: 1fr; width: 100%; }
+    .vc-hc__btns > a { justify-content: center; }
     .vc-hc__nav { display: none; }
     .vc-location__actions { flex-direction: column; }
 }

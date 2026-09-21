@@ -2350,6 +2350,13 @@ a.service-card .service-card-link::after {
         --ebar-height: 2.025rem;
     }
 
+    /* logo y hamburguesa alineados con el margen de 1rem de la barra de urgencias */
+    .topnav,
+    .topnav.scrolled {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     /* logo ~8% más chico en móvil */
     .logo-img {
         height: calc((var(--navbar-height) - 1rem) * 0.92);

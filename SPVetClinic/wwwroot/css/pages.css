@@ -111,6 +111,27 @@
     box-sizing: content-box;
 }
 
+/* Móvil: los botones del hero se apilan con el mismo ancho y el mismo alto
+   (grid + filas 1fr iguala también al botón de dos líneas, p. ej. WhatsApp con número). */
+@media (max-width: 480px) {
+    .page-hero-modern__actions {
+        display: grid;
+        grid-auto-rows: 1fr;
+        align-items: stretch; /* la regla base usa center: sin esto cada botón se centra en su fila y no se estira */
+        width: 100%;
+    }
+
+    .page-hero-modern__actions .btn-secondary,
+    .page-hero-modern__actions .btn-primary-urgency,
+    .page-hero-modern__actions .whatsapp-btn {
+        width: 100%;
+        min-height: 0;
+        box-sizing: border-box;
+        justify-content: center;
+        margin: 0;
+    }
+}
+
 /* Color themes — all use dark base, accent via subtle radial glow */
 .hero--teal {
     background: #0d0d0d;

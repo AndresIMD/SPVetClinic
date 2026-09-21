@@ -350,3 +350,30 @@ window.attachClickOutsideHandler = function (fabElement) {
     };
     document.addEventListener('click', fabOutsideHandler);
 };
+
+// ==========================================
+// HERO CAROUSEL — SWIPE (móvil)
+// ==========================================
+// Desliza el carrusel con el dedo reutilizando los botones anterior/siguiente de Blazor
+// (funcionan aunque estén ocultos con display:none en móvil). Listeners delegados en document
+// porque el hero se monta después de cargar este script.
+(function () {
+    var startX = 0, startY = 0, tracking = false;
+    var SWIPE_MIN = 50; // px de recorrido horizontal para contar como swipe
+
+    document.addEventListener('touchstart', function (e) {
+        tracking = !!(e.target.closest && e.target.closest('.vc-hero-carousel')) && e.touches.length === 1;
+        if (tracking) { startX = e.touches[0].clientX; startY = e.touches[0].clientY; }
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+        if (!tracking) return;
+        tracking = false;
+        var t = e.changedTouches[0];
+        var dx = t.clientX - startX, dy = t.clientY - startY;
+        // sólo horizontal: si el gesto fue más vertical es un scroll de la página
+        if (Math.abs(dx) < SWIPE_MIN || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        var btn = document.querySelector(dx < 0 ? '.vc-hc__nav--next' : '.vc-hc__nav--prev');
+        if (btn) btn.click();
+    }, { passive: true });
+})();

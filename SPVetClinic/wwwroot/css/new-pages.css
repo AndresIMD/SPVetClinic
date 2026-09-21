@@ -605,7 +605,7 @@
 }
 
 .servicio-link-arrow {
-    color: var(--primary-teal);
+    color: var(--primary-teal-text);
     font-weight: 600;
     margin-top: auto;
     transition: transform 0.3s ease;
@@ -717,7 +717,7 @@
 }
 
 .contacto-item-large a {
-    color: var(--primary-teal);
+    color: var(--primary-teal-text);
     text-decoration: none;
 }
 
@@ -1268,12 +1268,12 @@
 
 .urgencia-btn span {
     font-size: 0.85rem;
-    opacity: 0.9;
 }
 
+/* texto oscuro: el blanco sobre el verde de WhatsApp da ~2:1 */
 .urgencia-btn--wa {
     background: #25D366;
-    color: white;
+    color: #0d0d0d;
 }
 
 .urgencia-btn--wa:hover {

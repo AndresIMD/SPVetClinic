@@ -13,7 +13,7 @@
         </NavLink>
 
         <div class="nav-dropdown">
-            <button class="nav-link nav-dropdown-btn" onclick="toggleDropdown(event)">
+            <button class="nav-link nav-dropdown-btn" onclick="toggleDropdown(event)" aria-haspopup="true" aria-expanded="false">
                 <span class="nav-link-text">Servicios</span>
                 <span class="dropdown-arrow">▾</span>
             </button>
@@ -65,7 +65,7 @@
         </a>
     </div>
 
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menú">
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
         <span></span>

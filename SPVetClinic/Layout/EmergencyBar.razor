@@ -13,7 +13,7 @@
             <span class="ebar__text">Atención inmediata todos los días</span>
         </div>
         <div class="ebar__right">
-            <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer" class="ebar__link">
+            <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer" class="ebar__link" aria-label="WhatsApp @AppConstants.Phone.MainWhatsAppFormatted">
                 <Icon Name="whatsapp" Size="14" />
                 <span>@AppConstants.Phone.MainWhatsAppFormatted</span>
             </a>
@@ -51,7 +51,7 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         font-weight: 600;
         letter-spacing: 0.04em;
         line-height: 1;
@@ -83,7 +83,8 @@
     }
 
     .ebar__label {
-        color: var(--accent-coral, #BB545F);
+        /* coral aclarado: el coral puro da ~4.2:1 sobre #0d0d0d, bajo el 4.5:1 de WCAG AA */
+        color: color-mix(in srgb, var(--accent-coral, #BB545F) 80%, white);
         text-transform: uppercase;
         letter-spacing: 0.08em;
         animation: breathing 3s ease-in-out infinite;
@@ -101,12 +102,10 @@
 
         0%,
         100% {
-            opacity: 1;
             transform: scale(1);
         }
 
         50% {
-            opacity: 0.7;
             transform: scale(0.94);
         }
     }
@@ -133,7 +132,7 @@
         gap: 0.35rem;
         color: rgba(255, 255, 255, 0.65);
         text-decoration: none;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         font-weight: 500;
         transition: color 0.2s ease;
     }

@@ -315,7 +315,8 @@
     transform: translateY(-2px);
 }
 
-.faq-item h4 {
+.faq-item h4,
+.faq-item h3 {
     color: var(--text-dark);
     margin-bottom: 12px;
     font-size: var(--font-size-h4);
@@ -523,6 +524,11 @@
     letter-spacing: -0.02em;
 }
 
+.stat-box .stat-label,
+.stat-card .stat-label {
+    color: inherit; /* el gris global de .stat-label no se lee sobre el fondo oscuro */
+}
+
 .stat-label {
     font-size: var(--font-size-sm);
     line-height: 1.4;
@@ -588,7 +594,8 @@
     color: var(--accent-coral);
 }
 
-.alert-content h3 {
+.alert-content h3,
+.alert-content h2 {
     color: var(--text-dark);
     margin-bottom: 8px;
     font-size: var(--font-size-h3);
@@ -1556,7 +1563,8 @@
     border-radius: var(--border-radius);
 }
 
-.vaccine-details h4 {
+.vaccine-details h4,
+.vaccine-details h3 {
     color: var(--success-dark);
     margin-bottom: 8px;
 }

@@ -130,7 +130,7 @@ public static class ImagePaths
     {
         public const string Consulta = Library.Consult.DogInConsult;
         public const string Cirugia = Library.Surgery.SurgicalLight;
-        public const string Examenes = Library.Lab.WideShot;
+        public const string Examenes = Library.Lab.IdexxMonitorCloseUp;
         public const string Laboratory = Library.Lab.IdexxSnapCloseUp;
         public const string VetMovil = Library.VetMovil.LeftSide;
         public const string Grooming = Library.Grooming.HairSalon;
@@ -171,7 +171,7 @@ public static class ImagePaths
     {
         public const string Servicios = Library.Surgery.Procedure2;
         public const string Especialistas = Library.Consult.CatInConsult;
-        public const string Examenes = Services.Laboratory;
+        public const string Examenes = Library.Diagnostics.UltrasoundLeft;
         public const string VetMovil = Services.VetMovil;
         public const string Hospitalizacion = Clinic.Hospitalizacion;
     }

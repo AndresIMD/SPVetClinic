@@ -149,12 +149,15 @@ public static class ImagePaths
     public static class Clinic
     {
         public const string Reception = Library.Interior.ReceptionArea;
-        public const string ReceptionDesk = Library.Interior.ReceptionDeskSucursal;
+        public const string ReceptionDesk = Library.Interior.ReceptionDesk;
         public const string SpecialistReception = Library.Interior.WaitingRoomSucursal;
         public const string WaitingRoom = Library.Interior.WaitingRoomCat;
         public const string Hospitalizacion = Library.Hospital.DogKennelsCloseUp;
         public const string Laboratorio = Library.Lab.WideShot;
         public const string Pabellon = Library.Surgery.ProcedureCloseUp;
+
+        /// <summary>Sala de juegos para gatos (galería de instalaciones de Conócenos)</summary>
+        public const string CatRoom = Library.Patients.CatPlayRoom;
 
         /// <summary>Foto de la clínica para la sección "Nuestra Historia" de Conócenos</summary>
         public const string Historia = Library.Exterior.Frontage2;
@@ -174,6 +177,9 @@ public static class ImagePaths
         public const string Examenes = Library.Diagnostics.UltrasoundLeft;
         public const string VetMovil = Services.VetMovil;
         public const string Hospitalizacion = Clinic.Hospitalizacion;
+
+        /// <summary>Mesón de recepción (sucursal). No repetir en la galería de Conócenos: ahí va Clinic.ReceptionDesk.</summary>
+        public const string Conocenos = Library.Interior.ReceptionDeskSucursal;
     }
 
     /// <summary>Verifica si una ruta de imagen está disponible (no vacía).</summary>

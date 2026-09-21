@@ -159,6 +159,13 @@ h6 {
     transform: translateY(0);
 }
 
+/* .reveal-left/.reveal-right arrancan desplazados 30px en X. Sin esto, en móvil ese desplazamiento
+   ensanchaba la página (~11px) hasta que el elemento se revelaba, y arrastraba la barra fija.
+   clip (a diferencia de hidden) no crea un contenedor de scroll, así que no afecta position: sticky/fixed. */
+section {
+    overflow-x: clip;
+}
+
 .reveal-left {
     opacity: 0;
     transform: translateX(-30px);

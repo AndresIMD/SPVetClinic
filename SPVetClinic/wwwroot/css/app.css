@@ -463,8 +463,11 @@ h1[tabindex="-1"]:focus {
     transition: var(--transition);
 }
 
+/* X: las barras están separadas 13px entre centros (3px de alto + 5px de margen arriba y abajo).
+   Se mueven 13px hacia el centro ANTES de rotar; con rotate() primero el desplazamiento
+   seguía los ejes rotados y las barras no se cruzaban (la X salía cortada). */
 .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: translateY(13px) rotate(45deg);
 }
 
 .mobile-menu-btn.active span:nth-child(2) {
@@ -472,7 +475,7 @@ h1[tabindex="-1"]:focus {
 }
 
 .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: translateY(-13px) rotate(-45deg);
 }
 
 /* ============================================
@@ -2342,6 +2345,16 @@ a.service-card .service-card-link::after {
 }
 
 @media (max-width: 768px) {
+    /* barra de urgencias ~10% más baja en móvil (2.25rem -> 2.025rem); el resto del layout usa la variable */
+    :root {
+        --ebar-height: 2.025rem;
+    }
+
+    /* logo ~8% más chico en móvil */
+    .logo-img {
+        height: calc((var(--navbar-height) - 1rem) * 0.92);
+    }
+
     .nav-links {
         display: none;
         position: absolute;

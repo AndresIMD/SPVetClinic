@@ -15,7 +15,7 @@
         <div class="ebar__right">
             <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer" class="ebar__link" aria-label="WhatsApp @AppConstants.Phone.MainWhatsAppFormatted">
                 <Icon Name="whatsapp" Size="14" />
-                <span>@AppConstants.Phone.MainWhatsAppFormatted</span>
+                <span class="ebar__num">@AppConstants.Phone.MainWhatsAppFormatted</span>
             </a>
             @* <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.Landline)" class="ebar__cta">
                 Llamar Ahora
@@ -174,10 +174,18 @@
         .ebar__inner {
             padding: 0 1rem;
         }
+
+        /* ~10% más chica que en escritorio (la altura sale de --ebar-height, en app.css) */
+        .ebar__left,
+        .ebar__link {
+            font-size: 0.765rem;
+        }
     }
 
-    @@media (max-width: 480px) {
-        .ebar__link span {
+    /* Solo en pantallas muy angostas se oculta el número y queda el ícono.
+       Antes se ocultaba todo `span`, incluido el que envuelve el ícono. */
+    @@media (max-width: 340px) {
+        .ebar__num {
             display: none;
         }
     }

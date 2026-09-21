@@ -35,7 +35,7 @@
             </div>
         </a>
         <a href="@AppConstants.Maps.CompanyDirectLink" target="_blank" rel="noopener noreferrer" class="efab__option efab__option--location">
-            <Icon Name="map" Size="18" />
+            <Icon Name="location" Size="18" />
             <div>
                 <strong>Dirección</strong>
                 <span>Ver en Google Maps</span>
@@ -227,8 +227,9 @@
         box-shadow: 0 6px 28px rgba(187, 84, 95, 0.5);
     }
 
+    /* Fondo sólido: con blanco translúcido el botón desaparecía sobre secciones claras */
     .efab--open .efab__btn {
-        background: rgba(255, 255, 255, 0.1);
+        background: #0d0d0d;
         color: white;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         animation: none;
@@ -263,13 +264,14 @@
     {
         if (firstRender)
         {
+            // Primero el handler: si va después del delay, durante los primeros 3 s
+            // un click fuera no cierra el panel.
+            await JS.InvokeVoidAsync("attachClickOutsideHandler", fabElement);
+
             // Mostrar tooltip inicial por 3 segundos
             await Task.Delay(3000);
             showedInitial = true;
             StateHasChanged();
-
-            // Agregar click handler para cerrar cuando se hace click fuera
-            await JS.InvokeVoidAsync("attachClickOutsideHandler", fabElement);
         }
 
         await base.OnAfterRenderAsync(firstRender);

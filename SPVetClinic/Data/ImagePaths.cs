@@ -41,14 +41,6 @@ public static class ImagePaths
         public const string Xray = "images/gallery/equipment/equipment-xray.webp";
     }
 
-    /// <summary>Fotos del equipo médico</summary>
-    public static class Team
-    {
-        // Pendientes — asignar la ruta cuando se tengan las fotos
-        public const string DrVargas = "";
-        public const string DraMunoz = "";
-    }
-
     /// <summary>Fotos de las instalaciones</summary>
     public static class Clinic
     {

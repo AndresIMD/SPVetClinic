@@ -297,8 +297,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // ==========================================
 // EMERGENCY FAB — CLOSE ON CLICK OUTSIDE
 // ==========================================
+let fabOutsideHandler = null;
 window.attachClickOutsideHandler = function (fabElement) {
-    document.addEventListener('click', function (event) {
+    // Un solo listener aunque el componente se vuelva a montar
+    if (fabOutsideHandler) document.removeEventListener('click', fabOutsideHandler);
+    fabOutsideHandler = function (event) {
         // Check if the click is outside the FAB
         if (fabElement && !fabElement.contains(event.target)) {
             // Find the Blazor component button to trigger close
@@ -310,5 +313,6 @@ window.attachClickOutsideHandler = function (fabElement) {
                 }
             }
         }
-    });
+    };
+    document.addEventListener('click', fabOutsideHandler);
 };

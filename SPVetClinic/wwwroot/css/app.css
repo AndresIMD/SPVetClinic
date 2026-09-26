@@ -2933,29 +2933,6 @@ a.service-card .service-card-link::after {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Enlace de texto, sin caja: para una acción secundaria de menor peso
-   visual junto a un btn-primary-large (evita repetir el mismo par de
-   botones grandes uno junto a otro en cada sección de cierre). */
-.btn-text-large {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 0.5rem;
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.btn-text-large:hover {
-    color: white;
-    border-color: white;
-}
-
-.btn-text-large:active {
-    transform: scale(0.97);
-}
-
 .btn-dark-large {
     background: var(--text-dark);
     color: white;

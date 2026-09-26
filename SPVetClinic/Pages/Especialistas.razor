@@ -17,9 +17,9 @@
         Especialistas <span class="highlight-coral">Certificados</span>
     </TitleContent>
     <Actions>
-        <WhatsAppButton Label="Agendar Consulta"
-                        Style="WhatsAppButtonStyle.Vet" />
-        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+        <WhatsAppButton Label="Agendar Consulta" Style="WhatsAppButtonStyle.Vet" />
+        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
+           class="btn-secondary">Reservar Online</a>
     </Actions>
 </PageHero>
 
@@ -75,7 +75,9 @@
             @foreach (var s in Specialties.All)
             {
                 <article class="specialty-card reveal">
-                    <div class="specialty-card__icon"><Icon Name="@s.Icon" Size="32" /></div>
+                    <div class="specialty-card__icon">
+                        <Icon Name="@s.Icon" Size="32" />
+                    </div>
                     <h3>@s.Name</h3>
                     <p>@s.Description</p>
                     <ul class="specialty-card__doctors">
@@ -84,8 +86,10 @@
                             <li>@d</li>
                         }
                     </ul>
-                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="specialty-card__link">
-                        Ver disponibilidad <Icon Name="arrow-right" Size="16" />
+                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
+                       class="specialty-card__link">
+                        Ver disponibilidad
+                        <Icon Name="arrow-right" Size="16" />
                     </a>
                 </article>
             }
@@ -146,7 +150,8 @@
             </p>
             <div class="cta-buttons">
                 <WhatsAppButton Label="Agendar Cita" Style="WhatsAppButtonStyle.Default" />
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reserva Online</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
+                   class="btn-secondary">Reserva Online</a>
             </div>
         </div>
     </div>
@@ -227,11 +232,16 @@
             <div class="cta-icon">
                 <Icon Name="stethoscope" Size="48" />
             </div>
-            <h2>¿Tu mascota necesita atención especializada?</h2>
+            <h2>¿Tu mascota necesita atención <em>especializada</em>?</h2>
             <p>Agenda una evaluación con nuestro equipo o solicita directamente una cita con el especialista</p>
+            <p class="cta-note">
+                <Icon Name="info" Size="16" />
+                Las citas con especialistas requieren 50% de abono
+            </p>
             <div class="cta-buttons">
                 <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
+                   class="btn-secondary">Reservar Online</a>
             </div>
         </div>
     </div>

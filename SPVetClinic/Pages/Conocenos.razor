@@ -121,9 +121,9 @@
         @foreach (var foto in galeriaFotos)
         {
             i++;
-            <div class="galeria-item reveal stagger-@i">
+            <button type="button" class="galeria-item reveal stagger-@i" @onclick="() => OpenLightbox(foto)">
                 <img src="@foto.Src" alt="@foto.Alt" loading="lazy" />
-            </div>
+            </button>
         }
         @for (int p = i + 1; p <= TotalGaleriaSlots; p++)
         {
@@ -136,6 +136,16 @@
         }
     </div>
 </section>
+
+@if (lightboxPhoto is not null)
+{
+    <div class="lightbox-overlay" tabindex="0" @onclick="CloseLightbox" @onkeydown="OnLightboxKeyDown" autofocus>
+        <button type="button" class="lightbox-close" @onclick="CloseLightbox" @onclick:stopPropagation="true" aria-label="Cerrar">
+            <Icon Name="x" Size="24" />
+        </button>
+        <img class="lightbox-img" src="@lightboxPhoto.Value.Src" alt="@lightboxPhoto.Value.Alt" @onclick:stopPropagation="true" />
+    </div>
+}
 
 <!-- ============================================
      TIMELINE
@@ -203,6 +213,18 @@
 
 @code {
     private const int TotalGaleriaSlots = 8;
+    private (string Src, string Alt)? lightboxPhoto;
+
+    private void OpenLightbox((string Src, string Alt) foto) => lightboxPhoto = foto;
+    private void CloseLightbox() => lightboxPhoto = null;
+
+    private void OnLightboxKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Escape")
+        {
+            CloseLightbox();
+        }
+    }
 
     // Fotos reales de las instalaciones. Al agregar más, solo hace falta
     // sumarlas aquí (usando las constantes de ImagePaths) — el resto de los

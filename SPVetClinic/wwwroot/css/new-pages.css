@@ -434,6 +434,13 @@
     overflow: hidden;
     border: 1px solid #eef1f5;
     transition: var(--transition);
+    /* Las fotos reales son <button>: resetear estilos nativos de boton
+       (el cursor de puntero ya lo da el navegador en un <button>). */
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: none;
+    font: inherit;
 }
 
 .galeria-item:hover {
@@ -474,6 +481,48 @@
     text-align: center;
     color: var(--text-gray);
     font-size: 0.9rem;
+}
+
+/* Lightbox: ver foto de la galeria en grande */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(13, 13, 13, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    outline: none;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    cursor: default;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Timeline Section */
@@ -1202,13 +1251,15 @@
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
     line-height: 1.5;
+    font-size: var(--font-size-base);
+    color: var(--text-gray);
 }
 
 .styled-list li::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.45em;
+    top: 0.65em;
     width: 6px;
     height: 6px;
     background: var(--primary-teal);

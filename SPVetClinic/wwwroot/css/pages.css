@@ -365,11 +365,9 @@
 /* ============================================
    SHARED FINAL CTA SECTION
    ============================================ */
-/* Degradado con un toque de teal en vez del negro plano: mismo tono oscuro
-   y serio que el CTA de cierre de Home, pero con algo de color de marca. */
 .final-cta-section {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #0d0d0d 0%, color-mix(in srgb, var(--primary-teal) 20%, #0d0d0d) 100%);
+    background: #0d0d0d;
     color: white;
     text-align: center;
 }
@@ -394,6 +392,13 @@
 .final-cta-content h2 {
     font-size: var(--font-size-h1);
     margin-bottom: 16px;
+}
+
+/* Palabra destacada en el titulo, mismo tratamiento que el <em> del
+   cierre de Home (.vc-cta h2 em). */
+.final-cta-content h2 em {
+    font-style: italic;
+    color: var(--primary-teal);
 }
 
 .final-cta-content p {
@@ -573,17 +578,15 @@
 }
 
 .stat-primary {
-    background: #0d0d0d;
+    background: var(--primary-teal-dark);
 }
 
 .stat-success {
-    background: #0d0d0d;
-    border: 1px solid rgba(79, 143, 110, 0.3);
+    background: var(--success-dark);
 }
 
 .stat-info {
-    background: #0d0d0d;
-    border: 1px solid rgba(98, 171, 191, 0.3);
+    background: var(--accent-coral);
 }
 
 .stat-danger {
@@ -1053,29 +1056,6 @@
     .tutor-info-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* ============================================
-   SHARED STYLED LIST
-   ============================================ */
-.styled-list,
-.conditions-list {
-    list-style: none;
-    padding: 0;
-}
-
-.styled-list li,
-.conditions-list li {
-    padding: 8px 0;
-    font-size: var(--font-size-base);
-    color: var(--text-gray);
-}
-
-.styled-list li::before,
-.conditions-list li::before {
-    content: "• ";
-    color: var(--primary-teal);
-    font-weight: 700;
 }
 
 /* ============================================

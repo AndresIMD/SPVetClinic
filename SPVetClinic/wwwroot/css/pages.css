@@ -750,6 +750,16 @@
     gap: 6px;
     font-weight: 600;
     color: var(--primary-teal-dark);
+    transition: var(--transition-fast);
+}
+
+.specialty-card__link:hover {
+    gap: 10px;
+    color: var(--primary-teal);
+}
+
+.specialty-card__link:active {
+    transform: scale(0.97);
 }
 
 /* ============================================

@@ -53,30 +53,50 @@
    definidas en wwwroot/css/app.css, para que el hero de Home use el mismo
    sistema de botones que el resto del sitio. */
 
-/* ===== HERO CAROUSEL ===== */
+/* ===== HERO CAROUSEL =====
+   Pista horizontal (3 slides uno al lado del otro, ancho 300%) en vez
+   del crossfade con opacity anterior: permite arrastrar con el puntero
+   y que la imagen/texto se desplacen en tiempo real con el gesto, no
+   solo con click en flechas/puntos. */
 .vc-hero-carousel {
     min-height: var(--hero-height, 100vh);
     position: relative;
     overflow: hidden;
-    touch-action: pan-y; /* scroll vertical normal; el swipe horizontal lo maneja site.js */
+    touch-action: pan-y; /* scroll vertical normal; el arrastre horizontal lo maneja Blazor (pointer events) */
     background: var(--vc-dark);
+    cursor: grab;
+}
+
+.vc-hero-carousel:active {
+    cursor: grabbing;
+}
+
+.vc-hc__track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s var(--ease-out);
+    will-change: transform;
+}
+
+/* Mientras se arrastra, sin transition: el track sigue al puntero 1:1,
+   sin el "retraso" que daria animar cada frame de movimiento. */
+.vc-hc__track--dragging {
+    transition: none;
 }
 
 .vc-hc__slide {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    flex: 0 0 calc(100% / 3);
+    width: calc(100% / 3);
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.vc-hc__slide.active {
-    opacity: 1;
-    visibility: visible;
 }
 
 .vc-hc__bg { position: absolute; inset: 0; }
@@ -86,19 +106,9 @@
     object-fit: cover;
     opacity: 0.3;
     filter: grayscale(20%);
-    transform: scale(1);
-}
-
-/* Ken Burns: zoom lento mientras el slide esta activo. Se reinicia solo
-   cada vez que vuelve a quedar activo porque .vc-hero-carousel tiene
-   overflow:hidden y la animacion se dispara con la clase .active. */
-.vc-hc__slide.active .vc-hc__bg img {
-    animation: vc-hc-kenburns 9s var(--ease-out) forwards;
-}
-
-@keyframes vc-hc-kenburns {
-    from { transform: scale(1); }
-    to { transform: scale(1.08); }
+    /* pointer-events lo maneja la seccion; esto solo evita el "fantasma"
+       de arrastre nativo del navegador sobre la imagen */
+    -webkit-user-drag: none;
 }
 
 .vc-hc__overlay {
@@ -482,7 +492,7 @@
         transform: translateY(-50%);
     }
 
-    .vc-hc__bg img {
-        animation: none;
+    .vc-hc__track {
+        transition: none;
     }
 }

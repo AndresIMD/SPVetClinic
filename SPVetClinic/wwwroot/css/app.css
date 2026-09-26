@@ -1067,17 +1067,6 @@ section {
     gap: 1.25rem;
 }
 
-/* La primera tarjeta (Consulta General, el servicio más buscado) ocupa el
-   doble de ancho con una imagen más alta: rompe la fila de 6 tarjetas
-   idénticas sin tocar el markup. En mobile el grid ya colapsa a 1 columna. */
-.vc-svc-grid > a:first-child {
-    grid-column: span 2;
-}
-
-.vc-svc-grid > a:first-child .vc-svc-card__img {
-    height: 200px;
-}
-
 .vc-svc-card {
     display: block;
     text-decoration: none;
@@ -3067,14 +3056,14 @@ a.service-card .service-card-link::after {
 }
 
 .exam-category-icon {
-    font-size: 2rem;
     width: 60px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-teal-light);
-    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(98, 171, 191, 0.10), rgba(98, 171, 191, 0.20));
+    color: var(--primary-teal);
+    border-radius: 14px;
 }
 
 .exam-category-title {

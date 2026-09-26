@@ -298,43 +298,41 @@
 }
 
 /* Visión y Objetivo: dos tarjetas bajo la historia. Teal = visión, coral = objetivo (paleta de marca) */
+/* Sin chroma de tarjeta a propósito: esta sección va después de la
+   narrativa de "Nuestra Historia" en prosa y debe leerse igual de seria,
+   no como una tarjeta de feature más. Un filete superior separa el bloque
+   y el ícono queda plano, sin placa de color detrás. */
 .historia-vo {
     max-width: 1100px;
     margin: 3rem auto 0;
+    padding-top: 2.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--primary-teal) 15%, white);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 
 .vo-card {
     --vo: var(--primary-teal);
     --vo-text: color-mix(in srgb, var(--primary-teal) 62%, black);
-    --vo-soft: var(--primary-teal-light);
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: flex-start;
-    padding: 2rem;
-    background: var(--bg-light);
-    border: 1px solid #eef1f5;
-    border-top: 3px solid var(--vo);
-    border-radius: 14px;
 }
 
 .vo-card--objetivo {
     --vo: var(--accent-coral);
     --vo-text: var(--accent-coral-dark);
-    --vo-soft: rgba(187, 84, 95, 0.09);
 }
 
 .vo-card__icon {
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    background: var(--vo-soft);
-    color: var(--vo-text);
+    width: 28px;
+    height: 28px;
+    margin-top: 0.2rem;
+    color: var(--vo);
 }
 
 .vo-card h3 {
@@ -352,10 +350,7 @@
 @media (max-width: 768px) {
     .historia-vo {
         grid-template-columns: 1fr;
-    }
-
-    .vo-card {
-        padding: 1.5rem;
+        gap: 1.75rem;
     }
 }
 
@@ -677,38 +672,33 @@
     transform: translateX(5px);
 }
 
+/* Tinte coral claro en vez del fondo casi negro anterior: se lee como
+   "urgente" por color de marca, no por ser la única tarjeta oscura del
+   grid. */
 .servicio-urgencias {
-    background: var(--surface-dark);
-    color: white;
-    border-color: rgba(187, 84, 95, 0.3);
+    background: color-mix(in srgb, var(--accent-coral) 8%, white);
+    border-color: color-mix(in srgb, var(--accent-coral) 30%, white);
 }
 
 .servicio-urgencias:hover {
-    background: #111;
-    color: white;
+    background: color-mix(in srgb, var(--accent-coral) 14%, white);
     transform: translateY(-4px);
     border-color: var(--accent-coral);
 }
 
-.servicio-urgencias h3,
-.servicio-urgencias p,
-.servicio-urgencias .servicio-features li {
-    color: white;
-}
-
 .servicio-urgencias .servicio-hub-icon {
-    background: linear-gradient(135deg, rgba(187, 84, 95, 0.35), rgba(187, 84, 95, 0.55));
+    background: linear-gradient(135deg, rgba(187, 84, 95, 0.15), rgba(187, 84, 95, 0.25));
     color: var(--accent-coral);
 }
 
 .servicio-urgencias:hover .servicio-hub-icon {
-    background: linear-gradient(135deg, rgba(187, 84, 95, 0.5), rgba(187, 84, 95, 0.7));
+    background: linear-gradient(135deg, rgba(187, 84, 95, 0.22), rgba(187, 84, 95, 0.35));
 }
 
 .btn-urgencia {
     display: inline-block;
-    background: white;
-    color: var(--accent-coral);
+    background: var(--accent-coral);
+    color: white;
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius);
     font-weight: 600;
@@ -718,8 +708,13 @@
 }
 
 .btn-urgencia:hover {
+    background: var(--accent-coral-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(187, 84, 95, 0.35);
+}
+
+.btn-urgencia:active {
+    transform: scale(0.97);
 }
 
 /* ==========================================
@@ -1081,8 +1076,16 @@
 }
 
 .service-icon {
-    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(98, 171, 191, 0.10), rgba(98, 171, 191, 0.20));
+    color: var(--primary-teal);
     margin-bottom: 1rem;
+    transition: var(--transition);
 }
 
 .peluqueria-service-card h3 {

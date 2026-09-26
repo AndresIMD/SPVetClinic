@@ -1130,7 +1130,7 @@
    PÁGINA PELUQUERÍA
    ========================================== */
 .peluqueria-intro-section {
-    padding: 4rem 5%;
+    padding: 5rem 5%;
     background: var(--bg-white);
 }
 
@@ -1162,7 +1162,7 @@
 }
 
 .peluqueria-servicios-section {
-    padding: 4rem 5%;
+    padding: 5rem 5%;
     background: var(--bg-light);
 }
 

@@ -312,6 +312,11 @@
    SHARED FAQ GRID (non-accordion, card style)
    Used in: Especialistas, Hospitalizacion,
    Parvovirus, VetMovil, Vacunacion
+
+   .faq-card (no .faq-item): app.css ya usa .faq-item para el FAQ
+   acordeon de Home/Contacto. Con el mismo nombre, esta tarjeta sumaba
+   su padding/border-radius/hover encima del acordeon en esas paginas
+   (misma especificidad, este archivo carga despues) y lo desalineaba.
    ============================================ */
 .faq-section {
     padding: 80px 20px;
@@ -329,7 +334,7 @@
     margin-top: 50px;
 }
 
-.faq-item {
+.faq-card {
     background: white;
     padding: 28px;
     border-radius: 14px;
@@ -337,20 +342,20 @@
     transition: var(--transition);
 }
 
-.faq-item:hover {
+.faq-card:hover {
     box-shadow: var(--shadow-soft);
     border-color: var(--primary-teal);
     transform: translateY(-2px);
 }
 
-.faq-item h4,
-.faq-item h3 {
+.faq-card h4,
+.faq-card h3 {
     color: var(--text-dark);
     margin-bottom: 12px;
     font-size: var(--font-size-h4);
 }
 
-.faq-item p {
+.faq-card p {
     color: var(--text-gray);
     line-height: 1.7;
     margin: 0;
@@ -1521,7 +1526,7 @@
    coral = gatos) en lugar de los verdes de éxito que tenía antes.
    ============================================ */
 .calendars-section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     background: var(--bg-light);
 }
 
@@ -1657,7 +1662,7 @@
 }
 
 .optional-vaccines-section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     background: white;
 }
 

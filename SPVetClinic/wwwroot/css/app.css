@@ -1754,12 +1754,9 @@ a.service-card .service-card-link::after {
 
 /* ============================================
    FAQ SECTION
+   (padding/background de .faq-section viven en pages.css, que carga
+   despues y ya los pisaba: la version de aqui era codigo muerto)
    ============================================ */
-.faq-section {
-    background: var(--bg-white);
-    padding: 6rem 2rem;
-}
-
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -2147,12 +2144,6 @@ a.service-card .service-card-link::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 /* ============================================

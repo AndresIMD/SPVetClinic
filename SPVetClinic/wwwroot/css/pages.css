@@ -577,16 +577,39 @@
     opacity: 0.85;
 }
 
+/* Tinte claro + texto oscuro en vez de fondo solido con texto blanco:
+   las 3 se leian "oscuras" en conjunto aunque no fueran negras. */
 .stat-primary {
-    background: var(--primary-teal-dark);
+    background: color-mix(in srgb, var(--primary-teal) 12%, white);
+    color: var(--text-dark);
+}
+
+.stat-primary .stat-number {
+    color: var(--primary-teal-dark);
 }
 
 .stat-success {
-    background: var(--success-dark);
+    background: color-mix(in srgb, var(--success) 12%, white);
+    color: var(--text-dark);
+}
+
+.stat-success .stat-number {
+    color: var(--success-dark);
 }
 
 .stat-info {
-    background: var(--accent-coral);
+    background: color-mix(in srgb, var(--accent-coral) 12%, white);
+    color: var(--text-dark);
+}
+
+.stat-info .stat-number {
+    color: var(--accent-coral-dark);
+}
+
+.stat-primary .stat-label,
+.stat-success .stat-label,
+.stat-info .stat-label {
+    color: var(--text-gray);
 }
 
 .stat-danger {

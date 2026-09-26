@@ -120,8 +120,9 @@
         @{ int i = 0; }
         @foreach (var foto in galeriaFotos)
         {
+            var index = i;
             i++;
-            <button type="button" class="galeria-item reveal stagger-@i" @onclick="() => OpenLightbox(foto)">
+            <button type="button" class="galeria-item reveal stagger-@i" @onclick="() => OpenLightbox(index)">
                 <img src="@foto.Src" alt="@foto.Alt" loading="lazy" />
             </button>
         }
@@ -137,13 +138,22 @@
     </div>
 </section>
 
-@if (lightboxPhoto is not null)
+@if (lightboxIndex is not null)
 {
+    var foto = galeriaFotos[lightboxIndex.Value];
     <div class="lightbox-overlay" tabindex="0" @onclick="CloseLightbox" @onkeydown="OnLightboxKeyDown" autofocus>
         <button type="button" class="lightbox-close" @onclick="CloseLightbox" @onclick:stopPropagation="true" aria-label="Cerrar">
             <Icon Name="x" Size="24" />
         </button>
-        <img class="lightbox-img" src="@lightboxPhoto.Value.Src" alt="@lightboxPhoto.Value.Alt" @onclick:stopPropagation="true" />
+
+        @if (galeriaFotos.Count > 1)
+        {
+            <button type="button" class="lightbox-nav lightbox-nav--prev" @onclick="PrevPhoto" @onclick:stopPropagation="true" aria-label="Foto anterior">‹</button>
+            <button type="button" class="lightbox-nav lightbox-nav--next" @onclick="NextPhoto" @onclick:stopPropagation="true" aria-label="Foto siguiente">›</button>
+        }
+
+        <img class="lightbox-img" src="@foto.Src" alt="@foto.Alt" draggable="false" @onclick:stopPropagation="true"
+             @onpointerdown="OnDragStart" @onpointerup="OnDragEnd" />
     </div>
 }
 
@@ -213,17 +223,36 @@
 
 @code {
     private const int TotalGaleriaSlots = 8;
-    private (string Src, string Alt)? lightboxPhoto;
+    private const double DragThresholdPx = 50;
+    private int? lightboxIndex;
+    private double? dragStartX;
 
-    private void OpenLightbox((string Src, string Alt) foto) => lightboxPhoto = foto;
-    private void CloseLightbox() => lightboxPhoto = null;
+    private void OpenLightbox(int index) => lightboxIndex = index;
+    private void CloseLightbox() => lightboxIndex = null;
+
+    private void NextPhoto() => lightboxIndex = (lightboxIndex + 1) % galeriaFotos.Count;
+    private void PrevPhoto() => lightboxIndex = (lightboxIndex - 1 + galeriaFotos.Count) % galeriaFotos.Count;
 
     private void OnLightboxKeyDown(KeyboardEventArgs e)
     {
-        if (e.Key == "Escape")
+        switch (e.Key)
         {
-            CloseLightbox();
+            case "Escape": CloseLightbox(); break;
+            case "ArrowRight": NextPhoto(); break;
+            case "ArrowLeft": PrevPhoto(); break;
         }
+    }
+
+    private void OnDragStart(PointerEventArgs e) => dragStartX = e.ClientX;
+
+    private void OnDragEnd(PointerEventArgs e)
+    {
+        if (dragStartX is null) return;
+
+        var delta = e.ClientX - dragStartX.Value;
+        dragStartX = null;
+        if (delta <= -DragThresholdPx) NextPhoto();
+        else if (delta >= DragThresholdPx) PrevPhoto();
     }
 
     // Fotos reales de las instalaciones. Al agregar más, solo hace falta

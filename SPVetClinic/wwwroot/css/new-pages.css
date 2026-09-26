@@ -483,11 +483,13 @@
     font-size: 0.9rem;
 }
 
-/* Lightbox: ver foto de la galeria en grande */
+/* Lightbox: ver foto de la galeria en grande.
+   z-index por encima del .topnav (1000) y el boton de cerrar corrido
+   bajo el header fijo (barra de urgencia + nav), si no queda tapado. */
 .lightbox-overlay {
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: 1100;
     background: rgba(13, 13, 13, 0.92);
     display: flex;
     align-items: center;
@@ -501,12 +503,18 @@
     max-height: 85vh;
     border-radius: 8px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    cursor: default;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+}
+
+.lightbox-img:active {
+    cursor: grabbing;
 }
 
 .lightbox-close {
     position: absolute;
-    top: 1.5rem;
+    top: calc(var(--header-height) + 1rem);
     right: 1.5rem;
     width: 44px;
     height: 44px;
@@ -523,6 +531,53 @@
 
 .lightbox-close:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-close:active {
+    transform: scale(0.97);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-nav:active {
+    transform: translateY(-50%) scale(0.94);
+}
+
+.lightbox-nav--prev {
+    left: 1.5rem;
+}
+
+.lightbox-nav--next {
+    right: 1.5rem;
+}
+
+/* En mobile el gesto de arrastre reemplaza a las flechas (como el
+   carrusel del hero, que tambien las esconde en pantallas chicas). */
+@media (max-width: 640px) {
+    .lightbox-nav {
+        display: none;
+    }
 }
 
 /* Timeline Section */

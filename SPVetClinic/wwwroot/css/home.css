@@ -86,6 +86,19 @@
     object-fit: cover;
     opacity: 0.3;
     filter: grayscale(20%);
+    transform: scale(1);
+}
+
+/* Ken Burns: zoom lento mientras el slide esta activo. Se reinicia solo
+   cada vez que vuelve a quedar activo porque .vc-hero-carousel tiene
+   overflow:hidden y la animacion se dispara con la clase .active. */
+.vc-hc__slide.active .vc-hc__bg img {
+    animation: vc-hc-kenburns 9s var(--ease-out) forwards;
+}
+
+@keyframes vc-hc-kenburns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
 }
 
 .vc-hc__overlay {
@@ -445,5 +458,31 @@
     .reveal-scale {
         transform: none;
         transition: opacity 0.3s ease;
+    }
+
+    .lightbox-img {
+        transition: opacity 0.3s ease;
+    }
+
+    @starting-style {
+        .lightbox-img,
+        .lightbox-img[data-dir="next"],
+        .lightbox-img[data-dir="prev"] {
+            transform: none;
+        }
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:active {
+        transform: none;
+    }
+
+    .lightbox-nav:hover,
+    .lightbox-nav:active {
+        transform: translateY(-50%);
+    }
+
+    .vc-hc__bg img {
+        animation: none;
     }
 }

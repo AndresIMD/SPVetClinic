@@ -394,13 +394,6 @@
     margin-bottom: 16px;
 }
 
-/* Palabra destacada en el titulo, mismo tratamiento que el <em> del
-   cierre de Home (.vc-cta h2 em). */
-.final-cta-content h2 em {
-    font-style: italic;
-    color: var(--primary-teal);
-}
-
 .final-cta-content p {
     font-size: var(--font-size-lg);
     margin-bottom: 32px;
@@ -577,11 +570,22 @@
     opacity: 0.85;
 }
 
-/* Tinte claro + texto oscuro en vez de fondo solido con texto blanco:
-   las 3 se leian "oscuras" en conjunto aunque no fueran negras. */
-.stat-primary {
-    background: color-mix(in srgb, var(--primary-teal) 12%, white);
+/* Tarjeta blanca con acento de color a la izquierda, mismo lenguaje que
+   el resto de las tarjetas del sitio (servicio-hub-card, exam-category):
+   ni bloque de color solido (se leia "oscura") ni tinte pastel (se leia
+   "muy clara") — un dato destacado sobre una tarjeta neutra. */
+.stat-primary,
+.stat-success,
+.stat-info {
+    background: white;
+    border: 1px solid #eef1f5;
+    border-left: 4px solid var(--stat-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     color: var(--text-dark);
+}
+
+.stat-primary {
+    --stat-accent: var(--primary-teal);
 }
 
 .stat-primary .stat-number {
@@ -589,8 +593,7 @@
 }
 
 .stat-success {
-    background: color-mix(in srgb, var(--success) 12%, white);
-    color: var(--text-dark);
+    --stat-accent: var(--success);
 }
 
 .stat-success .stat-number {
@@ -598,8 +601,7 @@
 }
 
 .stat-info {
-    background: color-mix(in srgb, var(--accent-coral) 12%, white);
-    color: var(--text-dark);
+    --stat-accent: var(--accent-coral);
 }
 
 .stat-info .stat-number {

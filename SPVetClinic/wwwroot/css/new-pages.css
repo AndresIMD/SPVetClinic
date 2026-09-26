@@ -496,6 +496,14 @@
     justify-content: center;
     padding: 2rem;
     outline: none;
+    opacity: 1;
+    transition: opacity 200ms var(--ease-out);
+}
+
+@starting-style {
+    .lightbox-overlay {
+        opacity: 0;
+    }
 }
 
 .lightbox-img {
@@ -506,10 +514,31 @@
     cursor: grab;
     touch-action: pan-y;
     user-select: none;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
 }
 
 .lightbox-img:active {
     cursor: grabbing;
+}
+
+/* @key en Blazor recrea el <img> en cada navegacion, asi que
+   @starting-style se vuelve a disparar cada vez: la foto entra desde
+   el lado de donde viene (flecha/drag) o con un pop suave al abrir. */
+@starting-style {
+    .lightbox-img {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    .lightbox-img[data-dir="next"] {
+        transform: translateX(28px) scale(0.98);
+    }
+
+    .lightbox-img[data-dir="prev"] {
+        transform: translateX(-28px) scale(0.98);
+    }
 }
 
 .lightbox-close {
@@ -523,6 +552,8 @@
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     cursor: pointer;
@@ -531,10 +562,11 @@
 
 .lightbox-close:hover {
     background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
 }
 
 .lightbox-close:active {
-    transform: scale(0.97);
+    transform: rotate(90deg) scale(0.94);
 }
 
 .lightbox-nav {
@@ -548,16 +580,25 @@
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    font-size: 1.75rem;
-    line-height: 1;
     cursor: pointer;
     transition: var(--transition);
 }
 
 .lightbox-nav:hover {
     background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-nav--prev:hover {
+    transform: translateY(-50%) translateX(-3px);
+}
+
+.lightbox-nav--next:hover {
+    transform: translateY(-50%) translateX(3px);
 }
 
 .lightbox-nav:active {

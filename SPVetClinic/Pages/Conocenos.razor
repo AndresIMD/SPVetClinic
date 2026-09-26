@@ -148,11 +148,18 @@
 
         @if (galeriaFotos.Count > 1)
         {
-            <button type="button" class="lightbox-nav lightbox-nav--prev" @onclick="PrevPhoto" @onclick:stopPropagation="true" aria-label="Foto anterior">‹</button>
-            <button type="button" class="lightbox-nav lightbox-nav--next" @onclick="NextPhoto" @onclick:stopPropagation="true" aria-label="Foto siguiente">›</button>
+            <button type="button" class="lightbox-nav lightbox-nav--prev" @onclick="PrevPhoto" @onclick:stopPropagation="true" aria-label="Foto anterior">
+                <Icon Name="chevron-left" Size="26" />
+            </button>
+            <button type="button" class="lightbox-nav lightbox-nav--next" @onclick="NextPhoto" @onclick:stopPropagation="true" aria-label="Foto siguiente">
+                <Icon Name="chevron-right" Size="26" />
+            </button>
         }
 
-        <img class="lightbox-img" src="@foto.Src" alt="@foto.Alt" draggable="false" @onclick:stopPropagation="true"
+        @* @key fuerza a Blazor a recrear el <img> en cada foto (no solo cambiar su src),
+           para que @starting-style vuelva a animar la entrada en cada navegacion. *@
+        <img class="lightbox-img" src="@foto.Src" alt="@foto.Alt" draggable="false" @key="lightboxIndex"
+             data-dir="@navDirection" @onclick:stopPropagation="true"
              @onpointerdown="OnDragStart" @onpointerup="OnDragEnd" />
     </div>
 }
@@ -226,12 +233,28 @@
     private const double DragThresholdPx = 50;
     private int? lightboxIndex;
     private double? dragStartX;
+    // "open" | "next" | "prev": que borde anima la entrada de la foto (@starting-style en CSS).
+    private string navDirection = "open";
 
-    private void OpenLightbox(int index) => lightboxIndex = index;
+    private void OpenLightbox(int index)
+    {
+        navDirection = "open";
+        lightboxIndex = index;
+    }
+
     private void CloseLightbox() => lightboxIndex = null;
 
-    private void NextPhoto() => lightboxIndex = (lightboxIndex + 1) % galeriaFotos.Count;
-    private void PrevPhoto() => lightboxIndex = (lightboxIndex - 1 + galeriaFotos.Count) % galeriaFotos.Count;
+    private void NextPhoto()
+    {
+        navDirection = "next";
+        lightboxIndex = (lightboxIndex + 1) % galeriaFotos.Count;
+    }
+
+    private void PrevPhoto()
+    {
+        navDirection = "prev";
+        lightboxIndex = (lightboxIndex - 1 + galeriaFotos.Count) % galeriaFotos.Count;
+    }
 
     private void OnLightboxKeyDown(KeyboardEventArgs e)
     {

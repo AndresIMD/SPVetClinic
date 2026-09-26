@@ -14,9 +14,10 @@ public static class Specialties
         new("Endocrinología", "flask", "Diabetes, tiroides y otros desórdenes hormonales y metabólicos.", ["Dra. Daniella Díaz"]),
         new("Neurología", "brain", "Convulsiones, problemas de equilibrio, dolor de columna y movimientos anormales.", ["Dr. Hernán Vargas"]),
         new("Gastroenterología", "utensils", "Diagnóstico y tratamiento de enfermedades del sistema digestivo.", ["Dra. Natalia Vargas"]),
-        new("Mascotas Exóticas", "bird", "Atención especializada para aves, reptiles y otras mascotas no convencionales.", ["Dra. Catalina Danús"]),
         new("Medicina Interna", "stethoscope", "Diagnóstico y manejo de enfermedades complejas y crónicas.", ["Dr. Jorge Barriga"]),
-        new("Oncología", "microscope", "Diagnóstico y tratamiento de tumores y cáncer en mascotas.", ["Dra. Scarlett Chamorro"]),
         new("Ecografía", "eye", "Imagenología por ultrasonido para diagnósticos precisos y no invasivos.", ["Dra. María José Chandía", "Dr. Christopher Herrera"]),
+        new("Oftalmología", "eye", "Diagnóstico y tratamiento de enfermedades oculares en mascotas.", ["Dra. Gabriela Peralta"]),
+        new("Especialista Felina", "cat", "Atención veterinaria enfocada exclusivamente en gatos.", ["Dra. Alejandra Lablé"]),
+        new("Microcirugía", "scissors", "Consulta y cirugía nefrourológica.", ["Dr. Gonzalo Aljaro"]),
     ];
 }

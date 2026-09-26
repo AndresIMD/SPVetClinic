@@ -31,6 +31,16 @@
     --neutral-accent: #7C8FA0;
     --neutral-accent-dark: #5E6E7C;
 
+    /* Colores de marcas externas (WhatsApp/Instagram/Facebook): no son parte
+       de la paleta oficial, pero se centralizan aquí en vez de repetir hex
+       sueltos en cada componente que enlaza a esas redes. */
+    --brand-whatsapp: #25D366;
+    --brand-whatsapp-dark: #128C7E;
+    --brand-instagram-start: #833AB4;
+    --brand-instagram-mid: #FD1D1D;
+    --brand-instagram-end: #F77737;
+    --brand-facebook: #1877F2;
+
     /* Sombras más sutiles y profesionales */
     --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.06);
     --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -42,10 +52,15 @@
     --border-radius-xs: 4px;
     --border-radius-pill: 50px;
 
-    /* Transiciones más sutiles */
-    --transition: all 0.3s ease;
-    --transition-fast: all 0.15s ease;
-    --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Transiciones más sutiles. Propiedades explícitas en vez de "all":
+       cubren lo que hoy cambia en hover/active (color, fondo, borde,
+       sombra, transform, opacidad) sin observar layout (width/height/padding). */
+    /* Curva ease-out con más "punch" que la keyword ease por defecto,
+       para que hovers/presses de UI se sientan intencionales. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --transition: background-color 0.3s var(--ease-out), border-color 0.3s var(--ease-out), color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+    --transition-fast: background-color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), color 0.15s var(--ease-out), transform 0.15s var(--ease-out), opacity 0.15s var(--ease-out);
+    --transition-bounce: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     /* Sistema tipográfico profesional */
     --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -199,29 +214,33 @@ section {
     transform: scale(1);
 }
 
-/* Staggered animations for grids */
+/* Staggered animations for grids. Short, capped delays (30ms step, 180ms max)
+   so long lists (FAQ, exam categories) cascade quickly instead of trailing off. */
 .stagger-1 {
-    transition-delay: 0.1s;
+    transition-delay: 0.03s;
 }
 
 .stagger-2 {
-    transition-delay: 0.2s;
+    transition-delay: 0.06s;
 }
 
 .stagger-3 {
-    transition-delay: 0.3s;
+    transition-delay: 0.09s;
 }
 
 .stagger-4 {
-    transition-delay: 0.4s;
+    transition-delay: 0.12s;
 }
 
 .stagger-5 {
-    transition-delay: 0.5s;
+    transition-delay: 0.15s;
 }
 
-.stagger-6 {
-    transition-delay: 0.6s;
+.stagger-6,
+.stagger-7,
+.stagger-8,
+.stagger-9 {
+    transition-delay: 0.18s;
 }
 
 /* ============================================
@@ -743,8 +762,8 @@ h1[tabindex="-1"]:focus {
 }
 
 .btn-whatsapp-hero {
-    border-color: #25D366;
-    color: #25D366;
+    border-color: var(--brand-whatsapp);
+    color: var(--brand-whatsapp);
 }
 
 .btn-whatsapp-hero .whatsapp-icon-svg {
@@ -753,8 +772,24 @@ h1[tabindex="-1"]:focus {
 }
 
 .btn-whatsapp-hero:hover {
-    background: #25D366;
-    border-color: #25D366;
+    background: var(--brand-whatsapp);
+    border-color: var(--brand-whatsapp);
+    color: white;
+}
+
+/* Modificador solido (fondo verde) para reutilizar sobre otros botones
+   grandes (ej. btn-primary-large) sin recurrir a un style inline. Selector
+   compuesto para ganarle en especificidad a .btn-primary-large (definida
+   más abajo en este archivo). */
+.btn-primary-large.btn-whatsapp-solid {
+    background: var(--brand-whatsapp);
+    border-color: var(--brand-whatsapp);
+    color: white;
+}
+
+.btn-primary-large.btn-whatsapp-solid:hover {
+    background: var(--brand-whatsapp-dark);
+    border-color: var(--brand-whatsapp-dark);
     color: white;
 }
 
@@ -817,7 +852,7 @@ h1[tabindex="-1"]:focus {
 .carousel-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-teal-light) 0%, #D4F5F5 50%, var(--primary-teal-light) 100%);
+    background: linear-gradient(135deg, var(--primary-teal-light) 0%, var(--primary-teal-tint) 50%, var(--primary-teal-light) 100%);
     background-size: 200% 200%;
     animation: gradient-shift 4s ease infinite;
     display: flex;
@@ -1032,11 +1067,22 @@ section {
     gap: 1.25rem;
 }
 
+/* La primera tarjeta (Consulta General, el servicio más buscado) ocupa el
+   doble de ancho con una imagen más alta: rompe la fila de 6 tarjetas
+   idénticas sin tocar el markup. En mobile el grid ya colapsa a 1 columna. */
+.vc-svc-grid > a:first-child {
+    grid-column: span 2;
+}
+
+.vc-svc-grid > a:first-child .vc-svc-card__img {
+    height: 200px;
+}
+
 .vc-svc-card {
     display: block;
     text-decoration: none;
     background: white;
-    border: 1px solid #eef1f5;
+    border: 1px solid color-mix(in srgb, var(--primary-teal) 10%, white);
     border-radius: 14px;
     overflow: hidden;
     transition: var(--transition);
@@ -1448,15 +1494,15 @@ a.service-card .service-card-link::after {
 }
 
 .social-link.instagram {
-    background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+    background: linear-gradient(135deg, var(--brand-instagram-start), var(--brand-instagram-mid), var(--brand-instagram-end));
 }
 
 .social-link.facebook {
-    background: #1877F2;
+    background: var(--brand-facebook);
 }
 
 .social-link.whatsapp {
-    background: #25D366;
+    background: var(--brand-whatsapp);
 }
 
 .social-link:hover {
@@ -1491,7 +1537,7 @@ a.service-card .service-card-link::after {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background: linear-gradient(135deg, #25D366, #128C7E);
+    background: linear-gradient(135deg, var(--brand-whatsapp), var(--brand-whatsapp-dark));
     color: white;
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
@@ -2840,7 +2886,7 @@ a.service-card .service-card-link::after {
 .placeholder-image {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-teal-light) 0%, #D4F5F5 50%, var(--primary-teal-light) 100%);
+    background: linear-gradient(135deg, var(--primary-teal-light) 0%, var(--primary-teal-tint) 50%, var(--primary-teal-light) 100%);
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
     display: flex;
@@ -3131,6 +3177,29 @@ a.service-card .service-card-link::after {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
+/* Enlace de texto, sin caja: para una acción secundaria de menor peso
+   visual junto a un btn-primary-large (evita repetir el mismo par de
+   botones grandes uno junto a otro en cada sección de cierre). */
+.btn-text-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-text-large:hover {
+    color: white;
+    border-color: white;
+}
+
+.btn-text-large:active {
+    transform: scale(0.97);
+}
+
 .btn-dark-large {
     background: var(--text-dark);
     color: white;
@@ -3138,7 +3207,7 @@ a.service-card .service-card-link::after {
 }
 
 .btn-dark-large:hover {
-    background: #000;
+    background: color-mix(in srgb, var(--text-dark) 80%, black);
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
 }
@@ -3146,7 +3215,7 @@ a.service-card .service-card-link::after {
 .btn-outline-large {
     background: transparent;
     color: var(--text-dark);
-    border-color: #d4d8dd;
+    border-color: color-mix(in srgb, var(--primary-teal) 20%, white);
 }
 
 .btn-outline-large:hover {
@@ -3205,4 +3274,24 @@ a.service-card .service-card-link::after {
     .exams-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ============================================
+   PRESS FEEDBACK (:active)
+   Al final del archivo para ganar por orden de cascada sobre los :hover
+   de cada botón/tarjeta (misma especificidad, definidos más arriba).
+   Solo transform: el :hover ya anima color/sombra/lift; al presionar
+   se reemplaza momentáneamente por un scale sutil.
+   ============================================ */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-booking-cta:active,
+.btn-primary-large:active,
+.btn-secondary-large:active,
+.btn-glass-large:active,
+.btn-dark-large:active,
+.btn-outline-large:active,
+.vc-svc-card:active,
+.vc-spec-card:active {
+    transform: scale(0.97);
 }

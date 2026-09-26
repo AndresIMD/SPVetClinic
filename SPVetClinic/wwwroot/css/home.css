@@ -424,3 +424,26 @@
     .vc-hc__nav { display: none; }
     .vc-location__actions { flex-direction: column; }
 }
+
+/* ===== REDUCED MOTION =====
+   Cargado último (home.css es la última hoja enlazada en index.html), así
+   gana por orden de cascada sobre las reglas equivalentes de app.css /
+   new-pages.css. Se quita el movimiento continuo y las entradas con
+   translate/scale; se conservan las transiciones de opacidad. */
+@media (prefers-reduced-motion: reduce) {
+    .badge.urgent,
+    .vc-pulse,
+    .urgencia-pulse,
+    .logo-text:hover .vet,
+    .logo-text:hover .clinic {
+        animation: none;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+        transform: none;
+        transition: opacity 0.3s ease;
+    }
+}

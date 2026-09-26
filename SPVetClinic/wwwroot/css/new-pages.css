@@ -521,7 +521,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #e5e7eb;
+    background: color-mix(in srgb, var(--primary-teal) 20%, white);
     transform: translateX(-50%);
 }
 
@@ -1164,11 +1164,11 @@
 }
 
 .badge-premium {
-    background: var(--primary-blue);
+    background: var(--accent-coral);
 }
 
 .badge-medical {
-    background: #10B981;
+    background: var(--success);
 }
 
 .paquete-card h3 {
@@ -1334,14 +1334,14 @@
 
 /* texto oscuro: el blanco sobre el verde de WhatsApp da ~2:1 */
 .urgencia-btn--wa {
-    background: #25D366;
+    background: var(--brand-whatsapp);
     color: #0d0d0d;
 }
 
 .urgencia-btn--wa:hover {
-    background: #1fb855;
+    background: color-mix(in srgb, var(--brand-whatsapp) 85%, black);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37,211,102,0.3);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
 
 .urgencia-btn--tel {
@@ -1366,7 +1366,7 @@
 }
 
 .urgencia-divider {
-    color: #d4d8dd;
+    color: color-mix(in srgb, var(--primary-teal) 20%, white);
 }
 
 .urgencia-address a {

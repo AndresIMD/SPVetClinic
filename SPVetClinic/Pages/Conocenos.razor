@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<PageHero Tag="Nuestra Clínica" TagIcon="clinic"     Title="Conócenos"
+<PageHero Tag="Nuestra clínica" TagIcon="clinic"     Title="Conócenos"
           Subtitle="@($"{AppConstants.Clinic.YearsOfServiceCapitalized} cuidando a tus mascotas en {AppConstants.Clinic.City}")"
           CssClass="hero--teal" BackgroundImage="@ImagePaths.PageHeroes.Conocenos" />
 
@@ -23,7 +23,7 @@
             <img src="@ImagePaths.Clinic.Historia" alt="Fachada de San Pablo Vet clínic" loading="lazy" />
         </div>
         <div class="historia-content reveal-right stagger-2">
-            <h2 class="section-title">Nuestra Historia</h2>
+            <h2 class="section-title">Nuestra historia</h2>
             <p>
                 Fundada en 2014, San Pablo Vet clínic nace del sueño de crear un espacio donde las mascotas reciban
                 atención médica de calidad con calidez humana. Desde nuestros inicios, hemos trabajado incansablemente
@@ -42,27 +42,29 @@
         </div>
     </div>
 
-    @* BORRADOR a validar con el cliente: solo reúne afirmaciones que la clínica ya hace en este sitio
-       (referente en Rancagua, calidad con calidez humana, especialistas certificados, tecnología, 24 h,
-       servicio a domicilio). Ver docs/production-audit/5-REVISION-TEXTOS-FINAL.md *@
+    @* Reúne solo afirmaciones que la clínica ya hace en el resto del sitio (referente en Rancagua,
+       especialistas certificados, equipos IDEXX, 24 h, servicio a domicilio) -- sin cifras ni
+       certificaciones nuevas que no estén ya confirmadas en otras páginas. *@
     <div class="historia-vo">
         <article class="vo-card vo-card--vision reveal stagger-1">
             <span class="vo-card__icon"><Icon Name="eye" Size="26" /></span>
             <div>
-                <h3>Nuestra Visión</h3>
+                <h3>Nuestra visión</h3>
                 <p>
-                    Ser la clínica veterinaria de referencia en @AppConstants.Clinic.City, donde cada mascota
-                    reciba atención médica de calidad con calidez humana.
+                    Que cada familia de @AppConstants.Clinic.City confíe en nosotros como confiaría en la suya:
+                    que cuando su mascota no está bien, sepan que hay un equipo cerca, disponible y preparado
+                    para acompañarlos, sin importar la hora.
                 </p>
             </div>
         </article>
         <article class="vo-card vo-card--objetivo reveal stagger-2">
             <span class="vo-card__icon"><Icon Name="target" Size="26" /></span>
             <div>
-                <h3>Nuestro Objetivo</h3>
+                <h3>Nuestro objetivo</h3>
                 <p>
-                    Cuidar la salud y el bienestar de cada mascota con especialistas certificados, tecnología de
-                    diagnóstico de última generación y atención disponible las 24 horas, en la clínica y a domicilio.
+                    Acompañar la salud de cada mascota en cada etapa de su vida, con especialistas certificados,
+                    diagnóstico preciso con equipos IDEXX, y la posibilidad de recibirla en la clínica o directamente
+                    en casa — todos los días, a toda hora.
                 </p>
             </div>
         </article>
@@ -75,7 +77,7 @@
 <section class="valores-section">
     <div class="section-header">
         <span class="section-tag">Nuestros Principios</span>
-        <h2 class="section-title">Lo Que Nos Define</h2>
+        <h2 class="section-title">Lo que nos define</h2>
         <p class="section-subtitle">Los valores que guían cada decisión en nuestra clínica</p>
     </div>
 
@@ -92,7 +94,7 @@
             <div class="valor-icon">
                 <Icon Name="heart" Size="40" />
             </div>
-            <h3>Calidez Humana</h3>
+            <h3>Calidez humana</h3>
             <p>Tratamos a cada mascota como si fuera nuestra, con amor, paciencia y dedicación.</p>
         </div>
 
@@ -112,7 +114,7 @@
 <section class="galeria-section">
     <div class="section-header">
         <span class="section-tag">Nuestras Instalaciones</span>
-        <h2 class="section-title">Un Espacio Diseñado Para Ellos</h2>
+        <h2 class="section-title">Un espacio diseñado para ellos</h2>
         <p class="section-subtitle">Instalaciones modernas y acogedoras para el bienestar de tu mascota</p>
     </div>
 
@@ -170,7 +172,7 @@
 <section class="timeline-section">
     <div class="section-header">
         <span class="section-tag">Nuestra Trayectoria</span>
-        <h2 class="section-title">Años de Experiencia</h2>
+        <h2 class="section-title">Años de experiencia</h2>
     </div>
 
     <div class="timeline">

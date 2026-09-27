@@ -10,15 +10,12 @@
     <meta property="og:type" content="website" />
 </HeadContent>
 
-<PageHero Tag="Atención a Domicilio"
-          TagIcon="van" Title="San Pablo Vet Móvil"
+<PageHero Tag="Atención a Domicilio" TagIcon="van" Title="San Pablo Vet Móvil"
           Subtitle="Llevamos la atención veterinaria profesional hasta la puerta de tu casa. Comodidad para ti, menos estrés para tu mascota."
           CssClass="hero--coral" BackgroundImage="@ImagePaths.PageHeroes.VetMovil">
     <Actions>
-        <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp"
-                        Label="Agendar Visita"
-                        SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted"
-                        Style="WhatsAppButtonStyle.Vet" />
+        <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar Visita"
+                        SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
         <NavLink href="servicios" class="btn-secondary">Ver Servicios</NavLink>
     </Actions>
 </PageHero>
@@ -182,15 +179,15 @@
                 </ul>
             </div>
 
-            <!-- Retiro y Entrega -->
+            <!-- Traslado -->
             <div class="service-detail-card stagger-5">
                 <div class="service-icon">
                     <Icon Name="van" Size="32" />
                 </div>
-                <h3>Retiro y entrega</h3>
+                <h3>Traslado</h3>
                 <p>
-                    Si tu mascota necesita procedimientos en la clínica, podemos retirarla
-                    de tu domicilio y devolverla cuando esté lista.
+                    Si tu mascota necesita procedimientos en la clínica, coordinamos el traslado
+                    desde tu domicilio y la acompañamos de vuelta a casa cuando esté lista.
                 </p>
                 <ul class="service-includes">
                     <li>Traslado seguro</li>
@@ -353,14 +350,6 @@
             </div>
 
             <div class="faq-card stagger-3">
-                <h3>¿Pueden hacer cirugías a domicilio?</h3>
-                <p>
-                    No. Los procedimientos quirúrgicos requieren instalaciones especializadas.
-                    En esos casos, ofrecemos el servicio de retiro y entrega desde tu domicilio.
-                </p>
-            </div>
-
-            <div class="faq-card stagger-4">
                 <h3>¿Atienden urgencias?</h3>
                 <p>
                     Para urgencias reales, es mejor acudir directamente a nuestra clínica que
@@ -368,7 +357,7 @@
                 </p>
             </div>
 
-            <div class="faq-card stagger-5">
+            <div class="faq-card stagger-4">
                 <h3>¿Qué formas de pago aceptan?</h3>
                 <p>
                     Aceptamos efectivo, transferencia bancaria y tarjetas de débito/crédito.
@@ -376,7 +365,7 @@
                 </p>
             </div>
 
-            <div class="faq-card stagger-6">
+            <div class="faq-card stagger-5">
                 <h3>¿Puedo agendar el mismo día?</h3>
                 <p>
                     Recomendamos agendar con al menos 24 horas de anticipación. Consultas de
@@ -384,7 +373,7 @@
                 </p>
             </div>
 
-            <div class="faq-card stagger-7">
+            <div class="faq-card stagger-6">
                 <h3>¿Atienden múltiples mascotas?</h3>
                 <p>
                     Sí, podemos atender varias mascotas en la misma visita. Es ideal para
@@ -392,11 +381,12 @@
                 </p>
             </div>
 
-            <div class="faq-card stagger-8">
-                <h3>¿Qué pasa si cancelo?</h3>
+            <div class="faq-card stagger-7">
+                <h3>¿Puedo cancelar o reprogramar la consulta?</h3>
                 <p>
-                    Puedes cancelar o reprogramar sin costo si avisas con al menos 12 horas
-                    de anticipación. Cancelaciones de última hora pueden tener cargo.
+                    Puedes cancelar o reprogramar sin costo si avisas con al menos 12 horas de
+                    anticipación. Te pedimos respetar la agenda y avisar oportunamente para no
+                    quitarle el cupo a otro paciente que lo necesite.
                 </p>
             </div>
         </div>
@@ -406,8 +396,7 @@
 <!-- ============================================
      CTA FINAL
      ============================================ -->
-<PageCtaSection IconName="van"
-                Description="Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil"
+<PageCtaSection IconName="van" Description="Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil"
                 NoteIcon="alarm" NoteText="Recuerda agendar con al menos 24 horas de anticipación">
     <TitleContent>¿Listo para recibir atención veterinaria en <em>casa</em>?</TitleContent>
     <Buttons>
@@ -415,5 +404,5 @@
                         SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
         <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MobileVetWhatsApp)" class="btn-secondary">Llamar
             Ahora</a>
-    </Buttons>
-</PageCtaSection>
+        </Buttons>
+    </PageCtaSection>

@@ -3,16 +3,16 @@
 <PageTitle>Hospitalización 24/7 | @AppConstants.Clinic.Name</PageTitle>
 <HeadContent>
     <meta name="description"
-          content="Hospitalización veterinaria 24/7 en Rancagua. Monitoreo continuo, equipo especializado y visitas programadas. Llama ahora para información de tu mascota." />
+          content="Hospitalización veterinaria 24/7 en Rancagua. Seguimiento cercano, equipo especializado y visitas coordinadas. Contáctanos para información de tu mascota." />
     <meta property="og:title" content="Hospitalización 24/7 | San Pablo Vet clínic" />
     <meta property="og:description"
-          content="Hospitalización veterinaria 24/7 en Rancagua. Monitoreo continuo, equipo especializado y visitas programadas. Llama ahora para información de tu mascota." />
+          content="Hospitalización veterinaria 24/7 en Rancagua. Seguimiento cercano, equipo especializado y visitas coordinadas. Contáctanos para información de tu mascota." />
     <meta property="og:type" content="website" />
 </HeadContent>
 
 <!-- HERO -->
-<PageHero Tag="Monitoreo constante" TagIcon="clinic" Title="Hospitalización 24/7"
-          Subtitle="Cuidados especializados y monitoreo constante cuando tu mascota más lo necesita" CssClass="hero--coral"
+<PageHero Tag="Seguimiento cercano" TagIcon="clinic" Title="Hospitalización 24/7"
+          Subtitle="Cuidados especializados cuando tu mascota más lo necesita" CssClass="hero--coral"
           BackgroundImage="@ImagePaths.PageHeroes.Hospitalizacion" />
 
 @*<!-- SERVICIO 24/7 -->
@@ -37,18 +37,18 @@
 <section id="info" class="hospital-info-section">
     <div class="container">
         <SectionHeader Tag="El servicio" Title="¿Qué es la hospitalización veterinaria?"
-                       Subtitle="Atención especializada para casos que requieren monitoreo constante" />
+                       Subtitle="Atención especializada para casos que requieren seguimiento cercano" />
 
         <div class="hospital-info-content reveal">
             <div class="hospital-info-text">
                 <p class="lead-text">
                     La hospitalización veterinaria es necesaria cuando tu mascota requiere atención médica continua,
-                    administración frecuente de medicamentos, fluidoterapia o monitoreo constante de sus signos vitales.
+                    administración frecuente de medicamentos, fluidoterapia o seguimiento cercano de sus signos vitales.
                 </p>
 
                 <h3>¿Cuándo se requiere hospitalización?</h3>
                 <ul class="conditions-list styled-list">
-                    <li>Enfermedades infecciosas graves (Parvovirus, Distemper, etc.)</li>
+                    <li>Enfermedades infecciosas graves (Parvovirus, etc.)</li>
                     <li>Cirugías complejas que requieren cuidados postoperatorios</li>
                     <li>Deshidratación severa que necesita fluidoterapia intensiva</li>
                     <li>Intoxicaciones o envenenamientos</li>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="stat-box stat-info stagger-3">
                     <div class="stat-number">100%</div>
-                    <div class="stat-label">Monitoreo Constante</div>
+                    <div class="stat-label">Equipo especializado</div>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                     <Icon Name="thermometer" Size="32" />
                 </div>
                 <h3>Monitoreo de signos</h3>
-                <p>Equipos para control continuo de temperatura, frecuencia cardíaca y respiratoria.</p>
+                <p>Equipos para control periódico de temperatura, frecuencia cardíaca y respiratoria.</p>
             </div>
 
             <div class="equipment-card stagger-4">
@@ -122,14 +122,6 @@
                 </div>
                 <h3>Laboratorio interno</h3>
                 <p>Análisis rápidos de sangre, orina y otros para ajustar tratamientos.</p>
-            </div>
-
-            <div class="equipment-card stagger-6">
-                <div class="equipment-icon">
-                    <Icon Name="video" Size="32" />
-                </div>
-                <h3>Cámaras de vigilancia</h3>
-                <p>Monitoreo visual 24/7 de todos los pacientes hospitalizados.</p>
             </div>
         </div>
     </div>
@@ -173,8 +165,8 @@
                 <div class="step-number">4</div>
                 <h3>Comunicación con el tutor</h3>
                 <p>
-                    Actualizaciones diarias sobre el estado del paciente, llamadas de seguimiento
-                    y respuesta a consultas en horarios establecidos.
+                    Actualizaciones diarias sobre el estado del paciente por WhatsApp, con
+                    contacto directo para cualquier consulta.
                 </p>
             </div>
         </div>
@@ -189,28 +181,28 @@
 
         <div class="tutor-info-grid reveal">
             <div class="info-box stagger-1">
-                <InfoCard Icon="phone" Title="Horario de Llamadas" Value="@AppConstants.Hospital.CallsSchedule"
+                <InfoCard Icon="phone" Title="Contacto directo" Value="@AppConstants.Hospital.ContactMethod"
                           Style="InfoCardStyle.Contact" />
                 <p class="info-note">
-                    Fuera de este horario, solo atendemos llamadas de emergencia para evitar
-                    interrumpir el descanso de los pacientes.
+                    El estado diario de tu mascota se informa por este medio, directamente al tutor
+                    registrado. En caso de emergencia, también intentaremos contactarte por llamada.
                 </p>
             </div>
 
             <div class="info-box stagger-2">
-                <InfoCard Icon="clinic" Title="Horario de Visitas" Value="@AppConstants.Hospital.VisitsSchedule"
+                <InfoCard Icon="clinic" Title="Horario de Visitas" Value="@AppConstants.Hospital.VisitsInfo"
                           Style="InfoCardStyle.Contact" />
                 <p class="info-note">
-                    Las visitas tienen una duración máxima de @AppConstants.Hospital.MaxVisitDuration
-                    para no estresar a los pacientes.
+                    Tu próxima visita queda agendada al finalizar la anterior, directamente en la clínica.
                 </p>
             </div>
 
             <div class="info-box stagger-3">
-                <InfoCard Icon="home" Title="Horario de Alta" Value="@AppConstants.Hospital.DischargeSchedule"
+                <InfoCard Icon="home" Title="Horario de Alta" Value="@AppConstants.Hospital.DischargeInfo"
                           Style="InfoCardStyle.Contact" />
                 <p class="info-note">
-                    El alta médica se entrega con indicaciones detalladas para el cuidado en casa.
+                    Se coordina con el veterinario tratante cuando tu mascota esté en condiciones
+                    de volver a casa. El alta se entrega con indicaciones detalladas para el cuidado.
                 </p>
             </div>
 
@@ -235,8 +227,8 @@
             <div class="faq-card stagger-1">
                 <h3>¿Puedo visitar a mi mascota?</h3>
                 <p>
-                    Sí, en el horario establecido de @AppConstants.Hospital.VisitsSchedule.
-                    Las visitas breves ayudan a reducir el estrés del paciente.
+                    Sí. Cada visita se agenda directamente en la clínica al finalizar la anterior,
+                    para coordinar el mejor momento sin interrumpir el descanso del paciente.
                 </p>
             </div>
 
@@ -265,10 +257,11 @@
             </div>
 
             <div class="faq-card stagger-5">
-                <h3>¿Cómo sé si mi mascota está mejorando?</h3>
+                <h3>¿Cómo sabré del estado de mi mascota?</h3>
                 <p>
-                    Te mantendremos informado con llamadas diarias. Puedes consultar en cualquier
-                    momento dentro del horario establecido.
+                    Te enviamos una actualización diaria por WhatsApp con el estado de tu mascota.
+                    Si ocurre algo urgente te llamaremos directamente. Mantén tu contacto actualizado
+                    con nosotros para no perder ninguna novedad.
                 </p>
             </div>
 

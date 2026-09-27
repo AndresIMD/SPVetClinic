@@ -49,10 +49,15 @@ public static class AppConstants
     /// </summary>
     public static class Hospital
     {
-        public const string CallsSchedule = "09:00 a 22:00 hrs";
-        public const string VisitsSchedule = "16:00 a 19:00 hrs";
-        public const string DischargeSchedule = "11:00 a 13:00 hrs";
-        public const string MaxVisitDuration = "10 minutos";
+        /// <summary>No hay horario de llamadas fijo: el contacto directo se entrega al tutor por WhatsApp.</summary>
+        public const string ContactMethod = "Contacto directo por WhatsApp";
+
+        /// <summary>No hay ventana horaria fija: se agenda en la clínica al finalizar cada ingreso o visita.</summary>
+        public const string VisitsInfo = "Se coordina en la clínica";
+
+        /// <summary>No hay ventana horaria fija: depende de la evolución del paciente.</summary>
+        public const string DischargeInfo = "Según indicación médica";
+
         public const string InfoPolicy = "La información del paciente se entrega solo al tutor responsable registrado en la ficha clínica";
     }
 

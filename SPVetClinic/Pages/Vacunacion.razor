@@ -204,18 +204,11 @@
                 </section>
 
                 <!-- CTA -->
-                <section class="final-cta-section">
-                    <div class="container-centered">
-                        <div class="final-cta-content reveal">
-                            <div class="cta-icon">
-                                <Icon Name="syringe" Size="48" />
-                            </div>
-                            <h2>¿Listo para <em>proteger</em> a tu mascota?</h2>
-                            <p>Agenda su vacunación y aprovecha nuestras promociones</p>
-                            <div class="cta-buttons">
-                                <WhatsAppButton Label="Agendar Ahora" Style="WhatsAppButtonStyle.Contact" />
-                                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <PageCtaSection IconName="syringe"
+                                Description="Agenda su vacunación y aprovecha nuestras promociones">
+                    <TitleContent>¿Listo para <em>proteger</em> a tu mascota?</TitleContent>
+                    <Buttons>
+                        <WhatsAppButton Label="Agendar Ahora" Style="WhatsAppButtonStyle.Contact" />
+                        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+                    </Buttons>
+                </PageCtaSection>

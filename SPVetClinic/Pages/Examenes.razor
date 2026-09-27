@@ -413,21 +413,11 @@
 <!-- ============================================
      CTA SECTION
      ============================================ -->
-<section class="final-cta-section">
-    <div class="container">
-        <div class="final-cta-content reveal">
-            <div class="cta-icon">
-                <Icon Name="microscope" Size="48" />
-            </div>
-            <h2>¿Tu mascota necesita un <em>examen</em>?</h2>
-            <p>
-                Agenda una cita con nuestro equipo. Evaluaremos a tu mascota y determinaremos
-                qué estudios son necesarios para un diagnóstico preciso.
-            </p>
-            <div class="cta-buttons">
-                <WhatsAppButton Label="Agendar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
-            </div>
-        </div>
-    </div>
-</section>
+<PageCtaSection IconName="microscope"
+                Description="Agenda una cita con nuestro equipo. Evaluaremos a tu mascota y determinaremos qué estudios son necesarios para un diagnóstico preciso.">
+    <TitleContent>¿Tu mascota necesita un <em>examen</em>?</TitleContent>
+    <Buttons>
+        <WhatsAppButton Label="Agendar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+    </Buttons>
+</PageCtaSection>

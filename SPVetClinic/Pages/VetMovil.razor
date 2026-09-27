@@ -406,23 +406,14 @@
 <!-- ============================================
      CTA FINAL
      ============================================ -->
-<section class="final-cta-section">
-    <div class="container">
-        <div class="final-cta-content reveal">
-            <div class="cta-icon">
-                <Icon Name="van" Size="48" />
-            </div>
-            <h2>¿Listo para recibir atención veterinaria en <em>casa</em>?</h2>
-            <p>Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil</p>
-            <p class="cta-note">
-                <Icon Name="alarm" Size="16" /> Recuerda agendar con al menos 24 horas de anticipación
-            </p>
-            <div class="cta-buttons">
-                <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar por WhatsApp"
-                                SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
-                <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MobileVetWhatsApp)" class="btn-secondary">Llamar
-                    Ahora</a>
-            </div>
-        </div>
-    </div>
-</section>
+<PageCtaSection IconName="van"
+                Description="Agenda tu visita ahora y experimenta la comodidad de nuestro servicio móvil"
+                NoteIcon="alarm" NoteText="Recuerda agendar con al menos 24 horas de anticipación">
+    <TitleContent>¿Listo para recibir atención veterinaria en <em>casa</em>?</TitleContent>
+    <Buttons>
+        <WhatsAppButton PhoneNumber="@AppConstants.Phone.MobileVetWhatsApp" Label="Agendar por WhatsApp"
+                        SecondaryLabel="@AppConstants.Phone.MobileVetWhatsAppFormatted" Style="WhatsAppButtonStyle.Vet" />
+        <a href="@AppConstants.Urls.TelLink(AppConstants.Phone.MobileVetWhatsApp)" class="btn-secondary">Llamar
+            Ahora</a>
+    </Buttons>
+</PageCtaSection>

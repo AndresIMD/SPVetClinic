@@ -151,18 +151,11 @@
 <!-- ============================================
      CTA SECTION
      ============================================ -->
-<section class="final-cta-section">
-    <div class="container">
-        <div class="final-cta-content reveal">
-            <div class="cta-icon">
-                <Icon Name="search" Size="48" />
-            </div>
-            <h2>¿No encuentras lo que <em>buscas</em>?</h2>
-            <p>Contáctanos y te ayudaremos a encontrar la solución perfecta para tu mascota.</p>
-            <div class="cta-buttons">
-                <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
-            </div>
-        </div>
-    </div>
-</section>
+<PageCtaSection IconName="search"
+                Description="Contáctanos y te ayudaremos a encontrar la solución perfecta para tu mascota.">
+    <TitleContent>¿No encuentras lo que <em>buscas</em>?</TitleContent>
+    <Buttons>
+        <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
+        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+    </Buttons>
+</PageCtaSection>

@@ -406,21 +406,12 @@
     <!-- ============================================
      CTA FINAL
      ============================================ -->
-    <section class="final-cta-section">
-        <div class="container">
-            <div class="final-cta-content reveal">
-                <div class="cta-icon">
-                    <Icon Name="syringe" Size="48" />
-                </div>
-                <h2>Protege a tu perro del Parvovirus</h2>
-                <p>Agenda la vacunación hoy y evita una enfermedad grave y prevenible</p>
-                <div class="cta-buttons">
-                    <WhatsAppButton Label="Agendar Vacunación" Style="WhatsAppButtonStyle.Default" />
-                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
-                </div>
-                <p class="cta-note">
-                    <Icon Name="sparkle" Size="16" /> Consulta por nuestras promociones en planes de vacunación
-                </p>
-            </div>
-        </div>
-    </section>
+    <PageCtaSection IconName="syringe"
+                    Description="Agenda la vacunación hoy y evita una enfermedad grave y prevenible"
+                    NoteIcon="sparkle" NoteText="Consulta por nuestras promociones en planes de vacunación">
+        <TitleContent>Protege a tu perro del Parvovirus</TitleContent>
+        <Buttons>
+            <WhatsAppButton Label="Agendar Vacunación" Style="WhatsAppButtonStyle.Default" />
+            <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-secondary">Reservar Online</a>
+        </Buttons>
+    </PageCtaSection>

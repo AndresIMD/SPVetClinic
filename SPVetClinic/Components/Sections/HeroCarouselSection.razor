@@ -6,14 +6,25 @@
          @onpointerup="OnPointerUp" @onpointerleave="OnPointerUp" @onpointercancel="OnPointerUp"
          aria-live="polite" aria-label="Destacados de la clínica">
     <div class="vc-hc__track @TrackClass" style="@TrackStyle">
-        <!-- Clon del ultimo slide (Servicios): permite que arrastrar el
-             primer slide hacia la derecha revele esta foto en vez del
-             fondo oscuro de la seccion. Solo fondo, sin contenido. -->
+        <!-- Clon del ultimo slide (Servicios), contenido completo: permite
+             que arrastrar el primer slide hacia la derecha revele esta foto
+             Y su titulo (no solo el fondo), para que no "aparezca" recien al
+             terminar el loop. aria-hidden + tabindex=-1 en sus links para
+             que no sea alcanzable por teclado/lectores de pantalla. -->
         <div class="vc-hc__slide vc-hc__slide--clone" aria-hidden="true">
             <div class="vc-hc__bg">
                 <img src="@ImagePaths.Services.Laboratory" draggable="false" alt="" />
             </div>
             <div class="vc-hc__overlay"></div>
+            <div class="vc-hc__content">
+                <div class="vc-hc__tag"><span class="vc-pulse"></span> SERVICIOS INTEGRALES</div>
+                <h2 class="vc-hc__title">Todo para el cuidado<br /><span class="vc-accent">de tu mascota</span></h2>
+                <p class="vc-hc__sub">Consultas, laboratorio IDEXX, vacunación, peluquería y atención a domicilio</p>
+                <div class="vc-hc__btns">
+                    <a href="servicios" class="btn-primary-large" tabindex="-1"><Icon Name="stethoscope" Size="18" /> Ver Servicios</a>
+                    <a href="@AppConstants.Urls.WhatsAppMobileVetLink" target="_blank" rel="noopener noreferrer" class="btn-glass-large" tabindex="-1"><Icon Name="van" Size="18" /> Vet a Domicilio</a>
+                </div>
+            </div>
         </div>
 
         <!-- Slide 1: Principal -->
@@ -73,14 +84,28 @@
             </div>
         </div>
 
-        <!-- Clon del primer slide (Principal): permite que arrastrar el
-             ultimo slide hacia la izquierda revele esta foto en vez del
-             fondo oscuro de la seccion. Solo fondo, sin contenido. -->
+        <!-- Clon del primer slide (Principal), contenido completo: permite
+             que arrastrar el ultimo slide hacia la izquierda revele esta
+             foto Y su titulo, no solo el fondo. -->
         <div class="vc-hc__slide vc-hc__slide--clone" aria-hidden="true">
             <div class="vc-hc__bg">
                 <img src="@ImagePaths.Hero.Frontage" draggable="false" alt="" />
             </div>
             <div class="vc-hc__overlay"></div>
+            <div class="vc-hc__content">
+                <div class="vc-hc__tag"><span class="vc-pulse"></span> URGENCIAS 24/7 - ATENCIÓN VETERINARIA</div>
+                <h1 class="vc-hc__title vc-hc__title--brand">
+                    <span class="vc-hc__title-sub">San Pablo</span>
+                    <br />
+                    <span class="vc-accent">Vet</span> <span class="vc-accent-coral">Clínic</span></h1>
+                <p class="vc-hc__sub">
+                    Especialistas certificados, laboratorio IDEXX y atención a domicilio en @AppConstants.Clinic.City
+                </p>
+                <div class="vc-hc__btns">
+                    <a href="contacto#urgencia" class="btn-primary-large" tabindex="-1"><Icon Name="alarm" Size="18" /> Emergencia Ahora</a>
+                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer" class="btn-glass-large" tabindex="-1"><Icon Name="calendar" Size="18" /> Reservar Hora</a>
+                </div>
+            </div>
         </div>
     </div>
 

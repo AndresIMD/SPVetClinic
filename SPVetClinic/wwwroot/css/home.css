@@ -106,10 +106,11 @@
     text-align: center;
 }
 
-/* Clones (copia del ultimo slide antes del primero, copia del primero
-   despues del ultimo): solo fondo, sin contenido/botones — no deberian
-   quedar completamente a la vista salvo un arrastre muy largo, y no
-   deben ser alcanzables por teclado/lectores de pantalla. */
+/* Clones (copia completa del ultimo slide antes del primero, copia
+   completa del primero despues del ultimo, con su mismo titulo/botones):
+   asi el titulo no "aparece" recien al terminar el loop. aria-hidden y
+   tabindex=-1 en sus links (ver markup) los sacan del foco de
+   teclado/lectores de pantalla. */
 .vc-hc__slide--clone {
     pointer-events: none;
 }

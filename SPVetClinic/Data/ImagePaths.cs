@@ -18,7 +18,6 @@ public static class ImagePaths
 
     // ── Marca ─────────────────────────────────────────────────────────────
     public const string Logo = Root + "brand/logo.png";
-    public const string LogoSquare = Root + "brand/logo-square.avif";
 
     // ══════════════════════════════════════════════════════════════════════
     // 1. INVENTARIO — una clase por carpeta
@@ -137,14 +136,6 @@ public static class ImagePaths
         public const string Vacunacion = Library.Consult.CatInConsult;
     }
 
-    /// <summary>Equipos e instrumentos</summary>
-    public static class Equipment
-    {
-        public const string Surgical = Library.Surgery.EndotrachealTube;
-        public const string Ecografia = Library.Diagnostics.UltrasoundProcedure;
-        public const string Xray = Library.Diagnostics.Xray;
-    }
-
     /// <summary>Instalaciones (Conócenos y secciones de la clínica)</summary>
     public static class Clinic
     {
@@ -181,7 +172,4 @@ public static class ImagePaths
         /// <summary>Mesón de recepción (sucursal). No repetir en la galería de Conócenos: ahí va Clinic.ReceptionDesk.</summary>
         public const string Conocenos = Library.Interior.ReceptionDeskSucursal;
     }
-
-    /// <summary>Verifica si una ruta de imagen está disponible (no vacía).</summary>
-    public static bool HasImage(string path) => !string.IsNullOrEmpty(path);
 }

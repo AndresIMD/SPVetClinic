@@ -13,7 +13,6 @@ public static class AppConstants
     public static class Clinic
     {
         public const string Name = "San Pablo Vet Clínic";
-        public const string ShortName = "San Pablo";
         public const string City = "Rancagua";
         public const string Country = "Chile";
         public const string Address = "Av. Central 265";
@@ -40,16 +39,9 @@ public static class AppConstants
         public const string MobileVetWhatsApp = "56983835867";
         public const string MobileVetWhatsAppFormatted = "+56 9 8383 5867";
 
-        /// <summary>Contacto directo Hospital (info pacientes hospitalizados)</summary>
-        public const string HospitalWhatsApp = "56983835841";
-        public const string HospitalWhatsAppFormatted = "+56 9 8383 5841";
-
         /// <summary>Teléfono fijo de la clínica (con código de país: TelLink antepone "+")</summary>
         public const string Landline = "56722904717";
         public const string LandlineFormatted = "72 290 4717";
-
-        /// <summary>Todos los teléfonos formateados para mostrar</summary>
-        public const string AllPhonesFormatted = "+56 9 6190 0401 / 72 290 4717";
     }
 
     /// <summary>
@@ -69,10 +61,7 @@ public static class AppConstants
     /// </summary>
     public static class Social
     {
-        public const string InstagramHandle = "spvetclinic";
         public const string InstagramUrl = "https://www.instagram.com/spvetclinic";
-
-        public const string FacebookHandle = "sanpablovetclinic";
         public const string FacebookUrl = "https://www.facebook.com/sanpablovetclinic";
     }
 
@@ -99,7 +88,6 @@ public static class AppConstants
         public static string WhatsAppLink(string phoneNumber) => $"https://wa.me/{phoneNumber}";
         public static string WhatsAppMainLink => WhatsAppLink(Phone.MainWhatsApp);
         public static string WhatsAppMobileVetLink => WhatsAppLink(Phone.MobileVetWhatsApp);
-        public static string WhatsAppHospitalLink => WhatsAppLink(Phone.HospitalWhatsApp);
         public static string TelLink(string phoneNumber) => $"tel:+{phoneNumber}";
     }
 }

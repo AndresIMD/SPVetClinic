@@ -18,7 +18,7 @@ window._scrollSetup = false;
 
 window.initScrollAnimations = function () {
     // Observe any new .reveal elements (safe to call multiple times)
-    document.querySelectorAll('.reveal:not(.active), .reveal-left:not(.active), .reveal-right:not(.active), .reveal-scale:not(.active)')
+    document.querySelectorAll('.reveal:not(.active), .reveal-left:not(.active), .reveal-right:not(.active)')
         .forEach(el => window._revealObserver.observe(el));
 
     // One-time setup for scroll and anchor listeners
@@ -153,27 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Promo close button (Vacunacion page)
-    // Persistent Promo Float Handler
-    var promoFloat = document.getElementById('promo-float');
-    var promoClose = document.querySelector('.promo-close');
-
-    if (promoFloat && promoClose) {
-        // Check if promo was closed today (stored in localStorage)
-        var promoClosed = localStorage.getItem('promoClosed');
-        var today = new Date().toDateString();
-
-        // If promo was closed today, hide it
-        if (promoClosed === today) {
-            promoFloat.style.display = 'none';
-        }
-
-        // When close button is clicked, store closure in localStorage for today
-        promoClose.addEventListener('click', function () {
-            localStorage.setItem('promoClosed', today);
-            promoFloat.style.display = 'none';
-        });
-    }
 });
 
 // ==========================================

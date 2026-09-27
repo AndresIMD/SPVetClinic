@@ -178,7 +178,7 @@
 }
 
 /* Solo el slide de marca: el nombre de la clínica pesa más que el resto de títulos.
-   "San Pablo" sube al 0.75em para que no parezca secundario frente a "Vet Clínic". */
+   "San Pablo" sube al 0.75em para que no parezca secundario frente a "Vet clínic". */
 .vc-hc__title--brand { font-size: clamp(2.75rem, 7vw, 5.25rem); }
 .vc-hc__title--brand .vc-hc__title-sub { font-size: 0.75em; }
 

@@ -1179,11 +1179,11 @@ section {
 }
 
 .footer-brand .vet {
-    color: var(--accent-coral);
+    color: var(--primary-teal);
 }
 
 .footer-brand .clinic {
-    color: var(--primary-teal);
+    color: var(--accent-coral);
 }
 
 .footer-brand p {

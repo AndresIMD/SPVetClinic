@@ -12,7 +12,7 @@ public static class AppConstants
     /// </summary>
     public static class Clinic
     {
-        public const string Name = "San Pablo Vet Clínic";
+        public const string Name = "San Pablo Vet clínic";
         public const string City = "Rancagua";
         public const string Country = "Chile";
         public const string Address = "Av. Central 265";
@@ -70,7 +70,7 @@ public static class AppConstants
     /// </summary>
     public static class Maps
     {
-        // Embed URL con ubicación correcta de San Pablo Vet Clínic (empresa)
+        // Embed URL con ubicación correcta de San Pablo Vet clínic (empresa)
         public const string EmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3300.7510740611997!2d-70.71600672427813!3d-34.17828147310979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9663456594efe5a9%3A0xedb27494ccccd065!2sSan%20Pablo%20Vet%20Cl%C3%ADnic!5e0!3m2!1ses!2scl!4v1765084763953!5m2!1ses!2scl";
 
         // Link directo a la empresa en Google Maps (con búsqueda por nombre)

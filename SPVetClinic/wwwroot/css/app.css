@@ -437,6 +437,62 @@ h1[tabindex="-1"]:focus {
     transform: translateY(-13px) rotate(-45deg);
 }
 
+/* ============================================
+   TOPNAV — DARK THEME (Variante C)
+   ============================================ */
+.topnav.topnav--dark {
+    background: rgba(13, 13, 13, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Sin variante .scrolled: el navbar oscuro conserva el mismo color y sombra al bajar
+   (antes pasaba de 0.92 a 0.97 de opacidad y se veía demasiado oscuro). */
+
+/* Logo mantiene colores originales en tema oscuro */
+/* .topnav--dark .logo-img {
+    filter: brightness(0) invert(1);
+} */
+
+.topnav--dark .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.topnav--dark .nav-link:hover {
+    color: var(--primary-teal);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.topnav--dark .nav-link::before {
+    background: linear-gradient(90deg, var(--primary-teal), var(--accent-coral));
+}
+
+.topnav--dark .nav-cta {
+    background: var(--accent-coral);
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(187, 84, 95, 0.3);
+}
+
+.topnav--dark .nav-cta:hover {
+    background: var(--accent-coral-dark);
+    box-shadow: 0 6px 20px rgba(187, 84, 95, 0.4);
+    color: white !important;
+}
+
+.topnav--dark .dropdown-arrow {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.topnav--dark .mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.topnav--dark .mobile-menu-btn span {
+    background: rgba(255, 255, 255, 0.85);
+}
+
 .btn-primary {
     position: relative;
     overflow: hidden;
@@ -1280,6 +1336,16 @@ section {
 
     .nav-links.active {
         display: flex;
+    }
+
+    /* Dark theme — mobile menu */
+    .topnav--dark .nav-links {
+        background: linear-gradient(180deg, rgba(13, 13, 13, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .topnav--dark .nav-link:hover {
+        background: rgba(255, 255, 255, 0.06);
     }
 
     .nav-link {

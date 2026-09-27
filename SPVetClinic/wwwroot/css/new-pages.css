@@ -101,6 +101,22 @@
     color: var(--primary-teal);
 }
 
+/* Dropdown — Dark theme */
+.topnav--dark .nav-dropdown-content {
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.topnav--dark .dropdown-item {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.topnav--dark .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--primary-teal);
+}
+
 .dropdown-item span:first-child {
     font-size: 1.1rem;
 }
@@ -929,6 +945,17 @@ a.servicio-hub-card:active {
         padding: 0.75rem 1rem;
         background: var(--bg-light);
         margin-bottom: 0.5rem;
+    }
+
+    /* Tema oscuro: sin esto los ítems quedaban con fondo claro y texto blanco (ilegibles) */
+    .topnav--dark .nav-dropdown-content {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .topnav--dark .dropdown-item {
+        background: rgba(255, 255, 255, 0.05);
     }
 
     .galeria-grid {

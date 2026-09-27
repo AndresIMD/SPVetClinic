@@ -6,6 +6,16 @@
          @onpointerup="OnPointerUp" @onpointerleave="OnPointerUp" @onpointercancel="OnPointerUp"
          aria-live="polite" aria-label="Destacados de la clínica">
     <div class="vc-hc__track @TrackClass" style="@TrackStyle">
+        <!-- Clon del ultimo slide (Servicios): permite que arrastrar el
+             primer slide hacia la derecha revele esta foto en vez del
+             fondo oscuro de la seccion. Solo fondo, sin contenido. -->
+        <div class="vc-hc__slide vc-hc__slide--clone" aria-hidden="true">
+            <div class="vc-hc__bg">
+                <img src="@ImagePaths.Services.Laboratory" draggable="false" alt="" />
+            </div>
+            <div class="vc-hc__overlay"></div>
+        </div>
+
         <!-- Slide 1: Principal -->
         <div class="vc-hc__slide">
             <div class="vc-hc__bg">
@@ -62,6 +72,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Clon del primer slide (Principal): permite que arrastrar el
+             ultimo slide hacia la izquierda revele esta foto en vez del
+             fondo oscuro de la seccion. Solo fondo, sin contenido. -->
+        <div class="vc-hc__slide vc-hc__slide--clone" aria-hidden="true">
+            <div class="vc-hc__bg">
+                <img src="@ImagePaths.Hero.Frontage" draggable="false" alt="" />
+            </div>
+            <div class="vc-hc__overlay"></div>
+        </div>
     </div>
 
     <!-- Indicadores -->
@@ -78,24 +98,32 @@
 
 @code {
     private const int TotalSlides = 3;
+
+    // El track tiene TotalSlides + 2 elementos: un clon del ultimo slide
+    // antes del primero, y un clon del primero despues del ultimo (ver
+    // markup). trackIndex es la posicion fisica dentro de ese arreglo
+    // (0 = clon del ultimo, 1..TotalSlides = slides reales, TotalSlides+1
+    // = clon del primero); siempre equivale a currentSlide + 1, salvo en
+    // el instante en que se esta animando hacia un clon (ver NextSlide/PrevSlide).
+    private const int VisualSlideCount = TotalSlides + 2;
     private const double DragActivateThresholdPx = 8;
     private const double DragSlideThresholdPx = 60;
     private const int SnapDelayMs = 20;
+    private const int WrapTransitionMs = 520; // > duracion de --ease-out (0.5s) del track
 
     private int currentSlide = 0;
+    private int trackIndex = 1;
     private System.Threading.Timer? heroTimer;
     private bool heroPaused = false;
 
-    // Al dar la vuelta (ultimo->primero o primero->ultimo) no hay un slide
-    // "de mas" hacia el que deslizar: animar el salto largo de regreso se
-    // veia como un rebote/flash. Para ese caso puntual se corta sin
-    // transition, igual que mientras se arrastra.
+    // Al terminar de animar hacia un slide clon (ver NextSlide/PrevSlide),
+    // se corta sin transition para saltar al slide real equivalente: como
+    // el clon es visualmente identico, el corte es imperceptible.
     private bool suppressTransition = false;
 
     // Arrastre en tiempo real: el track sigue al puntero 1:1 (sin transition)
     // mientras isDragging es true; al soltar, se decide el slide final y se
-    // reactiva la transition (con un pequeño overshoot, ver .vc-hc__track--snap)
-    // para que "encaje" con algo de personalidad en vez de un corte seco.
+    // reactiva la transition para que encaje.
     private bool isPointerDown = false;
     private bool isDragging = false;
     private double pointerStartX;
@@ -108,7 +136,7 @@
     {
         get
         {
-            var basePercent = -(currentSlide * (100.0 / TotalSlides));
+            var basePercent = -(trackIndex * (100.0 / VisualSlideCount));
             return FormattableString.Invariant(
                 $"transform: translateX(calc({basePercent:0.####}% + {dragOffsetPx:0.##}px));");
         }
@@ -125,25 +153,40 @@
         }, null, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
     }
 
-    private void GoToSlide(int index) => currentSlide = index;
+    private void GoToSlide(int index)
+    {
+        currentSlide = index;
+        trackIndex = currentSlide + 1;
+    }
 
     private async Task NextSlide()
     {
         var wrapping = currentSlide == TotalSlides - 1;
         currentSlide = (currentSlide + 1) % TotalSlides;
-        if (wrapping) await SnapWithoutTransition();
+        trackIndex++; // si envuelve, avanza un paso mas hacia el clon del primero
+        StateHasChanged();
+        if (wrapping) await SnapPastCloneToReal();
     }
 
     private async Task PrevSlide()
     {
         var wrapping = currentSlide == 0;
         currentSlide = (currentSlide - 1 + TotalSlides) % TotalSlides;
-        if (wrapping) await SnapWithoutTransition();
+        trackIndex--; // si envuelve, retrocede un paso mas hacia el clon del ultimo
+        StateHasChanged();
+        if (wrapping) await SnapPastCloneToReal();
     }
 
-    private async Task SnapWithoutTransition()
+    // trackIndex ya quedo un paso mas alla (apuntando al slide clon) y
+    // StateHasChanged ya disparo esa animacion normal (misma distancia que
+    // un cambio de slide comun). Se espera a que termine para saltar sin
+    // transition a la posicion del slide real equivalente, que se ve
+    // identica al clon, asi el corte es imperceptible.
+    private async Task SnapPastCloneToReal()
     {
+        await Task.Delay(WrapTransitionMs);
         suppressTransition = true;
+        trackIndex = currentSlide + 1;
         StateHasChanged();
         await Task.Delay(SnapDelayMs);
         suppressTransition = false;

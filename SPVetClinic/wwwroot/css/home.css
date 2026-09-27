@@ -54,10 +54,12 @@
    sistema de botones que el resto del sitio. */
 
 /* ===== HERO CAROUSEL =====
-   Pista horizontal (3 slides uno al lado del otro, ancho 300%) en vez
-   del crossfade con opacity anterior: permite arrastrar con el puntero
-   y que la imagen/texto se desplacen en tiempo real con el gesto, no
-   solo con click en flechas/puntos. */
+   Pista horizontal (3 slides reales + 1 clon del ultimo al inicio y 1
+   clon del primero al final, ancho 500%) en vez del crossfade con
+   opacity anterior: permite arrastrar con el puntero y que la imagen se
+   desplace en tiempo real. Los clones evitan que arrastrar mas alla del
+   primer/ultimo slide muestre el fondo oscuro de la seccion: siempre hay
+   una foto (la del otro extremo) esperando al lado. */
 .vc-hero-carousel {
     min-height: var(--hero-height, 100vh);
     position: relative;
@@ -77,16 +79,14 @@
     left: 0;
     bottom: 0;
     display: flex;
-    width: 300%;
+    width: 500%;
     will-change: transform;
 }
 
 /* Encaje normal (click en flechas/puntos, o al soltar un arrastre):
-   reusa la misma curva con leve overshoot que .btn (--transition-bounce)
-   para que el cambio de slide tenga algo de personalidad en vez de un
-   1:1 seco apenas se suelta el puntero. */
+   1:1 sin rebote, mismo ease-out que el resto de la UI. */
 .vc-hc__track--snap {
-    transition: var(--transition-bounce);
+    transition: transform 0.5s var(--ease-out);
 }
 
 /* Mientras se arrastra, sin transition: el track sigue al puntero 1:1,
@@ -97,13 +97,21 @@
 
 .vc-hc__slide {
     position: relative;
-    flex: 0 0 calc(100% / 3);
-    width: calc(100% / 3);
+    flex: 0 0 calc(100% / 5);
+    width: calc(100% / 5);
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+/* Clones (copia del ultimo slide antes del primero, copia del primero
+   despues del ultimo): solo fondo, sin contenido/botones — no deberian
+   quedar completamente a la vista salvo un arrastre muy largo, y no
+   deben ser alcanzables por teclado/lectores de pantalla. */
+.vc-hc__slide--clone {
+    pointer-events: none;
 }
 
 .vc-hc__bg { position: absolute; inset: 0; }

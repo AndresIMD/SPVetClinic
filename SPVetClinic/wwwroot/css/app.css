@@ -1188,6 +1188,45 @@ a.service-card .service-card-link::after {
 }
 
 /* ============================================
+   INFO CARD — variante Contact (usada por InfoCard.razor con
+   Style="InfoCardStyle.Contact"; en Hospitalizacion, seccion
+   "Informacion para Tutores")
+   ============================================ */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.contact-item-content h4,
+.contact-item-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.contact-item-content p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ============================================
    SOCIAL LINKS (usado por SocialLinks.razor, Contacto y Footer)
    ============================================ */
 .social-links {
@@ -1512,10 +1551,6 @@ a.service-card .service-card-link::after {
     line-height: 1.2;
 }
 
-.highlight-coral {
-    color: var(--accent-coral);
-}
-
 .mobile-vet-description {
     font-size: 1.1rem;
     color: var(--text-gray);
@@ -1574,7 +1609,15 @@ a.service-card .service-card-link::after {
 }
 
 .info-icon {
-    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(98, 171, 191, 0.10), rgba(98, 171, 191, 0.20));
+    color: var(--primary-teal);
 }
 
 .info-text {

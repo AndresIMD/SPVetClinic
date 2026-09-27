@@ -166,17 +166,9 @@
     background: rgba(13, 13, 13, 0.72);
 }
 
-/* Highlight spans inside hero titles */
-.page-hero-modern .highlight-teal {
-    color: var(--primary-teal);
-}
-
-.page-hero-modern .highlight-medical,
+/* Highlight span dentro del titulo del hero: ya solo lo usa Parvovirus
+   (las 7 paginas de servicio se estandarizaron a titulo blanco liso). */
 .page-hero-modern .highlight-danger {
-    color: var(--accent-coral);
-}
-
-.page-hero-modern .highlight-coral {
     color: var(--accent-coral);
 }
 
@@ -397,6 +389,13 @@
 .final-cta-content h2 {
     font-size: var(--font-size-h1);
     margin-bottom: 16px;
+}
+
+/* Palabra destacada en el titulo, mismo tratamiento que el <em> del
+   cierre de Home (.vc-cta h2 em). */
+.final-cta-content h2 em {
+    font-style: italic;
+    color: var(--primary-teal);
 }
 
 .final-cta-content p {
@@ -996,17 +995,24 @@
 }
 
 .map-placeholder {
-    background: var(--bg-light);
+    background: color-mix(in srgb, var(--primary-teal) 6%, white);
     border-radius: var(--border-radius);
     padding: 48px 32px;
     text-align: center;
     width: 100%;
-    border: 2px dashed #dee2e6;
+    border: 1px solid color-mix(in srgb, var(--primary-teal) 20%, white);
 }
 
 .map-icon {
-    font-size: 4rem;
-    margin-bottom: 16px;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(98, 171, 191, 0.14);
+    color: var(--primary-teal);
 }
 
 .map-placeholder h3 {

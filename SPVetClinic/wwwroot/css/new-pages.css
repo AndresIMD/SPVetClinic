@@ -345,8 +345,9 @@
 }
 
 /* Lightbox: ver foto de la galeria en grande.
-   z-index por encima del .topnav (1000) y el boton de cerrar corrido
-   bajo el header fijo (barra de urgencia + nav), si no queda tapado. */
+   z-index por encima del .topnav (1000): el overlay cubre toda la
+   pantalla (con su propio fondo oscuro) por encima del navbar, asi que
+   la X va en la esquina normal sin correrla por el header fijo. */
 .lightbox-overlay {
     position: fixed;
     inset: 0;
@@ -404,7 +405,7 @@
 
 .lightbox-close {
     position: absolute;
-    top: calc(var(--header-height) + 1rem);
+    top: 1.5rem;
     right: 1.5rem;
     width: 44px;
     height: 44px;
@@ -1208,7 +1209,10 @@ a.servicio-hub-card:active {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.65em;
+    /* Centra el punto de 6px contra la primera linea de texto: la mitad
+       del espacio extra que deja line-height:1.5 sobre 1 linea de texto,
+       en vez de un numero de em fijo a ojo (quedaba pegado abajo). */
+    top: calc((1.5em - 6px) / 2);
     width: 6px;
     height: 6px;
     background: var(--primary-teal);

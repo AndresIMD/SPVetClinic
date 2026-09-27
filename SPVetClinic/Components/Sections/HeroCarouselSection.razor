@@ -5,7 +5,7 @@
          @onpointerdown="OnPointerDown" @onpointermove="OnPointerMove"
          @onpointerup="OnPointerUp" @onpointerleave="OnPointerUp" @onpointercancel="OnPointerUp"
          aria-live="polite" aria-label="Destacados de la clínica">
-    <div class="vc-hc__track @(isDragging ? "vc-hc__track--dragging" : "")" style="@TrackStyle">
+    <div class="vc-hc__track @TrackClass" style="@TrackStyle">
         <!-- Slide 1: Principal -->
         <div class="vc-hc__slide">
             <div class="vc-hc__bg">
@@ -80,18 +80,29 @@
     private const int TotalSlides = 3;
     private const double DragActivateThresholdPx = 8;
     private const double DragSlideThresholdPx = 60;
+    private const int SnapDelayMs = 20;
 
     private int currentSlide = 0;
     private System.Threading.Timer? heroTimer;
     private bool heroPaused = false;
 
+    // Al dar la vuelta (ultimo->primero o primero->ultimo) no hay un slide
+    // "de mas" hacia el que deslizar: animar el salto largo de regreso se
+    // veia como un rebote/flash. Para ese caso puntual se corta sin
+    // transition, igual que mientras se arrastra.
+    private bool suppressTransition = false;
+
     // Arrastre en tiempo real: el track sigue al puntero 1:1 (sin transition)
     // mientras isDragging es true; al soltar, se decide el slide final y se
-    // reactiva la transition para que "encaje" suavemente.
+    // reactiva la transition (con un pequeño overshoot, ver .vc-hc__track--snap)
+    // para que "encaje" con algo de personalidad en vez de un corte seco.
     private bool isPointerDown = false;
     private bool isDragging = false;
     private double pointerStartX;
     private double dragOffsetPx;
+
+    private string TrackClass =>
+        (isDragging || suppressTransition) ? "vc-hc__track--dragging" : "vc-hc__track--snap";
 
     private string TrackStyle
     {
@@ -109,18 +120,36 @@
         {
             if (!heroPaused)
             {
-                await InvokeAsync(() =>
-                {
-                    currentSlide = (currentSlide + 1) % TotalSlides;
-                    StateHasChanged();
-                });
+                await InvokeAsync(NextSlide);
             }
         }, null, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
     }
 
     private void GoToSlide(int index) => currentSlide = index;
-    private void NextSlide() => currentSlide = (currentSlide + 1) % TotalSlides;
-    private void PrevSlide() => currentSlide = (currentSlide - 1 + TotalSlides) % TotalSlides;
+
+    private async Task NextSlide()
+    {
+        var wrapping = currentSlide == TotalSlides - 1;
+        currentSlide = (currentSlide + 1) % TotalSlides;
+        if (wrapping) await SnapWithoutTransition();
+    }
+
+    private async Task PrevSlide()
+    {
+        var wrapping = currentSlide == 0;
+        currentSlide = (currentSlide - 1 + TotalSlides) % TotalSlides;
+        if (wrapping) await SnapWithoutTransition();
+    }
+
+    private async Task SnapWithoutTransition()
+    {
+        suppressTransition = true;
+        StateHasChanged();
+        await Task.Delay(SnapDelayMs);
+        suppressTransition = false;
+        StateHasChanged();
+    }
+
     private void OnHeroEnter() => heroPaused = true;
     private void OnHeroLeave() => heroPaused = false;
 
@@ -152,18 +181,21 @@
         }
     }
 
-    private void OnPointerUp(PointerEventArgs e)
+    private async Task OnPointerUp(PointerEventArgs e)
     {
-        if (isDragging)
-        {
-            if (dragOffsetPx <= -DragSlideThresholdPx) NextSlide();
-            else if (dragOffsetPx >= DragSlideThresholdPx) PrevSlide();
-        }
+        var wasDragging = isDragging;
+        var offset = dragOffsetPx;
 
         isPointerDown = false;
         isDragging = false;
         dragOffsetPx = 0;
         heroPaused = false;
+
+        if (wasDragging)
+        {
+            if (offset <= -DragSlideThresholdPx) await NextSlide();
+            else if (offset >= DragSlideThresholdPx) await PrevSlide();
+        }
     }
 
     public void Dispose() => heroTimer?.Dispose();

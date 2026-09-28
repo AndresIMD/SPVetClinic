@@ -111,10 +111,14 @@
     box-sizing: content-box;
 }
 
-/* Móvil: los botones del hero se apilan con el mismo ancho y el mismo alto
+/* Móvil: los botones del hero y de los CTA se apilan con el mismo ancho y el mismo alto
    (grid + filas 1fr iguala también al botón de dos líneas, p. ej. WhatsApp con número). */
 @media (max-width: 480px) {
-    .page-hero-modern__actions {
+    /* Selector con padre: new-pages.css y home.css cargan despues y redeclaran display: flex */
+    .page-hero-modern__actions,
+    .final-cta-content .cta-buttons,
+    .process-cta .cta-buttons,
+    .vc-cta .vc-cta__btns {
         display: grid;
         grid-auto-rows: 1fr;
         align-items: stretch; /* la regla base usa center: sin esto cada botón se centra en su fila y no se estira */
@@ -123,7 +127,11 @@
 
     .page-hero-modern__actions .btn-secondary,
     .page-hero-modern__actions .btn-primary-urgency,
-    .page-hero-modern__actions .whatsapp-btn {
+    .page-hero-modern__actions .whatsapp-btn,
+    .cta-buttons .btn-secondary,
+    .cta-buttons .btn-primary-urgency,
+    .cta-buttons .whatsapp-btn,
+    .vc-cta__btns a {
         width: 100%;
         min-height: 0;
         box-sizing: border-box;

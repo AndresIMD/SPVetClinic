@@ -2,7 +2,7 @@ namespace SPVetClinic.Data;
 
 /// <summary>
 /// Fuente única de especialidades para Home y /especialistas.
-/// Los horarios NO van aquí: viven en el calendario del sistema externo de reservas.
+/// Los horarios NO van aquí: cambian semana a semana y los agenda recepción por WhatsApp.
 /// </summary>
 public record Specialty(string Name, string Icon, string Description, string[] Doctors);
 

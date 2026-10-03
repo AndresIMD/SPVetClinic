@@ -6,23 +6,23 @@
 
 <HeadContent>
     <meta name="description"
-          content="Reserva tu consulta con los especialistas veterinarios de San Pablo Vet clínic." />
+          content="Agenda tu consulta con los especialistas veterinarios de San Pablo Vet clínic a través de recepción por WhatsApp." />
 </HeadContent>
 
 <main class="container" style="padding: 6rem 1rem; text-align: center;">
-    <h1>Redirigiendo a reservas</h1>
-    <p>Serás dirigido al sistema oficial de reservas de la clínica.</p>
-    <a href="@AppConstants.Clinic.BookingUrl"
+    <h1>Redirigiendo a recepción</h1>
+    <p>La agenda de especialistas se gestiona por recepción vía WhatsApp.</p>
+    <a href="@AppConstants.Urls.WhatsAppMainLink"
        target="_blank"
        rel="noopener noreferrer"
        class="btn-primary">
-        Continuar a reservas
+        Escribir a recepción
     </a>
 </main>
 
 @code {
     protected override void OnInitialized()
     {
-        Navigation.NavigateTo(AppConstants.Clinic.BookingUrl, forceLoad: true);
+        Navigation.NavigateTo(AppConstants.Urls.WhatsAppMainLink, forceLoad: true);
     }
 }

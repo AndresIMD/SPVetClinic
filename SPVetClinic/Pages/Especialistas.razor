@@ -14,9 +14,8 @@
           Subtitle="Médicos veterinarios expertos en áreas específicas para brindar el mejor diagnóstico y tratamiento a tu mascota"
           CssClass="hero--coral" BackgroundImage="@ImagePaths.PageHeroes.Especialistas" BackgroundPosition="center 5%">
     <Actions>
-        <WhatsAppButton Label="Agendar Consulta" Style="WhatsAppButtonStyle.Vet" />
-        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
-           class="btn-secondary">Reservar Online</a>
+        <WhatsAppButton Label="Agendar con recepción" SecondaryLabel="@AppConstants.Phone.MainWhatsAppFormatted"
+                        Style="WhatsAppButtonStyle.Vet" />
     </Actions>
 </PageHero>
 
@@ -66,7 +65,7 @@
 <section id="especialistas-lista" class="specialists-detail-section">
     <div class="container">
         <SectionHeader Tag="Nuestro equipo" Title="Nuestras especialidades"
-                       Subtitle="Las horas y su disponibilidad se consultan en nuestro calendario de reservas online" />
+                       Subtitle="Cada especialista atiende en fechas distintas: recepción te agenda según su disponibilidad" />
 
         <div class="specialty-grid">
             @foreach (var s in Specialties.All)
@@ -83,10 +82,10 @@
                             <li>@d</li>
                         }
                     </ul>
-                    <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
+                    <a href="@AppConstants.Urls.WhatsAppMainLink" target="_blank" rel="noopener noreferrer"
                        class="specialty-card__link">
-                        Ver disponibilidad
-                        <Icon Name="arrow-right" Size="16" />
+                        <Icon Name="whatsapp" Size="16" />
+                        Agendar con recepción
                     </a>
                 </article>
             }
@@ -116,8 +115,9 @@
                 <div class="step-number">2</div>
                 <h3>Agenda tu hora</h3>
                 <p>
-                    Revisa la disponibilidad en nuestro calendario de reservas online o escríbenos
-                    por WhatsApp para coordinar la cita con el especialista.
+                    Escríbele a recepción por WhatsApp. Las fechas de cada especialista se
+                    coordinan semana a semana, así que recepción te ofrecerá la hora más
+                    cercana disponible para tu mascota.
                 </p>
             </div>
 
@@ -125,8 +125,8 @@
                 <div class="step-number">3</div>
                 <h3>Abono del 50%</h3>
                 <p>
-                    Las consultas con especialistas requieren un abono del 50% del valor
-                    para confirmar la reserva. El saldo se paga el día de la consulta.
+                    Al agendar, recepción te enviará un link de pago para abonar el 50% del
+                    valor y confirmar la hora. El saldo se paga el día de la consulta.
                 </p>
             </div>
 
@@ -143,12 +143,10 @@
         <div class="process-cta reveal">
             <p class="process-cta__note">
                 <Icon Name="info" Size="18" />
-                Las citas con especialistas requieren 50% de abono
+                Las citas con especialistas requieren 50% de abono, pagado mediante link de pago
             </p>
             <div class="cta-buttons">
-                <WhatsAppButton Label="Agendar Cita" Style="WhatsAppButtonStyle.Default" />
-                <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
-                   class="btn-secondary">Reserva Online</a>
+                <WhatsAppButton Label="Agendar con recepción" Style="WhatsAppButtonStyle.Default" />
             </div>
         </div>
     </div>
@@ -176,8 +174,8 @@
                 <h3>¿Por qué se requiere abono?</h3>
                 <p>
                     El abono del 50% garantiza la reserva de la hora con el especialista,
-                    ya que tienen disponibilidad limitada. Esto asegura tu cupo y nos permite
-                    organizar mejor la agenda.
+                    ya que tienen disponibilidad limitada. Recepción te enviará el link de pago
+                    al momento de agendar y la hora queda confirmada una vez realizado el abono.
                 </p>
             </div>
 
@@ -193,9 +191,10 @@
             <div class="faq-card stagger-4">
                 <h3>¿Cómo agendo una hora con un especialista?</h3>
                 <p>
-                    Puedes reservar directamente por WhatsApp o a través de nuestro sistema de
-                    reservas online. Nuestro equipo te ayudará a coordinar la hora según la
-                    disponibilidad del especialista que necesites.
+                    La agenda de especialistas se gestiona por recepción vía WhatsApp. Como cada
+                    especialista tiene fechas distintas que se definen semanalmente, no podemos
+                    publicar horarios fijos: recepción te agendará la hora más conveniente según
+                    la disponibilidad del especialista que necesites.
                 </p>
             </div>
 
@@ -224,12 +223,10 @@
      CTA FINAL
      ============================================ -->
 <PageCtaSection IconName="stethoscope"
-                Description="Agenda una evaluación con nuestro equipo o solicita directamente una cita con el especialista"
-                NoteText="Las citas con especialistas requieren 50% de abono">
+                Description="Escríbele a recepción por WhatsApp y te agendará una hora con el especialista según sus fechas disponibles"
+                NoteText="Las citas con especialistas requieren 50% de abono, pagado mediante link de pago">
     <TitleContent>¿Tu mascota necesita atención <em>especializada</em>?</TitleContent>
     <Buttons>
-        <WhatsAppButton Label="Contactar por WhatsApp" Style="WhatsAppButtonStyle.Default" />
-        <a href="@AppConstants.Clinic.BookingUrl" target="_blank" rel="noopener noreferrer"
-           class="btn-secondary">Reservar Online</a>
+        <WhatsAppButton Label="Agendar con recepción" Style="WhatsAppButtonStyle.Default" />
     </Buttons>
 </PageCtaSection>
